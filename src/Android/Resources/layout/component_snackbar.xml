@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/snackbar_container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/snackbar_height"
+    android:layout_gravity="bottom"
+    android:background="#D000"
+    android:elevation="6dp"
+    android:layout_marginBottom="@dimen/snackbar_starting_margin"
+    >
+    <ImageView
+        android:id="@+id/snackbar_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        />
+    <TextView
+        android:id="@+id/snackbar_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/snackbar_icon"
+        android:layout_alignTop="@+id/snackbar_icon"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/theme_primary"
+        android:fontFamily="sans-serif-thin"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/snackbar_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/snackbar_text"
+        android:layout_alignLeft="@+id/snackbar_text"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/subtle_text_on_dark"
+        android:fontFamily="sans-serif-light"
+        android:textSize="14sp"
+        />
+</RelativeLayout>

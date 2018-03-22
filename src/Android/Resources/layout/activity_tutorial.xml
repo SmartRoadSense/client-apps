@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_primary_dark_lightened">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom" />
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <ImageView
+            android:id="@+id/pager_indicator_1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <ImageView
+            android:id="@+id/pager_indicator_2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_launcher_disabled"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <ImageView
+            android:id="@+id/pager_indicator_3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_launcher_disabled"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <ImageView
+            android:id="@+id/pager_indicator_4"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_launcher_disabled"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <ImageView
+            android:id="@+id/pager_indicator_5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_launcher_disabled"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+        <ImageView
+            android:id="@+id/pager_indicator_6"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_launcher_disabled"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" />
+      <ImageView
+          android:id="@+id/pager_indicator_7"
+          android:layout_width="24dp"
+          android:layout_height="24dp"
+          android:src="@drawable/ic_launcher_disabled"
+          android:layout_marginLeft="5dp"
+          android:layout_marginRight="5dp" />
+    </LinearLayout>
+</RelativeLayout>

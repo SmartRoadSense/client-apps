@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string formatted="false" name="Vernacular_P0_about_author">Uiversitatea din Urbino “Carlo Bo” i NeuNet</string>
+  <string formatted="false" name="Vernacular_P0_about_authors">Alessandro Aldini&lt;br /&gt;Giacomo Alessandroni&lt;br /&gt;Alessandro Bogliolo&lt;br /&gt;Alberto Carini&lt;br /&gt;Saverio Delpriori&lt;br /&gt;Valerio Freschi&lt;br /&gt;Lorenz Cuno Klopfenstein&lt;br /&gt;Emanuele Lattanzi&lt;br /&gt;Gioele Luchetti&lt;br /&gt;Brendan D. Paolini&lt;br /&gt;Andrea Seraghiti</string>
+  <string formatted="false" name="Vernacular_P0_about_contributors">Colaboratori</string>
+  <string formatted="false" name="Vernacular_P0_about_developed_by">dezvoltat de</string>
+  <string formatted="false" name="Vernacular_P0_about_feedback">Comentarii si sugestii</string>
+  <string formatted="false" name="Vernacular_P0_about_feedback_chooser">trimite comentarii</string>
+  <string formatted="false" name="Vernacular_P0_about_icon_design">Design</string>
+  <string formatted="false" name="Vernacular_P0_about_icon_design_text">Logo-ul si design de Lorenz Cuno Klpfenstein.&lt;br /&gt;Pictograma auto de Volodin Anton, pictograma buzunar de Christopher T. Howlett, pictograma smartphone de James Fenton, pictograma accelerometru de Anuar Zhumaev, licenta CC BY 3.0 Noun Project.</string>
+  <string formatted="false" name="Vernacular_P0_about_version_beta">Beta</string>
+  <string formatted="false" name="Vernacular_P0_about_version_debug">Debug</string>
+  <string formatted="false" name="Vernacular_P0_action_clear_log">Șterge Registru</string>
+  <string formatted="false" name="Vernacular_P0_action_clear_queue">Șterge lista de date</string>
+  <string formatted="false" name="Vernacular_P0_action_drawer_close">Închide panoul de navigare</string>
+  <string formatted="false" name="Vernacular_P0_action_drawer_open">Deschide panoul de navigare</string>
+  <string formatted="false" name="Vernacular_P0_action_force_upload">Forțeaza încarcarea</string>
+  <string formatted="false" name="Vernacular_P0_action_play_contentdescription">Începe înregistrarea</string>
+  <string formatted="false" name="Vernacular_P0_action_refresh">Actualizează</string>
+  <string formatted="false" name="Vernacular_P0_action_show_log">Afișeaza registru</string>
+  <string formatted="false" name="Vernacular_P0_action_stop_contentdescription">Termină Înregistrarea</string>
+  <string formatted="false" name="Vernacular_P0_anchorage_bracket">Suport de implementare</string>
+  <string formatted="false" name="Vernacular_P0_anchorage_mat">Covoraș antiderapant</string>
+  <string formatted="false" name="Vernacular_P0_anchorage_pocket">În buzunar/ diverse</string>
+  <string formatted="false" name="Vernacular_P0_app_name">SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_calibration_details">Magnitudine de accelerație medie: {0:F3}m/s² (± {1:F3}m/s²).</string>
+  <string formatted="false" name="Vernacular_P0_calibration_done_info">Calibrarea a fost efectuată cu succes</string>
+  <string formatted="false" name="Vernacular_P0_calibration_forget">Recalibrează</string>
+  <string formatted="false" name="Vernacular_P0_calibration_not_done">Dispozitiv necalibrat: este necasară calibrarea înainte de înregistrare.</string>
+  <string formatted="false" name="Vernacular_P0_calibration_scale">Factor de scală: {0:P2}.</string>
+  <string formatted="false" name="Vernacular_P0_default_ppe_value">0,0</string>
+  <string formatted="false" name="Vernacular_P0_dialog_accept">Acceptă</string>
+  <string formatted="false" name="Vernacular_P0_dialog_calibration_description">Ramai nemiscat si tine-ti respiratia!</string>
+  <string formatted="false" name="Vernacular_P0_dialog_calibration_title">Calibrare…</string>
+  <string formatted="false" name="Vernacular_P0_dialog_cancel">Anulează</string>
+  <string formatted="false" name="Vernacular_P0_dialog_ok">Ok</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_clear_delete_all">Șterge toate fisierele</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_clear_description">Dacă se continua toate datele înregistrate vor fi șterse. Această acțiune nu poate fi anulata.</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_clear_title">Doriți să ștergeți toate datele?</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_cancel">Anulează</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_delete">Șterge</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_share">Trimite</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_title">Ștergere fișier?</string>
+  <string formatted="false" name="Vernacular_P0_error_calibration_high_deviation">Calibrarea a eșuat deoarece dispozitivul pare să fie în mișcare. Încercați din nou menținand stabilitatea.</string>
+  <string formatted="false" name="Vernacular_P0_error_calibration_several_attempts">În cazul în care calibrarea continuă să eșueze, este posibil cadispozitivul să nu fie adecvat pentru a masura în mod corect calitatea străzii.</string>
+  <string formatted="false" name="Vernacular_P0_error_generic">Eroare</string>
+  <string formatted="false" name="Vernacular_P0_error_generic_reflective">Hmmmm…</string>
+  <string formatted="false" name="Vernacular_P0_error_location_settings">Nu pot deschide panoul de setări de locație.</string>
+  <string formatted="false" name="Vernacular_P0_error_open_website">Încercare nereusită de deschidere a site-ului web.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_data_information">Alerta va fi trimisă prin e-mail și nu va conține nici o informație Personala.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_drop_report">Nu, mulțumesc</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_introduction">Ceva nu este în regula cu software-ul nostru de detectare a calitatii stradale.&lt;br /&gt;Toate informatiile furnizate sunt utile pentru a rezolva bug-ul, asadar vă rugam sa ne semnalați eroarea pentru a regla aplicația cât mai curând posibil.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_mail_subject">SmartRoadSense alerta eroare motor</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_no_dump">Nici o eroare de transmis</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_send_report">Ok, trimite</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_send_report_chooser">Trimite alerta via e-mail</string>
+  <string formatted="false" name="Vernacular_P0_error_send_mail">Nu pot trimite e-mail.</string>
+  <string formatted="false" name="Vernacular_P0_error_send_mail_not_configured">Nu puteți trimite e-mail deoarece sistemul nu este configurat corespunzător.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_engine_error">Ceva nu funcționează în sistemul nostru de detectare a calității stradale! =\'(&lt;br /&gt;Click aici pentru a ne ajuta și a raporta problema.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_off">Vă rugăm să activați serviciul de localizare din panoul Setări al dispozitivului Dvs.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_suspended_speed">Aparatul Dvs. se mișca prea lent pentru a capta datele Necesare. Înregistrarea a fost suspendată.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_suspended_stationary">Dispozitivul Dvs nu s-a miscat de ceva timp. Înregistrarea datelor a fost suspendata pentru a nu consuma bateria în mod inutil.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_unfixed">Asigurați-vă că vă aflați într-un spatiu extern și cerul este vizibil. Aplicatia va Relua înregistrarea imediat ce va primi un semnal GPS.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_out_of_country">SmartRoadSense nu este încă disponibil în țara în care vă aflați. Tari suplimentare vor fi activate in viitor.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_syncing">Traseele înregistrare sunt încărcate în serverele noastre. Mulțumim pentru contribuția dumneavoastră! =)</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_upload_failure">Asigurați-vă că dispozitivul Dvs este conectat la Internet.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_engine_error">Ops!</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_off">GPS dezactivat</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_suspended_speed">Un pic prea lent…</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_suspended_stationary">Ati oprit?</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_unfixed">Asteptare semnal GPS</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_out_of_country">Nu este o țara pentru SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_syncing">Sincronizare…</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_upload_failure">Eroare de comunicare</string>
+  <string formatted="false" name="Vernacular_P0_label_anchorage">Locație</string>
+  <string formatted="false" name="Vernacular_P0_label_file_creation">Înregistrare efectuata in data de:</string>
+  <string formatted="false" name="Vernacular_P0_label_file_size">Dimensiune</string>
+  <string formatted="false" name="Vernacular_P0_label_file_size_value">{0} KiByte</string>
+  <string formatted="false" name="Vernacular_P0_label_setup">Configurare</string>
+  <string formatted="false" name="Vernacular_P0_label_vehicle">Vehicul</string>
+  <string formatted="false" name="Vernacular_P0_log_entries_count">{0} elemente in registru</string>
+  <string formatted="false" name="Vernacular_P0_mail_address">info@smartroadsense.it</string>
+  <string formatted="false" name="Vernacular_P0_menu_about">Informații</string>
+  <string formatted="false" name="Vernacular_P0_menu_error_reporting">Semnalarea erorilor</string>
+  <string formatted="false" name="Vernacular_P0_menu_log">Registru</string>
+  <string formatted="false" name="Vernacular_P0_menu_queue">Date</string>
+  <string formatted="false" name="Vernacular_P0_menu_settings">Setări</string>
+  <string formatted="false" name="Vernacular_P0_sensing_service_notification_message">Se înregistrează</string>
+  <string formatted="false" name="Vernacular_P0_sensing_service_notification_title">SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_service_sensing">Serviciul de senzori</string>
+  <string formatted="false" name="Vernacular_P0_service_sync">Serviciu de sincronizare</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_anchorage">Stabiliți modul în care dispozitivul este fixat pe vehicul.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_offline_mode">Dacă este activat, GPS-ul și conexiunea la rețea nu sunt utilizate și calitatea Detectata a suprafaței drumului este afișată fără a fi încărcata.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_prefer_unmetered">Dacă este activat, aplicația sincronizează datele înregistrate cu serverul SmartRoadSense numai în prezența unei conexiuni Wi-Fi.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_start_at_boot">Dacă este activat, aplicația porneste și începe să înregistreze de indata ce Sistemul de operare pornește.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_vehicle">Stabiliți tipul de vehicol pe care il conduceți.</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_calibration">Calibrare</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_introduction">Intorducere</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_preferences">Preferinte</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_setup">Setări de înregistrare</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_anchorage">Locația dispozitivului</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_offline_mode">Mod offline</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_prefer_unmetered">Utilizează conexiunea Wi-Fi</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_start_at_boot">Pornește boot</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_vehicle">Tip vehicul</string>
+  <string formatted="false" name="Vernacular_P0_status_no_files_in_queue">In momentul in care SmartRoadSense a inregistrat una sau mai multe tracks, acestea vor fivizualizate aici inainte de a fi transmise catre server.</string>
+  <string formatted="false" name="Vernacular_P0_title_about">Informații</string>
+  <string formatted="false" name="Vernacular_P0_title_error_reporting">Raportare erori</string>
+  <string formatted="false" name="Vernacular_P0_title_log">Log</string>
+  <string formatted="false" name="Vernacular_P0_title_main">SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_title_main_beta">SmartRoadSense Beta</string>
+  <string formatted="false" name="Vernacular_P0_title_main_debug">SmartRoadSense Debug</string>
+  <string formatted="false" name="Vernacular_P0_title_queue">Date înregistrate</string>
+  <string formatted="false" name="Vernacular_P0_title_settings">Setări</string>
+  <string formatted="false" name="Vernacular_P0_title_tutorial">Introducere</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_1_text_1">SmartRoadSense este un sistem de detectare colaborativ care colectează Informații cu privire la calitatea suprafeței străzii, folosind numai Smartphone-ul dvs.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_1_title">Bun venit in aplicația SmartRoadSense!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_2_text_1">Smartphone-ul dumneavostră, va folosi senzorii pentru a determina calitatea drumului pe care călătoriți.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_2_text_2">Toate datele sunt colectate în mod anonim, prelucrate și agregate si in cele din urmă publicate pe www.smartroadsense.it.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_2_title">Cum funcționează?</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_3_question">Ce tip de vehicul vei conduce?</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_3_title">Înainte de a începe</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_4_question">Unde anume va fi plasat smartphone-ul în vehicol?</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_4_title">Înainte de a începe</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_calibrate">Calibrați acum</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_confirmation">Gata! Senzorii au fost calibrați in mod corect!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_explanation">Toate dispozitivele sunt diferite intre ele: Pentru a obține informații utile din datele înregistrate de Dvs. Trebuie să calibrați senzorii.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_instructions">Faceți clic pe butonul de mai jos și mențineti dispozitivul cât mai stabil posibil (nu se aplica dacă sunteti în mișcare pe jos sau într-un vehicul). Acest lucru dureaza doar câteva secunde.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_title">Înainte de a incepe</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_missing_calibration">Calibrarea!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_text_1">Sunteti gata pentru folosirea aplicatiei si colectarea datelor.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_text_2">Click pe mașina la centrul ecranului atunci când incepeti sa conduceti!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_title">Gata!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_bottom_question_notice">Puteti să modificați aceste alegeri în orice moment,din meniul Setări".</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_done">Pornim!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_redo">Vezi introducerea</string>
+  <string formatted="false" name="Vernacular_P0_unknown_ppe_value">-,-</string>
+  <string formatted="false" name="Vernacular_P0_vehicle_car">Automobil</string>
+  <string formatted="false" name="Vernacular_P0_vehicle_motorcycle">Motocicleta</string>
+  <string formatted="false" name="Vernacular_P0_vehicle_truck">Autobuz/Camion</string>
+</resources>

@@ -1,0 +1,620 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2017-10-24 18:22+0200\n"
+"Last-Translator: Lorenz Cuno Klopfenstein <lck@klopfenstein.net>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.4\n"
+
+msgid "about_author"
+msgstr "Università di Urbino “Carlo Bo” and NeuNet"
+
+msgid "about_authors"
+msgstr ""
+"Alessandro Aldini<br />Giacomo Alessandroni<br />Alessandro Bogliolo<br /"
+">Alberto Carini<br />Saverio Delpriori<br />Valerio Freschi<br />Lorenz Cuno "
+"Klopfenstein<br />Emanuele Lattanzi<br />Gioele Luchetti<br />Brendan D. "
+"Paolini<br />Andrea Seraghiti"
+
+msgid "about_c4rs"
+msgstr ""
+"Part of “Crowd4Roads: CROWD sensing and ride sharing FOR ROAD "
+"Sustainability”. This project has received funding from the European "
+"Research Council (ERC) under the EU’s Horizon 2020 research and innovation "
+"programme (grant agreement n° 687959)."
+
+msgid "about_contributors"
+msgstr "Contributors"
+
+msgid "about_developed_by"
+msgstr "Developed by"
+
+msgid "about_feedback"
+msgstr "Feedback"
+
+msgid "about_feedback_chooser"
+msgstr "Send feedback via e-mail"
+
+msgid "about_icon_design"
+msgstr "App design"
+
+msgid "about_icon_design_text"
+msgstr ""
+"Original logo and design by Lorenz Cuno Klopfenstein.<br />Car icon by "
+"Volodin Anton, pocket icon by Christopher T. Howlett, smartphone icon by "
+"James Fenton, accelerometer icon by Anuar Zhumaev, all released under CC BY "
+"3.0 license on Noun Project."
+
+msgid "about_version_beta"
+msgstr "Beta"
+
+msgid "about_version_debug"
+msgstr "Debug"
+
+msgid "action_clear_log"
+msgstr "Clear log"
+
+msgid "action_clear_queue"
+msgstr "Clear upload queue"
+
+msgid "action_drawer_close"
+msgstr "Close navigation drawer"
+
+msgid "action_drawer_open"
+msgstr "Open navigation drawer"
+
+msgid "action_force_upload"
+msgstr "Force upload"
+
+msgid "action_play_contentdescription"
+msgstr "Starts recording"
+
+msgid "action_refresh"
+msgstr "Refresh"
+
+msgid "action_share"
+msgstr "Share"
+
+msgid "action_show_log"
+msgstr "Show log"
+
+msgid "action_stop_contentdescription"
+msgstr "Stops recording"
+
+msgid "anchorage_bracket"
+msgstr "Mount or bracket"
+
+msgid "anchorage_mat"
+msgstr "Non-slip phone mat"
+
+msgid "anchorage_pocket"
+msgstr "In a pocket / Other"
+
+msgid "app_name"
+msgstr "SmartRoadSense"
+
+# Calibration information when done
+msgid "calibration_done_info"
+msgstr "Accelerometer correctly calibrated."
+
+# Calibration scale
+msgid "calibration_scale"
+msgstr "Scale factor: {0:P2}."
+
+# Calibration details (mean and standard deviation)
+msgid "calibration_details"
+msgstr "Mean acceleration magnitude: {0:F3}m/s² (± {1:F3}m/s²)."
+
+# Calibration not done message
+msgid "calibration_not_done"
+msgstr ""
+"Device not calibrated: you must run the calibration process before recording "
+"data."
+
+# Forget calibration button
+msgid "calibration_forget"
+msgstr "Recalibrate"
+
+msgid "default_ppe_value"
+msgstr "0.0"
+
+#  Generic cancel message
+msgid "dialog_cancel"
+msgstr "Cancel"
+
+#  Generic accept message
+msgid "dialog_accept"
+msgstr "Accept"
+
+#  Generic ok message
+msgid "dialog_ok"
+msgstr "Ok"
+
+msgid "dialog_blablacar_title"
+msgstr "What is Carpooling?"
+
+msgid "dialog_blablacar_description"
+msgstr ""
+"<b>Carpooling</b> (also known as car-sharing, ride-sharing, lift-sharing, or "
+"<i>covoiturage</i>) is the sharing of car journeys so that more than one "
+"person travels in one vehicle.<br />\n"
+"<br />\n"
+"By having more people using the same vehicle, carpooling helps reducing "
+"costs (fuel and tolls) and provides a more environmentally-friendly and "
+"sustainable way to travel."
+
+msgid "dialog_blablacar_action_hint"
+msgstr "Do you want to know more?"
+
+msgid "dialog_blablacar_accept"
+msgstr "Install BlaBlaCar on your phone"
+
+msgid "dialog_blablacar_ignore"
+msgstr "No, start tracking"
+
+msgid "dialog_calibration_title"
+msgstr "Calibrating…"
+
+msgid "dialog_calibration_description"
+msgstr "Keep still and hold your breath!"
+
+#  Upload queue dialog title
+msgid "dialog_queue_file_title"
+msgstr "Delete file?"
+
+#  Upload queue action confirming deletion of file
+msgid "dialog_queue_file_delete"
+msgstr "Delete"
+
+#  Upload queue action confirming manual sharing of file
+msgid "dialog_queue_file_share"
+msgstr "Share"
+
+msgid "dialog_queue_file_cancel"
+msgstr "Cancel"
+
+#  Queue clear dialog, title
+msgid "dialog_queue_clear_title"
+msgstr "Clear all files?"
+
+#  Queue clear dialog, description of deleting all files
+msgid "dialog_queue_clear_description"
+msgstr "This will delete all recorded data and cannot be undone."
+
+#  Queue clear dialog, delete all action
+msgid "dialog_queue_clear_delete_all"
+msgstr "Delete all files"
+
+# Ride sharing dialog, description
+msgid "dialog_ride_sharing_description"
+msgstr "Please select how many people are on this trip, including yourself."
+
+# Ride sharing dialog, title
+msgid "dialog_ride_sharing_title"
+msgstr "How many people?"
+
+msgid "error_generic"
+msgstr "Error"
+
+msgid "error_generic_reflective"
+msgstr "Hmmmm…"
+
+msgid "error_location_settings"
+msgstr "Failed to open system location settings."
+
+msgid "error_open_website"
+msgstr "Failed to open website."
+
+msgid "error_permission_location_denied"
+msgstr ""
+"SmartRoadSense requires access to your location in order to work properly. "
+"Please try again."
+
+msgid "error_send_mail"
+msgstr "Failed to send email."
+
+msgid "error_send_mail_not_configured"
+msgstr "Email is not configured correctly and cannot be sent."
+
+# Error message shown when calibration failed because of too high standard deviation
+msgid "error_calibration_high_deviation"
+msgstr ""
+"Calibration failed because your device appears to be moving. Please try "
+"again keeping it steadier."
+
+# Error message shown after several failed calibration attempts
+msgid "error_calibration_several_attempts"
+msgstr ""
+"If calibration keeps failing, your device might be unsuited to correctly "
+"track road quality."
+
+msgid "error_reporting_introduction"
+msgstr ""
+"It appears something went <i>very</i> wrong in our road quality detection "
+"software.<br />Every bit of information helps, therefore we’d kindly ask you "
+"to report this bug back to us and help us fixing the problem as soon as "
+"possible."
+
+msgid "error_reporting_data_information"
+msgstr ""
+"The bug report will be sent via e-mail and will not contain any personal "
+"information."
+
+msgid "error_reporting_send_report"
+msgstr "Yep, send it"
+
+msgid "error_reporting_drop_report"
+msgstr "No, thank you"
+
+msgid "error_reporting_send_report_chooser"
+msgstr "Send bug report via e-mail"
+
+msgid "error_reporting_mail_subject"
+msgstr "SmartRoadSense engine bug report"
+
+msgid "error_reporting_no_dump"
+msgstr "No error dump ready to report."
+
+# Game: tagline
+msgid "game_tagline"
+msgstr ""
+"SmartRoadSense\n"
+"The Game"
+
+msgid "game_coming_soon"
+msgstr "Coming soon."
+
+msgid "information_message_description_engine_error"
+msgstr ""
+"Something went wrong with our road quality detection magic! =‘(<br />Tap "
+"here to report the error and help us fixing the problem."
+
+msgid "information_message_description_gps_off"
+msgstr "Please enable location services through your device’s settings."
+
+msgid "information_message_description_gps_suspended_stationary"
+msgstr ""
+"Your device hasn’t been moving in some time. Recording was suspended in "
+"order not to deplete your battery."
+
+msgid "information_message_description_gps_suspended_speed"
+msgstr ""
+"Your device has been moving too slowly to collect useful data. Recording was "
+"suspended."
+
+msgid "information_message_description_gps_unfixed"
+msgstr ""
+"Ensure that you are outdoors and the sky is visible. The app will get back "
+"online as soon as a signal is detected."
+
+msgid "information_message_description_out_of_country"
+msgstr ""
+"SmartRoadSense is not yet available in the country you’re in. Additional "
+"countries will be activated in the future."
+
+msgid "information_message_description_syncing"
+msgstr ""
+"Your recorded tracks are being uploaded to our servers. Thank you for your "
+"contribution! =)"
+
+msgid "information_message_description_upload_failure"
+msgstr ""
+"Please ensure that your device has a working Internet connection if this "
+"persists."
+
+msgid "information_message_title_engine_error"
+msgstr "Whoopsie!"
+
+msgid "information_message_title_gps_off"
+msgstr "GPS disabled"
+
+msgid "information_message_title_gps_suspended_stationary"
+msgstr "Have you stopped?"
+
+msgid "information_message_title_gps_suspended_speed"
+msgstr "Snail pace"
+
+msgid "information_message_title_gps_unfixed"
+msgstr "Waiting for GPS signal"
+
+msgid "information_message_title_out_of_country"
+msgstr "Unmapped country"
+
+msgid "information_message_title_syncing"
+msgstr "Synchronizing…"
+
+msgid "information_message_title_upload_failure"
+msgstr "Failed to synchronize"
+
+msgid "label_anchorage"
+msgstr "Anchorage"
+
+msgid "label_file_creation"
+msgstr "Recorded on:"
+
+msgid "label_file_size"
+msgstr "Size:"
+
+msgid "label_file_size_value"
+msgstr "{0} KiBytes"
+
+msgid "label_setup"
+msgstr "Current setup"
+
+msgid "label_vehicle"
+msgstr "Vehicle"
+
+msgid "log_entries_count"
+msgstr "{0} log entries"
+
+#  Official e-mail address for feedback and reports
+msgid "mail_address"
+msgstr "info@smartroadsense.it"
+
+msgid "menu_about"
+msgstr "About"
+
+msgid "menu_error_reporting"
+msgstr "Error reporting"
+
+msgid "menu_game"
+msgstr "Game"
+
+msgid "menu_log"
+msgstr "Log"
+
+msgid "menu_queue"
+msgstr "Queue"
+
+msgid "menu_settings"
+msgstr "Settings"
+
+msgid "menu_stats"
+msgstr "Statistics"
+
+#  Informative message about background service running and tracking (if available on platform)
+msgid "sensing_service_notification_message"
+msgstr "Recording"
+
+#  Title of informative message about background service
+msgid "sensing_service_notification_title"
+msgstr "SmartRoadSense"
+
+#  Name of background service running and tracking (if available on platform)
+msgid "service_sensing"
+msgstr "Sensing service"
+
+msgid "service_sync"
+msgstr "Synchronization service"
+
+msgid "settings_description_anchorage"
+msgstr ""
+"Determines the way the smartphone running SmartRoadSense is anchored to the "
+"vehicle."
+
+msgid "settings_description_disable_suspension"
+msgstr ""
+"Disable automatic suspension of recording when you appear to be not moving "
+"or moving too slowly for some time."
+
+msgid "settings_description_offline_mode"
+msgstr ""
+"When enabled, GPS and network is ignored. Roughness values are generated and "
+"displayed on the screen."
+
+msgid "settings_description_prefer_unmetered"
+msgstr ""
+"When enabled, the app will synchronize with the remote SmartRoadSense server "
+"only when connected to a Wi-Fi network."
+
+msgid "settings_description_start_at_boot"
+msgstr ""
+"When enabled, the app will start recording automatically when the system "
+"boots."
+
+msgid "settings_description_vehicle"
+msgstr "Determines the kind of vehicle you are driving in."
+
+msgid "settings_section_calibration"
+msgstr "Calibration"
+
+msgid "settings_section_introduction"
+msgstr "Introduction"
+
+msgid "settings_section_preferences"
+msgstr "Preferences"
+
+msgid "settings_section_setup"
+msgstr "Recording setup"
+
+msgid "settings_title_anchorage"
+msgstr "Anchorage to vehicle"
+
+msgid "settings_title_disable_suspension"
+msgstr "Disable suspension"
+
+msgid "settings_title_offline_mode"
+msgstr "Offline mode"
+
+msgid "settings_title_prefer_unmetered"
+msgstr "Prefer Wi-Fi connection"
+
+msgid "settings_title_start_at_boot"
+msgstr "Start at boot"
+
+msgid "settings_title_vehicle"
+msgstr "Type of vehicle"
+
+# Workaround notification that sharing text is in clipboard
+msgid "share_badge_clipboard"
+msgstr "You may paste your stats as simple text from the clipboard."
+
+# Generic error while sharing badge
+msgid "share_badge_failure"
+msgstr "Failed sharing your stats, sorry."
+
+# Include {0:0.0} for number of kms
+msgid "share_badge_text"
+msgstr ""
+"I helped monitoring the quality of {0:0.0} kilometers of roads! "
+"#smartroadsense"
+
+msgid "stats_kms_value_default"
+msgstr "0.0 kms"
+
+msgid "stats_kms_value_format"
+msgstr "{0:0.0 kms}"
+
+msgid "stats_last_label"
+msgstr "Last recording"
+
+msgid "stats_last_track_label"
+msgstr "Last track:"
+
+msgid "stats_overall_label"
+msgstr "Overall:"
+
+msgid "stats_week_label"
+msgstr "Last week:"
+
+msgid "status_no_files_in_queue"
+msgstr ""
+"When SmartRoadSense records any tracks, they will show up here before they "
+"are sent to the online service."
+
+msgid "title_about"
+msgstr "About"
+
+msgid "title_error_reporting"
+msgstr "Error reporting"
+
+msgid "title_game"
+msgstr "Game"
+
+msgid "title_log"
+msgstr "Log"
+
+msgid "title_main"
+msgstr "SmartRoadSense"
+
+# Main application title in beta mode
+msgid "title_main_beta"
+msgstr "SmartRoadSense Beta"
+
+# Main application title in debug mode
+msgid "title_main_debug"
+msgstr "SmartRoadSense Debug"
+
+msgid "title_queue"
+msgstr "Upload queue"
+
+msgid "title_stats"
+msgstr "Statistics"
+
+msgid "title_settings"
+msgstr "Settings"
+
+msgid "title_tutorial"
+msgstr "Introduction"
+
+msgid "tutorial_1_title"
+msgstr "Welcome to SmartRoadSense!"
+
+msgid "tutorial_1_text_1"
+msgstr ""
+"SmartRoadSense is a collaborative sensing system that collects information "
+"about road quality using only your smartphone."
+
+msgid "tutorial_2_title"
+msgstr "How does it work?"
+
+msgid "tutorial_2_text_1"
+msgstr ""
+"Your smartphone will use its sensors to determine the quality of the road "
+"you’re traveling on."
+
+msgid "tutorial_2_text_2"
+msgstr ""
+"All data will be collected anonymously, processed, aggregated, and then "
+"published on www.smartroadsense.it."
+
+msgid "tutorial_3_title"
+msgstr "Before you start"
+
+msgid "tutorial_3_question"
+msgstr "What kind of vehicle will you be driving?"
+
+msgid "tutorial_4_title"
+msgstr "Before you start"
+
+msgid "tutorial_4_question"
+msgstr "Where will your smartphone be located inside the vehicle?"
+
+msgid "tutorial_5_title"
+msgstr "Before you start"
+
+msgid "tutorial_5_explanation"
+msgstr ""
+"Every device is a bit different from the others: in order to collect "
+"meaningful data we must first calibrate your device’s sensors before we "
+"start recording."
+
+msgid "tutorial_5_instructions"
+msgstr ""
+"Tap on the button below and try to keep the smartphone motionless (don’t do "
+"this while walking or in a moving vehicle). It should take only a couple of "
+"seconds."
+
+msgid "tutorial_5_confirmation"
+msgstr "All done, sensors calibrated correctly!"
+
+msgid "tutorial_5_calibrate"
+msgstr "Calibrate now"
+
+msgid "tutorial_6_title"
+msgstr "Ride sharing"
+
+msgid "tutorial_6_text"
+msgstr ""
+"Every time you start recording a new track you will be asked how many people "
+"are sharing the ride with you."
+
+msgid "tutorial_7_title"
+msgstr "All set!"
+
+msgid "tutorial_7_text_1"
+msgstr "You’re ready to use the app and start collecting data."
+
+msgid "tutorial_7_text_2"
+msgstr ""
+"Tap the car icon in the center of the screen as soon as you start driving!"
+
+msgid "tutorial_7_missing_calibration"
+msgstr "Please perform calibration."
+
+msgid "tutorial_bottom_question_notice"
+msgstr "You can change this anytime through the app’s settings."
+
+msgid "tutorial_done"
+msgstr "Let’s go!"
+
+msgid "tutorial_redo"
+msgstr "See the introduction again"
+
+msgid "unknown_ppe_value"
+msgstr "-.-"
+
+msgid "vehicle_car"
+msgstr "Car"
+
+msgid "vehicle_motorcycle"
+msgstr "Motorcycle"
+
+msgid "vehicle_truck"
+msgstr "Bus / Truck"

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>SmartRoadSense</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>MainStoryboard</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>XSAppIconAssets</key>
+	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleIdentifier</key>
+	<string>it.uniurb.srs</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This application uses continuous location updates to track your position. It may decrease your battery life</string>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>CFBundleShortVersionString</key>
+	<string>3.1.0</string>
+	<key>CFBundleName</key>
+	<string>SmartRoadSense</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This application uses continuous location updates to track your position. It may decrease your battery life</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This application uses continuous location updates to track your position. It may decrease your battery life</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>blablacar</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>blablacar</string>
+			</array>
+			<key>CFBundleURLTypes</key>
+			<string>Viewer</string>
+		</dict>
+	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app would like to access your photo gallery.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>fetch</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>41</string>
+</dict>
+</plist>

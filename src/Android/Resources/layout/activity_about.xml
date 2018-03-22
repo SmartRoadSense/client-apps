@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/theme_primary_dark_lightened">
+<!-- Toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_primary" />
+        <View
+            android:id="@+id/toolbar_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/background_toolbar_shadow"
+            android:layout_marginBottom="-5dp" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin_double"
+            android:paddingLeft="@dimen/activity_horizontal_secondary_margin_smaller"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_big_header"
+                android:text="@string/Vernacular_P0_app_name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_big_header"
+                android:textColor="@color/theme_primary"
+                android:id="@+id/text_version"
+                tools:text="X.X" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_section"
+                android:layout_marginTop="@dimen/huge_intra_text_space"
+                android:text="@string/Vernacular_P0_about_developed_by" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_paragraph"
+                android:text="@string/Vernacular_P0_about_author" />
+            <ImageView
+                android:id="@+id/image_c4rs"
+                android:layout_width="160dp"
+                android:layout_height="78dp"
+                android:src="@drawable/c4rs_logo"
+                android:scaleType="centerInside"
+                android:layout_marginTop="@dimen/large_intra_text_space"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_paragraph"
+                android:text="@string/Vernacular_P0_about_c4rs"
+                android:layout_marginTop="@dimen/large_intra_text_space"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_section"
+                android:layout_marginTop="@dimen/large_intra_text_space"
+                android:text="@string/Vernacular_P0_about_contributors" />
+            <TextView
+                android:id="@+id/text_authors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_paragraph"
+                android:text="@string/Vernacular_P0_about_authors" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_section"
+                android:layout_marginTop="@dimen/large_intra_text_space"
+                android:text="@string/Vernacular_P0_about_icon_design" />
+            <TextView
+                android:id="@+id/text_design"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_paragraph"
+                android:text="@string/Vernacular_P0_about_icon_design_text" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_section"
+                android:layout_marginTop="@dimen/large_intra_text_space"
+                android:text="@string/Vernacular_P0_about_feedback" />
+            <TextView
+                android:id="@+id/text_feedback_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_paragraph"
+                android:text="@string/Vernacular_P0_mail_address" />
+            <View
+                style="@style/horizontal_divider"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            <TextView
+                android:id="@+id/text_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_subtle" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

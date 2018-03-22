@@ -1,0 +1,125 @@
+<resources>
+    <style name="navigation_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:background">@drawable/background_navigation_button</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="horizontal_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/dividerVertical</item>
+    </style>
+
+    <style name="theme_horizontal_divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/theme_primary_dark_lightened</item>
+    </style>
+
+    <style name="vertical_divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">?android:attr/dividerVertical</item>
+    </style>
+
+    <style name="theme_vertical_divider">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/theme_primary_dark_lightened</item>
+    </style>
+  
+    <!-- Big styled counters -->
+    <style name="text_counter_number">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/theme_primary</item>
+    </style>
+    <style name="text_counter_decimal">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/theme_primary</item>
+    </style>
+
+    <!-- Big header text -->
+    <style name="text_big_header">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="text_big_tutorial_header" parent="@style/text_big_header">
+        <item name="android:layout_marginTop">@dimen/activity_big_top_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/activity_big_top_margin_bottom</item>
+    </style>
+
+    <!-- Section header -->
+    <style name="text_section">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/theme_primary</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <!-- Standard paragraph -->
+    <style name="text_paragraph" parent="@style/text_simple">
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
+
+    <!-- Generic small text -->
+    <style name="text_simple">
+    	<item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Generic medium text -->
+    <style name="text_larger">
+    	<item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+    <!-- Generic bold text -->
+    <style name="text_bold" parent="@style/text_simple">
+    	<item name="android:textSize">18sp</item>
+    	<item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Generic small subtle text -->
+    <style name="text_subtle" parent="@style/text_simple">
+    	<item name="android:textColor">@color/subdued_text_on_dark</item>
+    </style>
+
+    <!-- Raised material design button -->
+    <style name="button_raised">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:background">@drawable/background_button_rounded</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/text_on_dark</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Grayed out material design button -->
+    <style name="button_raised_subtle" parent="@style/button_raised">
+    	<item name="android:background">@drawable/background_button_rounded_gray</item>
+    	<item name="android:textColor">@color/text_on_light_gray</item>
+    </style>
+</resources>

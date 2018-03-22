@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin_double"
+            android:paddingRight="@dimen/activity_horizontal_margin_double">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_big_tutorial_header"
+                android:text="@string/Vernacular_P0_tutorial_5_title"
+                android:textColor="@color/theme_primary"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Vernacular_P0_tutorial_5_explanation"
+                style="@style/text_larger"
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            <TextView
+                android:id="@+id/text_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Vernacular_P0_tutorial_5_instructions"
+                style="@style/text_simple"
+                android:layout_marginBottom="@dimen/activity_vertical_margin" />
+            <TextView
+                android:id="@+id/text_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Vernacular_P0_tutorial_5_confirmation"
+                style="@style/text_bold"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/button_calibrate"
+                android:text="@string/Vernacular_P0_tutorial_5_calibrate"
+                style="@style/button_raised"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

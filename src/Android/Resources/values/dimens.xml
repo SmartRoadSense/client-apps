@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin_double">32dp</dimen>
+    <dimen name="activity_vertical_margin_small">8dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin_double">32dp</dimen>
+    <dimen name="activity_horizontal_secondary_margin">72dp</dimen>
+    <dimen name="activity_horizontal_secondary_margin_smaller">60dp</dimen>
+    <dimen name="activity_big_top_margin_top">96dp</dimen>
+    <dimen name="activity_big_top_margin_bottom">32dp</dimen>
+
+    <dimen name="intra_text_space">8dp</dimen>
+    <dimen name="large_intra_text_space">16dp</dimen>
+    <dimen name="huge_intra_text_space">48dp</dimen>
+
+    <dimen name="tutorial_icons_pre_space">32dp</dimen>
+    <dimen name="tutorial_icons_post_space">8dp</dimen>
+
+    <dimen name="preference_block_height">60dp</dimen>
+
+    <!-- Floating button -->
+    <dimen name="floating_button_size">56dp</dimen>
+    <dimen name="floating_button_off_screen_translation">56dp</dimen>
+    <dimen name="floating_button_on_screen_translation">-16dp</dimen>
+    <dimen name="floating_button_offset_translation">-118dp</dimen>
+    <dimen name="floating_button_padding">16dp</dimen>
+
+    <dimen name="snackbar_height">110dp</dimen>
+    <dimen name="snackbar_starting_margin">-111dp</dimen>
+
+    <dimen name="floating_button_region_height">90dp</dimen>
+
+    <!-- Text -->
+    <dimen name="text_current_ppe">70sp</dimen>
+    <dimen name="text_stats_ppe">12sp</dimen>
+
+    <!-- Navigation drawer -->
+    <dimen name="text_navigation_title">12sp</dimen>
+
+</resources>

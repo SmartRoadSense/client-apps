@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{8CE82A16-5820-4DFE-B724-31091075CBA0}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SmartRoadSense.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AnchorageType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\BaseQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\CompressionPolicy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\GZipHttpContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\JsonHttpContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\ServiceType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Api\UploadDataQuery.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Calibration\CalibrationResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Calibration\Calibrator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Calibration\CalibratorAndroid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Calibration\CalibratorIOS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CollectionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Crypto.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CryptographicExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseUtility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataLossException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PpeMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\StatisticHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\StatisticRecord.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParserFormatted.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParserLegacy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataCollector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataPiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataPointRecordedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\FileGeneratedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\InternalEngineErrorEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\LocationSensorStatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\LocationSensorStatusChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\LocationSensorStatusExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\Recorder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackAndroid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackFake.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackIOS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackWinRT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\SessionInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\StatisticsCollector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DateTimeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeviceInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorReporter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EventExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpressionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileNaming.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileOperations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileSystemToken.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GeoHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonLowercaseContractResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonSerializationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonWriterExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocationErrorEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LocationErrorType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Log.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatformColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatformConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PpeColorMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StatisticPeriod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncErrorEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TaskExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UserLog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VehicleType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RecordingViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\UploadQueueViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\TrackUploadRecord.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SyncPolicy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Calibration\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataModel\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Config.sample.json" />
+  </ItemGroup>
+</Project>

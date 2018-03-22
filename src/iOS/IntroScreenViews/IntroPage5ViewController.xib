@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroPage5ViewController">
+            <connections>
+                <outlet property="img" destination="zrd-jc-gJI" id="name-outlet-zrd-jc-gJI"/>
+                <outlet property="lblText" destination="Sxr-Cv-hkT" id="name-outlet-Sxr-Cv-hkT"/>
+                <outlet property="lblTitle" destination="b8v-9d-oLQ" id="name-outlet-b8v-9d-oLQ"/>
+                <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ride Sharing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8v-9d-oLQ">
+                    <rect key="frame" x="30" y="60" width="315" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="WBQ-9K-u9L"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="29"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every time you start recording a new track you will be asked how many people are sharing the ride with you" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sxr-Cv-hkT">
+                    <rect key="frame" x="30" y="103" width="315" height="99"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="99" id="Ku0-4X-4Dq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ride_sharing" translatesAutoresizingMaskIntoConstraints="NO" id="zrd-jc-gJI">
+                    <rect key="frame" x="60" y="210" width="255" height="160"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="zrd-jc-gJI" secondAttribute="height" multiplier="51:32" id="rhu-oj-jKf"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zrd-jc-gJI" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="60" id="2Qm-t8-sy7"/>
+                <constraint firstItem="Sxr-Cv-hkT" firstAttribute="top" secondItem="b8v-9d-oLQ" secondAttribute="bottom" constant="8" id="C4l-le-B21"/>
+                <constraint firstItem="Sxr-Cv-hkT" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="30" id="QUq-zO-Txa"/>
+                <constraint firstItem="b8v-9d-oLQ" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="30" id="Shw-3S-GLy"/>
+                <constraint firstAttribute="trailing" secondItem="Sxr-Cv-hkT" secondAttribute="trailing" constant="30" id="dN9-mV-r2T"/>
+                <constraint firstItem="zrd-jc-gJI" firstAttribute="top" secondItem="Sxr-Cv-hkT" secondAttribute="bottom" constant="8" id="dd8-Pd-nyF"/>
+                <constraint firstAttribute="trailing" secondItem="b8v-9d-oLQ" secondAttribute="trailing" constant="30" id="gby-Nt-JIH"/>
+                <constraint firstItem="b8v-9d-oLQ" firstAttribute="top" secondItem="2" secondAttribute="top" constant="60" id="nR5-ol-Tqj"/>
+                <constraint firstAttribute="trailing" secondItem="zrd-jc-gJI" secondAttribute="trailing" constant="60" id="rVr-d8-8EI"/>
+            </constraints>
+            <point key="canvasLocation" x="29.5" y="58.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_ride_sharing" width="320" height="201"/>
+    </resources>
+</document>

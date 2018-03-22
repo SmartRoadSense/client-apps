@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="theme_primary">#2A69FF</color>
+    <color name="theme_secondary">#FF4118</color>
+    <color name="theme_terziary">#84CC0D</color>
+    <color name="theme_primary_dark">#020919</color>
+    <color name="theme_primary_dark_lightened">#222939</color>
+    <color name="theme_primary_pressed">#183F99</color>
+
+    <color name="drawer_background">#111</color>
+    <color name="default_background">#333</color>
+    
+    <color name="text_on_dark">#FFF</color>
+    <color name="subtle_text_on_dark">#888</color>
+    <color name="subdued_text_on_dark">#70798C</color>
+    <color name="text_on_bright">#333</color>
+    <color name="subtle_text_on_bright">#BBB</color>
+
+    <color name="light_gray">#DDDDDD</color>
+    <color name="light_gray_pressed">#CCCCCC</color>
+    <color name="text_on_light_gray">#000</color>
+
+    <color name="quality_good">#84CC0D</color>
+    <color name="quality_bad">#CC0E0E</color>
+    <color name="quality_unknown">@color/subtle_text_on_bright</color>
+
+    <color name="error">#E51C23</color>
+</resources>

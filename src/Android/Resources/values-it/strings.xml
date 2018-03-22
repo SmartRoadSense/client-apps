@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string formatted="false" name="Vernacular_P0_about_author">Università di Urbino “Carlo Bo” e NeuNet</string>
+  <string formatted="false" name="Vernacular_P0_about_authors">Alessandro Aldini&lt;br /&gt;Giacomo Alessandroni&lt;br /&gt;Alessandro Bogliolo&lt;br /&gt;Alberto Carini&lt;br /&gt;Saverio Delpriori&lt;br /&gt;Valerio Freschi&lt;br /&gt;Lorenz Cuno Klopfenstein&lt;br /&gt;Emanuele Lattanzi&lt;br /&gt;Gioele Luchetti&lt;br /&gt;Brendan D. Paolini&lt;br /&gt;Andrea Seraghiti</string>
+  <string formatted="false" name="Vernacular_P0_about_c4rs">Parte di “Crowd4Roads: CROWD sensing and ride sharing FOR ROAD Sustainability”. Questo progetto ha ricevuto finanziamenti dal Consiglio Europeo della Ricerca (ERC) nel programma UE Horizon 2020 per la ricerca e l’innovzione (grant agreement n. 687959).</string>
+  <string formatted="false" name="Vernacular_P0_about_contributors">Collaboratori</string>
+  <string formatted="false" name="Vernacular_P0_about_developed_by">Sviluppato da</string>
+  <string formatted="false" name="Vernacular_P0_about_feedback">Commenti e suggerimenti</string>
+  <string formatted="false" name="Vernacular_P0_about_feedback_chooser">Invia commenti</string>
+  <string formatted="false" name="Vernacular_P0_about_icon_design">Design</string>
+  <string formatted="false" name="Vernacular_P0_about_icon_design_text">Logo e design di Lorenz Cuno Klopfenstein.&lt;br /&gt;Icona automobile di Volodin Anton, icona tasca di Christopher T. Howlett, icona smartphone di James Fenton, icona accelerometro di Anuar Zhumaev, rilasciate sotto licenza CC BY 3.0 su Noun Project.</string>
+  <string formatted="false" name="Vernacular_P0_about_version_beta">Beta</string>
+  <string formatted="false" name="Vernacular_P0_about_version_debug">Debug</string>
+  <string formatted="false" name="Vernacular_P0_action_clear_log">Svuota registro</string>
+  <string formatted="false" name="Vernacular_P0_action_clear_queue">Svuota coda dei dati</string>
+  <string formatted="false" name="Vernacular_P0_action_drawer_close">Chiudi pannello di navigazione</string>
+  <string formatted="false" name="Vernacular_P0_action_drawer_open">Apri pannello di navigazione</string>
+  <string formatted="false" name="Vernacular_P0_action_force_upload">Forza caricamento</string>
+  <string formatted="false" name="Vernacular_P0_action_play_contentdescription">Inizia registrazione</string>
+  <string formatted="false" name="Vernacular_P0_action_refresh">Aggiorna</string>
+  <string formatted="false" name="Vernacular_P0_action_share">Condividi</string>
+  <string formatted="false" name="Vernacular_P0_action_show_log">Mostra registro</string>
+  <string formatted="false" name="Vernacular_P0_action_stop_contentdescription">Termina registrazione</string>
+  <string formatted="false" name="Vernacular_P0_anchorage_bracket">Supporto o staffa</string>
+  <string formatted="false" name="Vernacular_P0_anchorage_mat">Tappetino antisdrucciolo</string>
+  <string formatted="false" name="Vernacular_P0_anchorage_pocket">In tasca / Altro</string>
+  <string formatted="false" name="Vernacular_P0_app_name">SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_calibration_details">Magnitudine di accelerazione media: {0:F3}m/s² (± {1:F3}m/s²).</string>
+  <string formatted="false" name="Vernacular_P0_calibration_done_info">Calibrazione effettuata correttamente.</string>
+  <string formatted="false" name="Vernacular_P0_calibration_forget">Ricalibra</string>
+  <string formatted="false" name="Vernacular_P0_calibration_not_done">Dispositivo non calibrato: è necessario effettuare la calibrazione prima di registrare.</string>
+  <string formatted="false" name="Vernacular_P0_calibration_scale">Fattore di scala: {0:P2}.</string>
+  <string formatted="false" name="Vernacular_P0_default_ppe_value">0.0</string>
+  <string formatted="false" name="Vernacular_P0_dialog_accept">Accetta</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_accept">Installa BlaBlaCar</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_action_hint">Vuoi saperne di più?</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_description">Il &lt;b&gt;Car-pooling&lt;/b&gt; (anche noto come car-sharing, ride-sharing, covoiturage o concarreggio) è la condivisione di viaggi in automobile, in modo che più di una persona utilizzi un veicolo.&lt;br /&gt;\n&lt;br /&gt;\nLa condivisione aiuta a ridurre i costi (carburante e pedaggi), oltre ad essere una modalità di viaggio più sostenibile.</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_ignore">No, procedi</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_title">Cos\'è il Car-pooling?</string>
+  <string formatted="false" name="Vernacular_P0_dialog_calibration_description">Trattieni il respiro e rimani immobile!</string>
+  <string formatted="false" name="Vernacular_P0_dialog_calibration_title">Calibrazione…</string>
+  <string formatted="false" name="Vernacular_P0_dialog_cancel">Annulla</string>
+  <string formatted="false" name="Vernacular_P0_dialog_ok">Ok</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_clear_delete_all">Elimina</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_clear_description">Continuando tutti i file registrati saranno eliminati. Questa azione non può essere annullata.</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_clear_title">Eliminare tutti i dati?</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_cancel">Annulla</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_delete">Rimuovi</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_share">Invia</string>
+  <string formatted="false" name="Vernacular_P0_dialog_queue_file_title">Rimuovi file?</string>
+  <string formatted="false" name="Vernacular_P0_dialog_ride_sharing_description">Seleziona il numero di persone che sono in viaggio, te incluso.</string>
+  <string formatted="false" name="Vernacular_P0_dialog_ride_sharing_title">Quante persone?</string>
+  <string formatted="false" name="Vernacular_P0_error_calibration_high_deviation">Calibrazione fallita perché il dispositivo sembra muoversi. Prova di nuovo mantenendolo più stabile.</string>
+  <string formatted="false" name="Vernacular_P0_error_calibration_several_attempts">Se la calibrazione continua a fallire, il tuo dispositivo potrebbe non essere adatto a misurare correttamente la qualità della strada.</string>
+  <string formatted="false" name="Vernacular_P0_error_generic">Errore</string>
+  <string formatted="false" name="Vernacular_P0_error_generic_reflective">Hmmmm…</string>
+  <string formatted="false" name="Vernacular_P0_error_location_settings">Non riesco ad aprire il pannello delle impostazioni di geolocalizzazione.</string>
+  <string formatted="false" name="Vernacular_P0_error_open_website">Non riesco ad aprire il sito Internet.</string>
+  <string formatted="false" name="Vernacular_P0_error_permission_location_denied">SmartRoadSense richiede accesso alla tua posizione per funzionare correttamente. Tenta nuovamente.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_data_information">La segnalazione sarà inviata via e-mail e non conterrà alcuna informazione personale.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_drop_report">No, grazie</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_introduction">Sembrerebbe che qualcosa sia andato &lt;i&gt;molto&lt;/i&gt; storto nel nostro software di rilevazione della qualità stradale.&lt;br /&gt;Tutte le informazioni sono utili nel risolvere bug, per cui ti chiederemmo gentilmente di inviarci una segnalazione dell’errore per poter aggiustare l’app il prima possibile.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_mail_subject">SmartRoadSense segnalazione errore engine</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_no_dump">Nessuna segnalazione di errore da inviare.</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_send_report">Ci sto, invia</string>
+  <string formatted="false" name="Vernacular_P0_error_reporting_send_report_chooser">Invia segnalazione via e-mail</string>
+  <string formatted="false" name="Vernacular_P0_error_send_mail">Non riesco ad inviare email.</string>
+  <string formatted="false" name="Vernacular_P0_error_send_mail_not_configured">Impossibile inviare email perché il sistema non è configurato correttamente.</string>
+  <string formatted="false" name="Vernacular_P0_game_coming_soon">Disponibile prossimamente.</string>
+  <string formatted="false" name="Vernacular_P0_game_tagline">SmartRoadSense\nIl Gioco</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_engine_error">Qualcosa non funziona nel nostro sistema di rilevazione della qualità stradale! =‘(&lt;br /&gt;Clicca qui per darci una mano e segnalare il problema.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_off">Per favore attiva il servizio di geolocalizzazione nel pannello delle impostazioni del tuo dispositivo.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_suspended_speed">Il tuo dispositivo si sta muovendo troppo lentamente per rilevare dati utili. La registrazione è stata sospesa.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_suspended_stationary">Il tuo dispositivo sembra non essersi mosso per un po’ di tempo. La registrazione è stata sospesa per non consumare batteria inutilmente.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_gps_unfixed">Assicurati di essere all’esterno e che il cielo sia visibile. L’applicazione riprenderà a registrare non appena avrà ottenuto un segnale GPS.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_out_of_country">SmartRoadSense non è ancora disponibile nel paese in cui ti trovi.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_syncing">Le tracce registrate stanno per essere caricate sui nostri server. Grazie per il tuo contributo! =)</string>
+  <string formatted="false" name="Vernacular_P0_information_message_description_upload_failure">Assicurati che il tuo dispositivo abbia una connessione Internet funzionante.</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_engine_error">Ops!</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_off">GPS disabilitato</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_suspended_speed">Un po’ troppo lento…</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_suspended_stationary">Semaforo rosso?</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_gps_unfixed">Dove mi trovo?</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_out_of_country">Non è un paese per SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_syncing">Sincronizzazione…</string>
+  <string formatted="false" name="Vernacular_P0_information_message_title_upload_failure">Errore di comunicazione</string>
+  <string formatted="false" name="Vernacular_P0_label_anchorage">Posizione</string>
+  <string formatted="false" name="Vernacular_P0_label_file_creation">Registrato il:</string>
+  <string formatted="false" name="Vernacular_P0_label_file_size">Dimensioni:</string>
+  <string formatted="false" name="Vernacular_P0_label_file_size_value">{0} KiByte</string>
+  <string formatted="false" name="Vernacular_P0_label_setup">Configurazione</string>
+  <string formatted="false" name="Vernacular_P0_label_vehicle">Veicolo</string>
+  <string formatted="false" name="Vernacular_P0_log_entries_count">{0} elementi nel registro</string>
+  <string formatted="false" name="Vernacular_P0_mail_address">info@smartroadsense.it</string>
+  <string formatted="false" name="Vernacular_P0_menu_about">Informazioni</string>
+  <string formatted="false" name="Vernacular_P0_menu_error_reporting">Segnalazione errori</string>
+  <string formatted="false" name="Vernacular_P0_menu_game">Gioco</string>
+  <string formatted="false" name="Vernacular_P0_menu_log">Registro</string>
+  <string formatted="false" name="Vernacular_P0_menu_queue">Dati</string>
+  <string formatted="false" name="Vernacular_P0_menu_settings">Impostazioni</string>
+  <string formatted="false" name="Vernacular_P0_menu_stats">Statistiche</string>
+  <string formatted="false" name="Vernacular_P0_sensing_service_notification_message">Registrazione in corso</string>
+  <string formatted="false" name="Vernacular_P0_sensing_service_notification_title">SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_service_sensing">Servizio di sensoristica</string>
+  <string formatted="false" name="Vernacular_P0_service_sync">Servizio di sincronizzazione</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_anchorage">Determina il modo in cui il dispositivo è fissato al veicolo.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_disable_suspension">Disabilita la sospensione automatica della registrazione se ci si sta muovendo troppo lentamente per un periodo prolungato.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_offline_mode">Se attivo, GPS e connessione di rete non vengono utilizzati e la qualità rilevata del manto stradale viene visualizzata senza essere caricata.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_prefer_unmetered">Se attivo, l’applicazione sincronizzerà i dati registrati con il server SmartRoadSense soltanto in presenza di una connessione Wi-Fi.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_start_at_boot">Se attivo, l’applicazione si avvierà ed inizierà a registrare appena il sistema operativo si avvia.</string>
+  <string formatted="false" name="Vernacular_P0_settings_description_vehicle">Determina il tipo di veicolo che si sta guidando.</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_calibration">Calibrazione</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_introduction">Introduzione</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_preferences">Preferenze</string>
+  <string formatted="false" name="Vernacular_P0_settings_section_setup">Impostazioni di registrazione</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_anchorage">Posizione del dispositivo</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_disable_suspension">Disabilita sospensione</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_offline_mode">Modalità offline</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_prefer_unmetered">Utilizza connessione Wi-Fi</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_start_at_boot">Avvia al boot</string>
+  <string formatted="false" name="Vernacular_P0_settings_title_vehicle">Tipo di veicolo</string>
+  <string formatted="false" name="Vernacular_P0_share_badge_clipboard">Puoi incollare le statistiche come testo semplice, utilizzando la tastiera.</string>
+  <string formatted="false" name="Vernacular_P0_share_badge_failure">Non sono riuscito a condividere le statistiche.</string>
+  <string formatted="false" name="Vernacular_P0_share_badge_text">Ho aiutato a monitorare la qualità di {0:0.0} chilometri di strade! #smartroadsense</string>
+  <string formatted="false" name="Vernacular_P0_stats_kms_value_default">0,0 km</string>
+  <string formatted="false" name="Vernacular_P0_stats_kms_value_format">{0:0.0 km}</string>
+  <string formatted="false" name="Vernacular_P0_stats_last_label">Ultima traccia:</string>
+  <string formatted="false" name="Vernacular_P0_stats_last_track_label">Ultima registrazione</string>
+  <string formatted="false" name="Vernacular_P0_stats_overall_label">Totale:</string>
+  <string formatted="false" name="Vernacular_P0_stats_week_label">Ultima settimana:</string>
+  <string formatted="false" name="Vernacular_P0_status_no_files_in_queue">Quando SmartRoadSense avrà registrato una o più tracce, queste verranno visualizzate qui prima di essere inviate al server.</string>
+  <string formatted="false" name="Vernacular_P0_title_about">Informazioni</string>
+  <string formatted="false" name="Vernacular_P0_title_error_reporting">Segnalazione errori</string>
+  <string formatted="false" name="Vernacular_P0_title_game">Gioco</string>
+  <string formatted="false" name="Vernacular_P0_title_log">Log</string>
+  <string formatted="false" name="Vernacular_P0_title_main">SmartRoadSense</string>
+  <string formatted="false" name="Vernacular_P0_title_main_beta">SmartRoadSense Beta</string>
+  <string formatted="false" name="Vernacular_P0_title_main_debug">SmartRoadSense Debug</string>
+  <string formatted="false" name="Vernacular_P0_title_queue">Dati registrati</string>
+  <string formatted="false" name="Vernacular_P0_title_settings">Impostazioni</string>
+  <string formatted="false" name="Vernacular_P0_title_stats">Statistiche</string>
+  <string formatted="false" name="Vernacular_P0_title_tutorial">Introduzione</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_1_text_1">SmartRoadSense è un sistema di rilevamento collaborativo che raccoglie informazioni sulla qualità del manto stradale utilizzando soltanto il tuo smartphone.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_1_title">SmartRoadSense ti dà il benvenuto!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_2_text_1">Il tuo smartphone utilizzerà i propri sensori di accelerazione per determinare la qualità della strada sulla quale stai guidando.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_2_text_2">Tutti i dati vengono raccolti in maniera anonima, elaborati, aggregati ed infine pubblicati su www.smartroadsense.it.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_2_title">Come funziona?</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_3_question">Che tipo di veicolo guiderai?</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_3_title">Prima di cominciare</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_4_question">Dove sarà posizionato il tuo smartphone all’interno del veicolo?</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_4_title">Prima di cominciare</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_calibrate">Calibra adesso</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_confirmation">Tutto fatto, sensori calibrati correttamente!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_explanation">Tutti i dispositivi sono un po’ diversi tra di loro: in modo da assicurarci di ottenere dati utili dalle tue registrazioni è necessario prima calibrare i sensori.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_instructions">Clicca sul pulsante in basso ed assicurati di tenere il dispositivo più fermo possibile (non farlo se ti stai spostando a piedi o in un veicolo). Dovrebbero volerci soltanto pochi secondi.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_5_title">Prima di cominciare</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_6_text">All’inizio di ogni sessione di registrazione, ti chiederemo quante altre persone stanno viaggiando con te.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_6_title">Condivisione</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_missing_calibration">Effettuare la calibrazione.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_text_1">Siamo pronti per cominciare a raccogliere dati.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_text_2">Clicca sull’icona di automobile al centro dello schermo quando ti metti alla guida!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_7_title">Pronti!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_bottom_question_notice">È possibile modificare queste scelte in qualsiasi momento attraverso le impostazioni.</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_done">Andiamo!</string>
+  <string formatted="false" name="Vernacular_P0_tutorial_redo">Vedi l’introduzione</string>
+  <string formatted="false" name="Vernacular_P0_unknown_ppe_value">-.-</string>
+  <string formatted="false" name="Vernacular_P0_vehicle_car">Automobile</string>
+  <string formatted="false" name="Vernacular_P0_vehicle_motorcycle">Motocicletta</string>
+  <string formatted="false" name="Vernacular_P0_vehicle_truck">Autobus / Camion</string>
+</resources>

@@ -1,0 +1,603 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2015-07-03 17:11+02\n"
+"Last-Translator: Lorenz Cuno Klopfenstein <lck@klopfenstein>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.2\n"
+"POT-Creation-Date: \n"
+
+msgid "about_author"
+msgstr ""
+
+# List of application authors, separated by "<br />" strings
+msgid "about_authors"
+msgstr ""
+
+# Description of C4Rs EU project
+msgid "about_c4rs"
+msgstr ""
+
+msgid "about_contributors"
+msgstr ""
+
+msgid "about_developed_by"
+msgstr ""
+
+msgid "about_feedback"
+msgstr ""
+
+msgid "about_feedback_chooser"
+msgstr ""
+
+msgid "about_icon_design"
+msgstr ""
+
+msgid "about_icon_design_text"
+msgstr ""
+
+msgid "about_version_beta"
+msgstr ""
+
+msgid "about_version_debug"
+msgstr ""
+
+# Clears the user-visible log of events
+msgid "action_clear_log"
+msgstr ""
+
+# Clears the queue of data to be uploaded (data will be lost)
+msgid "action_clear_queue"
+msgstr ""
+
+# Close app navigation panel (platform dependant)
+msgid "action_drawer_close"
+msgstr ""
+
+# Open app navigation panel (platform dependant)
+msgid "action_drawer_open"
+msgstr ""
+
+# Forces data upload instead of background synchronization
+msgid "action_force_upload"
+msgstr ""
+
+msgid "action_play_contentdescription"
+msgstr ""
+
+# Generic refresh action
+msgid "action_refresh"
+msgstr ""
+
+# Generic share action
+msgid "action_share"
+msgstr ""
+
+msgid "action_show_log"
+msgstr ""
+
+msgid "action_stop_contentdescription"
+msgstr ""
+
+# Device anchorage type: fixed and rigid bracket
+msgid "anchorage_bracket"
+msgstr ""
+
+# Device anchorage type: flat and non-slip mat
+msgid "anchorage_mat"
+msgstr ""
+
+# Device anchorage type: loosely in pocket or free
+msgid "anchorage_pocket"
+msgstr ""
+
+msgid "app_name"
+msgstr ""
+
+# Success status when calibration is performed correctly
+msgid "calibration_done_info"
+msgstr ""
+
+# Info label showing calibration scale, use {0:P2} to show scaling percentage
+msgid "calibration_scale"
+msgstr ""
+
+# Calibration details, {0} mean, {1} std.dev
+msgid "calibration_details"
+msgstr ""
+
+# Info label showing that calibration has not yet been performed
+msgid "calibration_not_done"
+msgstr ""
+
+# Forgets calibration data and performs new calibration step
+msgid "calibration_forget"
+msgstr ""
+
+# Starting PPE (roughness) index, use 1 decimal place, make sure the decimal
+# separator is correctly localized (i.e., "0,0" vs "0.0")
+msgid "default_ppe_value"
+msgstr ""
+
+# Generic cancel message
+msgid "dialog_cancel"
+msgstr ""
+
+# Generic accept message
+msgid "dialog_accept"
+msgstr ""
+
+# Generic ok message
+msgid "dialog_ok"
+msgstr ""
+
+msgid "dialog_blablacar_title"
+msgstr ""
+
+msgid "dialog_blablacar_description"
+msgstr ""
+
+msgid "dialog_blablacar_action_hint"
+msgstr ""
+
+msgid "dialog_blablacar_accept"
+msgstr ""
+
+msgid "dialog_blablacar_ignore"
+msgstr ""
+
+# Calibration dialog, title
+msgid "dialog_calibration_title"
+msgstr ""
+
+# Calibration dialog, description
+msgid "dialog_calibration_description"
+msgstr ""
+
+# Queue file dialog, title
+msgid "dialog_queue_file_title"
+msgstr ""
+
+# Queue file dialog, delete action
+msgid "dialog_queue_file_delete"
+msgstr ""
+
+# Queue file dialog, share action
+msgid "dialog_queue_file_share"
+msgstr ""
+
+# Queue file dialog, cancel
+msgid "dialog_queue_file_cancel"
+msgstr ""
+
+# Queue clear dialog, title
+msgid "dialog_queue_clear_title"
+msgstr ""
+
+# Queue clear dialog, description of deleting all files
+msgid "dialog_queue_clear_description"
+msgstr ""
+
+# Queue clear dialog, delete all action
+msgid "dialog_queue_clear_delete_all"
+msgstr ""
+
+# Ride sharing dialog, description
+msgid "dialog_ride_sharing_description"
+msgstr ""
+
+# Ride sharing dialog, title
+msgid "dialog_ride_sharing_title"
+msgstr ""
+
+# Generic error message
+msgid "error_generic"
+msgstr ""
+
+# Pensive (equally generic) error message
+msgid "error_generic_reflective"
+msgstr ""
+
+# Error while opening/accessing geolocation settings
+msgid "error_location_settings"
+msgstr ""
+
+# Error while opening website
+msgid "error_open_website"
+msgstr ""
+
+# Error when location access is not granted by user
+msgid "error_permission_location_denied"
+msgstr ""
+
+# Error while sending e-mail
+msgid "error_send_mail"
+msgstr ""
+
+# Error because system is not configured to send e-mail
+msgid "error_send_mail_not_configured"
+msgstr ""
+
+# Error message shown when calibration failed because of too high standard deviation
+msgid "error_calibration_high_deviation"
+msgstr ""
+
+# Error message shown after several failed calibration attempts
+msgid "error_calibration_several_attempts"
+msgstr ""
+
+# Introduction to error reporting
+msgid "error_reporting_introduction"
+msgstr ""
+
+# Private data disclaimer
+msgid "error_reporting_data_information"
+msgstr ""
+
+# Accept
+msgid "error_reporting_send_report"
+msgstr ""
+
+# Refuse
+msgid "error_reporting_drop_report"
+msgstr ""
+
+# Error reporting e-mail picker
+msgid "error_reporting_send_report_chooser"
+msgstr ""
+
+# Error reporting e-mail subject
+msgid "error_reporting_mail_subject"
+msgstr ""
+
+# Status when no error report must be sent
+msgid "error_reporting_no_dump"
+msgstr ""
+
+# Game: tagline
+msgid "game_tagline"
+msgstr ""
+
+msgid "game_coming_soon"
+msgstr ""
+
+# Information message: internal error in roughness detection engine
+msgid "information_message_description_engine_error"
+msgstr ""
+
+# Information message: GPS is disabled
+msgid "information_message_description_gps_off"
+msgstr ""
+
+# Information message: GPS unmoving for some time, suspending
+msgid "information_message_description_gps_suspended_stationary"
+msgstr ""
+
+# Information message: speed to low
+msgid "information_message_description_gps_suspended_speed"
+msgstr ""
+
+# Information message: GPS is not fixed
+msgid "information_message_description_gps_unfixed"
+msgstr ""
+
+# Information message: SmartRoadSense not supported in current country
+msgid "information_message_description_out_of_country"
+msgstr ""
+
+# Information message: synchronizing
+msgid "information_message_description_syncing"
+msgstr ""
+
+# Information message: synchronization failure
+msgid "information_message_description_upload_failure"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_engine_error"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_gps_off"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_gps_suspended_stationary"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_gps_suspended_speed"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_gps_unfixed"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_out_of_country"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_syncing"
+msgstr ""
+
+# Title bound to information message above
+msgid "information_message_title_upload_failure"
+msgstr ""
+
+# Configuration label: type of anchorage
+msgid "label_anchorage"
+msgstr ""
+
+# File status label: file created on
+msgid "label_file_creation"
+msgstr ""
+
+# File status label: file size
+msgid "label_file_size"
+msgstr ""
+
+# File status label: file size value (use {0})
+msgid "label_file_size_value"
+msgstr ""
+
+# Configuration label: configuration
+msgid "label_setup"
+msgstr ""
+
+# Configuration label: vehicle type
+msgid "label_vehicle"
+msgstr ""
+
+msgid "log_entries_count"
+msgstr ""
+
+#  Official e-mail address for feedback and reports
+msgid "mail_address"
+msgstr ""
+
+msgid "menu_about"
+msgstr ""
+
+msgid "menu_error_reporting"
+msgstr ""
+
+msgid "menu_game"
+msgstr ""
+
+msgid "menu_log"
+msgstr ""
+
+msgid "menu_queue"
+msgstr ""
+
+msgid "menu_settings"
+msgstr ""
+
+msgid "menu_stats"
+msgstr ""
+
+# Background tracking service notification: description (if available on platform)
+msgid "sensing_service_notification_message"
+msgstr ""
+
+# Background tracking service notification: title
+msgid "sensing_service_notification_title"
+msgstr ""
+
+# Background tracking service name (if available on platform)
+msgid "service_sensing"
+msgstr ""
+
+# Background upload service name (if available on platform)
+msgid "service_sync"
+msgstr ""
+
+msgid "settings_description_anchorage"
+msgstr ""
+
+msgid "settings_description_disable_suspension"
+msgstr ""
+
+msgid "settings_description_offline_mode"
+msgstr ""
+
+msgid "settings_description_prefer_unmetered"
+msgstr ""
+
+msgid "settings_description_start_at_boot"
+msgstr ""
+
+msgid "settings_description_vehicle"
+msgstr ""
+
+msgid "settings_section_calibration"
+msgstr ""
+
+msgid "settings_section_introduction"
+msgstr ""
+
+msgid "settings_section_preferences"
+msgstr ""
+
+msgid "settings_section_setup"
+msgstr ""
+
+msgid "settings_title_anchorage"
+msgstr ""
+
+msgid "settings_title_disable_suspension"
+msgstr ""
+
+msgid "settings_title_offline_mode"
+msgstr ""
+
+msgid "settings_title_prefer_unmetered"
+msgstr ""
+
+msgid "settings_title_start_at_boot"
+msgstr ""
+
+msgid "settings_title_vehicle"
+msgstr ""
+
+# Workaround notification that sharing text is in clipboard
+msgid "share_badge_clipboard"
+msgstr ""
+
+# Generic error while sharing badge
+msgid "share_badge_failure"
+msgstr ""
+
+# Include {0:0.0} for number of kms
+msgid "share_badge_text"
+msgstr ""
+
+msgid "stats_kms_value_default"
+msgstr ""
+
+msgid "stats_kms_value_format"
+msgstr ""
+
+msgid "stats_last_label"
+msgstr ""
+
+msgid "stats_last_track_label"
+msgstr ""
+
+msgid "stats_overall_label"
+msgstr ""
+
+msgid "stats_week_label"
+msgstr ""
+
+msgid "status_no_files_in_queue"
+msgstr ""
+
+msgid "title_about"
+msgstr ""
+
+msgid "title_error_reporting"
+msgstr ""
+
+# Game mode title
+msgid "title_game"
+msgstr ""
+
+msgid "title_log"
+msgstr ""
+
+# Main application title
+msgid "title_main"
+msgstr ""
+
+# Main application title in beta mode
+msgid "title_main_beta"
+msgstr ""
+
+# Main application title in debug mode
+msgid "title_main_debug"
+msgstr ""
+
+msgid "title_queue"
+msgstr ""
+
+msgid "title_stats"
+msgstr ""
+
+msgid "title_settings"
+msgstr ""
+
+msgid "title_tutorial"
+msgstr ""
+
+msgid "tutorial_1_title"
+msgstr ""
+
+msgid "tutorial_1_text_1"
+msgstr ""
+
+msgid "tutorial_2_title"
+msgstr ""
+
+msgid "tutorial_2_text_1"
+msgstr ""
+
+msgid "tutorial_2_text_2"
+msgstr ""
+
+msgid "tutorial_3_title"
+msgstr ""
+
+msgid "tutorial_3_question"
+msgstr ""
+
+msgid "tutorial_4_title"
+msgstr ""
+
+msgid "tutorial_4_question"
+msgstr ""
+
+msgid "tutorial_5_title"
+msgstr ""
+
+msgid "tutorial_5_explanation"
+msgstr ""
+
+msgid "tutorial_5_instructions"
+msgstr ""
+
+msgid "tutorial_5_confirmation"
+msgstr ""
+
+msgid "tutorial_5_calibrate"
+msgstr ""
+
+msgid "tutorial_6_title"
+msgstr ""
+
+msgid "tutorial_6_text"
+msgstr ""
+
+msgid "tutorial_7_title"
+msgstr ""
+
+msgid "tutorial_7_text_1"
+msgstr ""
+
+msgid "tutorial_7_text_2"
+msgstr ""
+
+msgid "tutorial_7_missing_calibration"
+msgstr ""
+
+msgid "tutorial_bottom_question_notice"
+msgstr ""
+
+msgid "tutorial_done"
+msgstr ""
+
+msgid "tutorial_redo"
+msgstr ""
+
+# Unknown PPE (roughness) index, use 1 decimal place, make sure the decimal
+# separator is correctly localized (i.e., "-,-" vs "-.-")
+msgid "unknown_ppe_value"
+msgstr ""
+
+# Vehicle type: standard car
+msgid "vehicle_car"
+msgstr ""
+
+# Vehicle type: motorcycle
+msgid "vehicle_motorcycle"
+msgstr ""
+
+# Vehicle type: truck
+msgid "vehicle_truck"
+msgstr ""

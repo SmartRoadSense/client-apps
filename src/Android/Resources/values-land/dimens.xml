@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="activity_big_top_margin_top">48dp</dimen>
+  <dimen name="activity_big_top_margin_bottom">16dp</dimen>
+
+  <dimen name="tutorial_icons_pre_space">16dp</dimen>
+  <dimen name="tutorial_icons_post_space">4dp</dimen>
+
+  <dimen name="floating_button_on_screen_translation">-8dp</dimen>
+  <dimen name="floating_button_offset_translation">-82dp</dimen>
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin_double"
+            android:paddingRight="@dimen/activity_horizontal_margin_double">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_big_tutorial_header"
+                android:text="@string/Vernacular_P0_tutorial_4_title"
+                android:textColor="@color/theme_primary"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Vernacular_P0_tutorial_4_question"
+                style="@style/text_larger"
+                android:layout_marginBottom="@dimen/tutorial_icons_pre_space" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/image_anchorage_mat"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/icon_mat"
+                    android:scaleType="centerInside" />
+                <ImageView
+                    android:id="@+id/image_anchorage_bracket"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/icon_bracket"
+                    android:scaleType="centerInside" />
+                <ImageView
+                    android:id="@+id/image_anchorage_pocket"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:src="@drawable/icon_pocket"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/text_selected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:layout_marginTop="@dimen/tutorial_icons_post_space"
+                android:gravity="center_horizontal"
+                android:textColor="@color/theme_primary" />
+        </LinearLayout>
+    </ScrollView>
+    <TextView
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin_double"
+        android:layout_marginRight="@dimen/activity_horizontal_margin_double"
+        android:text="@string/Vernacular_P0_tutorial_bottom_question_notice"
+        style="@style/text_subtle" />
+</RelativeLayout>

@@ -1,0 +1,561 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-10-20 18:07+0200\n"
+"Last-Translator: Lorenz Cuno Klopfenstein <lck@klopfenstein>\n"
+"Language-Team: \n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.11\n"
+
+msgid "about_author"
+msgstr "Uiversitatea din Urbino “Carlo Bo” i NeuNet"
+
+# List of application authors, separated by "<br />" strings
+msgid "about_authors"
+msgstr ""
+"Alessandro Aldini<br />Giacomo Alessandroni<br />Alessandro Bogliolo<br /"
+">Alberto Carini<br />Saverio Delpriori<br />Valerio Freschi<br />Lorenz Cuno "
+"Klopfenstein<br />Emanuele Lattanzi<br />Gioele Luchetti<br />Brendan D. "
+"Paolini<br />Andrea Seraghiti"
+
+msgid "about_contributors"
+msgstr "Colaboratori"
+
+msgid "about_developed_by"
+msgstr "dezvoltat de"
+
+msgid "about_feedback"
+msgstr "Comentarii si sugestii"
+
+msgid "about_feedback_chooser"
+msgstr "trimite comentarii"
+
+msgid "about_icon_design"
+msgstr "Design"
+
+msgid "about_icon_design_text"
+msgstr ""
+"Logo-ul si design de Lorenz Cuno Klpfenstein.<br />Pictograma auto de "
+"Volodin Anton, pictograma buzunar de Christopher T. Howlett, pictograma "
+"smartphone de James Fenton, pictograma accelerometru de Anuar Zhumaev, "
+"licenta CC BY 3.0 Noun Project."
+
+msgid "about_version_beta"
+msgstr "Beta"
+
+msgid "about_version_debug"
+msgstr "Debug"
+
+# Clears the user-visible log of events
+msgid "action_clear_log"
+msgstr "Șterge Registru"
+
+# Clears the queue of data to be uploaded (data will be lost)
+msgid "action_clear_queue"
+msgstr "Șterge lista de date"
+
+# Close app navigation panel (platform dependant)
+msgid "action_drawer_close"
+msgstr "Închide panoul de navigare"
+
+# Open app navigation panel (platform dependant)
+msgid "action_drawer_open"
+msgstr "Deschide panoul de navigare"
+
+# Forces data upload instead of background synchronization
+msgid "action_force_upload"
+msgstr "Forțeaza încarcarea"
+
+msgid "action_play_contentdescription"
+msgstr "Începe înregistrarea"
+
+# Generic refresh action
+msgid "action_refresh"
+msgstr "Actualizează"
+
+msgid "action_show_log"
+msgstr "Afișeaza registru"
+
+msgid "action_stop_contentdescription"
+msgstr "Termină Înregistrarea"
+
+msgid "anchorage_bracket"
+msgstr "Suport de implementare"
+
+msgid "anchorage_mat"
+msgstr "Covoraș antiderapant"
+
+msgid "anchorage_pocket"
+msgstr "În buzunar/ diverse"
+
+msgid "app_name"
+msgstr "SmartRoadSense"
+
+# Success status when calibration is performed correctly
+msgid "calibration_done_info"
+msgstr "Calibrarea a fost efectuată cu succes"
+
+# Info label showing calibration scale, use {0:P2} to show scaling percentage
+msgid "calibration_scale"
+msgstr "Factor de scală: {0:P2}."
+
+# Calibration details, {0} mean, {1} std.dev
+msgid "calibration_details"
+msgstr "Magnitudine de accelerație medie: {0:F3}m/s² (± {1:F3}m/s²)."
+
+# Info label showing that calibration has not yet been performed
+msgid "calibration_not_done"
+msgstr ""
+"Dispozitiv necalibrat: este necasară calibrarea înainte de înregistrare."
+
+# Forgets calibration data and performs new calibration step
+msgid "calibration_forget"
+msgstr "Recalibrează"
+
+# Starting PPE (roughness) index, use 1 decimal place, make sure the decimal
+# separator is correctly localized (i.e., "0,0" vs "0.0")
+msgid "default_ppe_value"
+msgstr "0,0"
+
+# Generic cancel message
+msgid "dialog_cancel"
+msgstr "Anulează"
+
+# Generic accept message
+msgid "dialog_accept"
+msgstr "Acceptă"
+
+# Generic ok message
+msgid "dialog_ok"
+msgstr "Ok"
+
+# Calibration dialog, title
+msgid "dialog_calibration_title"
+msgstr "Calibrare…"
+
+# Calibration dialog, description
+msgid "dialog_calibration_description"
+msgstr "Ramai nemiscat si tine-ti respiratia!"
+
+# Queue file dialog, title
+msgid "dialog_queue_file_title"
+msgstr "Ștergere fișier?"
+
+# Queue file dialog, delete action
+msgid "dialog_queue_file_delete"
+msgstr "Șterge"
+
+# Queue file dialog, share action
+msgid "dialog_queue_file_share"
+msgstr "Trimite"
+
+# Queue file dialog, cancel
+msgid "dialog_queue_file_cancel"
+msgstr "Anulează"
+
+# Queue clear dialog, title
+msgid "dialog_queue_clear_title"
+msgstr "Doriți să ștergeți toate datele?"
+
+# Queue clear dialog, description of deleting all files
+msgid "dialog_queue_clear_description"
+msgstr ""
+"Dacă se continua toate datele înregistrate vor fi șterse. Această acțiune nu "
+"poate fi anulata."
+
+# Queue clear dialog, delete all action
+msgid "dialog_queue_clear_delete_all"
+msgstr "Șterge toate fisierele"
+
+# Generic error message
+msgid "error_generic"
+msgstr "Eroare"
+
+# Pensive (equally generic) error message
+msgid "error_generic_reflective"
+msgstr "Hmmmm…"
+
+# Error while opening/accessing geolocation settings
+msgid "error_location_settings"
+msgstr "Nu pot deschide panoul de setări de locație."
+
+# Error while opening website
+msgid "error_open_website"
+msgstr "Încercare nereusită de deschidere a site-ului web."
+
+# Error while sending e-mail
+msgid "error_send_mail"
+msgstr "Nu pot trimite e-mail."
+
+# Error because system is not configured to send e-mail
+msgid "error_send_mail_not_configured"
+msgstr ""
+"Nu puteți trimite e-mail deoarece sistemul nu este configurat corespunzător."
+
+# Error message shown when calibration failed because of too high standard deviation
+msgid "error_calibration_high_deviation"
+msgstr ""
+"Calibrarea a eșuat deoarece dispozitivul pare să fie în mișcare. Încercați "
+"din nou menținand stabilitatea."
+
+# Error message shown after several failed calibration attempts
+msgid "error_calibration_several_attempts"
+msgstr ""
+"În cazul în care calibrarea continuă să eșueze, este posibil cadispozitivul "
+"să nu fie adecvat pentru a masura în mod corect calitatea străzii."
+
+# Introduction to error reporting
+msgid "error_reporting_introduction"
+msgstr ""
+"Ceva nu este în regula cu software-ul nostru de detectare a calitatii "
+"stradale.<br />Toate informatiile furnizate sunt utile pentru a rezolva bug-"
+"ul, asadar vă rugam sa ne semnalați eroarea pentru a regla aplicația cât mai "
+"curând posibil."
+
+# Private data disclaimer
+msgid "error_reporting_data_information"
+msgstr ""
+"Alerta va fi trimisă prin e-mail și nu va conține nici o informație "
+"Personala."
+
+# Accept
+msgid "error_reporting_send_report"
+msgstr "Ok, trimite"
+
+# Refuse
+msgid "error_reporting_drop_report"
+msgstr "Nu, mulțumesc"
+
+# Error reporting e-mail picker
+msgid "error_reporting_send_report_chooser"
+msgstr "Trimite alerta via e-mail"
+
+# Error reporting e-mail subject
+msgid "error_reporting_mail_subject"
+msgstr "SmartRoadSense alerta eroare motor"
+
+# Status when no error report must be sent
+msgid "error_reporting_no_dump"
+msgstr "Nici o eroare de transmis"
+
+# Information message: internal error in roughness detection engine
+msgid "information_message_description_engine_error"
+msgstr ""
+"Ceva nu funcționează în sistemul nostru de detectare a calității stradale! "
+"='(<br />Click aici pentru a ne ajuta și a raporta problema."
+
+# Information message: GPS is disabled
+msgid "information_message_description_gps_off"
+msgstr ""
+"Vă rugăm să activați serviciul de localizare din panoul Setări al "
+"dispozitivului Dvs."
+
+# Information message: GPS unmoving for some time, suspending
+msgid "information_message_description_gps_suspended_stationary"
+msgstr ""
+"Dispozitivul Dvs nu s-a miscat de ceva timp. Înregistrarea datelor a fost "
+"suspendata pentru a nu consuma bateria în mod inutil."
+
+# Information message: speed to low
+msgid "information_message_description_gps_suspended_speed"
+msgstr ""
+"Aparatul Dvs. se mișca prea lent pentru a capta datele Necesare. "
+"Înregistrarea a fost suspendată."
+
+# Information message: GPS is not fixed
+msgid "information_message_description_gps_unfixed"
+msgstr ""
+"Asigurați-vă că vă aflați într-un spatiu extern și cerul este vizibil. "
+"Aplicatia va Relua înregistrarea imediat ce va primi un semnal GPS."
+
+# Information message: SmartRoadSense not supported in current country
+msgid "information_message_description_out_of_country"
+msgstr ""
+"SmartRoadSense nu este încă disponibil în țara în care vă aflați. Tari "
+"suplimentare vor fi activate in viitor."
+
+# Information message: synchronizing
+msgid "information_message_description_syncing"
+msgstr ""
+"Traseele înregistrare sunt încărcate în serverele noastre. Mulțumim pentru "
+"contribuția dumneavoastră! =)"
+
+# Information message: synchronization failure
+msgid "information_message_description_upload_failure"
+msgstr "Asigurați-vă că dispozitivul Dvs este conectat la Internet."
+
+# Title bound to information message above
+msgid "information_message_title_engine_error"
+msgstr "Ops!"
+
+# Title bound to information message above
+msgid "information_message_title_gps_off"
+msgstr "GPS dezactivat"
+
+# Title bound to information message above
+msgid "information_message_title_gps_suspended_stationary"
+msgstr "Ati oprit?"
+
+# Title bound to information message above
+msgid "information_message_title_gps_suspended_speed"
+msgstr "Un pic prea lent…"
+
+# Title bound to information message above
+msgid "information_message_title_gps_unfixed"
+msgstr "Asteptare semnal GPS"
+
+# Title bound to information message above
+msgid "information_message_title_out_of_country"
+msgstr "Nu este o țara pentru SmartRoadSense"
+
+# Title bound to information message above
+msgid "information_message_title_syncing"
+msgstr "Sincronizare…"
+
+# Title bound to information message above
+msgid "information_message_title_upload_failure"
+msgstr "Eroare de comunicare"
+
+# Configuration label: type of anchorage
+msgid "label_anchorage"
+msgstr "Locație"
+
+# File status label: file created on
+msgid "label_file_creation"
+msgstr "Înregistrare efectuata in data de:"
+
+# File status label: file size
+msgid "label_file_size"
+msgstr "Dimensiune"
+
+# File status label: file size value (use {0})
+msgid "label_file_size_value"
+msgstr "{0} KiByte"
+
+# Configuration label: configuration
+msgid "label_setup"
+msgstr "Configurare"
+
+# Configuration label: vehicle type
+msgid "label_vehicle"
+msgstr "Vehicul"
+
+msgid "log_entries_count"
+msgstr "{0} elemente in registru"
+
+#  Official e-mail address for feedback and reports
+msgid "mail_address"
+msgstr "info@smartroadsense.it"
+
+msgid "menu_about"
+msgstr "Informații"
+
+msgid "menu_error_reporting"
+msgstr "Semnalarea erorilor"
+
+msgid "menu_log"
+msgstr "Registru"
+
+msgid "menu_queue"
+msgstr "Date"
+
+msgid "menu_settings"
+msgstr "Setări"
+
+# Background tracking service notification: description (if available on platform)
+msgid "sensing_service_notification_message"
+msgstr "Se înregistrează"
+
+# Background tracking service notification: title
+msgid "sensing_service_notification_title"
+msgstr "SmartRoadSense"
+
+# Background tracking service name (if available on platform)
+msgid "service_sensing"
+msgstr "Serviciul de senzori"
+
+# Background upload service name (if available on platform)
+msgid "service_sync"
+msgstr "Serviciu de sincronizare"
+
+msgid "settings_description_anchorage"
+msgstr "Stabiliți modul în care dispozitivul este fixat pe vehicul."
+
+msgid "settings_description_offline_mode"
+msgstr ""
+"Dacă este activat, GPS-ul și conexiunea la rețea nu sunt utilizate și "
+"calitatea Detectata a suprafaței drumului este afișată fără a fi încărcata."
+
+msgid "settings_description_prefer_unmetered"
+msgstr ""
+"Dacă este activat, aplicația sincronizează datele înregistrate cu serverul "
+"SmartRoadSense numai în prezența unei conexiuni Wi-Fi."
+
+msgid "settings_description_start_at_boot"
+msgstr ""
+"Dacă este activat, aplicația porneste și începe să înregistreze de indata ce "
+"Sistemul de operare pornește."
+
+msgid "settings_description_vehicle"
+msgstr "Stabiliți tipul de vehicol pe care il conduceți."
+
+msgid "settings_section_calibration"
+msgstr "Calibrare"
+
+msgid "settings_section_introduction"
+msgstr "Intorducere"
+
+msgid "settings_section_preferences"
+msgstr "Preferinte"
+
+msgid "settings_section_setup"
+msgstr "Setări de înregistrare"
+
+msgid "settings_title_anchorage"
+msgstr "Locația dispozitivului"
+
+msgid "settings_title_offline_mode"
+msgstr "Mod offline"
+
+msgid "settings_title_prefer_unmetered"
+msgstr "Utilizează conexiunea Wi-Fi"
+
+msgid "settings_title_start_at_boot"
+msgstr "Pornește boot"
+
+msgid "settings_title_vehicle"
+msgstr "Tip vehicul"
+
+msgid "status_no_files_in_queue"
+msgstr ""
+"In momentul in care SmartRoadSense a inregistrat una sau mai multe tracks, "
+"acestea vor fivizualizate aici inainte de a fi transmise catre server."
+
+msgid "title_about"
+msgstr "Informații"
+
+msgid "title_error_reporting"
+msgstr "Raportare erori"
+
+msgid "title_log"
+msgstr "Log"
+
+# Main application title
+msgid "title_main"
+msgstr "SmartRoadSense"
+
+# Main application title in beta mode
+msgid "title_main_beta"
+msgstr "SmartRoadSense Beta"
+
+# Main application title in debug mode
+msgid "title_main_debug"
+msgstr "SmartRoadSense Debug"
+
+msgid "title_queue"
+msgstr "Date înregistrate"
+
+msgid "title_tutorial"
+msgstr "Introducere"
+
+msgid "title_settings"
+msgstr "Setări"
+
+msgid "tutorial_1_title"
+msgstr "Bun venit in aplicația SmartRoadSense!"
+
+msgid "tutorial_1_text_1"
+msgstr ""
+"SmartRoadSense este un sistem de detectare colaborativ care colectează "
+"Informații cu privire la calitatea suprafeței străzii, folosind numai "
+"Smartphone-ul dvs."
+
+msgid "tutorial_2_title"
+msgstr "Cum funcționează?"
+
+msgid "tutorial_2_text_1"
+msgstr ""
+"Smartphone-ul dumneavostră, va folosi senzorii pentru a determina calitatea "
+"drumului pe care călătoriți."
+
+msgid "tutorial_2_text_2"
+msgstr ""
+"Toate datele sunt colectate în mod anonim, prelucrate și agregate si in cele "
+"din urmă publicate pe www.smartroadsense.it."
+
+msgid "tutorial_3_title"
+msgstr "Înainte de a începe"
+
+msgid "tutorial_3_question"
+msgstr "Ce tip de vehicul vei conduce?"
+
+msgid "tutorial_4_title"
+msgstr "Înainte de a începe"
+
+msgid "tutorial_4_question"
+msgstr "Unde anume va fi plasat smartphone-ul în vehicol?"
+
+msgid "tutorial_5_title"
+msgstr "Înainte de a incepe"
+
+msgid "tutorial_5_explanation"
+msgstr ""
+"Toate dispozitivele sunt diferite intre ele: Pentru a obține informații "
+"utile din datele înregistrate de Dvs. Trebuie să calibrați senzorii."
+
+msgid "tutorial_5_instructions"
+msgstr ""
+"Faceți clic pe butonul de mai jos și mențineti dispozitivul cât mai stabil "
+"posibil (nu se aplica dacă sunteti în mișcare pe jos sau într-un vehicul). "
+"Acest lucru dureaza doar câteva secunde."
+
+msgid "tutorial_5_confirmation"
+msgstr "Gata! Senzorii au fost calibrați in mod corect!"
+
+msgid "tutorial_5_calibrate"
+msgstr "Calibrați acum"
+
+msgid "tutorial_7_title"
+msgstr "Gata!"
+
+msgid "tutorial_7_text_1"
+msgstr "Sunteti gata pentru folosirea aplicatiei si colectarea datelor."
+
+msgid "tutorial_7_text_2"
+msgstr ""
+"Click pe mașina la centrul ecranului atunci când incepeti sa conduceti!"
+
+msgid "tutorial_7_missing_calibration"
+msgstr "Calibrarea!"
+
+msgid "tutorial_bottom_question_notice"
+msgstr ""
+"Puteti să modificați aceste alegeri în orice moment,din meniul Setări\"."
+
+msgid "tutorial_done"
+msgstr "Pornim!"
+
+msgid "tutorial_redo"
+msgstr "Vezi introducerea"
+
+# Unknown PPE (roughness) index, use 1 decimal place, make sure the decimal
+# separator is correctly localized (i.e., "-,-" vs "-.-")
+msgid "unknown_ppe_value"
+msgstr "-,-"
+
+# Vehicle type: standard car
+msgid "vehicle_car"
+msgstr "Automobil"
+
+# Vehicle type: motorcycle
+msgid "vehicle_motorcycle"
+msgstr "Motocicleta"
+
+# Vehicle type: truck
+msgid "vehicle_truck"
+msgstr "Autobuz/Camion"

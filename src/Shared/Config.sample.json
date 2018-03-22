@@ -1,0 +1,5 @@
+﻿/* Must be copied to platform-specific project as Config.json */
+/* Build as "Embedded resource" */
+{
+  "AppCenterApiSecret": ""
+}

@@ -1,0 +1,3 @@
+Main blue
+#2a69ff
+rgb(42, 105, 255)

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroPage6ViewController">
+            <connections>
+                <outlet property="btnGo" destination="idI-nT-vDh" id="Vzo-J9-CMv"/>
+                <outlet property="lblBody1" destination="lRd-xk-4eY" id="Teg-wJ-Exd"/>
+                <outlet property="lblBody2" destination="Vod-wb-WiH" id="WsS-2P-ArH"/>
+                <outlet property="lblCalibration" destination="khH-m3-dTi" id="6eK-Lp-UUd"/>
+                <outlet property="lblTitle" destination="YIB-2Y-gsN" id="no7-eT-vGU"/>
+                <outlet property="view" destination="iN0-l3-epB" id="kCW-yf-GMq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pronti!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIB-2Y-gsN">
+                    <rect key="frame" x="30" y="60" width="315" height="35"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="29"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Siamo pronti per cominciare a raccogliere dati." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRd-xk-4eY">
+                    <rect key="frame" x="30" y="120" width="315" height="38.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clicca sull'icona di automobile al centro dello schermo quando ti metti alla guida!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vod-wb-WiH">
+                    <rect key="frame" x="30" y="166.5" width="315" height="38.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="idI-nT-vDh">
+                    <rect key="frame" x="275" y="230" width="70" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="idI-nT-vDh" secondAttribute="height" multiplier="5:2" id="NVb-YM-aoK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="ANDIAMO!">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="calibration" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khH-m3-dTi">
+                    <rect key="frame" x="30" y="266" width="315" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YIB-2Y-gsN" secondAttribute="trailing" constant="30" id="3U3-AF-Y1g"/>
+                <constraint firstItem="Vod-wb-WiH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="5Y1-K1-Qb6"/>
+                <constraint firstAttribute="trailing" secondItem="Vod-wb-WiH" secondAttribute="trailing" constant="30" id="C9n-2E-GGh"/>
+                <constraint firstAttribute="trailing" secondItem="lRd-xk-4eY" secondAttribute="trailing" constant="30" id="F1X-h3-gaI"/>
+                <constraint firstItem="YIB-2Y-gsN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="GRu-Sx-mBv"/>
+                <constraint firstItem="khH-m3-dTi" firstAttribute="top" secondItem="idI-nT-vDh" secondAttribute="bottom" constant="8" id="JGI-Cn-WIH"/>
+                <constraint firstItem="lRd-xk-4eY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="NRJ-oO-87b"/>
+                <constraint firstAttribute="trailing" secondItem="idI-nT-vDh" secondAttribute="trailing" constant="30" id="Q05-qN-iBe"/>
+                <constraint firstItem="lRd-xk-4eY" firstAttribute="top" secondItem="YIB-2Y-gsN" secondAttribute="bottom" constant="25" id="TiU-KV-Ffm"/>
+                <constraint firstItem="Vod-wb-WiH" firstAttribute="top" secondItem="lRd-xk-4eY" secondAttribute="bottom" constant="8" id="YFf-fV-gGm"/>
+                <constraint firstItem="YIB-2Y-gsN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="e7d-wK-YOm"/>
+                <constraint firstAttribute="trailing" secondItem="khH-m3-dTi" secondAttribute="trailing" constant="30" id="td1-ed-NkO"/>
+                <constraint firstItem="idI-nT-vDh" firstAttribute="top" secondItem="Vod-wb-WiH" secondAttribute="bottom" constant="25" id="uHp-dV-LmF"/>
+                <constraint firstItem="khH-m3-dTi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="w3y-if-8xH"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

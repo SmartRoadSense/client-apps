@@ -1,0 +1,12 @@
+*.userprefs
+**/.metadata/**
+**/.recommenders/**
+**/.vs/**
+**/bin/**
+**/obj/**
+**/packages/**
+*.suo
+*.csproj.user
+*.lock.json
+src/Android/Config\.json
+src/iOS/Config\.json

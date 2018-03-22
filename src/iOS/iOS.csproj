@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{970E61B0-F300-4517-ABB3-7772E1F38EBA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SmartRoadSense.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG; IOS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>false</MtouchProfiling>
+    <MtouchI18n>
+    </MtouchI18n>
+    <IOSDebuggerPort>32567</IOSDebuggerPort>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>IOS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG; IOS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>false</MtouchProfiling>
+    <MtouchDebug>true</MtouchDebug>
+    <IpaPackageName>
+    </IpaPackageName>
+    <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
+    <MtouchSdkVersion>9.2</MtouchSdkVersion>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <IOSDebuggerPort>10000</IOSDebuggerPort>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>IOS</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseThumb>true</MtouchUseThumb>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>IOS</DefineConstants>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IpaIncludeArtwork>true</IpaIncludeArtwork>
+    <BuildIpa>true</BuildIpa>
+    <MtouchDebug>false</MtouchDebug>
+    <IOSDebuggerPort>10001</IOSDebuggerPort>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>IOS</DefineConstants>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseThumb>true</MtouchUseThumb>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Beta Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>IOS; BETA</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Beta Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>IOS; BETA</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseThumb>true</MtouchUseThumb>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartRoadSenseCore">
+      <HintPath>..\..\Algorithm\SmartRoadSenseCore\bin\Release\SmartRoadSenseCore.dll</HintPath>
+    </Reference>
+    <Reference Include="BTProgressHUD">
+      <HintPath>..\packages\BTProgressHUD.1.0.0\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite-net">
+      <HintPath>..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK">
+      <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
+    </Reference>
+    <Reference Include="HockeySDK.iOSBindings">
+      <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.core">
+      <HintPath>..\packages\SQLitePCLRaw.core.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.provider.sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.provider.sqlite3.ios_unified.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.provider.sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_green">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_green.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.batteries_v2">
+      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCLRaw.lib.e_sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.lib.e_sqlite3.ios_unified.static.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.lib.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3">
+      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.netstandard11.1.1.8\lib\netstandard1.1\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoJSON.Net">
+      <HintPath>..\packages\GeoJSON.Net.1.0.62\lib\netstandard1.1\GeoJSON.Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButton.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButton.imageset\button_car.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButton.imageset\button_car%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButton.imageset\button_car%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\appicon%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\appicon%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButtonRunning.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButtonRunning.imageset\button_car_running.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButtonRunning.imageset\button_car_running%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\CarButtonRunning.imageset\button_car_running%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car.imageset\button_car.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car.imageset\button_car%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car.imageset\button_car%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_on.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_on.imageset\button_car_on.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_on.imageset\button_car_on%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_on.imageset\button_car_on%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_unknown.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_unknown.imageset\button_car_unknown.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_unknown.imageset\button_car_unknown%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_unknown.imageset\button_car_unknown%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_pressed.imageset\button_car_pressed.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_pressed.imageset\button_car_pressed%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_pressed.imageset\button_car_pressed%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\button_car_pressed.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bracket.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_car.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_car.imageset\icon_car.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_car.imageset\icon_car%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_car.imageset\icon_car%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bus.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bus.imageset\icon_bus.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bus.imageset\icon_bus%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bus.imageset\icon_bus%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_mat.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_motorcycle.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_motorcycle.imageset\icon_motorcycle.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_motorcycle.imageset\icon_motorcycle%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_motorcycle.imageset\icon_motorcycle%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher.imageset\ic_launcher.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher.imageset\ic_launcher%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher.imageset\ic_launcher%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher_disabled.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher_disabled.imageset\ic_launcher_disabled.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher_disabled.imageset\ic_launcher_disabled%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_launcher_disabled.imageset\ic_launcher_disabled%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_status.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_status.imageset\ic_status.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_status.imageset\ic_status%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_status.imageset\ic_status%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_pocket.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bracket.imageset\icon_bracket.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bracket.imageset\icon_bracket%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_bracket.imageset\icon_bracket%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_mat.imageset\icon_mat.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_mat.imageset\icon_mat%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_mat.imageset\icon_mat%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_pocket.imageset\icon_pocket.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_pocket.imageset\icon_pocket%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_pocket.imageset\icon_pocket%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_error_red.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_error_red.imageset\ic_error_red.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_error_red.imageset\ic_error_red%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_error_red.imageset\ic_error_red%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_off_white.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_off_white.imageset\ic_location_off_white.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_off_white.imageset\ic_location_off_white%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_off_white.imageset\ic_location_off_white%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_on_white.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_on_white.imageset\ic_location_on_white.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_on_white.imageset\ic_location_on_white%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_location_on_white.imageset\ic_location_on_white%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_sync_problem_red.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_sync_problem_red.imageset\ic_sync_problem_red.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_sync_problem_red.imageset\ic_sync_problem_red%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\ic_sync_problem_red.imageset\ic_sync_problem_red%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\srs-launch640x960.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\srs-launch640x1136.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_ride_sharing.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_ride_sharing.imageset\ride_sharing_representation.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_ride_sharing.imageset\ride_sharing_representation%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\icon_ride_sharing.imageset\ride_sharing_representation%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\c4rs_logo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\c4rs_logo.imageset\c4rs_logo.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\c4rs_logo.imageset\c4rs_logo%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\c4rs_logo.imageset\c4rs_logo%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\game_splash.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\game_splash%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\game_splash%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\blablacar_logo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\blablacar_logo.imageset\blablacar_logo.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\blablacar_logo.imageset\blablacar_logo%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\blablacar_logo.imageset\blablacar_logo%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\store-1024.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+    <InterfaceDefinition Include="ViewControllers\SideMenuController.xib" />
+    <InterfaceDefinition Include="Alert Views\AlertViewController.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPage1ViewController.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPage2ViewController.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPage3ViewController.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPage4ViewController.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPage6ViewController.xib" />
+    <InterfaceDefinition Include="TableViewCells\DataTableViewCell.xib" />
+    <InterfaceDefinition Include="TableViewCells\LogTableViewCell.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPageCalibrationViewController.xib" />
+    <InterfaceDefinition Include="IntroScreenViews\IntroPage5ViewController.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="StyleSettings\StyleSettings.cs" />
+    <Compile Include="CallState\CallStateSettings.cs" />
+    <Compile Include="ViewControllers\SettingsViewController.cs" />
+    <Compile Include="ViewControllers\SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\DiaryViewController.cs" />
+    <Compile Include="ViewControllers\DiaryViewController.designer.cs">
+      <DependentUpon>DiaryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\DataViewController.cs" />
+    <Compile Include="ViewControllers\DataViewController.designer.cs">
+      <DependentUpon>DataViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\InformationViewController.cs" />
+    <Compile Include="ViewControllers\InformationViewController.designer.cs">
+      <DependentUpon>InformationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\MenuTableSource.cs" />
+    <Compile Include="ViewControllers\BaseController.cs" />
+    <Compile Include="ViewControllers\BaseController.designer.cs">
+      <DependentUpon>BaseController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\RootViewController.cs" />
+    <Compile Include="ViewControllers\RootViewController.designer.cs">
+      <DependentUpon>RootViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\NavController.cs" />
+    <Compile Include="ViewControllers\NavController.designer.cs">
+      <DependentUpon>NavController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SideMenuController.cs" />
+    <Compile Include="ViewControllers\SideMenuController.designer.cs">
+      <DependentUpon>SideMenuController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\iOSViewController.cs" />
+    <Compile Include="ViewControllers\iOSViewController.designer.cs">
+      <DependentUpon>iOSViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSources\DiaryTableSource.cs" />
+    <Compile Include="TableSources\DataTableSource.cs" />
+    <Compile Include="Alert Views\AlertViewController.cs" />
+    <Compile Include="Alert Views\AlertViewController.designer.cs">
+      <DependentUpon>AlertViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\IntroductionPageDetailViewController.cs" />
+    <Compile Include="ViewControllers\IntroductionPageDetailViewController.designer.cs">
+      <DependentUpon>IntroductionPageDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\IntroductionPageViewController.cs" />
+    <Compile Include="ViewControllers\IntroductionPageViewController.designer.cs">
+      <DependentUpon>IntroductionPageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\PageDataSource.cs" />
+    <Compile Include="IntroScreenViews\IntroPage1ViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPage1ViewController.designer.cs">
+      <DependentUpon>IntroPage1ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntroScreenViews\IntroPage2ViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPage2ViewController.designer.cs">
+      <DependentUpon>IntroPage2ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntroScreenViews\IntroPage3ViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPage3ViewController.designer.cs">
+      <DependentUpon>IntroPage3ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntroScreenViews\IntroPage4ViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPage4ViewController.designer.cs">
+      <DependentUpon>IntroPage4ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntroScreenViews\IntroPage6ViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPage6ViewController.designer.cs">
+      <DependentUpon>IntroPage6ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StyleSettings\ChangeImageColor.cs" />
+    <Compile Include="PreferencesSettings.cs" />
+    <Compile Include="TableViewCells\DataTableViewCell.cs" />
+    <Compile Include="TableViewCells\DataTableViewCell.designer.cs">
+      <DependentUpon>DataTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableViewCells\LogTableViewCell.cs" />
+    <Compile Include="TableViewCells\LogTableViewCell.designer.cs">
+      <DependentUpon>LogTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformationMessage.cs" />
+    <Compile Include="InformationMessageExtensions.cs" />
+    <Compile Include="Reachability.cs" />
+    <Compile Include="ViewControllers\CustomPickerViewController.cs" />
+    <Compile Include="ViewControllers\CustomPickerViewController.designer.cs">
+      <DependentUpon>CustomPickerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntroScreenViews\IntroPageCalibrationViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPageCalibrationViewController.designer.cs">
+      <DependentUpon>IntroPageCalibrationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="SyncManager.cs" />
+    <Compile Include="IntroScreenViews\IntroPage5ViewController.cs" />
+    <Compile Include="IntroScreenViews\IntroPage5ViewController.designer.cs">
+      <DependentUpon>IntroPage5ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\GameViewController.cs" />
+    <Compile Include="ViewControllers\GameViewController.designer.cs">
+      <DependentUpon>GameViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\StatisticsViewController.cs" />
+    <Compile Include="ViewControllers\StatisticsViewController.designer.cs">
+      <DependentUpon>StatisticsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PassengerNumberPickerViewController.cs" />
+    <Compile Include="ViewControllers\PassengerNumberPickerViewController.designer.cs">
+      <DependentUpon>PassengerNumberPickerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\CarpoolingViewController.cs" />
+    <Compile Include="ViewControllers\CarpoolingViewController.designer.cs">
+      <DependentUpon>CarpoolingViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{B2163EEC-E055-456B-9695-F055128034FE}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="StyleSettings\" />
+    <Folder Include="CallState\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="TableSources\" />
+    <Folder Include="language\" />
+    <Folder Include="Alert Views\" />
+    <Folder Include="DataSources\" />
+    <Folder Include="IntroScreenViews\" />
+    <Folder Include="TableViewCells\" />
+    <Folder Include="Resources\Images.xcassets\icon_ride_sharing.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\threelines.png" />
+    <BundleResource Include="Resources\srs-stop-btn.png" />
+    <BundleResource Include="en.lproj\Localizable.strings" />
+    <BundleResource Include="it.lproj\Localizable.strings" />
+    <BundleResource Include="ro.lproj\Localizable.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+</Project>

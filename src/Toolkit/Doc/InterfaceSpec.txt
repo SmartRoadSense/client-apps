@@ -1,0 +1,29 @@
+﻿Generate tracks
+===============
+Store input as "stored tracks", using the same disk format used by the mobile clients.
+
+Examples:
+
+CliToolkit store --source file1 file2 file3 --length n --chunking m --output filename
+Loads stored tracks, glues them together and writes out a set of chunked files (trimmed to n samples).
+
+CliToolkit store --length n --chunking m --output filename
+Generates n random data points, writes out a set of chunked files.
+
+Upload tracks
+=============
+Loads stored tracks or generates data points, uploading them to the DEV API end point.
+The secret (and results of the upload operation) can be stored to file.
+
+Examples:
+
+CliToolkit upload --source file1 file2 --chunking m
+Loads stored tracks, glues them together and uploads them in chunks of m files.
+
+Generate payload
+================
+Loads data and prepares an upload payload, without transmission.
+
+Examples:
+
+CliToolkit payload --source file1 file2 file3 --output filename

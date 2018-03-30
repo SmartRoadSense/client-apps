@@ -164,6 +164,13 @@ namespace SmartRoadSense.Shared {
         private async Task<SyncResult> SynchronizeInner(CancellationToken token, SyncPolicy policy) {
             token.ThrowIfCancellationRequested();
 
+#if DEBUG
+            if(policy != SyncPolicy.Forced) {
+                Log.Debug("Unforced sync aborted in debug configuration");
+                return new SyncResult();
+            }
+#endif
+
             var files = await FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataFileExtension);
             if (files.Count == 0) {
                 Log.Debug("No files to synchronize");

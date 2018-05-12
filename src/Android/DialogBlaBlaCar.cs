@@ -41,6 +41,12 @@ namespace SmartRoadSense.Android {
                 Dismiss();
             };
 
+            var checkDoNotAsk = view.FindViewById<CheckBox>(Resource.Id.checkbox_donotask);
+            checkDoNotAsk.Checked = Settings.DoNotAskForCarpooling;
+            checkDoNotAsk.CheckedChange += (sender, ev) => {
+                Settings.DoNotAskForCarpooling = ev.IsChecked;
+            };
+
             return new AlertDialog.Builder(Activity)
                 .SetTitle(Resource.String.Vernacular_P0_dialog_blablacar_title)
                 .SetView(view)

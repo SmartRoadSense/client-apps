@@ -35,6 +35,7 @@
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_accept">Installa BlaBlaCar</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_action_hint">Vuoi saperne di più?</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_description">Il &lt;b&gt;Car-pooling&lt;/b&gt; (anche noto come car-sharing, ride-sharing, covoiturage o concarreggio) è la condivisione di viaggi in automobile, in modo che più di una persona utilizzi un veicolo.&lt;br /&gt;\n&lt;br /&gt;\nLa condivisione aiuta a ridurre i costi (carburante e pedaggi), oltre ad essere una modalità di viaggio più sostenibile.</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_donotasklabel">Non chiedere in futuro</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_ignore">No, procedi</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_title">Cos\'è il Car-pooling?</string>
   <string formatted="false" name="Vernacular_P0_dialog_calibration_description">Trattieni il respiro e rimani immobile!</string>

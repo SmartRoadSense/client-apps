@@ -35,6 +35,7 @@
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_accept">Install BlaBlaCar on your phone</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_action_hint">Do you want to know more?</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_description">&lt;b&gt;Carpooling&lt;/b&gt; (also known as car-sharing, ride-sharing, lift-sharing, or &lt;i&gt;covoiturage&lt;/i&gt;) is the sharing of car journeys so that more than one person travels in one vehicle.&lt;br /&gt;\n&lt;br /&gt;\nBy having more people using the same vehicle, carpooling helps reducing costs (fuel and tolls) and provides a more environmentally-friendly and sustainable way to travel.</string>
+  <string formatted="false" name="Vernacular_P0_dialog_blablacar_donotasklabel">Do not ask again</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_ignore">No, start tracking</string>
   <string formatted="false" name="Vernacular_P0_dialog_blablacar_title">What is Carpooling?</string>
   <string formatted="false" name="Vernacular_P0_dialog_calibration_description">Keep still and hold your breath!</string>

@@ -217,7 +217,7 @@ namespace SmartRoadSense.Android {
                 Log.Debug("Last number of people: from {0} to {1}", Settings.LastNumberOfPeople, de.Value);
                 Settings.LastNumberOfPeople = de.Value;
 
-                if (de.Value == 1) {
+                if (de.Value == 1 && !Settings.DoNotAskForCarpooling) {
                     // Only one passenger, show carpooling dialog
                     var dialogBlaBlaCar = new DialogBlaBlaCar();
                     dialogBlaBlaCar.Closed += (dbsender, dbe) => {

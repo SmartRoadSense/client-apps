@@ -2071,8 +2071,8 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0029
 			public const int SYM = 2131361833;
 			
-			// aapt resource value: 0x7f0a00c2
-			public const int action0 = 2131361986;
+			// aapt resource value: 0x7f0a00c3
+			public const int action0 = 2131361987;
 			
 			// aapt resource value: 0x7f0a0057
 			public const int action_bar = 2131361879;
@@ -2095,23 +2095,23 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0035
 			public const int action_bar_title = 2131361845;
 			
-			// aapt resource value: 0x7f0a00d4
-			public const int action_clear_log = 2131362004;
-			
 			// aapt resource value: 0x7f0a00d5
-			public const int action_clear_queue = 2131362005;
+			public const int action_clear_log = 2131362005;
 			
-			// aapt resource value: 0x7f0a00bf
-			public const int action_container = 2131361983;
+			// aapt resource value: 0x7f0a00d6
+			public const int action_clear_queue = 2131362006;
+			
+			// aapt resource value: 0x7f0a00c0
+			public const int action_container = 2131361984;
 			
 			// aapt resource value: 0x7f0a0058
 			public const int action_context_bar = 2131361880;
 			
-			// aapt resource value: 0x7f0a00c6
-			public const int action_divider = 2131361990;
+			// aapt resource value: 0x7f0a00c7
+			public const int action_divider = 2131361991;
 			
-			// aapt resource value: 0x7f0a00c0
-			public const int action_image = 2131361984;
+			// aapt resource value: 0x7f0a00c1
+			public const int action_image = 2131361985;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int action_menu_divider = 2131361794;
@@ -2128,14 +2128,14 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0037
 			public const int action_mode_close_button = 2131361847;
 			
-			// aapt resource value: 0x7f0a00d3
-			public const int action_refresh_log = 2131362003;
+			// aapt resource value: 0x7f0a00d4
+			public const int action_refresh_log = 2131362004;
 			
-			// aapt resource value: 0x7f0a00c1
-			public const int action_text = 2131361985;
+			// aapt resource value: 0x7f0a00c2
+			public const int action_text = 2131361986;
 			
-			// aapt resource value: 0x7f0a00cf
-			public const int actions = 2131361999;
+			// aapt resource value: 0x7f0a00d0
+			public const int actions = 2131362000;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int activity_chooser_view_content = 2131361848;
@@ -2164,29 +2164,29 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a003e
 			public const int buttonPanel = 2131361854;
 			
-			// aapt resource value: 0x7f0a00a7
-			public const int button_1 = 2131361959;
-			
 			// aapt resource value: 0x7f0a00a8
-			public const int button_2 = 2131361960;
+			public const int button_1 = 2131361960;
 			
 			// aapt resource value: 0x7f0a00a9
-			public const int button_3 = 2131361961;
+			public const int button_2 = 2131361961;
 			
 			// aapt resource value: 0x7f0a00aa
-			public const int button_4 = 2131361962;
+			public const int button_3 = 2131361962;
 			
 			// aapt resource value: 0x7f0a00ab
-			public const int button_5 = 2131361963;
+			public const int button_4 = 2131361963;
 			
-			// aapt resource value: 0x7f0a00b5
-			public const int button_calibrate = 2131361973;
+			// aapt resource value: 0x7f0a00ac
+			public const int button_5 = 2131361964;
+			
+			// aapt resource value: 0x7f0a00b6
+			public const int button_calibrate = 2131361974;
 			
 			// aapt resource value: 0x7f0a00a4
 			public const int button_continue = 2131361956;
 			
-			// aapt resource value: 0x7f0a00b6
-			public const int button_done = 2131361974;
+			// aapt resource value: 0x7f0a00b7
+			public const int button_done = 2131361975;
 			
 			// aapt resource value: 0x7f0a0070
 			public const int button_drop = 2131361904;
@@ -2221,14 +2221,17 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a007b
 			public const int button_stop = 2131361915;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int cancel_action = 2131361987;
+			// aapt resource value: 0x7f0a00c4
+			public const int cancel_action = 2131361988;
 			
 			// aapt resource value: 0x7f0a004e
 			public const int checkbox = 2131361870;
 			
 			// aapt resource value: 0x7f0a0081
 			public const int checkbox_disable_suspension = 2131361921;
+			
+			// aapt resource value: 0x7f0a00a7
+			public const int checkbox_donotask = 2131361959;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int checkbox_offline_mode = 2131361922;
@@ -2239,8 +2242,8 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a007f
 			public const int checkbox_start_at_boot = 2131361919;
 			
-			// aapt resource value: 0x7f0a00cb
-			public const int chronometer = 2131361995;
+			// aapt resource value: 0x7f0a00cc
+			public const int chronometer = 2131361996;
 			
 			// aapt resource value: 0x7f0a002b
 			public const int collapseActionView = 2131361835;
@@ -2275,8 +2278,8 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0022
 			public const int end = 2131361826;
 			
-			// aapt resource value: 0x7f0a00d1
-			public const int end_padder = 2131362001;
+			// aapt resource value: 0x7f0a00d2
+			public const int end_padder = 2131362002;
 			
 			// aapt resource value: 0x7f0a0039
 			public const int expand_activities_button = 2131361849;
@@ -2296,8 +2299,8 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a003d
 			public const int icon = 2131361853;
 			
-			// aapt resource value: 0x7f0a00d0
-			public const int icon_group = 2131362000;
+			// aapt resource value: 0x7f0a00d1
+			public const int icon_group = 2131362001;
 			
 			// aapt resource value: 0x7f0a002c
 			public const int ifRoom = 2131361836;
@@ -2305,14 +2308,14 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a003a
 			public const int image = 2131361850;
 			
-			// aapt resource value: 0x7f0a00b1
-			public const int image_anchorage_bracket = 2131361969;
-			
-			// aapt resource value: 0x7f0a00b0
-			public const int image_anchorage_mat = 2131361968;
-			
 			// aapt resource value: 0x7f0a00b2
-			public const int image_anchorage_pocket = 2131361970;
+			public const int image_anchorage_bracket = 2131361970;
+			
+			// aapt resource value: 0x7f0a00b1
+			public const int image_anchorage_mat = 2131361969;
+			
+			// aapt resource value: 0x7f0a00b3
+			public const int image_anchorage_pocket = 2131361971;
 			
 			// aapt resource value: 0x7f0a0069
 			public const int image_c4rs = 2131361897;
@@ -2320,26 +2323,26 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0071
 			public const int image_splash = 2131361905;
 			
-			// aapt resource value: 0x7f0a00ad
-			public const int image_vehicle_car = 2131361965;
-			
-			// aapt resource value: 0x7f0a00ac
-			public const int image_vehicle_motorcycle = 2131361964;
-			
 			// aapt resource value: 0x7f0a00ae
-			public const int image_vehicle_truck = 2131361966;
+			public const int image_vehicle_car = 2131361966;
 			
-			// aapt resource value: 0x7f0a00cc
-			public const int info = 2131361996;
+			// aapt resource value: 0x7f0a00ad
+			public const int image_vehicle_motorcycle = 2131361965;
+			
+			// aapt resource value: 0x7f0a00af
+			public const int image_vehicle_truck = 2131361967;
+			
+			// aapt resource value: 0x7f0a00cd
+			public const int info = 2131361997;
 			
 			// aapt resource value: 0x7f0a0034
 			public const int italic = 2131361844;
 			
-			// aapt resource value: 0x7f0a00bb
-			public const int label_file_creation = 2131361979;
+			// aapt resource value: 0x7f0a00bc
+			public const int label_file_creation = 2131361980;
 			
-			// aapt resource value: 0x7f0a00bd
-			public const int label_file_size = 2131361981;
+			// aapt resource value: 0x7f0a00be
+			public const int label_file_size = 2131361982;
 			
 			// aapt resource value: 0x7f0a008c
 			public const int label_last_track_kms = 2131361932;
@@ -2374,11 +2377,11 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0075
 			public const int main_frame = 2131361909;
 			
-			// aapt resource value: 0x7f0a00c5
-			public const int media_actions = 2131361989;
+			// aapt resource value: 0x7f0a00c6
+			public const int media_actions = 2131361990;
 			
-			// aapt resource value: 0x7f0a00d2
-			public const int message = 2131362002;
+			// aapt resource value: 0x7f0a00d3
+			public const int message = 2131362003;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int middle = 2131361827;
@@ -2419,14 +2422,14 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0010
 			public const int normal = 2131361808;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int notification_background = 2131361998;
+			// aapt resource value: 0x7f0a00cf
+			public const int notification_background = 2131361999;
+			
+			// aapt resource value: 0x7f0a00c9
+			public const int notification_main_column = 2131361993;
 			
 			// aapt resource value: 0x7f0a00c8
-			public const int notification_main_column = 2131361992;
-			
-			// aapt resource value: 0x7f0a00c7
-			public const int notification_main_column_container = 2131361991;
+			public const int notification_main_column_container = 2131361992;
 			
 			// aapt resource value: 0x7f0a008f
 			public const int pager = 2131361935;
@@ -2464,11 +2467,11 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0050
 			public const int radio = 2131361872;
 			
-			// aapt resource value: 0x7f0a00cd
-			public const int right_icon = 2131361997;
+			// aapt resource value: 0x7f0a00ce
+			public const int right_icon = 2131361998;
 			
-			// aapt resource value: 0x7f0a00c9
-			public const int right_side = 2131361993;
+			// aapt resource value: 0x7f0a00ca
+			public const int right_side = 2131361994;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int screen = 2131361819;
@@ -2560,8 +2563,8 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a001e
 			public const int src_over = 2131361822;
 			
-			// aapt resource value: 0x7f0a00c4
-			public const int status_bar_latest_event_content = 2131361988;
+			// aapt resource value: 0x7f0a00c5
+			public const int status_bar_latest_event_content = 2131361989;
 			
 			// aapt resource value: 0x7f0a0051
 			public const int submenuarrow = 2131361873;
@@ -2599,8 +2602,8 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0085
 			public const int text_calibration_status = 2131361925;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int text_confirmation = 2131361972;
+			// aapt resource value: 0x7f0a00b5
+			public const int text_confirmation = 2131361973;
 			
 			// aapt resource value: 0x7f0a0077
 			public const int text_curr_ppe = 2131361911;
@@ -2614,20 +2617,20 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a006c
 			public const int text_feedback_mail = 2131361900;
 			
-			// aapt resource value: 0x7f0a00bc
-			public const int text_file_creation = 2131361980;
+			// aapt resource value: 0x7f0a00bd
+			public const int text_file_creation = 2131361981;
 			
-			// aapt resource value: 0x7f0a00be
-			public const int text_file_size = 2131361982;
+			// aapt resource value: 0x7f0a00bf
+			public const int text_file_size = 2131361983;
 			
-			// aapt resource value: 0x7f0a00ba
-			public const int text_filename = 2131361978;
+			// aapt resource value: 0x7f0a00bb
+			public const int text_filename = 2131361979;
 			
 			// aapt resource value: 0x7f0a006d
 			public const int text_information = 2131361901;
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int text_instruction = 2131361971;
+			// aapt resource value: 0x7f0a00b4
+			public const int text_instruction = 2131361972;
 			
 			// aapt resource value: 0x7f0a006e
 			public const int text_introduction = 2131361902;
@@ -2635,26 +2638,26 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a0073
 			public const int text_log_count = 2131361907;
 			
-			// aapt resource value: 0x7f0a00b9
-			public const int text_message = 2131361977;
+			// aapt resource value: 0x7f0a00ba
+			public const int text_message = 2131361978;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int text_missing_calibration = 2131361975;
+			// aapt resource value: 0x7f0a00b8
+			public const int text_missing_calibration = 2131361976;
 			
 			// aapt resource value: 0x7f0a007c
 			public const int text_no_files_in_queue = 2131361916;
 			
-			// aapt resource value: 0x7f0a00af
-			public const int text_selected = 2131361967;
+			// aapt resource value: 0x7f0a00b0
+			public const int text_selected = 2131361968;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int text_timestamp = 2131361976;
+			// aapt resource value: 0x7f0a00b9
+			public const int text_timestamp = 2131361977;
 			
 			// aapt resource value: 0x7f0a0068
 			public const int text_version = 2131361896;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int time = 2131361994;
+			// aapt resource value: 0x7f0a00cb
+			public const int time = 2131361995;
 			
 			// aapt resource value: 0x7f0a000e
 			public const int title = 2131361806;
@@ -3087,400 +3090,403 @@ namespace SmartRoadSense.Android
 			public const int Vernacular_P0_dialog_blablacar_description = 2131034177;
 			
 			// aapt resource value: 0x7f050042
-			public const int Vernacular_P0_dialog_blablacar_ignore = 2131034178;
+			public const int Vernacular_P0_dialog_blablacar_donotasklabel = 2131034178;
 			
 			// aapt resource value: 0x7f050043
-			public const int Vernacular_P0_dialog_blablacar_title = 2131034179;
+			public const int Vernacular_P0_dialog_blablacar_ignore = 2131034179;
 			
 			// aapt resource value: 0x7f050044
-			public const int Vernacular_P0_dialog_calibration_description = 2131034180;
+			public const int Vernacular_P0_dialog_blablacar_title = 2131034180;
 			
 			// aapt resource value: 0x7f050045
-			public const int Vernacular_P0_dialog_calibration_title = 2131034181;
+			public const int Vernacular_P0_dialog_calibration_description = 2131034181;
 			
 			// aapt resource value: 0x7f050046
-			public const int Vernacular_P0_dialog_cancel = 2131034182;
+			public const int Vernacular_P0_dialog_calibration_title = 2131034182;
 			
 			// aapt resource value: 0x7f050047
-			public const int Vernacular_P0_dialog_ok = 2131034183;
+			public const int Vernacular_P0_dialog_cancel = 2131034183;
 			
 			// aapt resource value: 0x7f050048
-			public const int Vernacular_P0_dialog_queue_clear_delete_all = 2131034184;
+			public const int Vernacular_P0_dialog_ok = 2131034184;
 			
 			// aapt resource value: 0x7f050049
-			public const int Vernacular_P0_dialog_queue_clear_description = 2131034185;
+			public const int Vernacular_P0_dialog_queue_clear_delete_all = 2131034185;
 			
 			// aapt resource value: 0x7f05004a
-			public const int Vernacular_P0_dialog_queue_clear_title = 2131034186;
+			public const int Vernacular_P0_dialog_queue_clear_description = 2131034186;
 			
 			// aapt resource value: 0x7f05004b
-			public const int Vernacular_P0_dialog_queue_file_cancel = 2131034187;
+			public const int Vernacular_P0_dialog_queue_clear_title = 2131034187;
 			
 			// aapt resource value: 0x7f05004c
-			public const int Vernacular_P0_dialog_queue_file_delete = 2131034188;
+			public const int Vernacular_P0_dialog_queue_file_cancel = 2131034188;
 			
 			// aapt resource value: 0x7f05004d
-			public const int Vernacular_P0_dialog_queue_file_share = 2131034189;
+			public const int Vernacular_P0_dialog_queue_file_delete = 2131034189;
 			
 			// aapt resource value: 0x7f05004e
-			public const int Vernacular_P0_dialog_queue_file_title = 2131034190;
+			public const int Vernacular_P0_dialog_queue_file_share = 2131034190;
 			
 			// aapt resource value: 0x7f05004f
-			public const int Vernacular_P0_dialog_ride_sharing_description = 2131034191;
+			public const int Vernacular_P0_dialog_queue_file_title = 2131034191;
 			
 			// aapt resource value: 0x7f050050
-			public const int Vernacular_P0_dialog_ride_sharing_title = 2131034192;
+			public const int Vernacular_P0_dialog_ride_sharing_description = 2131034192;
 			
 			// aapt resource value: 0x7f050051
-			public const int Vernacular_P0_error_calibration_high_deviation = 2131034193;
+			public const int Vernacular_P0_dialog_ride_sharing_title = 2131034193;
 			
 			// aapt resource value: 0x7f050052
-			public const int Vernacular_P0_error_calibration_several_attempts = 2131034194;
+			public const int Vernacular_P0_error_calibration_high_deviation = 2131034194;
 			
 			// aapt resource value: 0x7f050053
-			public const int Vernacular_P0_error_generic = 2131034195;
+			public const int Vernacular_P0_error_calibration_several_attempts = 2131034195;
 			
 			// aapt resource value: 0x7f050054
-			public const int Vernacular_P0_error_generic_reflective = 2131034196;
+			public const int Vernacular_P0_error_generic = 2131034196;
 			
 			// aapt resource value: 0x7f050055
-			public const int Vernacular_P0_error_location_settings = 2131034197;
+			public const int Vernacular_P0_error_generic_reflective = 2131034197;
 			
 			// aapt resource value: 0x7f050056
-			public const int Vernacular_P0_error_open_website = 2131034198;
+			public const int Vernacular_P0_error_location_settings = 2131034198;
 			
 			// aapt resource value: 0x7f050057
-			public const int Vernacular_P0_error_permission_location_denied = 2131034199;
+			public const int Vernacular_P0_error_open_website = 2131034199;
 			
 			// aapt resource value: 0x7f050058
-			public const int Vernacular_P0_error_reporting_data_information = 2131034200;
+			public const int Vernacular_P0_error_permission_location_denied = 2131034200;
 			
 			// aapt resource value: 0x7f050059
-			public const int Vernacular_P0_error_reporting_drop_report = 2131034201;
+			public const int Vernacular_P0_error_reporting_data_information = 2131034201;
 			
 			// aapt resource value: 0x7f05005a
-			public const int Vernacular_P0_error_reporting_introduction = 2131034202;
+			public const int Vernacular_P0_error_reporting_drop_report = 2131034202;
 			
 			// aapt resource value: 0x7f05005b
-			public const int Vernacular_P0_error_reporting_mail_subject = 2131034203;
+			public const int Vernacular_P0_error_reporting_introduction = 2131034203;
 			
 			// aapt resource value: 0x7f05005c
-			public const int Vernacular_P0_error_reporting_no_dump = 2131034204;
+			public const int Vernacular_P0_error_reporting_mail_subject = 2131034204;
 			
 			// aapt resource value: 0x7f05005d
-			public const int Vernacular_P0_error_reporting_send_report = 2131034205;
+			public const int Vernacular_P0_error_reporting_no_dump = 2131034205;
 			
 			// aapt resource value: 0x7f05005e
-			public const int Vernacular_P0_error_reporting_send_report_chooser = 2131034206;
+			public const int Vernacular_P0_error_reporting_send_report = 2131034206;
 			
 			// aapt resource value: 0x7f05005f
-			public const int Vernacular_P0_error_send_mail = 2131034207;
+			public const int Vernacular_P0_error_reporting_send_report_chooser = 2131034207;
 			
 			// aapt resource value: 0x7f050060
-			public const int Vernacular_P0_error_send_mail_not_configured = 2131034208;
+			public const int Vernacular_P0_error_send_mail = 2131034208;
 			
 			// aapt resource value: 0x7f050061
-			public const int Vernacular_P0_game_coming_soon = 2131034209;
+			public const int Vernacular_P0_error_send_mail_not_configured = 2131034209;
 			
 			// aapt resource value: 0x7f050062
-			public const int Vernacular_P0_game_tagline = 2131034210;
+			public const int Vernacular_P0_game_coming_soon = 2131034210;
 			
 			// aapt resource value: 0x7f050063
-			public const int Vernacular_P0_information_message_description_engine_error = 2131034211;
+			public const int Vernacular_P0_game_tagline = 2131034211;
 			
 			// aapt resource value: 0x7f050064
-			public const int Vernacular_P0_information_message_description_gps_off = 2131034212;
+			public const int Vernacular_P0_information_message_description_engine_error = 2131034212;
 			
 			// aapt resource value: 0x7f050065
-			public const int Vernacular_P0_information_message_description_gps_suspended_speed = 2131034213;
+			public const int Vernacular_P0_information_message_description_gps_off = 2131034213;
 			
 			// aapt resource value: 0x7f050066
-			public const int Vernacular_P0_information_message_description_gps_suspended_stationary = 2131034214;
+			public const int Vernacular_P0_information_message_description_gps_suspended_speed = 2131034214;
 			
 			// aapt resource value: 0x7f050067
-			public const int Vernacular_P0_information_message_description_gps_unfixed = 2131034215;
+			public const int Vernacular_P0_information_message_description_gps_suspended_stationary = 2131034215;
 			
 			// aapt resource value: 0x7f050068
-			public const int Vernacular_P0_information_message_description_out_of_country = 2131034216;
+			public const int Vernacular_P0_information_message_description_gps_unfixed = 2131034216;
 			
 			// aapt resource value: 0x7f050069
-			public const int Vernacular_P0_information_message_description_syncing = 2131034217;
+			public const int Vernacular_P0_information_message_description_out_of_country = 2131034217;
 			
 			// aapt resource value: 0x7f05006a
-			public const int Vernacular_P0_information_message_description_upload_failure = 2131034218;
+			public const int Vernacular_P0_information_message_description_syncing = 2131034218;
 			
 			// aapt resource value: 0x7f05006b
-			public const int Vernacular_P0_information_message_title_engine_error = 2131034219;
+			public const int Vernacular_P0_information_message_description_upload_failure = 2131034219;
 			
 			// aapt resource value: 0x7f05006c
-			public const int Vernacular_P0_information_message_title_gps_off = 2131034220;
+			public const int Vernacular_P0_information_message_title_engine_error = 2131034220;
 			
 			// aapt resource value: 0x7f05006d
-			public const int Vernacular_P0_information_message_title_gps_suspended_speed = 2131034221;
+			public const int Vernacular_P0_information_message_title_gps_off = 2131034221;
 			
 			// aapt resource value: 0x7f05006e
-			public const int Vernacular_P0_information_message_title_gps_suspended_stationary = 2131034222;
+			public const int Vernacular_P0_information_message_title_gps_suspended_speed = 2131034222;
 			
 			// aapt resource value: 0x7f05006f
-			public const int Vernacular_P0_information_message_title_gps_unfixed = 2131034223;
+			public const int Vernacular_P0_information_message_title_gps_suspended_stationary = 2131034223;
 			
 			// aapt resource value: 0x7f050070
-			public const int Vernacular_P0_information_message_title_out_of_country = 2131034224;
+			public const int Vernacular_P0_information_message_title_gps_unfixed = 2131034224;
 			
 			// aapt resource value: 0x7f050071
-			public const int Vernacular_P0_information_message_title_syncing = 2131034225;
+			public const int Vernacular_P0_information_message_title_out_of_country = 2131034225;
 			
 			// aapt resource value: 0x7f050072
-			public const int Vernacular_P0_information_message_title_upload_failure = 2131034226;
+			public const int Vernacular_P0_information_message_title_syncing = 2131034226;
 			
 			// aapt resource value: 0x7f050073
-			public const int Vernacular_P0_label_anchorage = 2131034227;
+			public const int Vernacular_P0_information_message_title_upload_failure = 2131034227;
 			
 			// aapt resource value: 0x7f050074
-			public const int Vernacular_P0_label_file_creation = 2131034228;
+			public const int Vernacular_P0_label_anchorage = 2131034228;
 			
 			// aapt resource value: 0x7f050075
-			public const int Vernacular_P0_label_file_size = 2131034229;
+			public const int Vernacular_P0_label_file_creation = 2131034229;
 			
 			// aapt resource value: 0x7f050076
-			public const int Vernacular_P0_label_file_size_value = 2131034230;
+			public const int Vernacular_P0_label_file_size = 2131034230;
 			
 			// aapt resource value: 0x7f050077
-			public const int Vernacular_P0_label_setup = 2131034231;
+			public const int Vernacular_P0_label_file_size_value = 2131034231;
 			
 			// aapt resource value: 0x7f050078
-			public const int Vernacular_P0_label_vehicle = 2131034232;
+			public const int Vernacular_P0_label_setup = 2131034232;
 			
 			// aapt resource value: 0x7f050079
-			public const int Vernacular_P0_log_entries_count = 2131034233;
+			public const int Vernacular_P0_label_vehicle = 2131034233;
 			
 			// aapt resource value: 0x7f05007a
-			public const int Vernacular_P0_mail_address = 2131034234;
+			public const int Vernacular_P0_log_entries_count = 2131034234;
 			
 			// aapt resource value: 0x7f05007b
-			public const int Vernacular_P0_menu_about = 2131034235;
+			public const int Vernacular_P0_mail_address = 2131034235;
 			
 			// aapt resource value: 0x7f05007c
-			public const int Vernacular_P0_menu_error_reporting = 2131034236;
+			public const int Vernacular_P0_menu_about = 2131034236;
 			
 			// aapt resource value: 0x7f05007d
-			public const int Vernacular_P0_menu_game = 2131034237;
+			public const int Vernacular_P0_menu_error_reporting = 2131034237;
 			
 			// aapt resource value: 0x7f05007e
-			public const int Vernacular_P0_menu_log = 2131034238;
+			public const int Vernacular_P0_menu_game = 2131034238;
 			
 			// aapt resource value: 0x7f05007f
-			public const int Vernacular_P0_menu_queue = 2131034239;
+			public const int Vernacular_P0_menu_log = 2131034239;
 			
 			// aapt resource value: 0x7f050080
-			public const int Vernacular_P0_menu_settings = 2131034240;
+			public const int Vernacular_P0_menu_queue = 2131034240;
 			
 			// aapt resource value: 0x7f050081
-			public const int Vernacular_P0_menu_stats = 2131034241;
+			public const int Vernacular_P0_menu_settings = 2131034241;
 			
 			// aapt resource value: 0x7f050082
-			public const int Vernacular_P0_sensing_service_notification_message = 2131034242;
+			public const int Vernacular_P0_menu_stats = 2131034242;
 			
 			// aapt resource value: 0x7f050083
-			public const int Vernacular_P0_sensing_service_notification_title = 2131034243;
+			public const int Vernacular_P0_sensing_service_notification_message = 2131034243;
 			
 			// aapt resource value: 0x7f050084
-			public const int Vernacular_P0_service_sensing = 2131034244;
+			public const int Vernacular_P0_sensing_service_notification_title = 2131034244;
 			
 			// aapt resource value: 0x7f050085
-			public const int Vernacular_P0_service_sync = 2131034245;
+			public const int Vernacular_P0_service_sensing = 2131034245;
 			
 			// aapt resource value: 0x7f050086
-			public const int Vernacular_P0_settings_description_anchorage = 2131034246;
+			public const int Vernacular_P0_service_sync = 2131034246;
 			
 			// aapt resource value: 0x7f050087
-			public const int Vernacular_P0_settings_description_disable_suspension = 2131034247;
+			public const int Vernacular_P0_settings_description_anchorage = 2131034247;
 			
 			// aapt resource value: 0x7f050088
-			public const int Vernacular_P0_settings_description_offline_mode = 2131034248;
+			public const int Vernacular_P0_settings_description_disable_suspension = 2131034248;
 			
 			// aapt resource value: 0x7f050089
-			public const int Vernacular_P0_settings_description_prefer_unmetered = 2131034249;
+			public const int Vernacular_P0_settings_description_offline_mode = 2131034249;
 			
 			// aapt resource value: 0x7f05008a
-			public const int Vernacular_P0_settings_description_start_at_boot = 2131034250;
+			public const int Vernacular_P0_settings_description_prefer_unmetered = 2131034250;
 			
 			// aapt resource value: 0x7f05008b
-			public const int Vernacular_P0_settings_description_vehicle = 2131034251;
+			public const int Vernacular_P0_settings_description_start_at_boot = 2131034251;
 			
 			// aapt resource value: 0x7f05008c
-			public const int Vernacular_P0_settings_section_calibration = 2131034252;
+			public const int Vernacular_P0_settings_description_vehicle = 2131034252;
 			
 			// aapt resource value: 0x7f05008d
-			public const int Vernacular_P0_settings_section_introduction = 2131034253;
+			public const int Vernacular_P0_settings_section_calibration = 2131034253;
 			
 			// aapt resource value: 0x7f05008e
-			public const int Vernacular_P0_settings_section_preferences = 2131034254;
+			public const int Vernacular_P0_settings_section_introduction = 2131034254;
 			
 			// aapt resource value: 0x7f05008f
-			public const int Vernacular_P0_settings_section_setup = 2131034255;
+			public const int Vernacular_P0_settings_section_preferences = 2131034255;
 			
 			// aapt resource value: 0x7f050090
-			public const int Vernacular_P0_settings_title_anchorage = 2131034256;
+			public const int Vernacular_P0_settings_section_setup = 2131034256;
 			
 			// aapt resource value: 0x7f050091
-			public const int Vernacular_P0_settings_title_disable_suspension = 2131034257;
+			public const int Vernacular_P0_settings_title_anchorage = 2131034257;
 			
 			// aapt resource value: 0x7f050092
-			public const int Vernacular_P0_settings_title_offline_mode = 2131034258;
+			public const int Vernacular_P0_settings_title_disable_suspension = 2131034258;
 			
 			// aapt resource value: 0x7f050093
-			public const int Vernacular_P0_settings_title_prefer_unmetered = 2131034259;
+			public const int Vernacular_P0_settings_title_offline_mode = 2131034259;
 			
 			// aapt resource value: 0x7f050094
-			public const int Vernacular_P0_settings_title_start_at_boot = 2131034260;
+			public const int Vernacular_P0_settings_title_prefer_unmetered = 2131034260;
 			
 			// aapt resource value: 0x7f050095
-			public const int Vernacular_P0_settings_title_vehicle = 2131034261;
+			public const int Vernacular_P0_settings_title_start_at_boot = 2131034261;
 			
 			// aapt resource value: 0x7f050096
-			public const int Vernacular_P0_share_badge_clipboard = 2131034262;
+			public const int Vernacular_P0_settings_title_vehicle = 2131034262;
 			
 			// aapt resource value: 0x7f050097
-			public const int Vernacular_P0_share_badge_failure = 2131034263;
+			public const int Vernacular_P0_share_badge_clipboard = 2131034263;
 			
 			// aapt resource value: 0x7f050098
-			public const int Vernacular_P0_share_badge_text = 2131034264;
+			public const int Vernacular_P0_share_badge_failure = 2131034264;
 			
 			// aapt resource value: 0x7f050099
-			public const int Vernacular_P0_stats_kms_value_default = 2131034265;
+			public const int Vernacular_P0_share_badge_text = 2131034265;
 			
 			// aapt resource value: 0x7f05009a
-			public const int Vernacular_P0_stats_kms_value_format = 2131034266;
+			public const int Vernacular_P0_stats_kms_value_default = 2131034266;
 			
 			// aapt resource value: 0x7f05009b
-			public const int Vernacular_P0_stats_last_label = 2131034267;
+			public const int Vernacular_P0_stats_kms_value_format = 2131034267;
 			
 			// aapt resource value: 0x7f05009c
-			public const int Vernacular_P0_stats_last_track_label = 2131034268;
+			public const int Vernacular_P0_stats_last_label = 2131034268;
 			
 			// aapt resource value: 0x7f05009d
-			public const int Vernacular_P0_stats_overall_label = 2131034269;
+			public const int Vernacular_P0_stats_last_track_label = 2131034269;
 			
 			// aapt resource value: 0x7f05009e
-			public const int Vernacular_P0_stats_week_label = 2131034270;
+			public const int Vernacular_P0_stats_overall_label = 2131034270;
 			
 			// aapt resource value: 0x7f05009f
-			public const int Vernacular_P0_status_no_files_in_queue = 2131034271;
+			public const int Vernacular_P0_stats_week_label = 2131034271;
 			
 			// aapt resource value: 0x7f0500a0
-			public const int Vernacular_P0_title_about = 2131034272;
+			public const int Vernacular_P0_status_no_files_in_queue = 2131034272;
 			
 			// aapt resource value: 0x7f0500a1
-			public const int Vernacular_P0_title_error_reporting = 2131034273;
+			public const int Vernacular_P0_title_about = 2131034273;
 			
 			// aapt resource value: 0x7f0500a2
-			public const int Vernacular_P0_title_game = 2131034274;
+			public const int Vernacular_P0_title_error_reporting = 2131034274;
 			
 			// aapt resource value: 0x7f0500a3
-			public const int Vernacular_P0_title_log = 2131034275;
+			public const int Vernacular_P0_title_game = 2131034275;
 			
 			// aapt resource value: 0x7f0500a4
-			public const int Vernacular_P0_title_main = 2131034276;
+			public const int Vernacular_P0_title_log = 2131034276;
 			
 			// aapt resource value: 0x7f0500a5
-			public const int Vernacular_P0_title_main_beta = 2131034277;
+			public const int Vernacular_P0_title_main = 2131034277;
 			
 			// aapt resource value: 0x7f0500a6
-			public const int Vernacular_P0_title_main_debug = 2131034278;
+			public const int Vernacular_P0_title_main_beta = 2131034278;
 			
 			// aapt resource value: 0x7f0500a7
-			public const int Vernacular_P0_title_queue = 2131034279;
+			public const int Vernacular_P0_title_main_debug = 2131034279;
 			
 			// aapt resource value: 0x7f0500a8
-			public const int Vernacular_P0_title_settings = 2131034280;
+			public const int Vernacular_P0_title_queue = 2131034280;
 			
 			// aapt resource value: 0x7f0500a9
-			public const int Vernacular_P0_title_stats = 2131034281;
+			public const int Vernacular_P0_title_settings = 2131034281;
 			
 			// aapt resource value: 0x7f0500aa
-			public const int Vernacular_P0_title_tutorial = 2131034282;
+			public const int Vernacular_P0_title_stats = 2131034282;
 			
 			// aapt resource value: 0x7f0500ab
-			public const int Vernacular_P0_tutorial_1_text_1 = 2131034283;
+			public const int Vernacular_P0_title_tutorial = 2131034283;
 			
 			// aapt resource value: 0x7f0500ac
-			public const int Vernacular_P0_tutorial_1_title = 2131034284;
+			public const int Vernacular_P0_tutorial_1_text_1 = 2131034284;
 			
 			// aapt resource value: 0x7f0500ad
-			public const int Vernacular_P0_tutorial_2_text_1 = 2131034285;
+			public const int Vernacular_P0_tutorial_1_title = 2131034285;
 			
 			// aapt resource value: 0x7f0500ae
-			public const int Vernacular_P0_tutorial_2_text_2 = 2131034286;
+			public const int Vernacular_P0_tutorial_2_text_1 = 2131034286;
 			
 			// aapt resource value: 0x7f0500af
-			public const int Vernacular_P0_tutorial_2_title = 2131034287;
+			public const int Vernacular_P0_tutorial_2_text_2 = 2131034287;
 			
 			// aapt resource value: 0x7f0500b0
-			public const int Vernacular_P0_tutorial_3_question = 2131034288;
+			public const int Vernacular_P0_tutorial_2_title = 2131034288;
 			
 			// aapt resource value: 0x7f0500b1
-			public const int Vernacular_P0_tutorial_3_title = 2131034289;
+			public const int Vernacular_P0_tutorial_3_question = 2131034289;
 			
 			// aapt resource value: 0x7f0500b2
-			public const int Vernacular_P0_tutorial_4_question = 2131034290;
+			public const int Vernacular_P0_tutorial_3_title = 2131034290;
 			
 			// aapt resource value: 0x7f0500b3
-			public const int Vernacular_P0_tutorial_4_title = 2131034291;
+			public const int Vernacular_P0_tutorial_4_question = 2131034291;
 			
 			// aapt resource value: 0x7f0500b4
-			public const int Vernacular_P0_tutorial_5_calibrate = 2131034292;
+			public const int Vernacular_P0_tutorial_4_title = 2131034292;
 			
 			// aapt resource value: 0x7f0500b5
-			public const int Vernacular_P0_tutorial_5_confirmation = 2131034293;
+			public const int Vernacular_P0_tutorial_5_calibrate = 2131034293;
 			
 			// aapt resource value: 0x7f0500b6
-			public const int Vernacular_P0_tutorial_5_explanation = 2131034294;
+			public const int Vernacular_P0_tutorial_5_confirmation = 2131034294;
 			
 			// aapt resource value: 0x7f0500b7
-			public const int Vernacular_P0_tutorial_5_instructions = 2131034295;
+			public const int Vernacular_P0_tutorial_5_explanation = 2131034295;
 			
 			// aapt resource value: 0x7f0500b8
-			public const int Vernacular_P0_tutorial_5_title = 2131034296;
+			public const int Vernacular_P0_tutorial_5_instructions = 2131034296;
 			
 			// aapt resource value: 0x7f0500b9
-			public const int Vernacular_P0_tutorial_6_text = 2131034297;
+			public const int Vernacular_P0_tutorial_5_title = 2131034297;
 			
 			// aapt resource value: 0x7f0500ba
-			public const int Vernacular_P0_tutorial_6_title = 2131034298;
+			public const int Vernacular_P0_tutorial_6_text = 2131034298;
 			
 			// aapt resource value: 0x7f0500bb
-			public const int Vernacular_P0_tutorial_7_missing_calibration = 2131034299;
+			public const int Vernacular_P0_tutorial_6_title = 2131034299;
 			
 			// aapt resource value: 0x7f0500bc
-			public const int Vernacular_P0_tutorial_7_text_1 = 2131034300;
+			public const int Vernacular_P0_tutorial_7_missing_calibration = 2131034300;
 			
 			// aapt resource value: 0x7f0500bd
-			public const int Vernacular_P0_tutorial_7_text_2 = 2131034301;
+			public const int Vernacular_P0_tutorial_7_text_1 = 2131034301;
 			
 			// aapt resource value: 0x7f0500be
-			public const int Vernacular_P0_tutorial_7_title = 2131034302;
+			public const int Vernacular_P0_tutorial_7_text_2 = 2131034302;
 			
 			// aapt resource value: 0x7f0500bf
-			public const int Vernacular_P0_tutorial_bottom_question_notice = 2131034303;
+			public const int Vernacular_P0_tutorial_7_title = 2131034303;
 			
 			// aapt resource value: 0x7f0500c0
-			public const int Vernacular_P0_tutorial_done = 2131034304;
+			public const int Vernacular_P0_tutorial_bottom_question_notice = 2131034304;
 			
 			// aapt resource value: 0x7f0500c1
-			public const int Vernacular_P0_tutorial_redo = 2131034305;
+			public const int Vernacular_P0_tutorial_done = 2131034305;
 			
 			// aapt resource value: 0x7f0500c2
-			public const int Vernacular_P0_unknown_ppe_value = 2131034306;
+			public const int Vernacular_P0_tutorial_redo = 2131034306;
 			
 			// aapt resource value: 0x7f0500c3
-			public const int Vernacular_P0_vehicle_car = 2131034307;
+			public const int Vernacular_P0_unknown_ppe_value = 2131034307;
 			
 			// aapt resource value: 0x7f0500c4
-			public const int Vernacular_P0_vehicle_motorcycle = 2131034308;
+			public const int Vernacular_P0_vehicle_car = 2131034308;
 			
 			// aapt resource value: 0x7f0500c5
-			public const int Vernacular_P0_vehicle_truck = 2131034309;
+			public const int Vernacular_P0_vehicle_motorcycle = 2131034309;
+			
+			// aapt resource value: 0x7f0500c6
+			public const int Vernacular_P0_vehicle_truck = 2131034310;
 			
 			// aapt resource value: 0x7f050000
 			public const int abc_action_bar_home_description = 2131034112;
@@ -4124,6 +4130,9 @@ namespace SmartRoadSense.Android
 			
 			// aapt resource value: 0x7f070022
 			public const int Platform_Widget_AppCompat_Spinner = 2131165218;
+			
+			// aapt resource value: 0x7f070175
+			public const int PrimaryButtonTheme = 2131165557;
 			
 			// aapt resource value: 0x7f07002b
 			public const int RtlOverlay_DialogWindowTitle_AppCompat = 2131165227;

@@ -52,6 +52,12 @@
           android:gravity="center_horizontal"
           android:contentDescription="@string/Vernacular_P0_dialog_blablacar_accept"
           />
+      <CheckBox
+          android:id="@+id/checkbox_donotask"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@string/Vernacular_P0_dialog_blablacar_donotasklabel"
+          />
     </LinearLayout>
   </ScrollView>
 </RelativeLayout>

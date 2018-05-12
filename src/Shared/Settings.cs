@@ -130,6 +130,13 @@ namespace SmartRoadSense.Shared {
             }
         }
 
+        private const string DoNotAskForCarpoolingKey = "Preference.dont_ask_for_carpooling";
+
+        public static bool DoNotAskForCarpooling {
+            get => InternalSettings.GetValueOrDefault(DoNotAskForCarpoolingKey, false);
+            set => InternalSettings.AddOrUpdateValue(DoNotAskForCarpoolingKey, value);
+        }
+
         private const string PreferUnmeteredConnectionKey = "Preference.prefer_unmetered_connection";
 
         /// <summary>

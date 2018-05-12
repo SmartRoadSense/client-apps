@@ -151,6 +151,9 @@ msgstr ""
 msgid "dialog_blablacar_ignore"
 msgstr ""
 
+msgid "dialog_blablacar_donotasklabel"
+msgstr ""
+
 # Calibration dialog, title
 msgid "dialog_calibration_title"
 msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2017-10-24 18:23+0200\n"
+"PO-Revision-Date: 2018-05-11 15:39+0200\n"
 "Last-Translator: Lorenz Cuno Klopfenstein <lck@klopfenstein.net>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.7\n"
 
 msgid "about_author"
 msgstr "Università di Urbino “Carlo Bo” e NeuNet"
@@ -160,6 +160,10 @@ msgstr "Installa BlaBlaCar"
 #  Generic cancel message
 msgid "dialog_blablacar_ignore"
 msgstr "No, procedi"
+
+#  Queue clear dialog, title
+msgid "dialog_blablacar_donotasklabel"
+msgstr "Non chiedere in futuro"
 
 msgid "dialog_calibration_title"
 msgstr "Calibrazione…"

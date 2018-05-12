@@ -97,24 +97,13 @@
     </style>
 
     <!-- Raised material design button -->
-    <style name="button_raised">
+    <style name="button_raised" parent="@style/Base.Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minWidth">64dp</item>
-        <item name="android:minHeight">36dp</item>
-        <item name="android:elevation">4dp</item>
-        <item name="android:layout_marginTop">6dp</item>
-        <item name="android:layout_marginBottom">6dp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">8dp</item>
-        <item name="android:paddingRight">12dp</item>
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:background">@drawable/background_button_rounded</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:minHeight">48dp</item>
         <item name="android:textColor">@color/text_on_dark</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:theme">@style/PrimaryButtonTheme</item>
     </style>
 
     <!-- Grayed out material design button -->

@@ -21,7 +21,8 @@ namespace SmartRoadSense.Toolkit {
                 GeoJsonParameters,
                 StoreParameters,
                 UploadParameters,
-                CompressionRunParameters
+                CompressionRunParameters,
+                CsvParameters
             >(args);
 
             var toolResult = result.MapResult(
@@ -97,6 +98,7 @@ namespace SmartRoadSense.Toolkit {
                     (StoreParameters opts) => (IProducer)new StoreProducer(opts),
                     (GeoJsonParameters opts) => (IProducer)new GeoJsonProducer(opts),
                     (UploadParameters opts) => (IProducer)new UploadProducer(opts),
+                    (CsvParameters opts) => (IProducer)new CsvProducer(opts),
                     (errs) => null
                 );
                 if (producer == null) {

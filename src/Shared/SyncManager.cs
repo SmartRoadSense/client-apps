@@ -77,8 +77,15 @@ namespace SmartRoadSense.Shared {
         /// May return false because sync process is already running or because the last
         /// synchronization attempt was too soon.
         /// </summary>
-        public bool CheckSyncConditions() {
-            if (Settings.OfflineMode) {
+        public bool CheckSyncConditions(SyncPolicy policy) {
+#if DEBUG
+            if(policy != SyncPolicy.Forced) {
+                Log.Debug("Unforced sync aborted in debug configuration");
+                return false;
+            }
+#endif
+
+            if(Settings.OfflineMode) {
                 Log.Debug("Can't sync: synchronization disabled in offline mode");
                 return false;
             }
@@ -104,7 +111,7 @@ namespace SmartRoadSense.Shared {
 
             Settings.LastUploadAttempt = DateTime.UtcNow;
 
-            if (!CheckSyncConditions()) {
+            if (!CheckSyncConditions(policy)) {
                 return new SyncResult(error: new InvalidOperationException("Sync conditions not met"));
             }
 

@@ -211,12 +211,14 @@
     <Compile Include="OutputWrapper.cs" />
     <Compile Include="Parameters\CommonParameters.cs" />
     <Compile Include="Parameters\CompressionRunParameters.cs" />
+    <Compile Include="Parameters\CsvParameters.cs" />
     <Compile Include="Parameters\GeoJsonParameters.cs" />
     <Compile Include="Parameters\OutputParameters.cs" />
     <Compile Include="Parameters\PayloadParameters.cs" />
     <Compile Include="Parameters\StoreParameters.cs" />
     <Compile Include="Parameters\UploadParameters.cs" />
     <Compile Include="Producers\BaseProducer.cs" />
+    <Compile Include="Producers\CsvProducer.cs" />
     <Compile Include="Producers\GeoJsonProducer.cs" />
     <Compile Include="Producers\IProducer.cs" />
     <Compile Include="Producers\OutputProducer.cs" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="it.uniurb.smartroadsense" android:versionName="3.1.2" android:versionCode="30" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="it.uniurb.smartroadsense" android:versionName="3.1.3" android:versionCode="31" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25" />
 	<application android:icon="@drawable/ic_launcher" android:theme="@style/AppTheme" android:label="@string/Vernacular_P0_app_name"></application>
 	<uses-permission android:name="android.permission.INTERNET" />

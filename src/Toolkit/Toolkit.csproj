@@ -233,6 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EmbeddedResource Include="Config.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

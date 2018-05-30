@@ -10,3 +10,4 @@
 *.lock.json
 src/Android/Config\.json
 src/iOS/Config\.json
+src/Toolkit/Config\.json

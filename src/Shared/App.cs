@@ -69,6 +69,8 @@ namespace SmartRoadSense.Shared {
 
             Log.Debug("Initializing {0}", ApplicationInformation);
 
+            RegisterAnalytics();
+
             Engine = new Engine();
             Sensors = SensorPack.Create(Engine);
             Recorder = new Recorder(Engine);
@@ -80,8 +82,6 @@ namespace SmartRoadSense.Shared {
             await FileNaming.InitializeFileStructure().ConfigureAwait(false);
 
             await DatabaseUtility.Initialize();
-
-            RegisterAnalytics();
 
             _initialized = true;
         }
@@ -271,9 +271,10 @@ namespace SmartRoadSense.Shared {
 
         #endregion
 
-        private static void RegisterAnalytics() {
+        static void RegisterAnalytics() {
 #if !DEBUG && !DESKTOP
-            Microsoft.AppCenter.AppCenter.Start(GetConfigKey("AppCenterApiSecret"),
+            Microsoft.AppCenter.AppCenter.Start(
+                GetConfigKey("AppCenterApiSecret"),
                 typeof(Microsoft.AppCenter.Analytics.Analytics),
                 typeof(Microsoft.AppCenter.Crashes.Crashes)
             );

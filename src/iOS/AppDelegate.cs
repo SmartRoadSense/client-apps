@@ -3,6 +3,9 @@ using Foundation;
 using UIKit;
 using System.Threading;
 using SmartRoadSense.Shared;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace SmartRoadSense.iOS
 {
@@ -54,6 +57,8 @@ namespace SmartRoadSense.iOS
             // create a new window instance based on the screen size
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
+            IncludeReferences();
+
             // Initialize App
             App.Initialize().Wait();
             App.Activated();
@@ -78,7 +83,7 @@ namespace SmartRoadSense.iOS
 
             // make the window visible
             Window.MakeKeyAndVisible();
-
+          
             return true;
         }
 
@@ -110,6 +115,12 @@ namespace SmartRoadSense.iOS
             {
                 Log.Debug("SyncManager can't sync");
             }
+        }
+
+        static void IncludeReferences()
+        {
+            Console.WriteLine(typeof(AppCenter));
+            Console.WriteLine(typeof(Microsoft.AppCenter.iOS.Bindings.MSWrapperSdk));
         }
 
     }

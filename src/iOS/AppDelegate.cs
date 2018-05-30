@@ -95,7 +95,7 @@ namespace SmartRoadSense.iOS
         public async void UploadData()
         {
             SyncManager SyncManager = new SyncManager();
-            if (SyncManager.CheckSyncConditions())
+            if (SyncManager.CheckSyncConditions(SyncPolicy.Default))
             {
                 Log.Debug("SRS background data upload");
                 if ((Reachability.InternetConnectionStatus() == NetworkStatus.ReachableViaWiFiNetwork) ||

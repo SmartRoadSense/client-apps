@@ -764,9 +764,8 @@ namespace SmartRoadSense.iOS
 		#region data upload
 
 		private async void UploadData(){
-
 			SyncManager SyncManager = new SyncManager();
-			if (SyncManager.CheckSyncConditions()) {
+			if (SyncManager.CheckSyncConditions(SyncPolicy.Forced)) {
 				if ((Reachability.InternetConnectionStatus () == NetworkStatus.ReachableViaWiFiNetwork) ||
 					(Reachability.InternetConnectionStatus () != NetworkStatus.ReachableViaWiFiNetwork && !Settings.PreferUnmeteredConnection)) {
 					var src = new CancellationTokenSource ();

@@ -221,9 +221,11 @@ namespace SmartRoadSense.Shared {
         /// </summary>
         public static JsonSerializerSettings JsonSettings {
             get {
-                var settings = new JsonSerializerSettings();
-                settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
-                settings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
+                var settings = new JsonSerializerSettings {
+                    DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                    DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
 
                 return settings;
             }

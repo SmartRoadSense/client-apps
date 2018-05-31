@@ -246,6 +246,9 @@ namespace SmartRoadSense.Shared.Api {
                 [JsonProperty("numberOfPeople")]
                 public int NumberOfPeople { get; set; }
 
+                [JsonProperty("clientMark")]
+                public string ClientMark { get; set; }
+
                 public static UploadMetadata Create() {
                     var deviceInfo = DeviceInformation.Current;
 
@@ -256,7 +259,8 @@ namespace SmartRoadSense.Shared.Api {
                         Sdk = deviceInfo.SdkVersion,
                         DeviceManufacturer = deviceInfo.Manufacturer,
                         DeviceModel = deviceInfo.Model,
-                        AccelerometerScaleFactor = Settings.CalibrationScaleFactor
+                        AccelerometerScaleFactor = Settings.CalibrationScaleFactor,
+                        ClientMark = App.GetConfigKey("ClientMark")
                     };
                 }
 

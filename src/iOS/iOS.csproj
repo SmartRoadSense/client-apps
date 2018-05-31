@@ -19,13 +19,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>false</MtouchProfiling>
     <MtouchI18n>
     </MtouchI18n>
     <IOSDebuggerPort>32567</IOSDebuggerPort>
+<CodesignKey>iPhone Developer</CodesignKey>
+<MtouchSdkVersion>11.3</MtouchSdkVersion>
+<MtouchFastDev>true</MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -34,11 +37,12 @@
     <ErrorReport>prompt</ErrorReport>
     <DefineConstants>IOS</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchI18n>
     </MtouchI18n>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,16 +53,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchProfiling>false</MtouchProfiling>
     <MtouchDebug>true</MtouchDebug>
     <IpaPackageName>
     </IpaPackageName>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
-    <MtouchSdkVersion>9.2</MtouchSdkVersion>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <IOSDebuggerPort>10000</IOSDebuggerPort>
+    <CodesignProvision>SRS DEV 18-05-18</CodesignProvision>
+    <CodesignKey>iPhone Developer: Alessandro Bogliolo (VSS3EF4K7Y)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -74,6 +79,7 @@
     <MtouchUseThumb>true</MtouchUseThumb>
     <MtouchI18n>
     </MtouchI18n>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -89,6 +95,7 @@
     <BuildIpa>true</BuildIpa>
     <MtouchDebug>false</MtouchDebug>
     <IOSDebuggerPort>10001</IOSDebuggerPort>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -104,6 +111,7 @@
     <MtouchUseThumb>true</MtouchUseThumb>
     <IpaPackageName>
     </IpaPackageName>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -131,6 +139,7 @@
     <MtouchUseThumb>true</MtouchUseThumb>
     <MtouchI18n>
     </MtouchI18n>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -144,14 +153,8 @@
     <Reference Include="System.Net.Http.Extensions">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\Xamarin.iOS10\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="SmartRoadSenseCore">
-      <HintPath>..\..\Algorithm\SmartRoadSenseCore\bin\Release\SmartRoadSenseCore.dll</HintPath>
-    </Reference>
     <Reference Include="BTProgressHUD">
       <HintPath>..\packages\BTProgressHUD.1.0.0\lib\Xamarin.iOS10\BTProgressHUD.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite.Net">
-      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
     </Reference>
     <Reference Include="SQLite.Net.Platform.XamarinIOS.Unified">
       <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\Xamarin.iOS10\SQLite.Net.Platform.XamarinIOS.Unified.dll</HintPath>
@@ -162,20 +165,8 @@
     <Reference Include="Plugin.Settings.Abstractions">
       <HintPath>..\packages\Xam.Plugins.Settings.2.1.0\lib\Xamarin.iOS10\Plugin.Settings.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Insights">
-      <HintPath>..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
-    </Reference>
-    <Reference Include="PLCrashReporterUnifiedBinding">
-      <HintPath>..\packages\Xamarin.Insights.1.11.4\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
-    </Reference>
     <Reference Include="SQLite-net">
       <HintPath>..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
-    </Reference>
-    <Reference Include="HockeySDK">
-      <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.dll</HintPath>
-    </Reference>
-    <Reference Include="HockeySDK.iOSBindings">
-      <HintPath>..\packages\HockeySDK.Xamarin.5.0.0\lib\Xamarin.iOS10\HockeySDK.iOSBindings.dll</HintPath>
     </Reference>
     <Reference Include="SQLitePCLRaw.core">
       <HintPath>..\packages\SQLitePCLRaw.core.1.1.8\lib\Xamarin.iOS10\SQLitePCLRaw.core.dll</HintPath>
@@ -202,6 +193,33 @@
     </Reference>
     <Reference Include="GeoJSON.Net">
       <HintPath>..\packages\GeoJSON.Net.1.0.62\lib\netstandard1.1\GeoJSON.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLite.Net">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartRoadSenseCore">
+      <HintPath>..\..\..\SmartRoadSense-Apps\Algorithm\SmartRoadSenseCore\bin\Release\SmartRoadSenseCore.dll</HintPath>
+    </Reference>
+    <Reference Include="SidebarNavigation">
+      <HintPath>..\packages\SidebarNavigation.2.0.0\lib\xamarinios10\SidebarNavigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter">
+      <HintPath>..\packages\Microsoft.AppCenter.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Crashes.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Crashes.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Crashes.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AppCenter.Analytics.iOS.Bindings">
+      <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.iOS.Bindings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -508,6 +526,18 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\store-1024.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -653,7 +683,6 @@
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Import Project="..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.11.4\build\Xamarin.iOS10\Xamarin.Insights.targets')" />
   <ItemGroup>
     <ProjectReference Include="..\Resources\Resources.csproj">
       <Project>{B2163EEC-E055-456B-9695-F055128034FE}</Project>
@@ -671,6 +700,9 @@
     <Folder Include="IntroScreenViews\" />
     <Folder Include="TableViewCells\" />
     <Folder Include="Resources\Images.xcassets\icon_ride_sharing.imageset\" />
+    <Folder Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\" />
+    <Folder Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\" />
+    <Folder Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\threelines.png" />
@@ -682,5 +714,8 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Config.json" />
   </ItemGroup>
 </Project>

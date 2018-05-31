@@ -28,7 +28,7 @@ namespace SmartRoadSense.iOS
 			iOSViewController iosVC = storyboard.InstantiateViewController ("iOSViewController") as iOSViewController;
 			NavController.PushViewController(iosVC, false);
 			SidebarController = new SidebarNavigation.SidebarController(this, NavController, new SideMenuController());
-			SidebarController.MenuLocation = SidebarNavigation.SidebarController.MenuLocations.Left;
+			SidebarController.MenuLocation = SidebarNavigation.MenuLocations.Left;
 			SidebarController.MenuWidth = 220;
 			SidebarController.ReopenOnRotate = false;
 		}

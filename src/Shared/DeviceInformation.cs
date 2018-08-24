@@ -41,7 +41,7 @@ namespace SmartRoadSense.Shared {
 #if __ANDROID__
             return new DeviceInformation {
                 OperatingSystemName = "Android",
-                OperatingSystemVersion = new Version(global::Android.OS.Build.VERSION.Release),
+                OperatingSystemVersion = global::Android.OS.Build.VERSION.Release ?? "Unknown version",
                 SdkVersion = string.Format(AppStrings.SdkVersionFormat, global::Android.OS.Build.VERSION.SdkInt.ToString()),
                 Manufacturer = global::Android.OS.Build.Manufacturer.ToTitleCase(),
                 Model = global::Android.OS.Build.Model.ToTitleCase()
@@ -49,7 +49,7 @@ namespace SmartRoadSense.Shared {
 #elif __IOS__
             return new DeviceInformation {
                 OperatingSystemName = "iOS",
-                OperatingSystemVersion =  new Version(UIDevice.CurrentDevice.SystemVersion),
+                OperatingSystemVersion =  UIDevice.CurrentDevice.SystemVersion,
                 Manufacturer = "Apple",
                 Model = UIDevice.CurrentDevice.Model
             };
@@ -60,14 +60,14 @@ namespace SmartRoadSense.Shared {
 
             return new DeviceInformation {
                 OperatingSystemName = "Windows Phone",
-                OperatingSystemVersion = new Version(8, 1),
+                OperatingSystemVersion = "8.1",
                 Manufacturer = eas.SystemManufacturer,
                 Model = eas.SystemProductName
             };
 #elif DESKTOP
             return new DeviceInformation {
                 OperatingSystemName = Environment.OSVersion.Platform.ToString(),
-                OperatingSystemVersion = Environment.OSVersion.Version,
+                OperatingSystemVersion = Environment.OSVersion.Version.ToString(),
                 Manufacturer = "Unknown",
                 Model = "Unknown"
             };
@@ -84,7 +84,7 @@ namespace SmartRoadSense.Shared {
         /// <summary>
         /// Gets a value representing the operating system version.
         /// </summary>
-        public Version OperatingSystemVersion { get; private set; }
+        public string OperatingSystemVersion { get; private set; }
 
         /// <summary>
         /// Gets a string representing the SDK version that generated this application.

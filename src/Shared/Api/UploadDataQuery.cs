@@ -15,7 +15,7 @@ namespace SmartRoadSense.Shared.Api {
     /// Performs an anonymous upload of a track.
     /// </summary>
     public class UploadDataQuery : BaseQuery<UploadDataQuery.UploadDataQueryResult> {
-        
+
         public class UploadDataQueryResult {
 
             public UploadDataQueryResult(int uploadedTrackId) {
@@ -26,7 +26,7 @@ namespace SmartRoadSense.Shared.Api {
 
         }
 
-        public UploadDataQuery () 
+        public UploadDataQuery ()
             : base("/data") {
 
         }
@@ -109,7 +109,7 @@ namespace SmartRoadSense.Shared.Api {
 
             protected override void SerializeJson(JsonTextWriter writer, TransportContext context) {
                 var serializer = JsonSerializer.Create(App.JsonSettings);
-                
+
                 Log.Debug("Creating JSON payload for {0} data points", _query.Package.Pieces.Count);
                 var payloadItems = from p in _query.Package.Pieces
                                    select UploadPayload.Create(p);
@@ -222,14 +222,8 @@ namespace SmartRoadSense.Shared.Api {
                 [JsonProperty("operatingSystem")]
                 public string OperatingSystem { get; set; }
 
-                public Version OperatingSystemVersion { get; set; }
-
                 [JsonProperty("operatingSystemVersion")]
-                public string OperatingSystemVersionString {
-                    get {
-                        return OperatingSystemVersion.ToString();
-                    }
-                }
+                public string OperatingSystemVersion { get; set; }
 
                 [JsonProperty("sdk")]
                 public string Sdk { get; set; }

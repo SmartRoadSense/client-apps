@@ -169,13 +169,16 @@ namespace SmartRoadSense.Shared {
                 return new Version(1, 0);
             }
 
-            Version ret;
-            if (Version.TryParse(package.VersionName, out ret))
+            if(Version.TryParse(package.VersionName, out Version ret))
                 return ret;
             else
                 return new Version(1, 0);
 #elif __IOS__
-            return new Version(NSBundle.MainBundle.InfoDictionary [new NSString ("CFBundleShortVersionString")].ToString ());
+            var versionString = NSBundle.MainBundle.InfoDictionary[new NSString("CFBundleShortVersionString")].ToString();
+            if(Version.TryParse(versionString, out Version ret))
+                return ret;
+            else
+                return new Version(1, 0);
 #elif WINDOWS_PHONE_APP
             var packages = InstallationManager.FindPackagesForCurrentPublisher();
             var package = packages.FirstOrDefault();

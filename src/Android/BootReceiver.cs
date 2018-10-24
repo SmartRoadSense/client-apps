@@ -13,7 +13,7 @@ using Android.Widget;
 using SmartRoadSense.Shared;
 
 namespace SmartRoadSense.Android {
-    
+
     [BroadcastReceiver(
         Label = "BootReceiver",
         Enabled = true,
@@ -32,7 +32,7 @@ namespace SmartRoadSense.Android {
             if (action.Equals(Intent.ActionBootCompleted, StringComparison.InvariantCultureIgnoreCase)) {
                 Log.Debug("Received boot completed broadcast intent");
 
-                if (Settings.StartAtBoot) {
+                if (Settings.EnableContinuousRecording) {
                     var launchIntent = new Intent(context, typeof(MainActivity));
                     launchIntent.SetAction(MainActivity.IntentStartRecording);
                     launchIntent.AddFlags(ActivityFlags.NewTask);

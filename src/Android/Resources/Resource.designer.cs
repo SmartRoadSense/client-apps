@@ -2227,20 +2227,20 @@ namespace SmartRoadSense.Android
 			// aapt resource value: 0x7f0a004e
 			public const int checkbox = 2131361870;
 			
-			// aapt resource value: 0x7f0a0081
-			public const int checkbox_disable_suspension = 2131361921;
+			// aapt resource value: 0x7f0a0082
+			public const int checkbox_continuous_mode = 2131361922;
+			
+			// aapt resource value: 0x7f0a0080
+			public const int checkbox_disable_suspension = 2131361920;
 			
 			// aapt resource value: 0x7f0a00a7
 			public const int checkbox_donotask = 2131361959;
 			
-			// aapt resource value: 0x7f0a0082
-			public const int checkbox_offline_mode = 2131361922;
-			
-			// aapt resource value: 0x7f0a0080
-			public const int checkbox_prefer_unmetered = 2131361920;
+			// aapt resource value: 0x7f0a0081
+			public const int checkbox_offline_mode = 2131361921;
 			
 			// aapt resource value: 0x7f0a007f
-			public const int checkbox_start_at_boot = 2131361919;
+			public const int checkbox_prefer_unmetered = 2131361919;
 			
 			// aapt resource value: 0x7f0a00cc
 			public const int chronometer = 2131361996;

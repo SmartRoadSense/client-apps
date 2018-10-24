@@ -14,17 +14,17 @@ namespace SmartRoadSense.Shared {
 
 #if __ANDROID__
 
-        private const string StartAtBootKey = "Preference.start_at_boot";
+        private const string ContinuousRecordingKey = "Preference.start_at_boot";
 
         /// <summary>
-        /// Gets or sets whether the application should start at boot.
+        /// Gets or sets whether the application is in continuous recording mode.
         /// </summary>
-        public static bool StartAtBoot {
+        public static bool EnableContinuousRecording {
             get {
-                return InternalSettings.GetValueOrDefault(StartAtBootKey, false);
+                return InternalSettings.GetValueOrDefault(ContinuousRecordingKey, false);
             }
             set {
-                InternalSettings.AddOrUpdateValue(StartAtBootKey, value);
+                InternalSettings.AddOrUpdateValue(ContinuousRecordingKey, value);
             }
         }
 

@@ -13,7 +13,7 @@ using Android.Support.V7.App;
 using SmartRoadSense.Shared;
 
 namespace SmartRoadSense.Android {
-    
+
     [Activity(
         Label = "@string/Vernacular_P0_title_settings",
         ParentActivity = typeof(MainActivity)
@@ -130,10 +130,10 @@ namespace SmartRoadSense.Android {
 
         }
 
-        private CheckBox _checkStartAtBoot,
-                         _checkPreferUnmetered,
+        private CheckBox _checkPreferUnmetered,
                          _checkDisableSuspension,
-                         _checkOfflineMode;
+                         _checkOfflineMode,
+                         _checkContinuousMode;
         private Spinner _spinnerVehicle, _spinnerAnchorage;
 
         protected override void OnCreate(Bundle bundle) {
@@ -151,11 +151,6 @@ namespace SmartRoadSense.Android {
                 FindViewById<View>(Resource.Id.toolbar_shadow).Visibility = ViewStates.Gone;
             }
 
-            _checkStartAtBoot = FindViewById<CheckBox>(Resource.Id.checkbox_start_at_boot);
-            _checkStartAtBoot.CheckedChange += (sender, e) => {
-                Settings.StartAtBoot = e.IsChecked;
-            };
-
             _checkPreferUnmetered = FindViewById<CheckBox>(Resource.Id.checkbox_prefer_unmetered);
             _checkPreferUnmetered.CheckedChange += (sender, e) => {
                 Settings.PreferUnmeteredConnection = e.IsChecked;
@@ -169,6 +164,11 @@ namespace SmartRoadSense.Android {
             _checkOfflineMode = FindViewById<CheckBox>(Resource.Id.checkbox_offline_mode);
             _checkOfflineMode.CheckedChange += (sender, e) => {
                 Settings.OfflineMode = e.IsChecked;
+            };
+
+            _checkContinuousMode = FindViewById<CheckBox>(Resource.Id.checkbox_continuous_mode);
+            _checkContinuousMode.CheckedChange += (sender, e) => {
+                Settings.EnableContinuousRecording = e.IsChecked;
             };
 
             _spinnerVehicle = FindViewById<Spinner>(Resource.Id.spinner_vehicle);
@@ -207,10 +207,10 @@ namespace SmartRoadSense.Android {
             base.OnResume();
 
             //Reload settings
-            _checkStartAtBoot.Checked = Settings.StartAtBoot;
             _checkPreferUnmetered.Checked = Settings.PreferUnmeteredConnection;
             _checkDisableSuspension.Checked = Settings.SuspensionDisabled;
             _checkOfflineMode.Checked = Settings.OfflineMode;
+            _checkContinuousMode.Checked = Settings.EnableContinuousRecording;
             _spinnerVehicle.SetSelection(VehicleTypeAdapter.GetPosition(Settings.LastVehicleType));
             _spinnerAnchorage.SetSelection(AnchorageTypeAdapter.GetPosition(Settings.LastAnchorageType));
 
@@ -220,7 +220,7 @@ namespace SmartRoadSense.Android {
         protected override void OnDestroy() {
             base.OnDestroy();
 
-            //Re-configure sync since user may have changed sync preferences
+            // Re-configure sync since user may have changed sync preferences
             DataSyncReceiver.AdaptiveConfigureSync(this).Forget();
         }
 

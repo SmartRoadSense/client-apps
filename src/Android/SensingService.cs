@@ -97,8 +97,7 @@ namespace SmartRoadSense.Android {
 
             //Perform queued actions
             while (_actions.Count > 0) {
-                Action<RecordingViewModel> action;
-                if (_actions.TryDequeue(out action)) {
+                if(_actions.TryDequeue(out Action<RecordingViewModel> action)) {
                     action(_model);
                 }
             }

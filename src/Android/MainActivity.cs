@@ -34,7 +34,7 @@ namespace SmartRoadSense.Android {
         ConfigurationChanges = global::Android.Content.PM.ConfigChanges.KeyboardHidden
     )]
     public class MainActivity : AppCompatActivity {
-        
+
         public const string IntentStartRecording = "it.uniurb.smartroadsense.ui.start_recording";
 
         private class SensingReceiver : BroadcastReceiver {
@@ -130,10 +130,6 @@ namespace SmartRoadSense.Android {
             _receiver = new SensingReceiver(this);
             RegisterReceiver(_receiver, _receiver.CreateIntentFilter());
 
-            //Wake up sensing service
-            Intent i = new Intent(this, typeof(SensingService));
-            StartService(i);
-
             HandleIntent(this.Intent);
         }
 
@@ -197,7 +193,7 @@ namespace SmartRoadSense.Android {
         private const int PermissionRequestLocation = 123;
 
         private void HandleStartButtonClick(object sender, EventArgs e) {
-            if(SensingService.ViewModel == null || SensingService.ViewModel.IsRecording) {
+            if((SensingService.ViewModel?.IsRecording).GetValueOrDefault(false)) {
                 // Already recording (or some view model binding error), ignore
                 return;
             }
@@ -238,7 +234,12 @@ namespace SmartRoadSense.Android {
 
         #region Service binding and view model event handling
 
+        private bool _boundToService = false;
+
         private void BindToService() {
+            if(_boundToService)
+                return;
+
             if(SensingService.ViewModel != null) {
                 SensingService.ViewModel.MeasurementsUpdated += HandleMeasurementsUpdated;
                 SensingService.ViewModel.RecordingStatusUpdated += HandleRecordingStatusUpdated;
@@ -246,6 +247,10 @@ namespace SmartRoadSense.Android {
                 SensingService.ViewModel.RecordingSuspended += HandleRecordingSuspended;
                 SensingService.ViewModel.InternalEngineErrorReported += HandleInternalEngineError;
                 SensingService.ViewModel.SyncErrorReported += HandleSyncError;
+
+                RefreshUi();
+
+                _boundToService = true;
             }
             else {
                 Log.Debug("Unable to bind to sensing service model");
@@ -264,6 +269,8 @@ namespace SmartRoadSense.Android {
             else {
                 Log.Debug("Unable to unbind from sensing service model (no model)");
             }
+
+            _boundToService = false;
         }
 
         private void HandleSetupClick(object sender, EventArgs e) {
@@ -468,13 +475,13 @@ namespace SmartRoadSense.Android {
         }
 
         private void StartRecording() {
-            SensingService.Do(model => {
+            SensingService.Do(this, model => {
                 model.StartRecordingCommand.Execute(null);
             });
         }
 
         private void StopRecording() {
-            SensingService.Do(model => {
+            SensingService.Do(this, model => {
                 model.StopRecordingCommand.Execute(null);
             });
         }

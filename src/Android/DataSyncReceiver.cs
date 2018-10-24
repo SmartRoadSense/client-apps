@@ -59,11 +59,11 @@ namespace SmartRoadSense.Android {
             Log.Debug("Configuring legacy synchronization, enabled: {0}", enabled);
 
             try {
+                AlarmManager manager = (AlarmManager)applicationContext.GetSystemService(Context.AlarmService);
+
                 var broadcastIntent = new Intent(applicationContext, typeof(DataSyncReceiver));
                 var pendingIntent = PendingIntent.GetBroadcast(applicationContext,
                     DataSyncPendingIntentId, broadcastIntent, PendingIntentFlags.UpdateCurrent);
-
-                AlarmManager manager = (AlarmManager)applicationContext.GetSystemService(Context.AlarmService);
 
                 manager.Cancel(pendingIntent);
 

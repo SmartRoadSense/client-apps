@@ -169,6 +169,7 @@ namespace SmartRoadSense.Android {
             _checkContinuousMode = FindViewById<CheckBox>(Resource.Id.checkbox_continuous_mode);
             _checkContinuousMode.CheckedChange += (sender, e) => {
                 Settings.EnableContinuousRecording = e.IsChecked;
+                Android.BootReceiver.Install(this);
             };
 
             _spinnerVehicle = FindViewById<Spinner>(Resource.Id.spinner_vehicle);

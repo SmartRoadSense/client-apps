@@ -323,7 +323,11 @@ namespace SmartRoadSense.Shared.Data {
             }
 
             //Check whether GPS has exceeded the stationarity timeout
-            if (!Settings.SuspensionDisabled && (timestamp - _lastTimeMoved > GpsDistanceErrorTimeout)) {
+            bool ignoresSuspension = Settings.SuspensionDisabled;
+#if __ANDROID__
+            ignoresSuspension |= Settings.EnableContinuousRecording;
+#endif
+            if (!ignoresSuspension && (timestamp - _lastTimeMoved > GpsDistanceErrorTimeout)) {
                 Log.Debug("GPS stationary for {0}", timestamp - _lastTimeMoved);
                 OnLocationSensorError(LocationErrorType.RemainedStationary);
                 return;

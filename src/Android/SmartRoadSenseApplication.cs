@@ -31,6 +31,8 @@ namespace SmartRoadSense.Android {
                 App.Sync.Synchronize(System.Threading.CancellationToken.None, SyncPolicy.ForceLast).Forget();
             };
 
+            BootReceiver.Install(this);
+
             CalibrationUi = new CalibrationUiManager();
         }
 

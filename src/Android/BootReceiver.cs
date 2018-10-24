@@ -27,27 +27,48 @@ namespace SmartRoadSense.Android {
     public class BootReceiver : BroadcastReceiver {
 
         public override void OnReceive(Context context, Intent intent) {
-            var action = intent.Action;
+            Log.Debug("Received wake broadcast intent, action: {0}", intent.Action);
 
-            if (action.Equals(Intent.ActionBootCompleted, StringComparison.InvariantCultureIgnoreCase)) {
-                Log.Debug("Received boot completed broadcast intent");
+            if (Settings.EnableContinuousRecording) {
+                SensingService.Do(context, model => {
+                    model.StartRecordingCommand.Execute(null);
+                });
+            }
+        }
 
-                if (Settings.EnableContinuousRecording) {
-                    var launchIntent = new Intent(context, typeof(MainActivity));
-                    launchIntent.SetAction(MainActivity.IntentStartRecording);
-                    launchIntent.AddFlags(ActivityFlags.NewTask);
+        private const int AwakeRecordingIntentId = 1234;
 
-                    Log.Debug("Attempting to launch SmartRoadSense and start recording");
-                    try {
-                        context.StartActivity(launchIntent);
-                    }
-                    catch(Exception ex) {
-                        Log.Error(ex, "Failed to launch main activity on boot completed intent");
-                    }
+        /// <summary>
+        /// Refreshes the receiver's installation, based on continuous mode.
+        /// </summary>
+        public static void Install(Context appContext) {
+            var isContinuousMode = Settings.EnableContinuousRecording;
+            Log.Debug("Installing boot receiver (continuous mode: {0})", isContinuousMode);
+
+            try {
+                AlarmManager manager = (AlarmManager)appContext.GetSystemService(Context.AlarmService);
+
+                var broadcastIntent = new Intent(appContext, typeof(BootReceiver));
+                var pendingIntent = PendingIntent.GetBroadcast(appContext,
+                    AwakeRecordingIntentId, broadcastIntent, PendingIntentFlags.UpdateCurrent);
+
+                manager.Cancel(pendingIntent);
+
+                if(isContinuousMode) {
+                    manager.SetInexactRepeating(
+                        AlarmType.RtcWakeup,
+                        DateTime.UtcNow.Add(TimeSpan.FromMinutes(1)).ToUnixEpochMilliseconds(),
+#if DEBUG
+                        (long)TimeSpan.FromMinutes(1).TotalMilliseconds,
+#else
+                        AlarmManager.IntervalFifteenMinutes,
+#endif
+                        pendingIntent
+                    );
                 }
-                else {
-                    Log.Debug("Ignoring boot intent");
-                }
+            }
+            catch(Exception ex) {
+                Log.Error(ex, "Failed to setup boot receiver for continuous mode {0}", isContinuousMode);
             }
         }
 

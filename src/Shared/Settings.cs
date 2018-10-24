@@ -19,6 +19,10 @@ namespace SmartRoadSense.Shared {
         /// <summary>
         /// Gets or sets whether the application is in continuous recording mode.
         /// </summary>
+        /// <remarks>
+        /// Must install the required alarms to keep recording alive when switching
+        /// this to on. See <see cref="Android.BootReceiver.Install"/>.
+        /// </remarks>
         public static bool EnableContinuousRecording {
             get {
                 return InternalSettings.GetValueOrDefault(ContinuousRecordingKey, false);

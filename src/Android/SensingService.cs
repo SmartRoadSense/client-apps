@@ -49,13 +49,21 @@ namespace SmartRoadSense.Android {
 
         private static ConcurrentQueue<Action<RecordingViewModel>> _actions = new ConcurrentQueue<Action<RecordingViewModel>>();
 
-        public static void Do(Action<RecordingViewModel> action) {
+        /// <summary>
+        /// Enqueues action and wakes up service.
+        /// </summary>
+        /// <param name="action"></param>
+        public static void Do(Context context, Action<RecordingViewModel> action) {
             if (_model != null) {
                 action(_model);
             }
             else {
                 _actions.Enqueue(action);
             }
+
+            // Wake up sensing service
+            Intent i = new Intent(context, typeof(SensingService));
+            context.StartService(i);
         }
 
         public override void OnCreate() {

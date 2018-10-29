@@ -12,7 +12,7 @@ namespace SmartRoadSense.Shared {
         public const int BinCount = 6;
 
         /// <summary>
-        /// Computes the bin index for a PPE value.
+        /// Computes the bin index for a PPE value (for a 6-bin histogram).
         /// Lower PPE values correspond to lower indices.
         /// </summary>
         public static int GetBinIndex(double ppe) {

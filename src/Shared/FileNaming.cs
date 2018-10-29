@@ -19,9 +19,11 @@ namespace SmartRoadSense.Shared {
 
         private static string[] GetInitializedFolderPaths() {
             DataQueuePath = Path.Combine(BaseDocumentsFolder, DataQueueFolder);
+            DataTracksPath = Path.Combine(BasePublicFolder, TracksFolder);
 
             return new string[] {
-                DataQueuePath
+                DataQueuePath,
+                DataTracksPath
             };
         }
 
@@ -107,6 +109,22 @@ namespace SmartRoadSense.Shared {
             }
         }
 
+        private static string _basePublicFolder = null;
+
+        private static string BasePublicFolder {
+            get {
+                if(_basePublicFolder == null) {
+#if __ANDROID__
+                    _basePublicFolder = App.Context.GetExternalFilesDir(null).AbsolutePath; ;
+#else
+#error Unrecognized platform
+#endif
+                }
+
+                return _basePublicFolder;
+            }
+        }
+
         /// <summary>
         /// Name of the data queue folder.
         /// </summary>
@@ -131,6 +149,20 @@ namespace SmartRoadSense.Shared {
             //NOTE: uses LOCAL time instead of UTC because it makes more sense on a local
             //      filesystem. File contents use UTC times.
             return string.Concat(DateTime.Now.ToString(DataQueueFileDatePattern), ".", DataQueueFileExtension);
+        }
+
+        private const string TracksFolder = "tracks";
+
+        public static string DataTracksPath { get; private set; }
+
+        public const string DataTracksFileExtension = "csv";
+
+        /// <summary>
+        /// Get file path for a session track file.
+        /// </summary>
+        public static string GetDataTrackFilepath(Guid session) {
+            string filename = string.Concat(session.ToString("N"), ".", DataTracksFileExtension);
+            return Path.Combine(FileNaming.DataTracksPath, filename);
         }
 
         private const string LogStoreFilename = "log.json";

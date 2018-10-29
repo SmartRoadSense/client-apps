@@ -58,6 +58,13 @@ namespace SmartRoadSense.Shared {
         }
 
         /// <summary>
+        /// Opens a writable stream to a file (in append mode).
+        /// </summary>
+        public static Stream AppendFile(string path) {
+            return new FileStream(path, FileMode.Append);
+        }
+
+        /// <summary>
         /// Opens a readable stream to an existing file.
         /// </summary>
         public static async Task<Stream> ReadFile(string path) {

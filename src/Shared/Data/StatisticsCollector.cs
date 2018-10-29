@@ -3,15 +3,13 @@ using SmartRoadSense.Shared.Database;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace SmartRoadSense.Shared.Data {
 
     /// <summary>
-    /// This class is responsible to calculate statistics 
-    /// from simple datapieces and make them available to store.
+    /// This class takes care of recording statistics and full data dumps
+    /// for recording sessions.
     /// </summary>
     public class StatisticsCollector {
 
@@ -23,6 +21,8 @@ namespace SmartRoadSense.Shared.Data {
         private int[] _ppeBins;
         private double _distance;
         private TimeSpan _elapsed;
+
+        private TextWriter _dumpWriter;
 
         /// <summary>
         /// Multiplication factor for computed distance.
@@ -67,9 +67,18 @@ namespace SmartRoadSense.Shared.Data {
                     Log.Warning(new ArgumentException(nameof(piece.TrackId)), "Different track ID seen while collecting statistics");
 
                     CompleteSession();
-                    Reset();
                 }
             }
+
+            // Dump data
+            // Generates approximately 42 bytes per measurement (~147 KB/hour)
+            if(_dumpWriter == null) {
+                var dumpStream = FileOperations.AppendFile(FileNaming.GetDataTrackFilepath(piece.TrackId));
+                _dumpWriter = new StreamWriter(dumpStream);
+            }
+            _dumpWriter.WriteLine(
+                string.Format(CultureInfo.InvariantCulture, "{0},{1:F5},{2:F5},{3:F2}", piece.StartTimestamp.Ticks, piece.Latitude, piece.Longitude, piece.Ppe)
+            );
 
             _previous = piece;
 
@@ -80,18 +89,27 @@ namespace SmartRoadSense.Shared.Data {
             _previous = null;
             _tsStart = DateTime.MaxValue;
             _tsEnd = DateTime.MinValue;
-            _ppeMax = Double.MinValue;
+            _ppeMax = double.MinValue;
             _ppeAccumulator = 0.0;
             _ppeCount = 0;
             _ppeBins = new int[PpeMapper.BinCount];
             _distance = 0;
             _elapsed = TimeSpan.Zero;
+
+            if(_dumpWriter != null) {
+                _dumpWriter.Dispose();
+                _dumpWriter = null;
+            }
         }
 
         /// <summary>
         /// Complete session and flush out data to database.
         /// </summary>
         public void CompleteSession() {
+            if(_dumpWriter != null) {
+                _dumpWriter.Flush();
+            }
+
             if(_ppeCount == 0) {
                 Log.Debug("Completing session of 0 data pieces, ignoring");
                 return;
@@ -101,6 +119,7 @@ namespace SmartRoadSense.Shared.Data {
 
             try {
                 // TODO: perform in background
+                // TODO: accumulate on DB record if record already stored (updates instead of insert)
                 using(var db = DatabaseUtility.OpenConnection()) {
                     var record = new StatisticRecord {
                         TrackId = _previous.TrackId,

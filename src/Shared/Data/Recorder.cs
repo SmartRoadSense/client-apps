@@ -8,6 +8,16 @@ namespace SmartRoadSense.Shared.Data {
 
     public class Recorder {
 
+        /// <summary>
+        /// Maximum pause interval between data points.
+        /// If exceeded, the recorder will automatically start a new session.
+        /// </summary>
+#if DEBUG
+        public static readonly TimeSpan MaximumPause = TimeSpan.FromMinutes(10);
+#else
+        public static readonly TimeSpan MaximumPause = TimeSpan.FromHours(1);
+#endif
+
         private readonly DataCollector _collector;
         private readonly StatisticsCollector _statsCollector;
         private readonly Engine _engine;
@@ -63,10 +73,23 @@ namespace SmartRoadSense.Shared.Data {
             }
         }
 
+        private DateTime? _lastMeasurementCollection = null;
+
         private void HandleEngineComputationCompleted(object sender, EngineComputationEventArgs e) {
             _sessionInfo.NewMeasurement(e.Result.Ppe);
 
             if (_isRecording) {
+                if(_lastMeasurementCollection.HasValue) {
+                    if(DateTime.UtcNow - _lastMeasurementCollection.Value > MaximumPause) {
+                        Log.Debug("Exceeded maximum interval between recording, restarting");
+
+                        Stop();
+                        Start();
+
+                        Log.Event("Recorder.IntervalExceeded");
+                    }
+                }
+
                 var dataPiece = new DataPiece {
                     TrackId = _sessionInfo.TrackId,
                     StartTimestamp = new DateTime(e.Result.FirstTimestamp, DateTimeKind.Utc),
@@ -90,6 +113,7 @@ namespace SmartRoadSense.Shared.Data {
                 }
 
                 OnDataPointRecorded(dataPiece, e.Result);
+                _lastMeasurementCollection = DateTime.UtcNow;
             }
         }
 
@@ -151,6 +175,7 @@ namespace SmartRoadSense.Shared.Data {
             }
 
             _isRecording = false;
+            _lastMeasurementCollection = null;
             _collector.Flush();
             _statsCollector.CompleteSession();
 

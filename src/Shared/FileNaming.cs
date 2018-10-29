@@ -37,7 +37,7 @@ namespace SmartRoadSense.Shared {
                     var javaFile = new Java.IO.File(path);
                     if(javaFile.Exists()) {
                         if(javaFile.IsDirectory)
-                            return;
+                            continue;
                         else
                             Log.Warning(new IOException(), "Cannot initialize directory {0} because non-directory file already exists on path", path);
                     } else {

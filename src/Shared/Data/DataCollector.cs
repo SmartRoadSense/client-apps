@@ -112,10 +112,7 @@ namespace SmartRoadSense.Shared.Data {
         public event EventHandler<FileGeneratedEventArgs> FileGenerated;
 
         public virtual void OnFileGenerated(string filepath) {
-            var evt = FileGenerated;
-            if (evt != null) {
-                evt(this, new FileGeneratedEventArgs(filepath));
-            }
+            FileGenerated?.Invoke(this, new FileGeneratedEventArgs(filepath));
         }
 
         #endregion

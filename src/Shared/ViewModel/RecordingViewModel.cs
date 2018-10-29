@@ -26,7 +26,7 @@ namespace SmartRoadSense.Shared.ViewModel {
 
         public override void OnCreate() {
             _sensors.LocationSensorStatusChanged += HandleLocationSensorStatusChanged;
-			_sensors.LocationSensorError += HandleLocationSensorError;
+            _sensors.LocationSensorError += HandleLocationSensorError;
             _sensors.InternalEngineErrorReported += HandleInternalEngineError;
 
             _recorder.DataPointRecorded += HandleDataPointRecorded;
@@ -59,23 +59,23 @@ namespace SmartRoadSense.Shared.ViewModel {
             SensorStatusUpdated.Raise(this);
         }
 
-		private void HandleLocationSensorError(object sender, LocationErrorEventArgs e) {
-			switch(e.Error) {
-			case LocationErrorType.RemainedStationary:
-				Log.Debug("GPS stationary for too long: stopping recording");
-				UserLog.Add(UserLog.Icon.Warning, LogStrings.RecordingSuspendedStationary);
-				break;
+        private void HandleLocationSensorError(object sender, LocationErrorEventArgs e) {
+            switch(e.Error) {
+            case LocationErrorType.RemainedStationary:
+                Log.Debug("GPS stationary for too long: stopping recording");
+                UserLog.Add(UserLog.Icon.Warning, LogStrings.RecordingSuspendedStationary);
+                break;
 
-			case LocationErrorType.SpeedTooLow:
-				Log.Debug("User moving too slowly: stopping recording");
-				UserLog.Add(UserLog.Icon.Warning, LogStrings.RecordingSuspendedSpeed);
-				break;
-			}
+            case LocationErrorType.SpeedTooLow:
+                Log.Debug("User moving too slowly: stopping recording");
+                UserLog.Add(UserLog.Icon.Warning, LogStrings.RecordingSuspendedSpeed);
+                break;
+            }
 
-			RecordingSuspended.Raise(this, e);
+            RecordingSuspended.Raise(this, e);
 
-			StopRecordingCommand.Execute(null);
-		}
+            StopRecordingCommand.Execute(null);
+        }
 
         private void HandleInternalEngineError(object sender, InternalEngineErrorEventArgs e) {
             Log.Debug("Handling internal engine error");

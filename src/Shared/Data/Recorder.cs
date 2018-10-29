@@ -159,7 +159,7 @@ namespace SmartRoadSense.Shared.Data {
             Log.Debug("Stopped recording");
         }
 
-        #region Events
+#region Events
 
         /// <summary>
         /// Occurs when a new data point is recorded.
@@ -167,10 +167,7 @@ namespace SmartRoadSense.Shared.Data {
         public event EventHandler<DataPointRecordedEventArgs> DataPointRecorded;
 
         protected virtual void OnDataPointRecorded(DataPiece data, Result result) {
-            var evt = DataPointRecorded;
-            if (evt != null) {
-                evt(this, new DataPointRecordedEventArgs(data, _sessionInfo, result));
-            }
+            DataPointRecorded?.Invoke(this, new DataPointRecordedEventArgs(data, _sessionInfo, result));
         }
 
         /// <summary>
@@ -179,13 +176,10 @@ namespace SmartRoadSense.Shared.Data {
         public event EventHandler<FileGeneratedEventArgs> DataFileWritten;
 
         protected virtual void OnDataFileWritten(FileGeneratedEventArgs args) {
-            var evt = DataFileWritten;
-            if (evt != null) {
-                evt(this, args);
-            }
+            DataFileWritten?.Invoke(this, args);
         }
 
-        #endregion
+#endregion
 
     }
 

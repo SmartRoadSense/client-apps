@@ -76,7 +76,7 @@ namespace SmartRoadSense.Shared.Data {
         /// Executes flush operation on a collection of data pieces asynchronously.
         /// </summary>
         private async Task FlushCoreAsync(ICollection<DataPiece> data) {
-            var filename = FileNaming.GenerateDataFileName();
+            var filename = FileNaming.GenerateDataQueueFilename();
             string filepath = Path.Combine(FileNaming.DataQueuePath, filename);
             Log.Debug("Flushing collector with {0} data pieces to {1}", data.Count, filename);
 

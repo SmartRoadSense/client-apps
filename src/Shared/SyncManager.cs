@@ -171,7 +171,7 @@ namespace SmartRoadSense.Shared {
         private async Task<SyncResult> SynchronizeInner(CancellationToken token, SyncPolicy policy) {
             token.ThrowIfCancellationRequested();
 
-            var files = await FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataFileExtension);
+            var files = await FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataQueueFileExtension);
             if (files.Count == 0) {
                 Log.Debug("No files to synchronize");
                 return new SyncResult();

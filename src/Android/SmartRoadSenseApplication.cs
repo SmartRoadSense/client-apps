@@ -20,7 +20,13 @@ namespace SmartRoadSense.Android {
 
             Log.Debug("Synchronous app initialization");
 
-            App.Initialize(this, ApplicationContext).Wait();
+            try {
+                App.Initialize(this, ApplicationContext).Wait();
+            }
+            catch(Exception ex) {
+                Log.Error(ex, "Failed to initialize app");
+                throw;
+            }
 
             Log.Debug("Completing Android initialization");
 

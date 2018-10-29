@@ -18,7 +18,7 @@ namespace SmartRoadSense.Shared.Data {
         /// Gets the current entries in the data store.
         /// </summary>
         public static Task<IList<FileSystemToken>> GetEntries() {
-            return FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataFileExtension);
+            return FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataQueueFileExtension);
         }
 
         /// <summary>

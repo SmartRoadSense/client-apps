@@ -1,25 +1,21 @@
 using SmartRoadSense.Resources;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartRoadSense.Shared.Database
-{
+namespace SmartRoadSense.Shared.Database {
 
     /// <summary>
     /// Performs database initialization and migration.
     /// </summary>
-    public static class DatabaseUtility
-    {
+    public static class DatabaseUtility {
 
-        public const int TargetDataVersion = 2;
+        public const int TargetDataVersion = 3;
 
         /// <summary>
         /// Initializes the database.
         /// </summary>
-        public static async Task Initialize()
-        {
+        public static async Task Initialize() {
             //Explicitly set internal SQLite provider
             //See: https://github.com/ericsink/SQLitePCL.raw/wiki/SQLite-net-and-Android-N
 #if __IOS__
@@ -28,7 +24,7 @@ namespace SmartRoadSense.Shared.Database
             SQLitePCL.raw.SetProvider(new SQLitePCL.SQLite3Provider_e_sqlite3());
 #endif
             var currentVersion = Settings.DataVersion;
-            if (currentVersion < 0) {
+            if(currentVersion < 0) {
                 Log.Debug("No data version found, database installation required");
                 await FullInstallation();
             }
@@ -57,7 +53,7 @@ namespace SmartRoadSense.Shared.Database
             }
 
             // Database creation
-            using (var db = OpenConnection()) {
+            using(var db = OpenConnection()) {
                 db.CreateTable<TrackUploadRecord>();
                 db.CreateTable<StatisticRecord>();
             }
@@ -66,7 +62,15 @@ namespace SmartRoadSense.Shared.Database
         }
 
         private static void Migrate(int currentVersion) {
-            // Not yet needed
+            if(currentVersion <= 2) {
+                // Drop index on StatisticRecord and re-create table (adds columns)
+                using(var db = OpenConnection()) {
+                    db.Execute("DROP INDEX IF EXISTS StatisticRecord_TrackId");
+                    db.CreateTable<StatisticRecord>();
+                }
+
+                Log.Event("Database.migrate.2");
+            }
         }
 
         /// <summary>

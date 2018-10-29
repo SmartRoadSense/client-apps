@@ -21,8 +21,8 @@ namespace SmartRoadSense.Shared.Database {
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the ID of the original recorded track.
-        /// Uploaded chunks from the same track have been generated during the same recording session.
+        /// Gets or sets the chunk's track ID.
+        /// Multiple chunks from the same track will share the same ID.
         /// </summary>
         [Indexed, NotNull]
         public Guid TrackId { get; set; }
@@ -36,11 +36,13 @@ namespace SmartRoadSense.Shared.Database {
         /// <summary>
         /// Gets or sets the secret generated for this uploaded chunk.
         /// </summary>
+        [NotNull]
         public byte[] Secret { get; set; }
 
         /// <summary>
-        /// Gets or sets the timestamp of when the upload was completed (in UTC).
+        /// Gets or sets the timestamp of when the upload was completed (UTC).
         /// </summary>
+        [NotNull]
         public DateTime UploadedOn { get; set; }
 
     }

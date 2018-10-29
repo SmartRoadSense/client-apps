@@ -6,7 +6,7 @@ using SQLite;
 namespace SmartRoadSense.Shared.Database {
 
     /// <summary>
-    /// Represents a record with statistics about a recorded track.
+    /// Represents a record with statistics about a recording session.
     /// </summary>
 #if __ANDROID__
     [global::Android.Runtime.Preserve(AllMembers = true)]
@@ -26,25 +26,36 @@ namespace SmartRoadSense.Shared.Database {
         /// <summary>
         /// Gets or sets the ID of the recording session (i.e., the track).
         /// </summary>
-        [Indexed, NotNull]
+        [Indexed(Unique = true), NotNull]
         public Guid TrackId { get; set; }
 
+        /// <summary>
+        /// Gets or sets when the recording session was started.
+        /// </summary>
+        [NotNull]
         public DateTime Start { get; set; }
 
-        public DateTime End { get; set; }
+        /// <summary>
+        /// Gets or sets when the recording session was ended.
+        /// </summary>
+        public DateTime? End { get; set; }
 
+        [NotNull]
         public double MaxPpe { get; set; }
 
+        [NotNull]
         public double AvgPpe { get; set; }
 
         /// <summary>
         /// Distance traveled in meters.
         /// </summary>
+        [NotNull]
         public double DistanceTraveled { get; set; }
 
         /// <summary>
         /// Elapsed time while recording.
         /// </summary>
+        [NotNull]
         public TimeSpan ElapsedTime { get; set; }
 
         private int[] _bins;
@@ -93,11 +104,28 @@ namespace SmartRoadSense.Shared.Database {
             get { return _bins[5]; }
             set { _bins[5] = value; }
         }
-        
+
         /// <summary>
         /// Number of data pieces this statistic is based on.
         /// </summary>
+        [NotNull]
         public int DataPieceCount { get; set; }
+
+        #region Added in data version 3
+
+        public double LocationStartLatitude { get; set; }
+
+        public double LocationStartLongitude { get; set; }
+
+        public double LocationEndLatitude { get; set; }
+
+        public double LocationEndLongitude { get; set; }
+
+        public string LocationStartName { get; set; }
+
+        public string LocationEndName { get; set; }
+
+        #endregion
 
     }
 

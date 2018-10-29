@@ -120,17 +120,17 @@ namespace SmartRoadSense.Shared {
         /// </summary>
         public static string DataQueuePath { get; private set; }
 
-        public const string DataFileExtension = "srs";
+        public const string DataQueueFileExtension = "srs";
 
-        private const string DataFileDatePattern = "yyyy-MM-dd-HH-mm-ss";
+        private const string DataQueueFileDatePattern = "yyyy-MM-dd-HH-mm-ss";
 
         /// <summary>
         /// Generates a filename for a data file.
         /// </summary>
-        public static string GenerateDataFileName() {
+        public static string GenerateDataQueueFilename() {
             //NOTE: uses LOCAL time instead of UTC because it makes more sense on a local
             //      filesystem. File contents use UTC times.
-            return string.Concat(DateTime.Now.ToString(DataFileDatePattern), ".", DataFileExtension);
+            return string.Concat(DateTime.Now.ToString(DataQueueFileDatePattern), ".", DataQueueFileExtension);
         }
 
         private const string LogStoreFilename = "log.json";

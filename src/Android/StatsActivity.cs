@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.App;
 using Android.Support.V7.App;
 using Android.Text;
+using Android.Text.Style;
 using Android.Views;
 using Android.Widget;
-
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Database;
-using Android.Text.Style;
-using System.Threading.Tasks;
-using Android.Graphics;
 
 namespace SmartRoadSense.Android {
 
@@ -96,7 +90,7 @@ namespace SmartRoadSense.Android {
             Canvas canvas = null;
 
             try {
-                double kms = await Task<double>.Run(() => {
+                double kms = await Task.Run(() => {
                     using (var conn = DatabaseUtility.OpenConnection()) {
                         var overall = StatisticHelper.GetPeriodSummary(conn, StatisticPeriod.Overall);
                         return overall.Distance;
@@ -132,18 +126,22 @@ namespace SmartRoadSense.Android {
                 );
 
                 // Store
-                var outputPath = global::System.IO.Path.Combine(ApplicationContext.ExternalCacheDir.AbsolutePath, "smartroadsense_badge.jpg");
+                var outputPath = global::System.IO.Path.Combine(ApplicationContext.GetExternalFilesDir(null).AbsolutePath, "smartroadsense_badge.jpg");
                 using (var outputStream = new System.IO.FileStream(outputPath, System.IO.FileMode.Create)) {
                     await output.CompressAsync(Bitmap.CompressFormat.Jpeg, 95, outputStream);
                 }
 
                 Log.Debug("Written output image to {0}", outputPath);
 
+                // Get sharing URI
+                var shareUri = global::Android.Support.V4.Content.FileProvider.GetUriForFile(
+                    this, "it.uniurb.smartroadsense.fileprovider", new Java.IO.File(outputPath));
+
                 // Share
                 var i = new Intent(Intent.ActionSend);
                 i.SetType("image/jpeg");
                 i.AddFlags(ActivityFlags.NewTask);
-                i.PutExtra(Intent.ExtraStream, global::Android.Net.Uri.FromFile(new Java.IO.File(outputPath)));
+                i.PutExtra(Intent.ExtraStream, shareUri);
                 var shareText = string.Format(GetString(Resource.String.Vernacular_P0_share_badge_text), kms);
                 i.PutExtra(Intent.ExtraText, shareText);
                 i.PutExtra(Intent.ExtraTitle, shareText);

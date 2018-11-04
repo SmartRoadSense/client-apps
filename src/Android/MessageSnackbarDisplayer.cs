@@ -144,11 +144,16 @@ namespace SmartRoadSense.Android {
             if(!queueEntry.IsPersistent) {
                 Log.Debug("Starting timer for message hiding in {0} ms", queueEntry.Duration);
 
-                var messageToHide = _currentMessage.Value;
-                _handler.PostDelayed(new Action(() => {
-                    Log.Debug("Message hiding timer fired");
-                    Hide(messageToHide);
-                }), queueEntry.Duration);
+                try {
+                    var messageToHide = _currentMessage.Value;
+                    _handler.PostDelayed(new Action(() => {
+                        Log.Debug("Message hiding timer fired");
+                        Hide(messageToHide);
+                    }), queueEntry.Duration);
+                }
+                catch(ObjectDisposedException) {
+                    // Noop: if the handler is disposed, the app is tearing down
+                }
             }
         }
 

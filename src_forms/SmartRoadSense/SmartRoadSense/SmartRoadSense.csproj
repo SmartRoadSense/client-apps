@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+    <Folder Include="Calibration\" />
+    <Folder Include="Data\" />
+    <Folder Include="Database\" />
+    <Folder Include="DataModel\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="ViewModel\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="ViewControllers\MainPage\" />
+    <Folder Include="ViewControllers\HomePage\" />
+    <Folder Include="ViewControllers\SettingsPage\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Themes\" />
+  </ItemGroup>
+</Project>

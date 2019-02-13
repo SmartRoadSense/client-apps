@@ -1,4 +1,4 @@
-﻿Generate tracks
+Generate tracks
 ===============
 Store input as "stored tracks", using the same disk format used by the mobile clients.
 

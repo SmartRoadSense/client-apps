@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using CoreTelephony;
 
 namespace SmartRoadSense.iOS

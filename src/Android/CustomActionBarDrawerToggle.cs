@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Android.App;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;

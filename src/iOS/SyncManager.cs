@@ -1,4 +1,4 @@
-﻿using SmartRoadSense.iOS;
+using SmartRoadSense.iOS;
 
 namespace SmartRoadSense.Shared
 {

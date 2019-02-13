@@ -1,4 +1,4 @@
-﻿#if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
 using System;
 using System.Collections.Generic;
 using System.Text;

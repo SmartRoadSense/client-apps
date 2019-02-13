@@ -1,4 +1,4 @@
-﻿#if __ANDROID__
+#if __ANDROID__
 
 using System;
 

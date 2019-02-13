@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using SmartRoadSense.Shared;
 using Android.Content;
 

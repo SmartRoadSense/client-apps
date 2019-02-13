@@ -1,4 +1,4 @@
-﻿/* Must be copied to platform-specific project as Config.json */
+/* Must be copied to platform-specific project as Config.json */
 /* Build as "Embedded resource" */
 {
   /* API secret used by Microsoft App Center */

@@ -1,4 +1,4 @@
-﻿using SmartRoadSense.Resources;
+using SmartRoadSense.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;

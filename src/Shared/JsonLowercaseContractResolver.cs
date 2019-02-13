@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Newtonsoft.Json.Serialization;
 
 namespace SmartRoadSense.Shared {

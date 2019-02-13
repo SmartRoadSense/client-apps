@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Android.Support.V7.App;
 using SmartRoadSense.Shared.ViewModel;
 using Android.OS;

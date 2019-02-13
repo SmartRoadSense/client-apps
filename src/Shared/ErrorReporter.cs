@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using SmartRoadSense.Core;
 using System.IO;
 using System.Linq;

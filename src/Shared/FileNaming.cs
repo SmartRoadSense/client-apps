@@ -19,7 +19,7 @@ namespace SmartRoadSense.Shared {
 
         private static string[] GetInitializedFolderPaths() {
             DataQueuePath = Path.Combine(BaseDocumentsFolder, DataQueueFolder);
-            DataTracksPath = Path.Combine(BasePublicFolder, TracksFolder);
+            DataTracksPath = Path.Combine(BaseDocumentsFolder, TracksFolder);
 
             return new string[] {
                 DataQueuePath,

@@ -43,18 +43,8 @@ namespace SmartRoadSense.Shared {
         /// <summary>
         /// Opens a writable stream to an empty file.
         /// </summary>
-        public static async Task<Stream> CreateOrTruncateFile(string path) {
-#if WINDOWS_PHONE_APP
-            var folderPath = Path.GetDirectoryName(path);
-            var folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
-
-            var filename = Path.GetFileName(path);
-            var file = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-
-            return await file.OpenStreamForWriteAsync();
-#else
+        public static Stream CreateOrTruncateFile(string path) {
             return new FileStream(path, FileMode.Create);
-#endif
         }
 
         /// <summary>
@@ -67,14 +57,8 @@ namespace SmartRoadSense.Shared {
         /// <summary>
         /// Opens a readable stream to an existing file.
         /// </summary>
-        public static async Task<Stream> ReadFile(string path) {
-#if WINDOWS_PHONE_APP
-            var file = await StorageFile.GetFileFromPathAsync(path);
-
-            return await file.OpenStreamForReadAsync();
-#else
+        public static Stream ReadFile(string path) {
             return new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-#endif
         }
 
         /// <summary>

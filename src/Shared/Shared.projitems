@@ -24,8 +24,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)CollectionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Crypto.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CryptographicExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseQueries.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\DatabaseUtility.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\TrackInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataLossException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NumericalExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PpeMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\StatisticHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\StatisticRecord.cs" />
@@ -34,7 +39,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParserFormatted.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParserLegacy.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\DataCollector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataPiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataPointRecordedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataStore.cs" />
@@ -50,7 +54,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackIOS.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackWinRT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SessionInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\StatisticsCollector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataWriter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DateTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DeviceInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventExtensions.cs" />

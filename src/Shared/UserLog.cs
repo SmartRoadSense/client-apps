@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -64,22 +63,22 @@ namespace SmartRoadSense.Shared {
         /// </remarks>
         public static async Task Initialize() {
             try {
-                using(var fileStream = await FileOperations.ReadFile(FileNaming.LogStorePath)) {
-                    await Task.Run(() => {
+                await Task.Run(() => {
+                    using(var fileStream = FileOperations.ReadFile(FileNaming.LogStorePath)) {
                         JsonSerializer serializer = new JsonSerializer();
 
-                        using (var textReader = new StreamReader(fileStream)) {
+                        using(var textReader = new StreamReader(fileStream)) {
                             var data = serializer.Deserialize<LogEntry[]>(textReader);
 
-                            if (data == null || data.Length == 0)
+                            if(data == null || data.Length == 0)
                                 return;
 
-                            lock (_rootLock) {
+                            lock(_rootLock) {
                                 _log = new Queue<LogEntry>(data);
                             }
                         }
-                    }).ConfigureAwait(false);
-                }
+                    }
+                }).ConfigureAwait(false);
             }
             catch(FileNotFoundException) {
                 Log.Debug("No user log file found to deserialize (at {0})", FileNaming.LogStorePath);
@@ -104,15 +103,14 @@ namespace SmartRoadSense.Shared {
             }
 
             try {
-                using(var fileStream = await FileOperations.CreateOrTruncateFile(FileNaming.LogStorePath)) {
-                    await Task.Run(() => {
-                        using (var textWriter = new StreamWriter(fileStream)) {
+                await Task.Run(() => {
+                    using(var fileStream = FileOperations.CreateOrTruncateFile(FileNaming.LogStorePath)) {
+                        using(var textWriter = new StreamWriter(fileStream)) {
                             JsonSerializer serializer = new JsonSerializer();
                             serializer.Serialize<LogEntry[]>(textWriter, data);
                         }
-
-                    }).ConfigureAwait(false);
-                }
+                    }
+                }).ConfigureAwait(false);
             }
             catch(Exception ex) {
                 Log.Error(ex, "Failed to persist log to store");
@@ -123,7 +121,7 @@ namespace SmartRoadSense.Shared {
 
         public const int MaximumLogSize = 100;
 
-        private static object _rootLock = new object();
+        private static readonly object _rootLock = new object();
 
         private static Queue<LogEntry> _log = new Queue<LogEntry>(MaximumLogSize);
 
@@ -194,10 +192,7 @@ namespace SmartRoadSense.Shared {
         public static event EventHandler<NewEntryEventArgs> NewEntryAdded;
 
         private static void OnNewEntryAdded(LogEntry entry) {
-            var evt = NewEntryAdded;
-            if (evt != null) {
-                evt(null, new NewEntryEventArgs(entry));
-            }
+            NewEntryAdded?.Invoke(null, new NewEntryEventArgs(entry));
         }
 
         #endregion

@@ -4,19 +4,18 @@ namespace SmartRoadSense.Shared {
 
     public class SyncResult {
 
-        public SyncResult(
-            int dataPiecesUploaded = 0,
-            int dataPiecesDeleted = 0,
-            Exception error = null
-        ) {
-            DataPiecesUploaded = dataPiecesUploaded;
-            DataPiecesDeleted = dataPiecesDeleted;
+        public SyncResult(Exception error) {
             Error = error;
         }
 
-        public readonly int DataPiecesUploaded;
+        public SyncResult(int points, int chunks) {
+            PointsUploaded = points;
+            ChunksUploaded = chunks;
+        }
 
-        public readonly int DataPiecesDeleted;
+        public readonly int PointsUploaded;
+
+        public readonly int ChunksUploaded;
 
         public readonly Exception Error;
 

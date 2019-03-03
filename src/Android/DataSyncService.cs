@@ -40,10 +40,10 @@ namespace SmartRoadSense.Android {
 
                 var syncResult = await App.Sync.Synchronize(cancellationSource.Token);
 
-                Log.Debug("Sync service completing with {0}: {1} files uploaded and {2} deleted",
+                Log.Debug("Sync service completing with {0}: {1} points uploaded in {2} chunks",
                     (syncResult.HasFailed) ? "failure" : "success",
-                    syncResult.DataPiecesUploaded,
-                    syncResult.DataPiecesDeleted);
+                    syncResult.PointsUploaded,
+                    syncResult.ChunksUploaded);
             }
 
             DataSyncReceiver.CompleteWakefulIntent(intent);

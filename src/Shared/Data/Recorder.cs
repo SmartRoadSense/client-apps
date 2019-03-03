@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using SmartRoadSense.Core;
 using SmartRoadSense.Resources;
+using SmartRoadSense.Shared.Database;
 
 namespace SmartRoadSense.Shared.Data {
 
@@ -18,8 +19,7 @@ namespace SmartRoadSense.Shared.Data {
         public static readonly TimeSpan MaximumPause = TimeSpan.FromHours(1);
 #endif
 
-        private readonly DataCollector _collector;
-        private readonly StatisticsCollector _statsCollector;
+        private readonly DataWriter _statsCollector;
         private readonly Engine _engine;
 
         private SessionInfo _sessionInfo;
@@ -27,9 +27,7 @@ namespace SmartRoadSense.Shared.Data {
         private bool _isRecording = false;
 
         public Recorder(Engine engine) {
-            _collector = new DataCollector();
-            _statsCollector = new StatisticsCollector();
-            _collector.FileGenerated += HandleCollectorFileGenerated;
+            _statsCollector = new DataWriter();
 
             _engine = engine;
             _engine.ComputationCompleted += HandleEngineComputationCompleted;
@@ -38,18 +36,9 @@ namespace SmartRoadSense.Shared.Data {
         }
 
         /// <summary>
-        /// Gets the data collector used by the recorder.
-        /// </summary>
-        public DataCollector Collector {
-            get {
-                return _collector;
-            }
-        }
-
-        /// <summary>
         /// Gets the statistic collector used by the recorder.
         /// </summary>
-        public StatisticsCollector StatsCollector {
+        public DataWriter StatsCollector {
             get {
                 return _statsCollector;
             }
@@ -108,17 +97,12 @@ namespace SmartRoadSense.Shared.Data {
                 };
 
                 if (!Settings.OfflineMode) {
-                    _collector.Collect(dataPiece);
                     _statsCollector.Collect(dataPiece);
                 }
 
                 OnDataPointRecorded(dataPiece, e.Result);
                 _lastMeasurementCollection = DateTime.UtcNow;
             }
-        }
-
-        private void HandleCollectorFileGenerated(object sender, FileGeneratedEventArgs e) {
-            OnDataFileWritten(e);
         }
 
         /// <summary>
@@ -176,7 +160,6 @@ namespace SmartRoadSense.Shared.Data {
 
             _isRecording = false;
             _lastMeasurementCollection = null;
-            _collector.Flush();
             _statsCollector.CompleteSession();
 
             UserLog.Add(LogStrings.RecordingStopped);
@@ -193,15 +176,6 @@ namespace SmartRoadSense.Shared.Data {
 
         protected virtual void OnDataPointRecorded(DataPiece data, Result result) {
             DataPointRecorded?.Invoke(this, new DataPointRecordedEventArgs(data, _sessionInfo, result));
-        }
-
-        /// <summary>
-        /// Occurs when a new data file is written to disk.
-        /// </summary>
-        public event EventHandler<FileGeneratedEventArgs> DataFileWritten;
-
-        protected virtual void OnDataFileWritten(FileGeneratedEventArgs args) {
-            DataFileWritten?.Invoke(this, args);
         }
 
 #endregion

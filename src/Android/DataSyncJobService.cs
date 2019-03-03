@@ -75,10 +75,10 @@ namespace SmartRoadSense.Android {
 
                 var syncResult = await App.Sync.Synchronize(_cancellationSource.Token);
 
-                Log.Debug("Sync job completing with {0}: {1} files uploaded and {2} deleted",
+                Log.Debug("Sync job completing with {0}: {1} points uploaded in {2} chunks",
                     (syncResult.HasFailed) ? "failure" : "success",
-                    syncResult.DataPiecesUploaded,
-                    syncResult.DataPiecesDeleted);
+                    syncResult.PointsUploaded,
+                    syncResult.ChunksUploaded);
 
                 JobFinished(@params, false);
             }

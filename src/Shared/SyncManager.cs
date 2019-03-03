@@ -1,19 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Newtonsoft.Json;
-
 using SmartRoadSense.Resources;
 using SmartRoadSense.Shared.Api;
 using SmartRoadSense.Shared.Data;
 using SmartRoadSense.Shared.Database;
-using SmartRoadSense.Shared.DataModel;
 
 namespace SmartRoadSense.Shared {
 
@@ -21,6 +15,11 @@ namespace SmartRoadSense.Shared {
     /// Manages data synchronization between client and remote server.
     /// </summary>
     public partial class SyncManager {
+
+        /// <summary>
+        /// Maximum number of points per upload chunk.
+        /// </summary>
+        const int ChunkSize = 1000;
 
         #region Timing constants
 
@@ -106,7 +105,7 @@ namespace SmartRoadSense.Shared {
             if (DateTime.UtcNow < NextUploadOpportunity && policy == SyncPolicy.Default) {
                 Log.Debug("Can't sync: sync attempt too early, next upload scheduled after {0}", NextUploadOpportunity);
 
-                return new SyncResult(error: new InvalidOperationException("Sync attempt too early"));
+                return new SyncResult(new InvalidOperationException("Sync attempt too early"));
             }
 
             Settings.LastUploadAttempt = DateTime.UtcNow;
@@ -125,9 +124,7 @@ namespace SmartRoadSense.Shared {
 
                 Log.Debug("Sync process terminated normally");
                 Log.Event("Sync.terminate", new Dictionary<string, string>() {
-                    { "policy", policy.ToString() },
-                    { "uploadedCount", ret.DataPiecesUploaded.ToString(CultureInfo.InvariantCulture) },
-                    { "deletedCount", ret.DataPiecesDeleted.ToString(CultureInfo.InvariantCulture) }
+                    { "policy", policy.ToString() }
                 });
 
                 if (ret.HasFailed) {
@@ -136,11 +133,11 @@ namespace SmartRoadSense.Shared {
                     SyncError.Raise(this, new SyncErrorEventArgs(ret.Error));
                 }
                 else {
-                    if(ret.DataPiecesUploaded == 1) {
+                    if(ret.ChunksUploaded == 1) {
                         UserLog.Add(LogStrings.FileUploadSummarySingular);
                     }
                     else {
-                        UserLog.Add(LogStrings.FileUploadSummaryPlural, ret.DataPiecesUploaded);
+                        UserLog.Add(LogStrings.FileUploadSummaryPlural, ret.ChunksUploaded);
                     }
                 }
 
@@ -148,7 +145,7 @@ namespace SmartRoadSense.Shared {
             }
             catch(TaskCanceledException) {
                 Log.Debug("Sync process was canceled");
-                return new SyncResult();
+                return new SyncResult(0, 0);
             }
             catch(Exception ex) {
                 Log.Error(ex, "Sync process failed with unforeseen error");
@@ -171,117 +168,111 @@ namespace SmartRoadSense.Shared {
         private async Task<SyncResult> SynchronizeInner(CancellationToken token, SyncPolicy policy) {
             token.ThrowIfCancellationRequested();
 
-            var files = await FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataQueueFileExtension);
-            if (files.Count == 0) {
+            IList<DatabaseQueries.TrackAndCount> tracks = await Task.Run(() => {
+                using(var db = DatabaseUtility.OpenConnection()) {
+                    return db.GetAllPendingTracks();
+                }
+            });
+            if (tracks.Count == 0) {
                 Log.Debug("No files to synchronize");
-                return new SyncResult();
+                return new SyncResult(0, 0);
             }
 
-            Log.Debug("{0} files queued to synchronize", files.Count);
+            token.ThrowIfCancellationRequested();
+
+            Log.Debug("{0} tracks queued to synchronize", tracks.Count);
             Log.Event("Sync.start", new Dictionary<string, string>() {
-                { "policy", policy.ToString() },
-                { "fileCount", files.Count.ToString(CultureInfo.InvariantCulture) }
+                { "policy", policy.ToString() }
             });
 
-            if(policy == SyncPolicy.ForceLast && files.Count > 1) {
+            if(policy == SyncPolicy.ForceLast && tracks.Count > 1) {
                 Log.Debug("Constraining upload to most recent file as per policy");
-                files = new FileSystemToken[] { files.First() };
+                tracks = new DatabaseQueries.TrackAndCount[] { tracks.First() };
             }
 
-            int uploadedFiles = 0;
-            int deletedFiles = 0;
+            int countUploadedPoints = 0;
+            int countUploadedChunks = 0;
 
-            foreach(var file in files) {
+            foreach(var track in tracks) {
                 token.ThrowIfCancellationRequested();
 
+                int pendingPoints = track.DataCount - track.UploadedCount;
+                Log.Debug("Uploading {0}/{1} points from track {2}", pendingPoints, track.DataCount, track.TrackId);
+
                 try {
-                    var package = await file.ParsePackage();
-                    if(package == null) {
-                        await file.Delete();
-                        ++deletedFiles;
-
+                    var reader = new DataReader(track.TrackId);
+                    if(!await reader.Skip(track.UploadedCount)) {
+                        Log.Error(null, "Cannot advance {0} rows in file for track {1}", track.UploadedCount, track.TrackId);
                         continue;
                     }
 
-                    if(!await TrackIsConsistent(package.Pieces)) {
-                        Log.Debug("Ignoring inconsistent file");
-                        continue;
-                    }
+                    int currentChunk = 0;
+                    while(pendingPoints > 0) {
+                        int chunkPoints = Math.Min(ChunkSize, pendingPoints);
+                        Log.Debug("Processing chunk {0} with {1} points", currentChunk + 1, chunkPoints);
 
-                    var secret = Crypto.GenerateSecret();
-                    var secretHash = secret.ToSha512Hash();
+                        var package = new List<DataPiece>(chunkPoints);
+                        for(int p = 0; p < chunkPoints; ++p) {
+                            if(!await reader.Advance()) {
+                                throw new Exception(string.Format("Cannot read line for {0}th point", p + 1));
+                            }
+                            package.Add(new DataPiece {
+                                TrackId = track.TrackId,
+                                StartTimestamp = new DateTime(reader.Current.StartTicks),
+                                EndTimestamp = new DateTime(reader.Current.EndTicks),
+                                Ppe = reader.Current.Ppe,
+                                PpeX = reader.Current.PpeX,
+                                PpeY = reader.Current.PpeY,
+                                PpeZ = reader.Current.PpeZ,
+                                Latitude = reader.Current.Latitude,
+                                Longitude = reader.Current.Longitude,
+                                Bearing = reader.Current.Bearing,
+                                Accuracy = reader.Current.Accuracy,
+                                Vehicle = track.VehicleType,
+                                Anchorage = track.AnchorageType,
+                                NumberOfPeople = track.NumberOfPeople
+                            });
+                        }
 
-                    var uploadQuery = new UploadDataQuery {
-                        Package = package,
-                        SecretHash = secretHash
-                    };
-                    var response = await uploadQuery.Execute(token);
+                        var secret = Crypto.GenerateSecret();
+                        var secretHash = secret.ToSha512Hash();
 
-                    Log.Debug("File {0} uploaded successfully, uploaded track ID {1}", file, response.UploadedTrackId);
-                    ++uploadedFiles;
-
-                    //Done with this file
-                    await file.Delete();
-                    ++deletedFiles;
-
-                    //Store record of uploaded track
-                    using(var db = DatabaseUtility.OpenConnection()) {
-                        var record = new TrackUploadRecord {
-                            TrackId = package.Pieces.First().TrackId,
-                            UploadedId = response.UploadedTrackId,
-                            Secret = secret,
-                            UploadedOn = DateTime.UtcNow
+                        var uploadQuery = new UploadDataQuery {
+                            Package = package,
+                            SecretHash = secretHash
                         };
+                        var response = await uploadQuery.Execute(token);
+                        Log.Debug("Points uploaded successfully, chunk {0} for track ID {1}", currentChunk + 1, track.TrackId);
 
-                        db.Insert(record);
+                        //Store record of uploaded chunk
+                        using(var db = DatabaseUtility.OpenConnection()) {
+                            var record = new TrackUploadRecord {
+                                TrackId = track.TrackId,
+                                UploadedId = response.UploadedTrackId,
+                                Secret = secret,
+                                UploadedOn = DateTime.UtcNow,
+                                Count = chunkPoints
+                            };
+
+                            db.Insert(record);
+                        }
+
+                        pendingPoints -= chunkPoints;
+                        currentChunk++;
+
+                        countUploadedPoints += chunkPoints;
+                        countUploadedChunks++;
                     }
                 }
-                catch(WebException ex) {
-                    //Server down or network not working
-                    //Stop everything and move on
-                    return new SyncResult(dataPiecesUploaded: uploadedFiles, dataPiecesDeleted: deletedFiles, error: ex);
-                }
-                catch(ProtocolViolationException ex) {
-                    //This probably is only a minor issue with this file
-                    Log.Error(ex, "Protocol error while uploading file {0}", file);
-                }
-                catch(IOException ex) {
-                    //This probably is a file access issue, just ignore it and go on
-                    Log.Error(ex, "IO access error on file {0}", file);
-                }
-                catch(TaskCanceledException) {
-                    //Stop here, handle at upper method
-                    throw;
+                catch(IOException exIo) {
+                    Log.Error(exIo, "File for track {0} not found", track.TrackId);
                 }
                 catch(Exception ex) {
-                    //Catch-all exception handler other stuff
-                    //Just stop everything now and log - we'll get back to this file
-                    Log.Error(ex, "Failed while processing file {0}", file);
-
-                    return new SyncResult(dataPiecesUploaded: uploadedFiles, dataPiecesDeleted: deletedFiles, error: ex);
+                    Log.Error(ex, "Failed while processing track {0}", track.TrackId);
                 }
             }
 
-            return new SyncResult(dataPiecesUploaded: uploadedFiles, dataPiecesDeleted: deletedFiles);
-        }
-
-        /// <summary>
-        /// Verifies whether the track represented by a sequence of data pieces is consistent
-        /// (i.e. it is composed of pieces from the same recording and has never been uploaded).
-        /// </summary>
-        private Task<bool> TrackIsConsistent(IList<DataPiece> pieces) {
-            return Task.Run<bool>(() => {
-                if(pieces == null || pieces.Count < 1)
-                    return false;
-
-                var firstId = pieces.First().TrackId;
-                if(pieces.Any(p => p.TrackId != firstId)) {
-                    Log.Error(null, "Inconsistent recording: pieces with multiple Track IDs in same file");
-                    return false;
-                }
-
-                return true;
-            });
+            return new SyncResult(countUploadedPoints, countUploadedChunks);
         }
 
     }

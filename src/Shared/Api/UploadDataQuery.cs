@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 using System;
+=======
+﻿using System;
+using System.Collections.Generic;
+>>>>>>> Revamp data collection code for full data collection
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,6 +12,7 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using SmartRoadSense.Shared.Data;
 using SmartRoadSense.Shared.DataModel;
 
 namespace SmartRoadSense.Shared.Api {
@@ -55,13 +61,13 @@ namespace SmartRoadSense.Shared.Api {
         /// <summary>
         /// Gets or sets the track to be uploaded.
         /// </summary>
-        public DataPackage Package { get; set; }
+        public IList<DataPiece> Package { get; set; }
 
         private void CheckQueryArguments() {
             if (Package == null)
                 throw new ArgumentException("Data not set");
 
-            if (Package.Pieces == null || Package.Pieces.Count < 1)
+            if (Package.Count < 1)
                 throw new ArgumentException("Cannot upload an empty set of data");
 
             if (SecretHash == null || SecretHash.Length != Crypto.SecretHashLength)
@@ -110,12 +116,12 @@ namespace SmartRoadSense.Shared.Api {
             protected override void SerializeJson(JsonTextWriter writer, TransportContext context) {
                 var serializer = JsonSerializer.Create(App.JsonSettings);
 
-                Log.Debug("Creating JSON payload for {0} data points", _query.Package.Pieces.Count);
-                var payloadItems = from p in _query.Package.Pieces
+                Log.Debug("Creating JSON payload for {0} data points", _query.Package.Count);
+                var payloadItems = from p in _query.Package
                                    select UploadPayload.Create(p);
                 var jsonPayloadItems = serializer.SerializeToString(payloadItems);
 
-                var lastPiece = _query.Package.Pieces.Last();
+                var lastPiece = _query.Package.Last();
                 var anchorage = lastPiece.Anchorage;
                 var vehicle = lastPiece.Vehicle;
                 var numberOfPeople = lastPiece.NumberOfPeople;

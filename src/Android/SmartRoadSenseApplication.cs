@@ -33,9 +33,6 @@ namespace SmartRoadSense.Android {
             RegisterActivityLifecycleCallbacks(_lifecycleHandler);
 
             DataSyncReceiver.AdaptiveConfigureSync(this).Forget();
-            App.Recorder.DataFileWritten += (sender, e) => {
-                App.Sync.Synchronize(System.Threading.CancellationToken.None, SyncPolicy.ForceLast).Forget();
-            };
 
             CalibrationUi = new CalibrationUiManager();
         }

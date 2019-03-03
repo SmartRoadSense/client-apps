@@ -79,20 +79,18 @@ namespace SmartRoadSense.Shared.ViewModel {
         }
 
         public override void OnCreate() {
-            _recorder.DataFileWritten += HandleRecorderDataFileWritten;
             App.Sync.StatusChanged += HandleSyncManagerStatusChanged;
             App.Sync.SyncError += HandleSyncManagerSyncError;
         }
 
         public override void OnDestroy() {
-            _recorder.DataFileWritten -= HandleRecorderDataFileWritten;
             App.Sync.StatusChanged -= HandleSyncManagerStatusChanged;
             App.Sync.SyncError -= HandleSyncManagerSyncError;
         }
 
         private async void HandleRecorderDataFileWritten(object sender, FileGeneratedEventArgs e) {
             //New files are always on bottom, so just add it to the queue
-			var token = await FileOperations.GetToken(e.Filepath);
+            var token = await FileOperations.GetToken(e.Filepath);
             _queue.Add(new UploadQueueItem(token));
         }
 
@@ -113,8 +111,8 @@ namespace SmartRoadSense.Shared.ViewModel {
         private async Task RefreshUploadQueue() {
             var files = await FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, string.Empty);
 
-			_queue = new ObservableCollection<UploadQueueItem>(from f in files
-															   select new UploadQueueItem(f));
+            _queue = new ObservableCollection<UploadQueueItem>(from f in files
+                                                               select new UploadQueueItem(f));
 
             OnPropertyChanged(() => UploadQueue);
             UploadQueueUpdated.Raise(this);

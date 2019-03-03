@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SmartRoadSense.Shared.Database;
 using SmartRoadSense.Shared.DataModel;
 
 namespace SmartRoadSense.Shared.Data {
@@ -13,6 +14,36 @@ namespace SmartRoadSense.Shared.Data {
     /// Data management, parsing and conversion functions.
     /// </summary>
     public static class DataStore {
+
+        public static Task<IList<TrackInformation>> GetCollectedTracks() {
+            return Task.Run<IList<TrackInformation>>(() => {
+                using(var db = DatabaseUtility.OpenConnection()) {
+                    var m = db.GetMapping<StatisticRecord>();
+                    var records = db.Query<StatisticRecord>($"SELECT * FROM {m.TableName} ORDER BY {nameof(StatisticRecord.Start)} ASC");
+
+                    return (from r in records
+                            select new TrackInformation(
+                                r.TrackId,
+                                r.Start,
+                                r.ElapsedTime,
+                                r.DistanceTraveled
+                            )).ToList();
+                }
+            });
+        }
+
+        public static Task<double[]> GetTrackPpe(Guid trackId) {
+            return Task.Run(() => {
+                var filePath = FileNaming.GetDataTrackFilepath(trackId);
+                using(var s = File.Open(filePath, FileMode.Open, FileAccess.Read)) {
+                    using(var reader = new StreamReader(s)) {
+
+                    }
+                }
+
+                return new double[0];
+            });
+        }
 
         /// <summary>
         /// Gets the current entries in the data store.

@@ -45,6 +45,15 @@ namespace SmartRoadSense.Shared.Database {
         [NotNull]
         public DateTime UploadedOn { get; set; }
 
+        #region Added in data version 3
+
+        /// <summary>
+        /// Gets or sets the amount of data points uploaded.
+        /// </summary>
+        public int? Count { get; set; }
+
+        #endregion
+
     }
 
 }

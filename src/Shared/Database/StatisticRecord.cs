@@ -38,7 +38,8 @@ namespace SmartRoadSense.Shared.Database {
         /// <summary>
         /// Gets or sets when the recording session was ended.
         /// </summary>
-        public DateTime? End { get; set; }
+        [NotNull]
+        public DateTime End { get; set; }
 
         [NotNull]
         public double MaxPpe { get; set; }
@@ -106,7 +107,7 @@ namespace SmartRoadSense.Shared.Database {
         }
 
         /// <summary>
-        /// Number of data pieces this statistic is based on.
+        /// Number of data pieces collected in this session.
         /// </summary>
         [NotNull]
         public int DataPieceCount { get; set; }
@@ -124,6 +125,12 @@ namespace SmartRoadSense.Shared.Database {
         public string LocationStartName { get; set; }
 
         public string LocationEndName { get; set; }
+
+        public VehicleType? Vehicle { get; set; }
+
+        public AnchorageType? Anchorage { get; set; }
+
+        public int? NumberOfPeople { get; set; }
 
         #endregion
 

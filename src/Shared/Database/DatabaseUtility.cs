@@ -63,10 +63,11 @@ namespace SmartRoadSense.Shared.Database {
 
         private static void Migrate(int currentVersion) {
             if(currentVersion <= 2) {
-                // Drop index on StatisticRecord and re-create table (adds columns)
+                // Drop index on StatisticRecord and re-create both tables (adds columns)
                 using(var db = OpenConnection()) {
                     db.Execute("DROP INDEX IF EXISTS StatisticRecord_TrackId");
                     db.CreateTable<StatisticRecord>();
+                    db.CreateTable<TrackUploadRecord>();
                 }
 
                 Log.Event("Database.migrate.2");

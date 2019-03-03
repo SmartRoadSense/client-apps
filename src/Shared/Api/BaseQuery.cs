@@ -42,7 +42,7 @@ namespace SmartRoadSense.Shared.Api {
             get {
                 switch(Service) {
                     case ServiceType.Production:
-                        return "http://api.smartroadsense.it/api";
+                        return "http://www.smartroadsense.it/api";
 
                     case ServiceType.Development:
                         return "http://smartroadsense.uniurb.it/api";

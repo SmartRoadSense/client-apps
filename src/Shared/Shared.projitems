@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -53,7 +53,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\StatisticsCollector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DateTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DeviceInformation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ErrorReporter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpressionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileNaming.cs" />

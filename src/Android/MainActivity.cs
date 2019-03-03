@@ -414,7 +414,6 @@ namespace SmartRoadSense.Android {
             _drawerLayout = this.FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             _drawerToggle = new CustomActionBarDrawerToggle(this, _drawerLayout, toolbar, Resource.String.Vernacular_P0_action_drawer_open, Resource.String.Vernacular_P0_action_drawer_close);
             _drawerLayout.AddDrawerListener(_drawerToggle);
-            _drawerToggle.DrawerOpened += HandleDrawerOpened;
             FindViewById<Button>(Resource.Id.navigation_button_settings).Click += (sender, e) => {
                 Intent i = new Intent(this, typeof(SettingsActivity));
                 StartActivity(i);
@@ -445,14 +444,6 @@ namespace SmartRoadSense.Android {
                 StartActivity(i);
                 _drawerLayout.CloseDrawers();
             };
-            FindViewById<Button>(Resource.Id.navigation_button_error_reporting).Click += (sender, e) => {
-                this.OpenErrorReporting();
-                _drawerLayout.CloseDrawers();
-            };
-        }
-
-        private void HandleDrawerOpened(object sender, EventArgs e) {
-            FindViewById<View>(Resource.Id.navigation_container_error_reporting).Visibility = ErrorReporter.HasDump().FalseToGone();
         }
 
         private void HandleIntent(Intent intent) {

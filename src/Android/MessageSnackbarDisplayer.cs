@@ -280,10 +280,6 @@ namespace SmartRoadSense.Android {
                 case InformationMessage.GpsDisabled:
                     _context.StartLocationSettings();
                     break;
-
-                case InformationMessage.InternalEngineError:
-                    _context.OpenErrorReporting();
-                    break;
             }
         }
 

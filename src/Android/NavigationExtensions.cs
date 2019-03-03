@@ -41,11 +41,6 @@ namespace SmartRoadSense.Android {
             }
         }
 
-        public static void OpenErrorReporting(this Context context) {
-            Intent i = new Intent(context, typeof(ErrorReportingActivity));
-            context.StartActivity(i);
-        }
-
     }
 
 }

@@ -36,7 +36,7 @@ namespace SmartRoadSense.Shared.ViewModel {
 
         public override void OnDestroy() {
             _sensors.LocationSensorStatusChanged -= HandleLocationSensorStatusChanged;
-			_sensors.LocationSensorError -= HandleLocationSensorError;
+            _sensors.LocationSensorError -= HandleLocationSensorError;
             _sensors.InternalEngineErrorReported -= HandleInternalEngineError;
 
             _recorder.DataPointRecorded -= HandleDataPointRecorded;
@@ -78,13 +78,8 @@ namespace SmartRoadSense.Shared.ViewModel {
         }
 
         private void HandleInternalEngineError(object sender, InternalEngineErrorEventArgs e) {
-            Log.Debug("Handling internal engine error");
+            Log.Error(null, "Internal engine error");
             UserLog.Add(UserLog.Icon.Error, LogStrings.InternalEngineError);
-
-#if !WINDOWS_PHONE_APP
-            //Dump will be performed in the background while UI goes on
-            ErrorReporter.ExecuteDump(e.Exception).Forget();
-#endif
 
             InternalEngineErrorReported.Raise(this);
 
@@ -163,7 +158,7 @@ namespace SmartRoadSense.Shared.ViewModel {
             get {
                 return (
                     IsRecording &&
-					_sensors.LocationSensorStatus.IsActive() &&
+                    _sensors.LocationSensorStatus.IsActive() &&
                     !double.IsNaN(_recorder.Session.LastMeasurement)
                 );
             }
@@ -181,10 +176,10 @@ namespace SmartRoadSense.Shared.ViewModel {
                 return;
             }
 
-			if(!Settings.CalibrationDone) {
-				Log.Debug("Ignoring start recording command since device is not calibrated");
-				return;
-			}
+            if(!Settings.CalibrationDone) {
+                Log.Debug("Ignoring start recording command since device is not calibrated");
+                return;
+            }
 
             Log.Debug("Executing start recording command");
 
@@ -239,7 +234,7 @@ namespace SmartRoadSense.Shared.ViewModel {
         /// <summary>
         /// Occurs when the recording is suspended because of a location sensor error.
         /// </summary>
-		public event EventHandler<LocationErrorEventArgs> RecordingSuspended;
+        public event EventHandler<LocationErrorEventArgs> RecordingSuspended;
 
         /// <summary>
         /// Occurs when an internal engine error was reported and handled.

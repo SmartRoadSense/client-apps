@@ -63,20 +63,6 @@
         android:id="@+id/navigation_button_about"
         android:text="@string/Vernacular_P0_menu_about"
         style="@style/navigation_button" />
-      <LinearLayout
-        android:id="@+id/navigation_container_error_reporting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-        <View
-          style="@style/theme_horizontal_divider" />
-        <Button
-          android:id="@+id/navigation_button_error_reporting"
-          android:text="@string/Vernacular_P0_menu_error_reporting"
-          style="@style/navigation_button"
-          android:drawableRight="@drawable/ic_error_white_36dp" />
-      </LinearLayout>
     </LinearLayout>
   </ScrollView>
 </LinearLayout>

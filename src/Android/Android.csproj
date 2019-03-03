@@ -231,7 +231,6 @@
     <Compile Include="SyncManager.cs" />
     <Compile Include="Tutorial\Fragment6RideSharing.cs" />
     <Compile Include="ViewExtensions.cs" />
-    <Compile Include="ErrorReportingActivity.cs" />
     <Compile Include="CustomActionBarDrawerToggle.cs" />
     <Compile Include="TutorialActivity.cs" />
     <Compile Include="Tutorial\Fragment1Introduction.cs" />

@@ -6,6 +6,7 @@
 *.shproj eol=crlf
 *.projitems eol=crlf
 *.resx eol=crlf
+*.config eol=crlf
 
 *.jpg -diff
 *.psd -diff

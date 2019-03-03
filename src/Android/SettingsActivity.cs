@@ -220,8 +220,8 @@ namespace SmartRoadSense.Android {
         protected override void OnDestroy() {
             base.OnDestroy();
 
-            //Re-configure sync since user may have changed sync preferences
-            DataSyncReceiver.AdaptiveConfigureSync(this).Forget();
+            // Re-configure sync since user may have changed sync preferences
+            DataSyncReceiver.ConfigureSync(this);
         }
 
         private void RefreshCalibrationInfo() {

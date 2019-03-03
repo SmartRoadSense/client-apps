@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 using System;
-=======
-﻿using System;
 using System.Collections.Generic;
->>>>>>> Revamp data collection code for full data collection
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,7 +9,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using SmartRoadSense.Shared.Data;
-using SmartRoadSense.Shared.DataModel;
 
 namespace SmartRoadSense.Shared.Api {
 

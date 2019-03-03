@@ -32,7 +32,7 @@ namespace SmartRoadSense.Android {
 
             RegisterActivityLifecycleCallbacks(_lifecycleHandler);
 
-            DataSyncReceiver.AdaptiveConfigureSync(this).Forget();
+            DataSyncReceiver.ConfigureSync(this);
 
             CalibrationUi = new CalibrationUiManager();
         }

@@ -25,28 +25,18 @@ namespace SmartRoadSense.Android {
         }
 
         /// <summary>
-        /// Adaptively configures synchronization with periodic execution,
-        /// based on whether files to sync are available or not.
-        /// </summary>
-        public static async Task AdaptiveConfigureSync(Context applicationContext) {
-            int fileCount = (await DataStore.GetEntries()).Count;
-
-            ConfigureSync(applicationContext, fileCount > 0);
-        }
-
-        /// <summary>
         /// Configures synchronization with periodic execution.
         /// </summary>
-        public static void ConfigureSync(Context applicationContext, bool enabled) {
-            Log.Debug("Configuring synchronization (enable: {0}, last: {1}, next: {2}, deadline: {3})",
-                enabled, Settings.LastUploadAttempt, SyncManager.NextUploadOpportunity, SyncManager.NextUploadDeadline);
+        public static void ConfigureSync(Context applicationContext) {
+            Log.Debug("Configuring synchronization (last: {0}, next: {1}, deadline: {2})",
+                Settings.LastUploadAttempt, SyncManager.NextUploadOpportunity, SyncManager.NextUploadDeadline);
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop) {
                 ConfigureSyncLegacy(applicationContext, false);
-                ConfigureSyncJob(applicationContext, enabled);
+                ConfigureSyncJob(applicationContext, true);
             }
             else {
-                ConfigureSyncLegacy(applicationContext, enabled);
+                ConfigureSyncLegacy(applicationContext, true);
             }
         }
 

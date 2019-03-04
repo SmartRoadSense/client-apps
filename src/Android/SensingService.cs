@@ -69,15 +69,30 @@ namespace SmartRoadSense.Android {
 
         private void HandleRecordingStatusUpdated(object sender, EventArgs e) {
             if (_model.IsRecording) {
-                this.StartForeground(NotificationRecordingId, CreateRecordingNotification());
+                StartForeground(NotificationRecordingId, CreateRecordingNotification());
             }
             else {
-                this.StopForeground(true);
+                StopForeground(true);
             }
         }
 
+        public const string NotificationChannelId = "it.uniurb.smartroadsense.recording";
+        public const string NotificationChannelDescription = "Lorem ipsum";
+
         private Notification CreateRecordingNotification() {
-            return new NotificationCompat.Builder(this)
+            string notificationChannel = NotificationChannel.DefaultChannelId;
+            if(Build.VERSION.SdkInt >= BuildVersionCodes.O) {
+                var ch = new NotificationChannel(NotificationChannelId, NotificationChannelDescription, NotificationImportance.Default) {
+                    LockscreenVisibility = NotificationVisibility.Public,
+                };
+
+                var notman = (NotificationManager)GetSystemService(Context.NotificationService);
+                notman.CreateNotificationChannel(ch);
+
+                notificationChannel = NotificationChannelId;
+            }
+
+            return new NotificationCompat.Builder(this, notificationChannel)
                 .SetContentTitle(GetString(Resource.String.Vernacular_P0_sensing_service_notification_title))
                 .SetContentText(GetString(Resource.String.Vernacular_P0_sensing_service_notification_message))
                 .SetSmallIcon(Resource.Drawable.ic_status)
@@ -93,7 +108,7 @@ namespace SmartRoadSense.Android {
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId) {
             //Notify receivers that the service is up and running
-            this.SendBroadcast(new Intent(BroadcastIntentWakeUp));
+            SendBroadcast(new Intent(BroadcastIntentWakeUp));
 
             //Perform queued actions
             while (_actions.Count > 0) {

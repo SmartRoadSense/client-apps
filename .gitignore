@@ -5,6 +5,7 @@
 **/bin/**
 **/obj/**
 **/packages/**
+dbs/*
 *.suo
 *.csproj.user
 *.lock.json

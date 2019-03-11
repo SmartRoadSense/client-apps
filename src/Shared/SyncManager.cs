@@ -170,7 +170,10 @@ namespace SmartRoadSense.Shared {
 
             IList<DatabaseQueries.TrackAndCount> tracks = await Task.Run(() => {
                 using(var db = DatabaseUtility.OpenConnection()) {
-                    return db.GetAllPendingTracks();
+                    return (from t in db.GetAllPendingTracks()
+                            let trackFilepath = FileNaming.GetDataTrackFilepath(t.TrackId)
+                            where File.Exists(trackFilepath)
+                            select t).ToList();
                 }
             });
             if (tracks.Count == 0) {

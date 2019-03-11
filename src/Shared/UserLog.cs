@@ -119,11 +119,11 @@ namespace SmartRoadSense.Shared {
             Log.Debug("Log persisted");
         }
 
-        public const int MaximumLogSize = 100;
+        public const int MaximumLogSize = 200;
 
         private static readonly object _rootLock = new object();
 
-        private static Queue<LogEntry> _log = new Queue<LogEntry>(MaximumLogSize);
+        private static Queue<LogEntry> _log = new Queue<LogEntry>(MaximumLogSize + 1);
 
         /// <summary>
         /// Adds an iconless message to the log.
@@ -140,13 +140,17 @@ namespace SmartRoadSense.Shared {
 
             lock (_rootLock) {
                 _log.Enqueue(entry);
+
+                while(_log.Count > MaximumLogSize) {
+                    _log.Dequeue();
+                }
             }
 
             OnNewEntryAdded(entry);
         }
 
         /// <summary>
-        /// Gets the entries of the log.
+        /// Gets all entries of the log.
         /// </summary>
         public static IReadOnlyList<LogEntry> Entries {
             get {

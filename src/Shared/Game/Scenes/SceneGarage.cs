@@ -217,14 +217,14 @@ namespace SmartRoadSense.Shared {
                 selectable.ImageRect = new IntRect(380, 295, 480, 405);
                 buttonText.Value = "Selected vehicle";
             }
-            else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCoins < 0) 
+            else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
             {
                 // TODO: unlockable with components 
                 buttonText.Value = "Vehicle not available";
             }
-            else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCoins >= 0)
+            else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost >= 0)
             {
-                if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCoins) 
+                if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCost) 
                 {
                     selectable.ImageRect = new IntRect(250, 295, 350, 405);
                     buttonText.Value = "Tap to select this vehicle";
@@ -352,12 +352,23 @@ namespace SmartRoadSense.Shared {
                 screen_info.Value = "";
                 //screen_info.Value = "Selected vehicle.";
             }
-            else if(CharacterManager.Instance.User.Level >= VehicleManager.Instance.SelectedVehicleModel.UnlockCoins) {
-                bt_confirm.Enabled = true;
-                selectable.ImageRect = new IntRect(250, 295, 350, 405);
-                buttonText.Value = "Tap to select this vehicle";
-                screen_info.Value = "";
-                //screen_info.Value = "Tap to unlock this vehicle";
+            else if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCost) {
+                if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
+                {
+                    bt_confirm.Enabled = false;
+                    selectable.ImageRect = new IntRect(120, 295, 220, 405);
+                    buttonText.Value = "Vehicle not available";
+                    screen_info.Value = "";
+                }
+                else
+                {
+                    bt_confirm.Enabled = true;
+                    selectable.ImageRect = new IntRect(250, 295, 350, 405);
+                    buttonText.Value = "Tap to select this vehicle";
+                    screen_info.Value = "";
+                    //screen_info.Value = "Tap to unlock this vehicle";
+                }
+
             }
             else {
                 bt_confirm.Enabled = false;

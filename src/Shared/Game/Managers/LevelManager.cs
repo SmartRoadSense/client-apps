@@ -135,12 +135,13 @@ namespace SmartRoadSense.Shared {
                 double completed = 0;
                 foreach(var lvl in Levels.LevelModel) {
                     failed += lvl.TotalOfFailures;
-                    completed += lvl.Completed;
+                    completed += lvl.TotalOfPlays - failed;
                 }
                 if(completed.CompareTo(0) == 0)
                     return 0;
                 if(failed.CompareTo(0) == 0)
                     return 100;
+
                 return completed / failed * 100;
             }
         }

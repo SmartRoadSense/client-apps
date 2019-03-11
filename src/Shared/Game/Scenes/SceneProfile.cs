@@ -217,7 +217,9 @@ namespace SmartRoadSense.Shared {
             nameContainer.AddChild(lineEdit);
 
             lineEdit.TextChanged += (TextChangedEventArgs args) => {
-                if(args.Text.Equals(enterTextString)) {
+                if(args.Text.Equals(enterTextString) || args.Text.Contains("Enter n")) {
+                    lineEdit.Text = string.Empty;
+                    _nameText = string.Empty;
                     continueBtn.Visible = false;
                     return;
                 }
@@ -227,7 +229,6 @@ namespace SmartRoadSense.Shared {
                 }
                 continueBtn.Visible = true;
                 _nameText = args.Text;
-
             };
 
             //male

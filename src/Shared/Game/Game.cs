@@ -211,10 +211,10 @@ namespace SmartRoadSense.Shared
             //    camera.Zoom = camera.Zoom * 0.99f;
             //}
             if(OSDCommands.RotatingLeft) {
-                GameVehicle.MainBody.ApplyAngularImpulse(-0.5f * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyAngularImpulse(0.5f * moveSpeed * timeStep, true);
             }
             if(OSDCommands.RotatingRight) {
-                GameVehicle.MainBody.ApplyAngularImpulse(0.5f * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyAngularImpulse(-0.5f * moveSpeed * timeStep, true);
             }
             if(OSDCommands.Braking) {
                 if(GameVehicle.MainBody.LinearVelocity.X > 0.0f)

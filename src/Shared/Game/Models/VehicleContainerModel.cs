@@ -42,7 +42,7 @@ namespace SmartRoadSense.Shared {
         public int Brake { get; set; }
 
         [JsonProperty("UNLOCK_COST")]
-        public int UnlockCoins { get; set; }
+        public int UnlockCost { get; set; }
     }
 
     public class VehicleImagePosition

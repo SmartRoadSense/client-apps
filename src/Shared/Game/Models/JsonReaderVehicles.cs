@@ -53,7 +53,7 @@ namespace SmartRoadSense.Shared {
             System.Diagnostics.Debug.WriteLine("id: " + vehicle.IdVehicle);
             System.Diagnostics.Debug.WriteLine("performance: " + vehicle.Performance);
             System.Diagnostics.Debug.WriteLine("suspensions: " + vehicle.Suspensions);
-            System.Diagnostics.Debug.WriteLine("unlock level: " + vehicle.UnlockCoins);
+            System.Diagnostics.Debug.WriteLine("unlock level: " + vehicle.UnlockCost);
             System.Diagnostics.Debug.WriteLine("image position: {0},{1},{2},{3}", vehicle.ImagePosition.Bottom, vehicle.ImagePosition.Top, vehicle.ImagePosition.Left, vehicle.ImagePosition.Right);
             System.Diagnostics.Debug.WriteLine("body position: {0},{1},{2},{3}", vehicle.BodyPosition.Bottom, vehicle.BodyPosition.Top, vehicle.BodyPosition.Left, vehicle.BodyPosition.Right);
             System.Diagnostics.Debug.WriteLine("wheel position: {0},{1},{2},{3}", vehicle.WheelsPosition[0].Bottom, vehicle.WheelsPosition[0].Top, vehicle.WheelsPosition[0].Left, vehicle.WheelsPosition[0].Right);

@@ -65,7 +65,7 @@ namespace SmartRoadSense.Shared
                 var unlocked = 0;
                 var vehicles = JsonReaderVehicles.GetVehicles();
                 foreach(var vehicle in vehicles.VehicleModel) {
-                    if(vehicle.UnlockCoins <= CharacterManager.Instance.User.Level)
+                    if(vehicle.UnlockCost <= CharacterManager.Instance.User.Level)
                         unlocked += 1;
                 }
                 return unlocked;

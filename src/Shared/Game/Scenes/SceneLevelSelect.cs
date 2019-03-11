@@ -138,7 +138,6 @@ namespace SmartRoadSense.Shared {
             LevelToComplete.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             LevelToComplete.ImageRect = AssetsCoordinates.Generic.Boxes.LevelToComplete;
             LevelToComplete.SetSize((int)(dim.XScreenRatio * 400), (int)(dim.YScreenRatio * 100));
-            //LevelToComplete.SetPosition((int)(dim.XScreenRatio * 220), (int)(dim.YScreenRatio * 220));
             LevelToComplete.SetPosition(GameInstance.ScreenInfo.SetX(350), GameInstance.ScreenInfo.SetY(240));
 
             //per comodità utilizzo direttamente IntRect e non AssetsCoordinate
@@ -421,13 +420,13 @@ namespace SmartRoadSense.Shared {
 
                 switch(landskape) {
                     case 1:
-                        land = AssetsCoordinates.Generic.Boxes.LevelBeach;
+                        land = AssetsCoordinates.Generic.Boxes.LevelSnow;
                         break;
                     case 2:
                         land = AssetsCoordinates.Generic.Boxes.LevelMoon;
                         break;
                     case 3:
-                        land = AssetsCoordinates.Generic.Boxes.LevelSnow;
+                        land = AssetsCoordinates.Generic.Boxes.LevelBeach;
                         break;
                 }
             //}

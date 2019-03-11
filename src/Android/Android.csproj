@@ -850,7 +850,7 @@
     <AndroidAsset Include="Assets\Data\Textures\TouchInput\sfondoMenu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\pregame.xml" />
+    <AndroidResource Include="Resources\layout\activity_pregame.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\sfondo1.png" />

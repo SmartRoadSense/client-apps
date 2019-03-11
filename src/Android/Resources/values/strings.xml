@@ -68,6 +68,7 @@
   <string formatted="false" name="Vernacular_P0_error_send_mail">Failed to send email.</string>
   <string formatted="false" name="Vernacular_P0_error_send_mail_not_configured">Email is not configured correctly and cannot be sent.</string>
   <string formatted="false" name="Vernacular_P0_game_coming_soon">Coming soon.</string>
+  <string formatted="false" name="Vernacular_P0_game_launch">Launch the game</string>
   <string formatted="false" name="Vernacular_P0_game_tagline">SmartRoadSense\nThe Game</string>
   <string formatted="false" name="Vernacular_P0_information_message_description_engine_error">Something went wrong with our road quality detection magic! =‘(&lt;br /&gt;Tap here to report the error and help us fixing the problem.</string>
   <string formatted="false" name="Vernacular_P0_information_message_description_gps_off">Please enable location services through your device’s settings.</string>

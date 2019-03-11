@@ -2971,106 +2971,106 @@ namespace SmartRoadSense.Android
 			public const int activity_main = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int activity_queue = 2130903073;
+			public const int activity_pregame = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int activity_settings = 2130903074;
+			public const int activity_queue = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int activity_stats = 2130903075;
+			public const int activity_settings = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int activity_tutorial = 2130903076;
+			public const int activity_stats = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int component_navigation_drawer = 2130903077;
+			public const int activity_tutorial = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int component_snackbar = 2130903078;
+			public const int component_navigation_drawer = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int custom_spinner_item = 2130903079;
+			public const int component_snackbar = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int dialog_blablacar = 2130903080;
+			public const int custom_spinner_item = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int dialog_ride_sharing = 2130903081;
+			public const int dialog_blablacar = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int fragment_tutorial_1_introduction = 2130903082;
+			public const int dialog_ride_sharing = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int fragment_tutorial_2_what = 2130903083;
+			public const int fragment_tutorial_1_introduction = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int fragment_tutorial_3_vehicle = 2130903084;
+			public const int fragment_tutorial_2_what = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int fragment_tutorial_4_anchorage = 2130903085;
+			public const int fragment_tutorial_3_vehicle = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int fragment_tutorial_5_calibration = 2130903086;
+			public const int fragment_tutorial_4_anchorage = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int fragment_tutorial_6_ride_sharing = 2130903087;
+			public const int fragment_tutorial_5_calibration = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int fragment_tutorial_7_ready = 2130903088;
+			public const int fragment_tutorial_6_ride_sharing = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int item_log = 2130903089;
+			public const int fragment_tutorial_7_ready = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int item_queue = 2130903090;
+			public const int item_log = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int notification_action = 2130903091;
+			public const int item_queue = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int notification_action_tombstone = 2130903092;
+			public const int notification_action = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_media_action = 2130903093;
+			public const int notification_action_tombstone = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_media_cancel_action = 2130903094;
+			public const int notification_media_action = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_big_media = 2130903095;
+			public const int notification_media_cancel_action = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_big_media_custom = 2130903096;
+			public const int notification_template_big_media = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_big_media_narrow = 2130903097;
+			public const int notification_template_big_media_custom = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int notification_template_big_media_narrow_custom = 2130903098;
+			public const int notification_template_big_media_narrow = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int notification_template_custom_big = 2130903099;
+			public const int notification_template_big_media_narrow_custom = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int notification_template_icon_group = 2130903100;
+			public const int notification_template_custom_big = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int notification_template_lines_media = 2130903101;
+			public const int notification_template_icon_group = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int notification_template_media = 2130903102;
+			public const int notification_template_lines_media = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int notification_template_media_custom = 2130903103;
+			public const int notification_template_media = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int notification_template_part_chronometer = 2130903104;
+			public const int notification_template_media_custom = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int notification_template_part_time = 2130903105;
+			public const int notification_template_part_chronometer = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int pregame = 2130903106;
+			public const int notification_template_part_time = 2130903106;
 			
 			// aapt resource value: 0x7f030043
 			public const int select_dialog_item_material = 2130903107;
@@ -3321,304 +3321,307 @@ namespace SmartRoadSense.Android
 			public const int Vernacular_P0_game_coming_soon = 2131099757;
 			
 			// aapt resource value: 0x7f06006e
-			public const int Vernacular_P0_game_tagline = 2131099758;
+			public const int Vernacular_P0_game_launch = 2131099758;
 			
 			// aapt resource value: 0x7f06006f
-			public const int Vernacular_P0_information_message_description_engine_error = 2131099759;
+			public const int Vernacular_P0_game_tagline = 2131099759;
 			
 			// aapt resource value: 0x7f060070
-			public const int Vernacular_P0_information_message_description_gps_off = 2131099760;
+			public const int Vernacular_P0_information_message_description_engine_error = 2131099760;
 			
 			// aapt resource value: 0x7f060071
-			public const int Vernacular_P0_information_message_description_gps_suspended_speed = 2131099761;
+			public const int Vernacular_P0_information_message_description_gps_off = 2131099761;
 			
 			// aapt resource value: 0x7f060072
-			public const int Vernacular_P0_information_message_description_gps_suspended_stationary = 2131099762;
+			public const int Vernacular_P0_information_message_description_gps_suspended_speed = 2131099762;
 			
 			// aapt resource value: 0x7f060073
-			public const int Vernacular_P0_information_message_description_gps_unfixed = 2131099763;
+			public const int Vernacular_P0_information_message_description_gps_suspended_stationary = 2131099763;
 			
 			// aapt resource value: 0x7f060074
-			public const int Vernacular_P0_information_message_description_out_of_country = 2131099764;
+			public const int Vernacular_P0_information_message_description_gps_unfixed = 2131099764;
 			
 			// aapt resource value: 0x7f060075
-			public const int Vernacular_P0_information_message_description_syncing = 2131099765;
+			public const int Vernacular_P0_information_message_description_out_of_country = 2131099765;
 			
 			// aapt resource value: 0x7f060076
-			public const int Vernacular_P0_information_message_description_upload_failure = 2131099766;
+			public const int Vernacular_P0_information_message_description_syncing = 2131099766;
 			
 			// aapt resource value: 0x7f060077
-			public const int Vernacular_P0_information_message_title_engine_error = 2131099767;
+			public const int Vernacular_P0_information_message_description_upload_failure = 2131099767;
 			
 			// aapt resource value: 0x7f060078
-			public const int Vernacular_P0_information_message_title_gps_off = 2131099768;
+			public const int Vernacular_P0_information_message_title_engine_error = 2131099768;
 			
 			// aapt resource value: 0x7f060079
-			public const int Vernacular_P0_information_message_title_gps_suspended_speed = 2131099769;
+			public const int Vernacular_P0_information_message_title_gps_off = 2131099769;
 			
 			// aapt resource value: 0x7f06007a
-			public const int Vernacular_P0_information_message_title_gps_suspended_stationary = 2131099770;
+			public const int Vernacular_P0_information_message_title_gps_suspended_speed = 2131099770;
 			
 			// aapt resource value: 0x7f06007b
-			public const int Vernacular_P0_information_message_title_gps_unfixed = 2131099771;
+			public const int Vernacular_P0_information_message_title_gps_suspended_stationary = 2131099771;
 			
 			// aapt resource value: 0x7f06007c
-			public const int Vernacular_P0_information_message_title_out_of_country = 2131099772;
+			public const int Vernacular_P0_information_message_title_gps_unfixed = 2131099772;
 			
 			// aapt resource value: 0x7f06007d
-			public const int Vernacular_P0_information_message_title_syncing = 2131099773;
+			public const int Vernacular_P0_information_message_title_out_of_country = 2131099773;
 			
 			// aapt resource value: 0x7f06007e
-			public const int Vernacular_P0_information_message_title_upload_failure = 2131099774;
+			public const int Vernacular_P0_information_message_title_syncing = 2131099774;
 			
 			// aapt resource value: 0x7f06007f
-			public const int Vernacular_P0_label_anchorage = 2131099775;
+			public const int Vernacular_P0_information_message_title_upload_failure = 2131099775;
 			
 			// aapt resource value: 0x7f060080
-			public const int Vernacular_P0_label_file_creation = 2131099776;
+			public const int Vernacular_P0_label_anchorage = 2131099776;
 			
 			// aapt resource value: 0x7f060081
-			public const int Vernacular_P0_label_file_size = 2131099777;
+			public const int Vernacular_P0_label_file_creation = 2131099777;
 			
 			// aapt resource value: 0x7f060082
-			public const int Vernacular_P0_label_file_size_value = 2131099778;
+			public const int Vernacular_P0_label_file_size = 2131099778;
 			
 			// aapt resource value: 0x7f060083
-			public const int Vernacular_P0_label_setup = 2131099779;
+			public const int Vernacular_P0_label_file_size_value = 2131099779;
 			
 			// aapt resource value: 0x7f060084
-			public const int Vernacular_P0_label_vehicle = 2131099780;
+			public const int Vernacular_P0_label_setup = 2131099780;
 			
 			// aapt resource value: 0x7f060085
-			public const int Vernacular_P0_log_entries_count = 2131099781;
+			public const int Vernacular_P0_label_vehicle = 2131099781;
 			
 			// aapt resource value: 0x7f060086
-			public const int Vernacular_P0_mail_address = 2131099782;
+			public const int Vernacular_P0_log_entries_count = 2131099782;
 			
 			// aapt resource value: 0x7f060087
-			public const int Vernacular_P0_menu_about = 2131099783;
+			public const int Vernacular_P0_mail_address = 2131099783;
 			
 			// aapt resource value: 0x7f060088
-			public const int Vernacular_P0_menu_error_reporting = 2131099784;
+			public const int Vernacular_P0_menu_about = 2131099784;
 			
 			// aapt resource value: 0x7f060089
-			public const int Vernacular_P0_menu_game = 2131099785;
+			public const int Vernacular_P0_menu_error_reporting = 2131099785;
 			
 			// aapt resource value: 0x7f06008a
-			public const int Vernacular_P0_menu_log = 2131099786;
+			public const int Vernacular_P0_menu_game = 2131099786;
 			
 			// aapt resource value: 0x7f06008b
-			public const int Vernacular_P0_menu_queue = 2131099787;
+			public const int Vernacular_P0_menu_log = 2131099787;
 			
 			// aapt resource value: 0x7f06008c
-			public const int Vernacular_P0_menu_settings = 2131099788;
+			public const int Vernacular_P0_menu_queue = 2131099788;
 			
 			// aapt resource value: 0x7f06008d
-			public const int Vernacular_P0_menu_stats = 2131099789;
+			public const int Vernacular_P0_menu_settings = 2131099789;
 			
 			// aapt resource value: 0x7f06008e
-			public const int Vernacular_P0_sensing_service_notification_message = 2131099790;
+			public const int Vernacular_P0_menu_stats = 2131099790;
 			
 			// aapt resource value: 0x7f06008f
-			public const int Vernacular_P0_sensing_service_notification_title = 2131099791;
+			public const int Vernacular_P0_sensing_service_notification_message = 2131099791;
 			
 			// aapt resource value: 0x7f060090
-			public const int Vernacular_P0_service_sensing = 2131099792;
+			public const int Vernacular_P0_sensing_service_notification_title = 2131099792;
 			
 			// aapt resource value: 0x7f060091
-			public const int Vernacular_P0_service_sync = 2131099793;
+			public const int Vernacular_P0_service_sensing = 2131099793;
 			
 			// aapt resource value: 0x7f060092
-			public const int Vernacular_P0_settings_description_anchorage = 2131099794;
+			public const int Vernacular_P0_service_sync = 2131099794;
 			
 			// aapt resource value: 0x7f060093
-			public const int Vernacular_P0_settings_description_disable_suspension = 2131099795;
+			public const int Vernacular_P0_settings_description_anchorage = 2131099795;
 			
 			// aapt resource value: 0x7f060094
-			public const int Vernacular_P0_settings_description_offline_mode = 2131099796;
+			public const int Vernacular_P0_settings_description_disable_suspension = 2131099796;
 			
 			// aapt resource value: 0x7f060095
-			public const int Vernacular_P0_settings_description_prefer_unmetered = 2131099797;
+			public const int Vernacular_P0_settings_description_offline_mode = 2131099797;
 			
 			// aapt resource value: 0x7f060096
-			public const int Vernacular_P0_settings_description_start_at_boot = 2131099798;
+			public const int Vernacular_P0_settings_description_prefer_unmetered = 2131099798;
 			
 			// aapt resource value: 0x7f060097
-			public const int Vernacular_P0_settings_description_vehicle = 2131099799;
+			public const int Vernacular_P0_settings_description_start_at_boot = 2131099799;
 			
 			// aapt resource value: 0x7f060098
-			public const int Vernacular_P0_settings_section_calibration = 2131099800;
+			public const int Vernacular_P0_settings_description_vehicle = 2131099800;
 			
 			// aapt resource value: 0x7f060099
-			public const int Vernacular_P0_settings_section_introduction = 2131099801;
+			public const int Vernacular_P0_settings_section_calibration = 2131099801;
 			
 			// aapt resource value: 0x7f06009a
-			public const int Vernacular_P0_settings_section_preferences = 2131099802;
+			public const int Vernacular_P0_settings_section_introduction = 2131099802;
 			
 			// aapt resource value: 0x7f06009b
-			public const int Vernacular_P0_settings_section_setup = 2131099803;
+			public const int Vernacular_P0_settings_section_preferences = 2131099803;
 			
 			// aapt resource value: 0x7f06009c
-			public const int Vernacular_P0_settings_title_anchorage = 2131099804;
+			public const int Vernacular_P0_settings_section_setup = 2131099804;
 			
 			// aapt resource value: 0x7f06009d
-			public const int Vernacular_P0_settings_title_disable_suspension = 2131099805;
+			public const int Vernacular_P0_settings_title_anchorage = 2131099805;
 			
 			// aapt resource value: 0x7f06009e
-			public const int Vernacular_P0_settings_title_offline_mode = 2131099806;
+			public const int Vernacular_P0_settings_title_disable_suspension = 2131099806;
 			
 			// aapt resource value: 0x7f06009f
-			public const int Vernacular_P0_settings_title_prefer_unmetered = 2131099807;
+			public const int Vernacular_P0_settings_title_offline_mode = 2131099807;
 			
 			// aapt resource value: 0x7f0600a0
-			public const int Vernacular_P0_settings_title_start_at_boot = 2131099808;
+			public const int Vernacular_P0_settings_title_prefer_unmetered = 2131099808;
 			
 			// aapt resource value: 0x7f0600a1
-			public const int Vernacular_P0_settings_title_vehicle = 2131099809;
+			public const int Vernacular_P0_settings_title_start_at_boot = 2131099809;
 			
 			// aapt resource value: 0x7f0600a2
-			public const int Vernacular_P0_share_badge_clipboard = 2131099810;
+			public const int Vernacular_P0_settings_title_vehicle = 2131099810;
 			
 			// aapt resource value: 0x7f0600a3
-			public const int Vernacular_P0_share_badge_failure = 2131099811;
+			public const int Vernacular_P0_share_badge_clipboard = 2131099811;
 			
 			// aapt resource value: 0x7f0600a4
-			public const int Vernacular_P0_share_badge_text = 2131099812;
+			public const int Vernacular_P0_share_badge_failure = 2131099812;
 			
 			// aapt resource value: 0x7f0600a5
-			public const int Vernacular_P0_stats_kms_value_default = 2131099813;
+			public const int Vernacular_P0_share_badge_text = 2131099813;
 			
 			// aapt resource value: 0x7f0600a6
-			public const int Vernacular_P0_stats_kms_value_format = 2131099814;
+			public const int Vernacular_P0_stats_kms_value_default = 2131099814;
 			
 			// aapt resource value: 0x7f0600a7
-			public const int Vernacular_P0_stats_last_label = 2131099815;
+			public const int Vernacular_P0_stats_kms_value_format = 2131099815;
 			
 			// aapt resource value: 0x7f0600a8
-			public const int Vernacular_P0_stats_last_track_label = 2131099816;
+			public const int Vernacular_P0_stats_last_label = 2131099816;
 			
 			// aapt resource value: 0x7f0600a9
-			public const int Vernacular_P0_stats_overall_label = 2131099817;
+			public const int Vernacular_P0_stats_last_track_label = 2131099817;
 			
 			// aapt resource value: 0x7f0600aa
-			public const int Vernacular_P0_stats_week_label = 2131099818;
+			public const int Vernacular_P0_stats_overall_label = 2131099818;
 			
 			// aapt resource value: 0x7f0600ab
-			public const int Vernacular_P0_status_no_files_in_queue = 2131099819;
+			public const int Vernacular_P0_stats_week_label = 2131099819;
 			
 			// aapt resource value: 0x7f0600ac
-			public const int Vernacular_P0_title_about = 2131099820;
+			public const int Vernacular_P0_status_no_files_in_queue = 2131099820;
 			
 			// aapt resource value: 0x7f0600ad
-			public const int Vernacular_P0_title_error_reporting = 2131099821;
+			public const int Vernacular_P0_title_about = 2131099821;
 			
 			// aapt resource value: 0x7f0600ae
-			public const int Vernacular_P0_title_game = 2131099822;
+			public const int Vernacular_P0_title_error_reporting = 2131099822;
 			
 			// aapt resource value: 0x7f0600af
-			public const int Vernacular_P0_title_log = 2131099823;
+			public const int Vernacular_P0_title_game = 2131099823;
 			
 			// aapt resource value: 0x7f0600b0
-			public const int Vernacular_P0_title_main = 2131099824;
+			public const int Vernacular_P0_title_log = 2131099824;
 			
 			// aapt resource value: 0x7f0600b1
-			public const int Vernacular_P0_title_main_beta = 2131099825;
+			public const int Vernacular_P0_title_main = 2131099825;
 			
 			// aapt resource value: 0x7f0600b2
-			public const int Vernacular_P0_title_main_debug = 2131099826;
+			public const int Vernacular_P0_title_main_beta = 2131099826;
 			
 			// aapt resource value: 0x7f0600b3
-			public const int Vernacular_P0_title_queue = 2131099827;
+			public const int Vernacular_P0_title_main_debug = 2131099827;
 			
 			// aapt resource value: 0x7f0600b4
-			public const int Vernacular_P0_title_settings = 2131099828;
+			public const int Vernacular_P0_title_queue = 2131099828;
 			
 			// aapt resource value: 0x7f0600b5
-			public const int Vernacular_P0_title_stats = 2131099829;
+			public const int Vernacular_P0_title_settings = 2131099829;
 			
 			// aapt resource value: 0x7f0600b6
-			public const int Vernacular_P0_title_tutorial = 2131099830;
+			public const int Vernacular_P0_title_stats = 2131099830;
 			
 			// aapt resource value: 0x7f0600b7
-			public const int Vernacular_P0_tutorial_1_text_1 = 2131099831;
+			public const int Vernacular_P0_title_tutorial = 2131099831;
 			
 			// aapt resource value: 0x7f0600b8
-			public const int Vernacular_P0_tutorial_1_title = 2131099832;
+			public const int Vernacular_P0_tutorial_1_text_1 = 2131099832;
 			
 			// aapt resource value: 0x7f0600b9
-			public const int Vernacular_P0_tutorial_2_text_1 = 2131099833;
+			public const int Vernacular_P0_tutorial_1_title = 2131099833;
 			
 			// aapt resource value: 0x7f0600ba
-			public const int Vernacular_P0_tutorial_2_text_2 = 2131099834;
+			public const int Vernacular_P0_tutorial_2_text_1 = 2131099834;
 			
 			// aapt resource value: 0x7f0600bb
-			public const int Vernacular_P0_tutorial_2_title = 2131099835;
+			public const int Vernacular_P0_tutorial_2_text_2 = 2131099835;
 			
 			// aapt resource value: 0x7f0600bc
-			public const int Vernacular_P0_tutorial_3_question = 2131099836;
+			public const int Vernacular_P0_tutorial_2_title = 2131099836;
 			
 			// aapt resource value: 0x7f0600bd
-			public const int Vernacular_P0_tutorial_3_title = 2131099837;
+			public const int Vernacular_P0_tutorial_3_question = 2131099837;
 			
 			// aapt resource value: 0x7f0600be
-			public const int Vernacular_P0_tutorial_4_question = 2131099838;
+			public const int Vernacular_P0_tutorial_3_title = 2131099838;
 			
 			// aapt resource value: 0x7f0600bf
-			public const int Vernacular_P0_tutorial_4_title = 2131099839;
+			public const int Vernacular_P0_tutorial_4_question = 2131099839;
 			
 			// aapt resource value: 0x7f0600c0
-			public const int Vernacular_P0_tutorial_5_calibrate = 2131099840;
+			public const int Vernacular_P0_tutorial_4_title = 2131099840;
 			
 			// aapt resource value: 0x7f0600c1
-			public const int Vernacular_P0_tutorial_5_confirmation = 2131099841;
+			public const int Vernacular_P0_tutorial_5_calibrate = 2131099841;
 			
 			// aapt resource value: 0x7f0600c2
-			public const int Vernacular_P0_tutorial_5_explanation = 2131099842;
+			public const int Vernacular_P0_tutorial_5_confirmation = 2131099842;
 			
 			// aapt resource value: 0x7f0600c3
-			public const int Vernacular_P0_tutorial_5_instructions = 2131099843;
+			public const int Vernacular_P0_tutorial_5_explanation = 2131099843;
 			
 			// aapt resource value: 0x7f0600c4
-			public const int Vernacular_P0_tutorial_5_title = 2131099844;
+			public const int Vernacular_P0_tutorial_5_instructions = 2131099844;
 			
 			// aapt resource value: 0x7f0600c5
-			public const int Vernacular_P0_tutorial_6_text = 2131099845;
+			public const int Vernacular_P0_tutorial_5_title = 2131099845;
 			
 			// aapt resource value: 0x7f0600c6
-			public const int Vernacular_P0_tutorial_6_title = 2131099846;
+			public const int Vernacular_P0_tutorial_6_text = 2131099846;
 			
 			// aapt resource value: 0x7f0600c7
-			public const int Vernacular_P0_tutorial_7_missing_calibration = 2131099847;
+			public const int Vernacular_P0_tutorial_6_title = 2131099847;
 			
 			// aapt resource value: 0x7f0600c8
-			public const int Vernacular_P0_tutorial_7_text_1 = 2131099848;
+			public const int Vernacular_P0_tutorial_7_missing_calibration = 2131099848;
 			
 			// aapt resource value: 0x7f0600c9
-			public const int Vernacular_P0_tutorial_7_text_2 = 2131099849;
+			public const int Vernacular_P0_tutorial_7_text_1 = 2131099849;
 			
 			// aapt resource value: 0x7f0600ca
-			public const int Vernacular_P0_tutorial_7_title = 2131099850;
+			public const int Vernacular_P0_tutorial_7_text_2 = 2131099850;
 			
 			// aapt resource value: 0x7f0600cb
-			public const int Vernacular_P0_tutorial_bottom_question_notice = 2131099851;
+			public const int Vernacular_P0_tutorial_7_title = 2131099851;
 			
 			// aapt resource value: 0x7f0600cc
-			public const int Vernacular_P0_tutorial_done = 2131099852;
+			public const int Vernacular_P0_tutorial_bottom_question_notice = 2131099852;
 			
 			// aapt resource value: 0x7f0600cd
-			public const int Vernacular_P0_tutorial_redo = 2131099853;
+			public const int Vernacular_P0_tutorial_done = 2131099853;
 			
 			// aapt resource value: 0x7f0600ce
-			public const int Vernacular_P0_unknown_ppe_value = 2131099854;
+			public const int Vernacular_P0_tutorial_redo = 2131099854;
 			
 			// aapt resource value: 0x7f0600cf
-			public const int Vernacular_P0_vehicle_car = 2131099855;
+			public const int Vernacular_P0_unknown_ppe_value = 2131099855;
 			
 			// aapt resource value: 0x7f0600d0
-			public const int Vernacular_P0_vehicle_motorcycle = 2131099856;
+			public const int Vernacular_P0_vehicle_car = 2131099856;
 			
 			// aapt resource value: 0x7f0600d1
-			public const int Vernacular_P0_vehicle_truck = 2131099857;
+			public const int Vernacular_P0_vehicle_motorcycle = 2131099857;
+			
+			// aapt resource value: 0x7f0600d2
+			public const int Vernacular_P0_vehicle_truck = 2131099858;
 			
 			// aapt resource value: 0x7f060000
 			public const int abc_action_bar_home_description = 2131099648;

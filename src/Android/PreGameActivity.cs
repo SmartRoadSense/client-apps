@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Android.App;
+using Android.Content.PM;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V7.App;
-using Urho.Droid;
-using Urho;
 using SmartRoadSense.Shared;
-using Android.Content.PM;
+using Urho;
+using Urho.Droid;
 
 namespace SmartRoadSense.Android {
 
@@ -21,18 +22,17 @@ namespace SmartRoadSense.Android {
         UrhoSurfacePlaceholder surface;
         Urho.Application app;
 
-
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
-            this.Window.AddFlags(WindowManagerFlags.Fullscreen);
 
-            SetContentView(SmartRoadSense.Android.Resource.Layout.pregame);
-            LaunchGame();           
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+            SetContentView(SmartRoadSense.Android.Resource.Layout.activity_pregame);
+            _ = LaunchGame();
         }
 
-        async void LaunchGame() {
+        private async Task LaunchGame() {
             var mLayout = new RelativeLayout(this);
-            surface = UrhoSurface.CreateSurface(this);// (this, , true);
+            surface = UrhoSurface.CreateSurface(this);
             mLayout.AddView(surface);
             SetContentView(mLayout);
 
@@ -53,7 +53,6 @@ namespace SmartRoadSense.Android {
         }
 
         protected override void OnPause() {
-            Console.WriteLine("OnPause");
             UrhoSurface.OnPause();
             base.OnPause();
         }
@@ -64,7 +63,6 @@ namespace SmartRoadSense.Android {
         }
 
         protected override void OnDestroy() {
-            Console.WriteLine("OnDestroy");
             UrhoSurface.OnDestroy();
             base.OnDestroy();
         }
@@ -74,13 +72,15 @@ namespace SmartRoadSense.Android {
                 OnBackPressed();
                 return true;
             }
-            if(!UrhoSurface.DispatchKeyEvent(e))
+
+            if(!UrhoSurface.DispatchKeyEvent(e)) {
                 return false;
+            }
+
             return base.DispatchKeyEvent(e);
         }
 
         public override void OnWindowFocusChanged(bool hasFocus) {
-            Console.WriteLine("OnWindowFocusChanged");
             UrhoSurface.OnWindowFocusChanged(hasFocus);
             base.OnWindowFocusChanged(hasFocus);
         }

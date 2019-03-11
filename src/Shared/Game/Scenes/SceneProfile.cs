@@ -28,6 +28,7 @@ namespace SmartRoadSense.Shared {
         int counter;
         string _nameText;
         bool _isUserProfile;
+        LineEdit lineEdit;
 
         public SceneProfile(Game game, bool IsUserProfile = false) : base(game) {
             dim = GameInstance.ScreenInfo;
@@ -129,7 +130,8 @@ namespace SmartRoadSense.Shared {
             screen_info.SetPosition((int)(dim.XScreenRatio * -100), (int)(dim.YScreenRatio * 80));
             screen_info.SetFont(font, dim.XScreenRatio * 20);
             screen_info.SetColor(Color.White);
-            screen_info.Value = "Please enter a name and select an character.";
+            //screen_info.Value = "Please enter a name and select an character.";
+            screen_info.Value = "Please select a character.";
         }
 
         void CreateProfileBar() {
@@ -198,11 +200,11 @@ namespace SmartRoadSense.Shared {
             nameContainer.ImageRect = new IntRect(0, 288, 1012, 402);
             continueBtn.Visible = !string.IsNullOrEmpty(_nameText);
 
-            var enterTextString = "Enter name";
+            var enterTextString = "Rudy Reckless";
             if(_isUserProfile)
                 enterTextString = CharacterManager.Instance.User.Username;
 
-            LineEdit lineEdit = new LineEdit {
+            lineEdit = new LineEdit {
                 Name = "nameEdit",
                 Position = new IntVector2(dim.SetX(0), dim.SetY(0)),
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -216,6 +218,13 @@ namespace SmartRoadSense.Shared {
             lineEdit.TextElement.HorizontalAlignment = HorizontalAlignment.Center;
             nameContainer.AddChild(lineEdit);
 
+            continueBtn.Visible = true;
+            lineEdit.Focused += (FocusedEventArgs args) => {
+                _nameText = enterTextString;
+                System.Diagnostics.Debug.WriteLine("Focused line edit");
+            };
+
+            /*
             lineEdit.TextChanged += (TextChangedEventArgs args) => {
                 if(args.Text.Equals(enterTextString) || args.Text.Contains("Enter n")) {
                     lineEdit.Text = string.Empty;
@@ -230,6 +239,7 @@ namespace SmartRoadSense.Shared {
                 continueBtn.Visible = true;
                 _nameText = args.Text;
             };
+            */
 
             //male
             male = new Button();
@@ -381,7 +391,10 @@ namespace SmartRoadSense.Shared {
                 male.ImageRect = new IntRect(260, 0, 520, 110);
                 female.ImageRect = new IntRect(0, 0, 260, 110);
                 other.ImageRect = new IntRect(0, 0, 260, 110);
-            }else if (counter == 1) {
+                _nameText = "Rudy Reckless";
+                lineEdit.Text = _nameText;
+            }
+            else if (counter == 1) {
                 p_prev_img.ImageRect = new IntRect(1250, 1250, 1500, 1500);
                 character = JsonReaderCharacter.GetSingleCharacter(0);
                 int left_p = character.ImagePosition.Left;
@@ -395,30 +408,9 @@ namespace SmartRoadSense.Shared {
                 male.ImageRect = new IntRect(260, 0, 520, 110);
                 female.ImageRect = new IntRect(0, 0, 260, 110);
                 other.ImageRect = new IntRect(0, 0, 260, 110);
+                _nameText = "Rudy Reckless";
+                lineEdit.Text = _nameText;
             }
-           /* else if (counter == 43) {
-                prev_img.ImageRect = new IntRect(750, 1250, 1000, 1500);
-                sel_img.ImageRect = new IntRect(1000, 1250, 1250, 1500);
-                character = JsonReaderCharacter.GetSingleCharacter(44);
-                int left_n = character.ImagePosition.Left;
-                int top_n = character.ImagePosition.Top;
-                int right_n = character.ImagePosition.Right;
-                int bottom_n = character.ImagePosition.Bottom;
-                sel_img.ImageRect = new IntRect(left, top, right, bottom);
-                n_next_img.ImageRect = new IntRect(1250, 1250, 1500, 1500);
-                male.ImageRect = new IntRect(0, 0, 260, 110);
-                female.ImageRect = new IntRect(0, 0, 260, 110);
-                other.ImageRect = new IntRect(260, 0, 520, 110);
-            }
-            else if (counter == 45) {
-                prev_img.ImageRect = new IntRect(750, 1250, 1000, 1500);
-                sel_img.ImageRect = new IntRect(1000, 1250, 1250, 1500);
-                next_img.ImageRect = new IntRect(1250, 1250, 1500, 1500);
-                n_next_img.ImageRect = new IntRect(1250, 1250, 1500, 1500);
-                male.ImageRect = new IntRect(0, 0, 260, 110);
-                female.ImageRect = new IntRect(0, 0, 260, 110);
-                other.ImageRect = new IntRect(260, 0, 520, 110);
-            }*/
             else {
                 sel_img.ImageRect = new IntRect(left, top, right, bottom);
                 next_img.Enabled = true;
@@ -429,16 +421,22 @@ namespace SmartRoadSense.Shared {
                         male.ImageRect = new IntRect(260, 0, 520, 110);
                         female.ImageRect = new IntRect(0, 0, 260, 110);
                         other.ImageRect = new IntRect(0, 0, 260, 110);
+                        _nameText = "Rudy Reckless";
+                        lineEdit.Text = _nameText;
                         break;
                     case 1:
                         male.ImageRect = new IntRect(0, 0, 260, 110);
                         female.ImageRect = new IntRect(260, 0, 520, 110);
                         other.ImageRect = new IntRect(0, 0, 260, 110);
+                        _nameText = "Lauren Leadfoot";
+                        lineEdit.Text = _nameText;
                         break;
                     case 2:
                         male.ImageRect = new IntRect(0, 0, 260, 110);
                         female.ImageRect = new IntRect(0, 0, 260, 110);
                         other.ImageRect = new IntRect(260, 0, 520, 110);
+                        _nameText = "Alex Axxel";
+                        lineEdit.Text = _nameText;
                         break;
                 }
                 int p_prev;

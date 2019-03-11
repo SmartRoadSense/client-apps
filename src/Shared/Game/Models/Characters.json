@@ -1,0 +1,455 @@
+{
+  "CHARACTERS": [
+    {
+      "ID_CHARACTER": "0",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "0",
+        "RIGHT": "250",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "1",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "0",
+        "RIGHT": "500",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "2",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "0",
+        "RIGHT": "750",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "3",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "0",
+        "RIGHT": "1000",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "4",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "0",
+        "RIGHT": "1250",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "5",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "0",
+        "RIGHT": "1500",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "6",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "0",
+        "RIGHT": "1750",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "7",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "1750",
+        "TOP": "0",
+        "RIGHT": "2000",
+        "BOTTOM": "250"
+      }
+    },
+    {
+      "ID_CHARACTER": "8",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "250",
+        "RIGHT": "250",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "9",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "250",
+        "RIGHT": "500",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "10",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "250",
+        "RIGHT": "750",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "11",
+      "TYPE": "0",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "250",
+        "RIGHT": "1000",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "12",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "250",
+        "RIGHT": "1250",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "13",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "250",
+        "RIGHT": "1500",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "14",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "250",
+        "RIGHT": "1750",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "15",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1750",
+        "TOP": "250",
+        "RIGHT": "2000",
+        "BOTTOM": "500"
+      }
+    },
+    {
+      "ID_CHARACTER": "16",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "500",
+        "RIGHT": "250",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "17",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "500",
+        "RIGHT": "500",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "18",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "500",
+        "RIGHT": "750",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "19",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "500",
+        "RIGHT": "1000",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "20",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "500",
+        "RIGHT": "1250",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "21",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "500",
+        "RIGHT": "1500",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "22",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "500",
+        "RIGHT": "1750",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "23",
+      "TYPE": "1",
+      "IMAGE_POSITION": {
+        "LEFT": "1750",
+        "TOP": "500",
+        "RIGHT": "2000",
+        "BOTTOM": "750"
+      }
+    },
+    {
+      "ID_CHARACTER": "24",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "750",
+        "RIGHT": "250",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "25",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "750",
+        "RIGHT": "500",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "26",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "750",
+        "RIGHT": "750",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "27",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "750",
+        "RIGHT": "1000",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "28",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "750",
+        "RIGHT": "1250",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "29",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "750",
+        "RIGHT": "1500",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "30",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "750",
+        "RIGHT": "1750",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "31",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1750",
+        "TOP": "750",
+        "RIGHT": "2000",
+        "BOTTOM": "1000"
+      }
+    },
+    {
+      "ID_CHARACTER": "32",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "1000",
+        "RIGHT": "250",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "33",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "1000",
+        "RIGHT": "500",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "34",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "1000",
+        "RIGHT": "750",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "35",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "1000",
+        "RIGHT": "1000",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "36",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "1000",
+        "RIGHT": "1250",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "37",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "1000",
+        "RIGHT": "1500",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "38",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "1000",
+        "RIGHT": "1750",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "39",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1750",
+        "TOP": "1000",
+        "RIGHT": "2000",
+        "BOTTOM": "1250"
+      }
+    },
+    {
+      "ID_CHARACTER": "40",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "1250",
+        "RIGHT": "250",
+        "BOTTOM": "1500"
+      }
+    },
+    {
+      "ID_CHARACTER": "41",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "1250",
+        "RIGHT": "500",
+        "BOTTOM": "1500"
+      }
+    },
+    {
+      "ID_CHARACTER": "42",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "1250",
+        "RIGHT": "750",
+        "BOTTOM": "1500"
+      }
+    },
+    {
+      "ID_CHARACTER": "43",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "1250",
+        "RIGHT": "1000",
+        "BOTTOM": "1500"
+      }
+    },
+    {
+      "ID_CHARACTER": "44",
+      "TYPE": "2",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "1250",
+        "RIGHT": "1250",
+        "BOTTOM": "1500"
+      }
+    }
+    
+  ]
+}

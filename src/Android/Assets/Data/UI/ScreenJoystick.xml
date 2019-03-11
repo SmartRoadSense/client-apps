@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<element>
+    <!------------------->
+    <!-- DEBUG SECTION -->
+    <!------------------->
+    
+    <!-- SHOW/HIDE COLLISION GEOMETRY -->
+    <element type="Button">
+        <attribute name="Name" value="Button999" />
+        <attribute name="Position" value="-100 -380" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/components_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="G" />
+        </element>
+    </element>
+    <!-- TEMP CLOSE BUTTON -->
+    <element type="Button">
+        <attribute name="Name" value="Button99" />
+        <attribute name="Position" value="-100 -580" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/close_square.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Blend Mode" value="alpha" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="X" />
+        </element>
+    </element>
+
+    <!-------------------->
+    <!-- BOTTOM SECTION -->
+    <!-------------------->
+    
+    <!-- ACCELERATE -->
+    <element type="Button">
+        <attribute name="Name" value="Button0" />
+        <attribute name="Position" value="-100 -190" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/a_button.png" />
+        <attribute name="Image Rect" value="0 0 512 512" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="D" />
+        </element>
+    </element>
+    <!-- BRAKE -->
+    <element type="Button">
+        <attribute name="Name" value="Button1" />
+        <attribute name="Position" value="-240 -40" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/b_button.png" />
+        <attribute name="Image Rect" value="0 0 512 512" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="A" />
+        </element>
+    </element>
+    <!-- ROTATE LEFT -->
+    <element type="Button">
+        <attribute name="Name" value="Button2" />
+        <attribute name="Position" value="100 -190" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/r_left_button.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="S" />
+        </element>
+    </element>
+    <!-- ROTATE RIGHT -->
+    <element type="Button">
+        <attribute name="Name" value="Button3" />
+        <attribute name="Position" value="240 -40" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/r_right_button.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="W" />
+        </element>
+    </element>
+    <!-- BOOSTER -->
+    <element type="Button">
+        <attribute name="Name" value="Button4" />
+        <attribute name="Position" value="100 -380" />
+        <attribute name="Size" value="160 160" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/booster.png" />
+        <attribute name="Image Rect" value="0 0 256 256" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="B" />
+        </element>
+    </element>
+    <!-- BOOST 1 -->
+    <element type="Button">
+        <attribute name="Name" value="button_boost_1" />
+        <attribute name="Position" value="30 -520" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/1_boost_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <!--
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="B" />
+        </element>
+        -->
+    </element>
+    <!-- BOOST 2 -->
+    <element type="Button">
+        <attribute name="Name" value="button_boost_2" />
+        <attribute name="Position" value="130 -560" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/2_boost_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <!--
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="B" />
+        </element>
+        -->
+    </element>
+    <!-- BOOST 3 -->
+    <element type="Button">
+        <attribute name="Name" value="button_boost_3" />
+        <attribute name="Position" value="230 -520" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Bottom" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/3_boost_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+        <attribute name="Pressed Image Offset" value="0 0" />
+        <!--
+        <element type="Text">
+            <attribute name="Name" value="KeyBinding" />
+            <attribute name="Text" value="B" />
+        </element>
+        -->
+    </element>
+
+    <!----------------->
+    <!-- TOP SECTION -->
+    <!----------------->
+
+    <!-- COINS ICON -->
+    <element type="BorderImage">
+        <attribute name="Name" value="Button8" />
+        <attribute name="Position" value="300 80" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/coins_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    <!-- COINS BOX -->
+    <element type="BorderImage">
+        <attribute name="Name" value="CoinsBox" />
+        <attribute name="Position" value="150 90" />
+        <attribute name="Size" value="200 80" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/coins_box.png" />
+        <attribute name="Image Rect" value="0 0 256 90" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    <!-- COMPONENTS ICON -->
+    <element type="BorderImage">
+        <attribute name="Name" value="Button9" />
+        <attribute name="Position" value="300 190" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/components_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    <!-- COMPONENTS BOX -->
+    <element type="BorderImage">
+        <attribute name="Name" value="ComponentsBox" />
+        <attribute name="Position" value="220 200" />
+        <attribute name="Size" value="140 80" />
+        <attribute name="Horiz Alignment" value="Left" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/coins_box.png" />
+        <attribute name="Image Rect" value="0 0 204 90" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    
+    <!-- MAP BOX -->
+    <element type="BorderImage">
+        <attribute name="Name" value="Button12" />
+        <attribute name="Position" value="0 70" />
+        <attribute name="Size" value="1100 240" />
+        <attribute name="Horiz Alignment" value="Center" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/map_box.png" />
+        <attribute name="Image Rect" value="0 0 1024 173" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+
+    <!-- DISTANCE BOX -->
+    <element type="BorderImage">
+        <attribute name="Name" value="Button13" />
+        <attribute name="Position" value="0 320" />
+        <attribute name="Size" value="300 80" />
+        <attribute name="Horiz Alignment" value="Center" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/distance_box.png" />
+        <attribute name="Image Rect" value="0 0 256 90" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+
+    <!-- TIME ICON -->
+    <element type="BorderImage">
+        <attribute name="Name" value="Button10" />
+        <attribute name="Position" value="-300 80" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/time_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    <!-- TIME BOX -->
+    <element type="BorderImage">
+        <attribute name="Name" value="TimeBox" />
+        <attribute name="Position" value="-120 90" />
+        <attribute name="Size" value="260 80" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/time_best_box.png" />
+        <attribute name="Image Rect" value="0 0 365 95" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    
+    <!-- BEST TIME ICON -->
+    <element type="BorderImage">
+        <attribute name="Name" value="Button11" />
+        <attribute name="Position" value="-300 190" />
+        <attribute name="Size" value="100 100" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/best_time_icon.png" />
+        <attribute name="Image Rect" value="0 0 128 128" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+    <!-- BEST TIME BOX -->
+    <element type="BorderImage">
+        <attribute name="Name" value="TimeBestBox" />
+        <attribute name="Position" value="-120 200" />
+        <attribute name="Size" value="260 80" />
+        <attribute name="Horiz Alignment" value="Right" />
+        <attribute name="Vert Alignment" value="Top" />
+        <attribute name="Texture" value="Texture2D;Textures/TouchInput/time_best_box.png" />
+        <attribute name="Image Rect" value="0 0 365 95" />
+        <attribute name="Hover Image Offset" value="0 0" />
+    </element>
+</element>

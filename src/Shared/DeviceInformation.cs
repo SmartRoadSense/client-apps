@@ -49,7 +49,7 @@ namespace SmartRoadSense.Shared {
 #elif __IOS__
             return new DeviceInformation {
                 OperatingSystemName = "iOS",
-                OperatingSystemVersion =  UIDevice.CurrentDevice.SystemVersion,
+                OperatingSystemVersion =  new Version(UIDevice.CurrentDevice.SystemVersion).ToString(),
                 Manufacturer = "Apple",
                 Model = UIDevice.CurrentDevice.Model
             };

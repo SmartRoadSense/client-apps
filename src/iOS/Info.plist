@@ -19,10 +19,14 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>gamekit</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
@@ -39,7 +43,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.1</string>
+	<string>3.1.2</string>
 	<key>CFBundleName</key>
 	<string>SmartRoadSense</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -66,8 +70,6 @@
 		<string>location</string>
 		<string>fetch</string>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>42</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -75,5 +77,9 @@
 			<string>CFBundleTypeName</string>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>50</string>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 </dict>
 </plist>

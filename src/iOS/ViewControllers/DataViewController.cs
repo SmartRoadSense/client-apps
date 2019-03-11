@@ -1,6 +1,4 @@
-
 using System;
-
 using Foundation;
 using UIKit;
 using SmartRoadSense.Shared;
@@ -9,9 +7,8 @@ using CoreGraphics;
 using System.Threading;
 using System.Drawing;
 
-namespace SmartRoadSense.iOS
-{
-	public partial class DataViewController : UIViewController
+namespace SmartRoadSense.iOS {
+    public partial class DataViewController : UIViewController
 	{
 
 		protected DataTableSource tableSource;
@@ -113,7 +110,7 @@ namespace SmartRoadSense.iOS
 
 					// create the activity spinner, center it horizontall and put it 5 points above center x
 					activitySpinner = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.WhiteLarge);
-					activitySpinner.Frame = new RectangleF (
+                    activitySpinner.Frame = new RectangleF(
 						(float)(centerX - (activitySpinner.Frame.Width / 2)) ,
 						(float)(centerY - activitySpinner.Frame.Height - 20) ,
 						(float)activitySpinner.Frame.Width ,

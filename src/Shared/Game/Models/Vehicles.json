@@ -1,0 +1,724 @@
+{
+  "VEHICLES": [
+    {
+      "ID_VEHICLE": "0",
+      "VEHICLE_NAME": "80'S PICKUP TRUCK",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "0",
+        "RIGHT": "1750",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "1500",
+        "TOP": "0",
+        "RIGHT": "1750",
+        "BOTTOM": "250"
+      },
+	  "WHEELS_POSITION": [
+        {
+          "LEFT": "400",
+          "TOP": "0",
+          "RIGHT": "450",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1550",
+          "Y":  "450"
+        },
+		{
+          "X": "1698",
+          "Y":  "450"
+        }
+      ],
+      "PERFORMANCE": "3",
+      "SUSPENSIONS": "4",
+      "WHEEL": "5",
+      "BRAKE": "3",
+      "UNLOCK_COST": "10000"
+    },
+    {
+      "ID_VEHICLE": "1",
+      "VEHICLE_NAME": "MODERN PICKUP TRUCK",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "250",
+        "RIGHT": "250",
+        "BOTTOM": "500"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "0",
+        "TOP": "250",
+        "RIGHT": "250",
+        "BOTTOM": "500"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "500",
+          "TOP": "0",
+          "RIGHT": "550",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "500",
+          "TOP": "0",
+          "RIGHT": "550",
+          "BOTTOM": "50"
+        },
+		 {
+          "LEFT": "500",
+          "TOP": "0",
+          "RIGHT": "550",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "40",
+          "Y": "450"
+        },
+		 {
+          "X": "72",
+          "Y": "450"
+        },
+		 {
+          "X": "201",
+          "Y": "450"
+        }
+      ],
+      "PERFORMANCE": "4",
+      "SUSPENSIONS": "3",
+      "WHEEL": "5",
+      "BRAKE": "3",
+      "UNLOCK_COST": "10000"
+    },
+    {
+      "ID_VEHICLE": "2",
+      "VEHICLE_NAME": "ALL TERRAIN VEHICLE",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "0",
+        "RIGHT": "750",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "500",
+        "TOP": "0",
+        "RIGHT": "750",
+        "BOTTOM": "250"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "50",
+          "TOP": "0",
+          "RIGHT": "100",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "575",
+          "Y": "200"
+        },
+        {
+          "X": "689",
+          "Y": "200"
+        }
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "3",
+      "WHEEL": "3",
+      "BRAKE": "2",
+      "UNLOCK_COST": "10000"
+    },
+    {
+      "ID_VEHICLE": "3",
+      "VEHICLE_NAME": "STRANGER",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "0",
+        "RIGHT": "1000",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "750",
+        "TOP": "0",
+        "RIGHT": "1000",
+        "BOTTOM": "250"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "150",
+          "TOP": "0",
+          "RIGHT": "200",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "810",
+          "Y": "200"
+        },
+        {
+          "X": "944",
+          "Y": "200"
+        }
+      ],
+      "PERFORMANCE": "5",
+      "SUSPENSIONS": "3",
+      "WHEEL": "3",
+      "BRAKE": "7",
+      "UNLOCK_COST": "0"
+    },
+    {
+      "ID_VEHICLE": "4",
+      "VEHICLE_NAME": "POLICE CAR",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "0",
+        "RIGHT": "250",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "0",
+        "TOP": "0",
+        "RIGHT": "250",
+        "BOTTOM": "250"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "0",
+          "TOP": "0",
+          "RIGHT": "50",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "66",
+          "Y": "200"
+        },
+        {
+          "X": "194",
+          "Y": "200"
+        }
+      ],
+      "PERFORMANCE": "9",
+      "SUSPENSIONS": "3",
+      "WHEEL": "3",
+      "BRAKE": "3",
+      "UNLOCK_COST": "0"
+    },
+    {
+      "ID_VEHICLE": "5",
+      "VEHICLE_NAME": "BIG TRUCK",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "0",
+        "RIGHT": "1250",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+		"LEFT": "1000",
+        "TOP": "0",
+        "RIGHT": "1250",
+        "BOTTOM": "250"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "200",
+          "TOP": "0",
+          "RIGHT": "250",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "200",
+          "TOP": "0",
+          "RIGHT": "250",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "200",
+          "TOP": "0",
+          "RIGHT": "250",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "250",
+          "TOP": "0",
+          "RIGHT": "300",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1032",
+          "Y": "200"
+        },
+		 {
+          "X": "1120",
+          "Y": "200"
+        },
+		 {
+          "X": "1160",
+          "Y": "200"
+        },
+		 {
+          "X": "1216",
+          "Y": "200"
+        }
+      ],
+      "PERFORMANCE": "2",
+      "SUSPENSIONS": "2",
+      "WHEEL": "6",
+      "BRAKE": "5",
+      "UNLOCK_COST": "10000"
+    },
+    {
+      "ID_VEHICLE": "6",
+      "VEHICLE_NAME": "MOTORBIKE AND SIDECAR",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "250",
+        "RIGHT": "500",
+        "BOTTOM": "500"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "250",
+        "TOP": "250",
+        "RIGHT": "500",
+        "BOTTOM": "500"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "500",
+          "TOP": "0",
+          "RIGHT": "550",
+          "BOTTOM": "50"
+        },
+		 {
+          "LEFT": "550",
+          "TOP": "0",
+          "RIGHT": "600",
+          "BOTTOM": "50"
+        },
+		 {
+          "LEFT": "500",
+          "TOP": "0",
+          "RIGHT": "550",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "290",
+          "Y": "450"
+        },
+		{
+          "X": "385",
+          "Y": "450"
+        },
+		{
+          "X": "460",
+          "Y": "450"
+        }
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "3",
+      "WHEEL": "2",
+      "BRAKE": "4",
+      "UNLOCK_COST": "10000"
+    },
+    {
+      "ID_VEHICLE": "7",
+      "VEHICLE_NAME": "HOVERCRAFT",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "250",
+        "RIGHT": "1000",
+        "BOTTOM": "500"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "750",
+        "TOP": "250",
+        "RIGHT": "1000",
+        "BOTTOM": "500"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "700",
+          "TOP": "0",
+          "RIGHT": "750",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "880",
+          "Y": "450"
+        }
+      ],
+      "PERFORMANCE": "5",
+      "SUSPENSIONS": "15",
+      "WHEEL": "5",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "8",
+      "VEHICLE_NAME": "MONSTER TRUCK",
+      "IMAGE_POSITION": {
+        "LEFT": "1500",
+        "TOP": "250",
+        "RIGHT": "1750",
+        "BOTTOM": "500"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "1500",
+        "TOP": "250",
+        "RIGHT": "1750",
+        "BOTTOM": "500"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "900",
+          "TOP": "0",
+          "RIGHT": "950",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "950",
+          "TOP": "0",
+          "RIGHT": "1000",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1560",
+          "Y": "450"
+        },
+		{
+          "X": "1695",
+          "Y": "450"
+        }
+      ],
+      "PERFORMANCE": "7",
+      "SUSPENSIONS": "10",
+      "WHEEL": "7",
+      "BRAKE": "6",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "9",
+      "VEHICLE_NAME": "X-BUSTERS",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "0",
+        "RIGHT": "500",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "250",
+        "TOP": "0",
+        "RIGHT": "500",
+        "BOTTOM": "250"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "50",
+          "TOP": "0",
+          "RIGHT": "100",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "308",
+          "Y": "200"
+        },
+        {
+          "X": "448",
+          "Y": "200"
+        }
+      ],
+      "PERFORMANCE": "7",
+      "SUSPENSIONS": "6",
+      "WHEEL": "5",
+      "BRAKE": "7",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "10",
+      "VEHICLE_NAME": "CAPITAN COPPERPOT",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "250",
+        "RIGHT": "1250",
+        "BOTTOM": "500"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "1000",
+        "TOP": "250",
+        "RIGHT": "1250",
+        "BOTTOM": "500"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "750",
+          "TOP": "0",
+          "RIGHT": "800",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "800",
+          "TOP": "0",
+          "RIGHT": "850",
+          "BOTTOM": "50"
+        },
+		{
+          "LEFT": "750",
+          "TOP": "0",
+          "RIGHT": "800",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1027",
+          "Y": "427"
+        },
+		    {
+          "X": "1047",
+          "Y": "450"
+        },
+		    {
+          "X": "1064",
+          "Y": "450"
+        },
+		    {
+          "X": "1082",
+          "Y": "450"
+        },
+		    {
+          "X": "1099",
+          "Y": "450"
+        },
+		    {
+          "X": "1116",
+          "Y": "450"
+        },
+		    {
+          "X": "1134",
+          "Y": "450"
+        },
+		    {
+          "X": "1152",
+          "Y": "450"
+        },
+		    {
+          "X": "1169",
+          "Y": "450"
+        },
+		    {
+          "X": "1188",
+          "Y": "450"
+        },
+		    {
+          "X": "1217",
+          "Y": "427"
+        }
+      ],
+      "PERFORMANCE": "5",
+      "SUSPENSIONS": "10",
+      "WHEEL": "10",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "11",
+      "VEHICLE_NAME": "LOVEBUG",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "250",
+        "RIGHT": "750",
+        "BOTTOM": "500"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "500",
+        "TOP": "250",
+        "RIGHT": "750",
+        "BOTTOM": "500"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "600",
+          "TOP": "0",
+          "RIGHT": "650",
+          "BOTTOM": "50"
+        },
+		 {
+          "LEFT": "650",
+          "TOP": "0",
+          "RIGHT": "700",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "550",
+          "Y": "450"
+        },
+		{
+          "X": "708",
+          "Y": "450"
+        }
+      ],
+      "PERFORMANCE": "10",
+      "SUSPENSIONS": "7",
+      "WHEEL": "6",
+      "BRAKE": "7",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "12",
+      "VEHICLE_NAME": "ROCKY ROAD",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "0",
+        "RIGHT": "1500",
+        "BOTTOM": "250"
+      },
+	  "BODY_POSITION": {
+        "LEFT": "1250",
+        "TOP": "0",
+        "RIGHT": "1500",
+        "BOTTOM": "250"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "300",
+          "TOP": "0",
+          "RIGHT": "350",
+          "BOTTOM": "50"
+        },
+		    {
+          "LEFT": "350",
+          "TOP": "0",
+          "RIGHT": "400",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1311",
+          "Y": "200"
+        },
+		    {
+          "X": "1439",
+          "Y": "200"
+        }
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "6",
+      "BRAKE": "7",
+      "UNLOCK_COST": "-1"
+      },
+      {
+        "ID_VEHICLE": "13",
+        "VEHICLE_NAME": "MAXIMUS MADDUS",
+        "IMAGE_POSITION": {
+          "LEFT": "1250",
+          "TOP": "250",
+          "RIGHT": "1500",
+          "BOTTOM": "500"
+        },
+  	    "BODY_POSITION": {
+        "LEFT": "1250",
+        "TOP": "250",
+        "RIGHT": "1500",
+        "BOTTOM": "500"
+        },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "850",
+          "TOP": "0",
+          "RIGHT": "900",
+          "BOTTOM": "50"
+        },
+		    {
+          "LEFT": "850",
+          "TOP": "0",
+          "RIGHT": "900",
+          "BOTTOM": "50"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1354",
+          "Y": "450"
+        },
+		    {
+          "X": "1462",
+          "Y": "450"
+        }
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    }
+  ]
+}

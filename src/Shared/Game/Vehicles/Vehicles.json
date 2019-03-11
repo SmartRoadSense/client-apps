@@ -1,0 +1,199 @@
+{
+	"80S_PICKUP": {
+		"ID_VEHICLE": "ID_0",
+		"VEHICLE_NAME": "80'S PICKUP TRUCK",
+		"IMAGE_POSITION":{
+			"LEFT": "1500",
+			"TOP": "0",
+			"RIGHT": "1750",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "3",
+		"SUSPENSIONS": "4",
+		"WHEEL": "5",
+		"BRAKE": "3",
+		"UNLOCK_LEVEL": "0"
+	},
+	"MODERN_PICKUP": {
+		"ID_VEHICLE": "ID_1",
+		"VEHICLE_NAME": "MODERN PICKUP TRUCK",
+		"IMAGE_POSITION":{
+			"LEFT": "0",
+			"TOP": "250",
+			"RIGHT": "250",
+			"BOTTOM": "500"},
+		"PERFORMANCE": "4",
+		"SUSPENSIONS": "3",
+		"WHEEL": "5",
+		"BRAKE": "3",
+		"UNLOCK_LEVEL": "0"
+	},
+	"ALL TERRAIN": {
+		"ID_VEHICLE": "ID_2",
+		"VEHICLE_NAME": "ALL TERRAIN VEHICLE",
+		"IMAGE_POSITION":{
+			"LEFT": "500",
+			"TOP": "0",
+			"RIGHT": "750",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "6",
+		"SUSPENSIONS": "3",
+		"WHEEL": "3",
+		"BRAKE": "2",
+		"UNLOCK_LEVEL": "0"
+	},
+	"STANGER": {
+		"ID_VEHICLE": "ID_3",
+		"VEHICLE_NAME": "STANGER",
+		"IMAGE_POSITION":{
+			"LEFT": "750",
+			"TOP": "0",
+			"RIGHT": "1000",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "7",
+		"SUSPENSIONS": "2",
+		"WHEEL": "3",
+		"BRAKE": "3",
+		"UNLOCK_LEVEL": "0"
+	},
+	"POLICE": {
+		"ID_VEHICLE": "ID_4",
+		"VEHICLE_NAME": "60'S PICKUP TRUCK",
+		"IMAGE_POSITION":{
+			"LEFT": "0",
+			"TOP": "0",
+			"RIGHT": "250",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "5",
+		"SUSPENSIONS": "3",
+		"WHEEL": "3",
+		"BRAKE": "4",
+		"UNLOCK_LEVEL": "0"
+	},
+	"BIG_TRUCK": {
+		"ID_VEHICLE": "ID_5",
+		"VEHICLE_NAME": "BIG TRUCK",
+		"IMAGE_POSITION":{
+			"LEFT": "1000",
+			"TOP": "0",
+			"RIGHT": "1250",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "2",
+		"SUSPENSIONS": "2",
+		"WHEEL": "6",
+		"BRAKE": "5",
+		"UNLOCK_LEVEL": "0"
+	},
+	"MOTORBIKE": {
+		"ID_VEHICLE": "ID_6",
+		"VEHICLE_NAME": "MOTORBIKE AND SIDECAR",
+		"IMAGE_POSITION":{
+			"LEFT": "250",
+			"TOP": "250",
+			"RIGHT": "500",
+			"BOTTOM": "500"},
+		"PERFORMANCE": "6",
+		"SUSPENSIONS": "3",
+		"WHEEL": "2",
+		"BRAKE": "4",
+		"UNLOCK_LEVEL": "0"
+	},
+	"HOVERCRAFT": {
+		"ID_VEHICLE": "ID_7",
+		"VEHICLE_NAME": "HOVERCRAFT",
+		"IMAGE_POSITION":{
+			"LEFT": "750",
+			"TOP": "250",
+			"RIGHT": "1000",
+			"BOTTOM": "500"},
+		"PERFORMANCE": "5",
+		"SUSPENSIONS": "15",
+		"WHEEL": "5",
+		"BRAKE": "5",
+		"UNLOCK_LEVEL": "0"
+	},
+	"MONSTER_TRUCK": {
+		"ID_VEHICLE": "ID_8",
+		"VEHICLE_NAME": "MONSTER TRUCK",
+		"IMAGE_POSITION":{
+			"LEFT": "1750",
+			"TOP": "0",
+			"RIGHT": "2054",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "7",
+		"SUSPENSIONS": "10",
+		"WHEEL": "7",
+		"BRAKE": "6",
+		"UNLOCK_LEVEL": "0"
+	},
+	"X-BUSTERS": {
+		"ID_VEHICLE": "ID_9",
+		"VEHICLE_NAME": "X-BUSTERS",
+		"IMAGE_POSITION":{
+			"LEFT": "250",
+			"TOP": "0",
+			"RIGHT": "500",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "7",
+		"SUSPENSIONS": "6",
+		"WHEEL": "5",
+		"BRAKE": "7",
+		"UNLOCK_LEVEL": "0"
+	},
+	"CAPITAN_COPPERPOT": {
+		"ID_VEHICLE": "ID_10",
+		"VEHICLE_NAME": "CAPITAN COPPERPOT",
+		"IMAGE_POSITION":{
+			"LEFT": "1000",
+			"TOP": "250",
+			"RIGHT": "1250",
+			"BOTTOM": "500"},
+		"PERFORMANCE": "5",
+		"SUSPENSIONS": "10",
+		"WHEEL": "10",
+		"BRAKE": "5",
+		"UNLOCK_LEVEL": "0"
+	},
+	"LOVEBUG": {
+		"ID_VEHICLE": "ID_11",
+		"VEHICLE_NAME": "LOVEBUG",
+		"IMAGE_POSITION":{
+			"LEFT": "500",
+			"TOP": "250",
+			"RIGHT": "750",
+			"BOTTOM": "500"},
+		"PERFORMANCE": "10",
+		"SUSPENSIONS": "7",
+		"WHEEL": "6",
+		"BRAKE": "7",
+		"UNLOCK_LEVEL": "0"
+	},
+	"ROCKY_ROAD": {
+		"ID_VEHICLE": "ID_12",
+		"VEHICLE_NAME": "ROCKY ROAD",
+		"IMAGE_POSITION":{
+			"LEFT": "1250",
+			"TOP": "0",
+			"RIGHT": "1500",
+			"BOTTOM": "250"},
+		"PERFORMANCE": "6",
+		"SUSPENSIONS": "6",
+		"WHEEL": "6",
+		"BRAKE": "7",
+		"UNLOCK_LEVEL": "0"
+	},
+	"MAXIMUS_MADDUS": {
+		"ID_VEHICLE": "ID_13",
+		"VEHICLE_NAME": "MAXIMUS MADDUS",
+		"IMAGE_POSITION":{
+			"LEFT": "1250",
+			"TOP": "250",
+			"RIGHT": "1500",
+			"BOTTOM": "500"},
+		"PERFORMANCE": "6",
+		"SUSPENSIONS": "6",
+		"WHEEL": "8",
+		"BRAKE": "5",
+		"UNLOCK_LEVEL": "0"
+	}
+
+}

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="o5w-Uv-PRa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="o5w-Uv-PRa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +27,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SeU-7K-zeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="651" y="387"/>
+            <point key="canvasLocation" x="1041.5999999999999" y="348.12593703148428"/>
         </scene>
         <!--Introduction Page View Controller-->
         <scene sceneID="3Rw-oF-iiC">
@@ -37,7 +35,7 @@
                 <pageViewController storyboardIdentifier="IntroductionPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="TQN-3I-A71" customClass="IntroductionPageViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6eC-We-I2e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-290" y="387"/>
+            <point key="canvasLocation" x="-464" y="348.12593703148428"/>
         </scene>
         <!--Introduction Page Detail View Controller-->
         <scene sceneID="feB-t2-CAC">
@@ -52,43 +50,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-G7-AQ1">
-                                <rect key="frame" x="128" y="617" width="30" height="30"/>
+                                <rect key="frame" x="128.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="kgn-G7-AQ1" secondAttribute="height" multiplier="1:1" id="t71-d2-wcv"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0i5-Bj-Hei">
-                                <rect key="frame" x="84" y="617" width="30" height="30"/>
+                                <rect key="frame" x="84.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0i5-Bj-Hei" secondAttribute="height" multiplier="1:1" id="yDs-JS-Mm6"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SCV-Q9-DkT">
-                                <rect key="frame" x="40" y="617" width="30" height="30"/>
+                                <rect key="frame" x="40.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SCV-Q9-DkT" secondAttribute="height" multiplier="1:1" id="afU-b0-vn4"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AUn-t0-jHj">
-                                <rect key="frame" x="172" y="617" width="30" height="30"/>
+                                <rect key="frame" x="172.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="AUn-t0-jHj" secondAttribute="height" multiplier="1:1" id="gCt-le-wxd"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AE1-hE-sQb">
-                                <rect key="frame" x="216" y="617" width="30" height="30"/>
+                                <rect key="frame" x="216.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="AE1-hE-sQb" secondAttribute="height" multiplier="1:1" id="5Yk-6w-Oz7"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ESG-1K-aAq">
-                                <rect key="frame" x="260" y="617" width="30" height="30"/>
+                                <rect key="frame" x="260.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ESG-1K-aAq" secondAttribute="height" multiplier="1:1" id="ud4-5E-1Ql"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="03v-5v-NaM">
-                                <rect key="frame" x="304" y="617" width="30" height="30"/>
+                                <rect key="frame" x="304.5" y="617" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="03v-5v-NaM" secondAttribute="height" multiplier="1:1" id="LZK-zX-m38"/>
                                 </constraints>
@@ -131,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zk5-Uh-lOG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197.5" y="386.5"/>
+            <point key="canvasLocation" x="316" y="347.67616191904051"/>
         </scene>
         <!--Custom Picker View Controller-->
         <scene sceneID="25h-dc-TxU">
@@ -160,14 +158,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIH-jl-c1d">
-                                        <rect key="frame" x="169" y="225" width="1" height="45"/>
+                                        <rect key="frame" x="168.5" y="225" width="1" height="45"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="fJU-Ue-nQK"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPh-jc-WhF">
-                                        <rect key="frame" x="0.0" y="225" width="169" height="45"/>
+                                        <rect key="frame" x="0.0" y="225" width="168.5" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="eUQ-UB-mY5"/>
                                         </constraints>
@@ -176,7 +174,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNp-7w-Vmz">
-                                        <rect key="frame" x="170" y="225" width="167.5" height="45"/>
+                                        <rect key="frame" x="169.5" y="225" width="168" height="45"/>
                                         <state key="normal" title="Button">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -226,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dru-fj-3jR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2485" y="-266"/>
+            <point key="canvasLocation" x="3976" y="-239.28035982008998"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="V8q-xm-ePC">
@@ -240,49 +238,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SmartRoadSense The Game" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jTC-3p-TOh">
-                                <rect key="frame" x="50" y="20" width="275" height="69.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="29"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_logo" translatesAutoresizingMaskIntoConstraints="NO" id="nyN-nn-fet">
-                                <rect key="frame" x="60" y="174" width="255" height="255"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMj-fm-pwT">
+                                <rect key="frame" x="118" y="517" width="139" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="Launch Game"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_logo" translatesAutoresizingMaskIntoConstraints="NO" id="nyN-nn-fet">
+                                <rect key="frame" x="29.5" y="20" width="316" height="228"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="nyN-nn-fet" secondAttribute="height" multiplier="1:1" id="PIV-W1-E81"/>
+                                    <constraint firstAttribute="width" secondItem="nyN-nn-fet" secondAttribute="height" multiplier="1:1" constant="88" id="PIV-W1-E81"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70J-Ok-CNz">
-                                <rect key="frame" x="16" y="565" width="343" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.16078431372549018" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="jTC-3p-TOh" secondAttribute="trailing" constant="34" id="4A0-Oi-xnh"/>
-                            <constraint firstItem="nyN-nn-fet" firstAttribute="centerY" secondItem="mU4-zz-z6t" secondAttribute="centerY" id="MWa-sE-KvW"/>
-                            <constraint firstItem="jTC-3p-TOh" firstAttribute="top" secondItem="9gT-dq-oET" secondAttribute="bottom" constant="20" id="Q2K-hZ-E6d"/>
-                            <constraint firstItem="nyN-nn-fet" firstAttribute="leading" secondItem="mU4-zz-z6t" secondAttribute="leading" constant="60" id="RXj-rg-wgt"/>
-                            <constraint firstItem="70J-Ok-CNz" firstAttribute="trailing" secondItem="mU4-zz-z6t" secondAttribute="trailingMargin" id="SiW-wv-HvI"/>
-                            <constraint firstItem="70J-Ok-CNz" firstAttribute="leading" secondItem="mU4-zz-z6t" secondAttribute="leadingMargin" id="UA0-O1-M08"/>
+                            <constraint firstItem="qK6-gy-M9Z" firstAttribute="top" secondItem="mMj-fm-pwT" secondAttribute="bottom" constant="46" id="7KK-Eg-fh8"/>
+                            <constraint firstItem="nyN-nn-fet" firstAttribute="top" secondItem="9gT-dq-oET" secondAttribute="bottom" constant="20" id="hj1-uj-ldu"/>
                             <constraint firstItem="nyN-nn-fet" firstAttribute="centerX" secondItem="mU4-zz-z6t" secondAttribute="centerX" id="jN0-IY-2Cc"/>
-                            <constraint firstItem="jTC-3p-TOh" firstAttribute="leading" secondItem="mU4-zz-z6t" secondAttribute="leadingMargin" constant="34" id="sGo-rW-CTx"/>
-                            <constraint firstAttribute="trailing" secondItem="nyN-nn-fet" secondAttribute="trailing" constant="60" id="tOR-pA-KF0"/>
-                            <constraint firstItem="qK6-gy-M9Z" firstAttribute="top" secondItem="70J-Ok-CNz" secondAttribute="bottom" constant="20" id="wGx-bq-ugQ"/>
+                            <constraint firstItem="mMj-fm-pwT" firstAttribute="centerX" secondItem="mU4-zz-z6t" secondAttribute="centerX" id="wZf-Bj-pqH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CC7-lb-NyQ"/>
                     <connections>
+                        <outlet property="btnLaunchGame" destination="mMj-fm-pwT" id="R43-Ei-9pD"/>
                         <outlet property="imgLogo" destination="nyN-nn-fet" id="GVV-XA-ncz"/>
-                        <outlet property="lblFooter" destination="70J-Ok-CNz" id="lcY-GW-aT8"/>
-                        <outlet property="lblTitle" destination="jTC-3p-TOh" id="vNE-n7-Rnt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nkl-or-bhf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057.5" y="-1405.5"/>
+            <point key="canvasLocation" x="3292" y="-1264.3178410794603"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="ba5-Q7-sM8">
@@ -375,7 +359,7 @@
                                         </constraints>
                                     </view>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2q8-r3-bXy">
-                                        <rect key="frame" x="255" y="310.5" width="51" height="31"/>
+                                        <rect key="frame" x="255" y="310" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="49" id="uJT-9m-pbd"/>
                                         </constraints>
@@ -502,7 +486,7 @@
                                         </state>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOI-hB-Ks0">
-                                        <rect key="frame" x="255" y="193.5" width="51" height="31"/>
+                                        <rect key="frame" x="255" y="193" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="49" id="AUb-PH-Y1e"/>
                                         </constraints>
@@ -646,7 +630,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ave-Gv-weo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057" y="-445.5"/>
+            <point key="canvasLocation" x="3291.1999999999998" y="-400.74962518740631"/>
         </scene>
         <!--Diario-->
         <scene sceneID="mhu-4q-eKN">
@@ -690,7 +674,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCc-bZ-LRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2058" y="486"/>
+            <point key="canvasLocation" x="3292.8000000000002" y="437.18140929535235"/>
         </scene>
         <!--Dati-->
         <scene sceneID="iJd-yA-MO5">
@@ -747,7 +731,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="28p-jt-Pk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2058" y="1231"/>
+            <point key="canvasLocation" x="3292.8000000000002" y="1107.3463268365817"/>
         </scene>
         <!--Informazioni-->
         <scene sceneID="OMv-f8-XX3">
@@ -932,7 +916,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A3U-FM-3XB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057" y="1939"/>
+            <point key="canvasLocation" x="3291.1999999999998" y="1744.2278860569716"/>
         </scene>
         <!--Carpooling View Controller-->
         <scene sceneID="UgR-n2-dUI">
@@ -1038,7 +1022,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Az2-9O-P08" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1099.5" y="-1320.5"/>
+            <point key="canvasLocation" x="1759.2" y="-1187.8560719640182"/>
         </scene>
         <!--Passenger Number Picker View Controller-->
         <scene sceneID="HMG-Ux-41I">
@@ -1062,7 +1046,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_ride_sharing" translatesAutoresizingMaskIntoConstraints="NO" id="Q8b-jK-Qyp">
-                                        <rect key="frame" x="101.5" y="54" width="139" height="92.5"/>
+                                        <rect key="frame" x="102" y="54" width="139" height="92.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Q8b-jK-Qyp" secondAttribute="height" multiplier="3:2" id="yd0-Ax-R5y"/>
                                         </constraints>
@@ -1125,7 +1109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9eo-x6-dhg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1099.5" y="-447.5"/>
+            <point key="canvasLocation" x="1759.2" y="-402.54872563718146"/>
         </scene>
         <!--SmartRoadSense-->
         <scene sceneID="ufC-wZ-h7g">
@@ -1290,7 +1274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="387"/>
+            <point key="canvasLocation" x="1760" y="348.12593703148428"/>
         </scene>
         <!--Statistics View Controller-->
         <scene sceneID="R8T-v3-Dhx">
@@ -1378,13 +1362,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ceh-GP-vWI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057.5" y="2695.5"/>
+            <point key="canvasLocation" x="3292" y="2424.7376311844082"/>
         </scene>
     </scenes>
     <resources>
         <image name="BBC_horizontal_negative_crop" width="585" height="132"/>
         <image name="c4rs_logo" width="300" height="146"/>
-        <image name="game_logo" width="360" height="360"/>
+        <image name="game_logo" width="316" height="158"/>
         <image name="icon_car" width="139" height="139"/>
         <image name="icon_mat" width="100" height="100"/>
         <image name="icon_ride_sharing" width="320" height="201"/>

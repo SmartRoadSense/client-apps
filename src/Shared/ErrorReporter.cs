@@ -19,8 +19,10 @@ namespace SmartRoadSense.Shared {
         public static Task ExecuteDump(EngineComputationException error) {
             return Task.Run(async () => {
                 try {
-                    using(var fs = await FileOperations.CreateOrTruncateFile(FileNaming.ErrorDumpPath)) {
-                        using (var writer = new StreamWriter(fs)) {
+                    // TODO: why does await not work anymore?
+                    using(var fs = FileOperations.CreateOrTruncateFile(FileNaming.ErrorDumpPath)) {
+                        //using(var fs = await FileOperations.CreateOrTruncateFile(FileNaming.ErrorDumpPath)) {
+                        using(var writer = new StreamWriter(fs)) {
                             writer.WriteLine(App.ApplicationInformation);
                             writer.WriteLine("Engine dump recorded on {0:u}", DateTime.UtcNow);
                             writer.WriteLine();

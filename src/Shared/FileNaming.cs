@@ -117,7 +117,8 @@ namespace SmartRoadSense.Shared {
 #if __ANDROID__
                     _basePublicFolder = App.Context.GetExternalFilesDir(null).AbsolutePath; ;
 #else
-#error Unrecognized platform
+                    // TODO: CHECK IF FOLDER IS CORRECT
+                    _basePublicFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 #endif
                 }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -31,6 +31,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\TrackInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataLossException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumericalExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ILevelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\LevelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\CharacterContainerModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderCharacters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderVehicles.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderLevels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LevelsContainerModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\VehicleContainerModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneUserProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\PopUP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PpeMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\StatisticHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\StatisticRecord.cs" />
@@ -39,6 +50,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParserFormatted.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataModel\DataPackageParserLegacy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\DataCollector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataPiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataPointRecordedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataStore.cs" />
@@ -55,8 +67,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\SensorPackWinRT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SessionInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Data\StatisticsCollector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DateTimeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DeviceInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ErrorReporter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpressionExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileNaming.cs" />
@@ -82,19 +96,92 @@
     <Compile Include="$(MSBuildThisFileDirectory)SyncResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TaskExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserLog.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)VehicleType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RecordingViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\UploadQueueViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\TrackUploadRecord.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SyncPolicy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\JoystickLayoutPatches.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Physics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Vehicles\VehicleCreator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\SceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\BaseScene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneLoadingScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\GameScenesEnumeration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneGame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneMenu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Vehicles\VehicleLoad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VehicleType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\CharacterManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\VehicleManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneGarage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\TerrainData\TerrainGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\SessionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ISessionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\TerrainData\BackgroundColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\IVehicleManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\CrossSettingsIdentifiers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ICharacterManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\UserInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Vehicles\BalanceObjectCreator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\UI\GameButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\UI\GameText.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneLevelSelect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\AssetsCoordinates.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\ScenePostRace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\UI\OSDCommands.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\TerrainData\Smoothing.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\ScreenInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\Stopwatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\GameDistanceData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\MapPositionData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\SettingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ISettingsManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LastPlayedLevel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LevelSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\CharacterLevelData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\UI\SplashScreenCreator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LevelBackgrounds.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\SoundLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\SoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ISoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LoadingScreenData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderLoadingScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Calibration\" />
     <Folder Include="$(MSBuildThisFileDirectory)DataModel\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModel\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Game\Vehicles\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Game\TerrainData\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Game\UI\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Config.sample.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Vehicles.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed_averaged.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\track_game.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Strings\en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-2.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-5.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-10.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-15.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-20.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-30.csv" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\LoadingScreenData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Characters.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Levels.json" />
   </ItemGroup>
 </Project>

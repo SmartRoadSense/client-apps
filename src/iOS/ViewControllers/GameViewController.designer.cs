@@ -13,6 +13,9 @@ namespace SmartRoadSense.iOS
 	partial class GameViewController
 	{
 		[Outlet]
+		UIKit.UIButton btnLaunchGame { get; set; }
+
+		[Outlet]
 		UIKit.UIImageView imgLogo { get; set; }
 
 		[Outlet]
@@ -23,9 +26,9 @@ namespace SmartRoadSense.iOS
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (lblTitle != null) {
-				lblTitle.Dispose ();
-				lblTitle = null;
+			if (imgLogo != null) {
+				imgLogo.Dispose ();
+				imgLogo = null;
 			}
 
 			if (lblFooter != null) {
@@ -33,9 +36,14 @@ namespace SmartRoadSense.iOS
 				lblFooter = null;
 			}
 
-			if (imgLogo != null) {
-				imgLogo.Dispose ();
-				imgLogo = null;
+			if (lblTitle != null) {
+				lblTitle.Dispose ();
+				lblTitle = null;
+			}
+
+			if (btnLaunchGame != null) {
+				btnLaunchGame.Dispose ();
+				btnLaunchGame = null;
 			}
 		}
 	}

@@ -1,0 +1,60 @@
+﻿{
+  "loadingScreen":
+  [
+    {"type": "0",
+     "title":  "Environment",
+     "facts":  [
+      { "Message": "Around 27,000 trees are cut down each day in order to keep us supplied with toilet paper."},
+      { "Message": "It takes more than 4000 years for a modern glass bottle to decompose." },
+      { "Message": "35% of the rubbish placed into landfill sites consists purely of packaging materials." },
+      { "Message": "If all of the world's newspapers were recycled it would save an estimated 250 million tree's each year." },
+      { "Message": "Plastic takes over 500 years to decompose, which means that, unless it has been recycled or incinerated, every piece of plastic ever made still exists." }
+     ]
+    },
+    {
+      "type": "1",
+      "title": "Conservation",
+      "facts": [
+        { "Message": "Currently, the amount of plastics found in the worlds oceans kills around 1 million sea creatures each year." },
+        { "Message": "It's estimated that approximately 30,000 species of animal are driven to extinction each year, this equates to 575 species per week or 82 species per day." },
+        { "Message": "The world's wildlife numbers decreased by 52% between the years 1970 and 2010 whilst the human population has more than doubled in size during the same period." },
+        { "Message": "28% of the decline in wildlife numbers has been linked to unsustainable agricultural practices, deforestation, road-building, commercial or residential development, energy production and mining." },
+        { "Message": "Approximately 20% of the Amazon rainforest has vanished within the last 50 years whilst around half of the world's shallow-water coral reefs have been destroyed over the past 30.  Wetland habitats are the most threatened, with approximately 87%  of wetland environments disappearing within the modern era." }
+      ]
+    },
+    {
+      "type": "2",
+      "title": "Waste Management",
+      "facts": [
+        { "Message": "Around 50 million tons of electrical waste is thrown out each year, enough to stretch to the moon and back one and a half times." },
+        { "Message": "Whilst 1 in 7 of the worlds population is starving, we throw away 7.2 million tonnes of food every year, half of which is still edible." },
+        { "Message": "Aluminium cans can be recycled infinitely.  Recycling one ton of aluminium saves 14,000 kWh of energy, 7.5 cubic metres of landfill space and 39.6 barrels of oil." },
+        { "Message": "On average, 75% of waste is recyclable yet only 30% of it is recycled." },
+        { "Message": "Globally, 2.12 billion tons of rubbish is generated each year whilst 99% of the things that we buy are thrown away within 6 months of being purchased." }
+      ]
+    },
+    {
+      "type": "3",
+      "title": "Resource Management",
+      "facts": [
+        { "Message": "Recycling a single aluminium can saves enough energy to run a TV for 3 hours.  Humans use 80 trillion aluminium cans each year." },
+        { "Message": "The world's natural resources are finite, they will run out one day.  It therefore makes sense to follow the 3R Concept; Reduce, Reuse and Recycle." },
+        { "Message": "Water is the world's most important natural resource, without it the planet would wither and die.  Just 3% of the world's water is drinkable and 2% of that is locked within the polar ice caps or glaciers.  The remaining 97% is saltwater. " },
+        { "Message": "Coal is the world's cheapest natural energy resource, however it is responsible for 40% of the world's carbon dioxide emissions from fossil fuels." },
+        { "Message": "The world is running out of what many consider to be fundamental resources.  For example, it is estimated that the world's deposits of copper, commonly used in electrical cabling, will be completely used by 2027.  " }
+      ]
+    },
+    {
+      "type": "4",
+      "title": "Climate Change",
+      "facts": [
+        { "Message": "The global average sea level has risen by 178mm over the past 100 years." },
+        { "Message": "Since 2001, the world has experienced 18 out of the 19 warmest years on record." },
+        { "Message": "Many scientists believe that climate change is in part due to the amount of carbon dioxide found within the atmosphere.  As of 2018 this stands at 408 parts per million, higher than it's been within the past 3 million years." },
+        { "Message": "Deforestation causes 11% of all global greenhouse gas emissions, this compares to the emissions from all of the world's cars and trucks." },
+        { "Message": "Satellite data shows that the arctic sea ice has been diminishing by more than 13.4% per decade since records began in 29179." }
+      ]
+    }
+  ]
+}
+

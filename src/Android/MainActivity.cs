@@ -18,6 +18,7 @@ using Android.Widget;
 
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Data;
+using Plugin.CurrentActivity;
 
 namespace SmartRoadSense.Android {
 
@@ -87,6 +88,8 @@ namespace SmartRoadSense.Android {
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
+
+            CrossCurrentActivity.Current.Init(Application);
 
             //Show tutorial if needed
             if(!Settings.DidShowTutorial) {

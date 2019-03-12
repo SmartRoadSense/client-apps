@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Storm.CrossLocalization.1.1.2\build\xamarinios\Storm.CrossLocalization.props" Condition="Exists('..\packages\Storm.CrossLocalization.1.1.2\build\xamarinios\Storm.CrossLocalization.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -26,9 +27,10 @@
     <MtouchI18n>
     </MtouchI18n>
     <IOSDebuggerPort>32567</IOSDebuggerPort>
-<CodesignKey>iPhone Developer</CodesignKey>
-<MtouchSdkVersion>11.3</MtouchSdkVersion>
-<MtouchFastDev>true</MtouchFastDev>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchSdkVersion>11.3</MtouchSdkVersion>
+    <MtouchFastDev>true</MtouchFastDev>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -43,6 +45,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,9 +64,11 @@
     </IpaPackageName>
     <IOSDebugOverWiFi>false</IOSDebugOverWiFi>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <IOSDebuggerPort>10000</IOSDebuggerPort>
     <CodesignProvision>SRS DEV 18-05-18</CodesignProvision>
     <CodesignKey>iPhone Developer: Alessandro Bogliolo (VSS3EF4K7Y)</CodesignKey>
+    <OptimizePNGs>false</OptimizePNGs>
+    <LangVersion>Latest</LangVersion>
+    <IOSDebuggerPort>10001</IOSDebuggerPort>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -73,13 +78,14 @@
     <DefineConstants>IOS</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchUseThumb>true</MtouchUseThumb>
     <MtouchI18n>
     </MtouchI18n>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <OptimizePNGs>false</OptimizePNGs>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -96,6 +102,8 @@
     <MtouchDebug>false</MtouchDebug>
     <IOSDebuggerPort>10001</IOSDebuggerPort>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <OptimizePNGs>false</OptimizePNGs>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -105,13 +113,14 @@
     <WarningLevel>4</WarningLevel>
     <DefineConstants>IOS</DefineConstants>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchUseThumb>true</MtouchUseThumb>
     <IpaPackageName>
     </IpaPackageName>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <OptimizePNGs>false</OptimizePNGs>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -124,6 +133,7 @@
     <MtouchLink>None</MtouchLink>
     <MtouchI18n>
     </MtouchI18n>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -140,6 +150,8 @@
     <MtouchI18n>
     </MtouchI18n>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <OptimizePNGs>false</OptimizePNGs>
+    <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -197,9 +209,6 @@
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
     </Reference>
-    <Reference Include="SmartRoadSenseCore">
-      <HintPath>..\..\..\SmartRoadSense-Apps\Algorithm\SmartRoadSenseCore\bin\Release\SmartRoadSenseCore.dll</HintPath>
-    </Reference>
     <Reference Include="SidebarNavigation">
       <HintPath>..\packages\SidebarNavigation.2.0.0\lib\xamarinios10\SidebarNavigation.dll</HintPath>
     </Reference>
@@ -220,6 +229,18 @@
     </Reference>
     <Reference Include="Microsoft.AppCenter.Analytics.iOS.Bindings">
       <HintPath>..\packages\Microsoft.AppCenter.Analytics.1.6.1\lib\Xamarin.iOS10\Microsoft.AppCenter.Analytics.iOS.Bindings.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.7.1.1\lib\netstandard2.0\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Solver.Foundation">
+      <HintPath>..\packages\Microsoft.Solver.Foundation.3.1.0\lib\Microsoft.Solver.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="UrhoSharp">
+      <HintPath>..\packages\UrhoSharp.1.9.67\lib\Xamarin.iOS10\UrhoSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SmartRoadSenseCore">
+      <HintPath>..\..\..\smartroadsense-apps\Algorithm\SmartRoadSenseCore\bin\Release\SmartRoadSenseCore.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -499,15 +520,6 @@
     <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\game_splash.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\game_splash%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\game_splash%403x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Resources\Images.xcassets\blablacar_logo.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -526,18 +538,57 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\store-1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%403x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\threelines.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\threelines.imageset\threelines.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\threelines.imageset\threelines%402x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\threelines.imageset\threelines%403x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Images.xcassets\game_logo.imageset\logo.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -690,26 +741,260 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="StyleSettings\" />
-    <Folder Include="CallState\" />
-    <Folder Include="ViewControllers\" />
-    <Folder Include="TableSources\" />
     <Folder Include="language\" />
-    <Folder Include="Alert Views\" />
-    <Folder Include="DataSources\" />
-    <Folder Include="IntroScreenViews\" />
-    <Folder Include="TableViewCells\" />
+    <Folder Include="Resources\Data\Textures\temp\" />
+    <Folder Include="Resources\en.lproj\" />
     <Folder Include="Resources\Images.xcassets\icon_ride_sharing.imageset\" />
-    <Folder Include="Resources\Images.xcassets\BBC_horizontal_negative_crop.imageset\" />
-    <Folder Include="Resources\Images.xcassets\BBC_horizontal_positive.imageset\" />
-    <Folder Include="Resources\Images.xcassets\BBC_vertical_positive.imageset\" />
+    <Folder Include="Resources\it.lproj\" />
+    <Folder Include="Resources\Data\Textures\Settings\" />
+    <Folder Include="Resources\Data\Textures\Backgrounds\Loading\" />
+    <Folder Include="Resources\Data\Sounds\" />
+    <Folder Include="Resources\Data\Sounds\SFX\" />
+    <Folder Include="Resources\Data\Sounds\Music\" />
+    <Folder Include="Resources\Data\Textures\Backgrounds\snowy_forest\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\threelines.png" />
     <BundleResource Include="Resources\srs-stop-btn.png" />
     <BundleResource Include="en.lproj\Localizable.strings" />
     <BundleResource Include="it.lproj\Localizable.strings" />
     <BundleResource Include="ro.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\Data\Urho2D\bg_layer1.png" />
+    <BundleResource Include="Resources\Data\Urho2D\bg_layer2.png" />
+    <BundleResource Include="Resources\Data\Urho2D\foreground.png" />
+    <BundleResource Include="Resources\Data\Urho2D\jeep.jpg" />
+    <BundleResource Include="Resources\Data\Urho2D\jeep.png" />
+    <BundleResource Include="Resources\Data\Urho2D\vehicle_a_128x64.png" />
+    <BundleResource Include="Resources\Data\Urho2D\vehicle_a_64x32.png" />
+    <BundleResource Include="Resources\Data\Urho2D\vehicle_a_96x32.png" />
+    <BundleResource Include="Resources\Data\Urho2D\wheel_a.png" />
+    <BundleResource Include="Resources\Data\Urho2D\wheel_military.png" />
+    <BundleResource Include="Resources\Data\UI\DefaultStyle.xml" />
+    <BundleResource Include="Resources\Data\UI\ScreenJoystick.xml" />
+    <BundleResource Include="Resources\Data\UI\ScreenJoystickSettings.xml" />
+    <BundleResource Include="Resources\Data\UI\ScreenJoystickSettings_Samples.xml" />
+    <BundleResource Include="Resources\Data\UI\ScreenJoystick_Samples.xml" />
+    <BundleResource Include="Resources\Data\UI\UILoadExample.xml" />
+    <BundleResource Include="Resources\Data\Urho2D\Aster.png" />
+    <BundleResource Include="Resources\Data\Urho2D\Ball.png" />
+    <BundleResource Include="Resources\Data\Urho2D\Box.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\a_button.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\b_button.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\1_boost_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\2_boost_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\3_boost_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\best_time_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\booster.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\components_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\r_left_button.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\r_right_button.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\time_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\coins_icon.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\coins_box.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\components_box.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\distance_box.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\map_bar.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\map_box.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\time_best_box.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\close_square.png" />
+    <BundleResource Include="Resources\Data\Fonts\Anonymous Pro.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-Bold.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-BoldItalic.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-ExtraBold.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-ExtraBoldItalic.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-Italic.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-Light.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-LightItalic.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-Regular.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-Semibold.ttf" />
+    <BundleResource Include="Resources\Data\Fonts\OpenSans-SemiboldItalic.ttf" />
+    <BundleResource Include="Resources\Data\Textures\Garage\garage_bts.png" />
+    <BundleResource Include="Resources\Data\Textures\Garage\vehicles2.png" />
+    <BundleResource Include="Resources\Data\Textures\Front.png" />
+    <BundleResource Include="Resources\Data\Textures\layer1.png" />
+    <BundleResource Include="Resources\Data\Textures\layer2.png" />
+    <BundleResource Include="Resources\Data\Textures\Garage\vehicles_body.png" />
+    <BundleResource Include="Resources\Data\Textures\Garage\vehicles_wheels.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg1\bg1_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg2\bg2_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\bg3\bg3_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\moon\fg\fg_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Garage\cont_base.png" />
+    <BundleResource Include="Resources\Data\Textures\Generic\generic_btn.png" />
+    <BundleResource Include="Resources\Data\Textures\Generic\top_bar2.png" />
+    <BundleResource Include="Resources\Data\Textures\Level\osd_finish_line.png" />
+    <BundleResource Include="Resources\Data\Textures\TouchInput\pause_button.png" />
+    <BundleResource Include="Resources\Data\Textures\Logos\level_failed.png" />
+    <BundleResource Include="Resources\Data\Textures\Logos\level_complete.png" />
+    <BundleResource Include="Resources\Data\Textures\Logos\logo.png" />
+    <BundleResource Include="Resources\Data\Textures\Generic\round_icons.png" />
+    <BundleResource Include="Resources\Data\Textures\Generic\profiles.png" />
+    <BundleResource Include="Resources\Data\Textures\Generic\buttons.png" />
+    <BundleResource Include="Resources\Data\Textures\Settings\settings.png" />
+    <BundleResource Include="Resources\Data\Textures\Level\balance_objects.png" />
+    <BundleResource Include="Resources\Data\Textures\Level\collectible_assets.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\Loading\background_f.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\Loading\background_b1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\Loading\background_b2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\Loading\background_b3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\MenuBackground.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\Loading\posters.png" />
+    <BundleResource Include="Resources\Data\Sounds\SFX\coin.wav" />
+    <BundleResource Include="Resources\Data\Sounds\Music\music_beach.wav" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg1\bg1_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg2\bg2_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\bg3\bg3_9.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_1.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_10.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_11.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_12.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_2.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_3.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_4.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_5.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_6.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_7.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_8.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\beach\fg\fg_9.png" />
+    <BundleResource Include="Resources\Data\Sounds\Music\music_snowy_forest.wav" />
+    <BundleResource Include="Resources\Data\Sounds\Music\music_moon.wav" />
+    <BundleResource Include="Resources\Data\Sounds\Music\music_menu.wav" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_13.png" />
+    <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_13.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
@@ -718,4 +1003,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Config.json" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Data\Textures\logo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Data\Textures\MenuBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Data\Textures\Garage\green_bars.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Data\Textures\TouchInput\round_icons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Data\Textures\MenuButtons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Data\Textures\menutmp.png" />
+  </ItemGroup>
+  <Import Project="..\packages\Storm.CrossLocalization.1.1.2\build\xamarinios\Storm.CrossLocalization.targets" Condition="Exists('..\packages\Storm.CrossLocalization.1.1.2\build\xamarinios\Storm.CrossLocalization.targets')" />
+  <Import Project="..\packages\UrhoSharp.1.9.67\build\xamarin.ios10\UrhoSharp.targets" Condition="Exists('..\packages\UrhoSharp.1.9.67\build\xamarin.ios10\UrhoSharp.targets')" />
 </Project>

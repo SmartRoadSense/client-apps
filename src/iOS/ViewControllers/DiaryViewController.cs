@@ -18,7 +18,7 @@ namespace SmartRoadSense.iOS
 
 		public DiaryViewController (IntPtr handle) : base (handle)
 		{
-			this.Title = NSBundle.MainBundle.LocalizedString ("Vernacular_P0_menu_log", null);
+            this.Title = NSBundle.MainBundle.GetLocalizedString ("Vernacular_P0_menu_log", null);
 		}
 
 		public override void DidReceiveMemoryWarning ()

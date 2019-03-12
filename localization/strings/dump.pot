@@ -269,6 +269,10 @@ msgstr ""
 msgid "game_coming_soon"
 msgstr ""
 
+# Game "launch now" button
+msgid "game_launch"
+msgstr ""
+
 # Information message: internal error in roughness detection engine
 msgid "information_message_description_engine_error"
 msgstr ""

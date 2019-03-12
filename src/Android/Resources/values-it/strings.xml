@@ -68,6 +68,7 @@
   <string formatted="false" name="Vernacular_P0_error_send_mail">Non riesco ad inviare email.</string>
   <string formatted="false" name="Vernacular_P0_error_send_mail_not_configured">Impossibile inviare email perché il sistema non è configurato correttamente.</string>
   <string formatted="false" name="Vernacular_P0_game_coming_soon">Disponibile prossimamente.</string>
+  <string formatted="false" name="Vernacular_P0_game_launch">Lancia il gioco</string>
   <string formatted="false" name="Vernacular_P0_game_tagline">SmartRoadSense\nIl Gioco</string>
   <string formatted="false" name="Vernacular_P0_information_message_description_engine_error">Qualcosa non funziona nel nostro sistema di rilevazione della qualità stradale! =‘(&lt;br /&gt;Clicca qui per darci una mano e segnalare il problema.</string>
   <string formatted="false" name="Vernacular_P0_information_message_description_gps_off">Per favore attiva il servizio di geolocalizzazione nel pannello delle impostazioni del tuo dispositivo.</string>

@@ -74,8 +74,8 @@ namespace SmartRoadSense.iOS
                 UIStoryboard storyboard = UIStoryboard.FromName("MainStoryboard", null);
                 IntroductionPageViewController introductionVC = storyboard.InstantiateViewController("IntroductionPageViewController") as IntroductionPageViewController;
                 Window.RootViewController = introductionVC;
-                UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.BlackTranslucent, false);
-                UIApplication.SharedApplication.SetStatusBarHidden(false, false);
+                UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.LightContent, false);
+                UIApplication.SharedApplication.SetStatusBarHidden(false, UIStatusBarAnimation.None);
             }
 
             // Set background fetch interval

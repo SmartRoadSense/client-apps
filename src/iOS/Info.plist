@@ -43,7 +43,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1.2</string>
+	<string>4.0</string>
 	<key>CFBundleName</key>
 	<string>SmartRoadSense</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -78,7 +78,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>50</string>
+	<string>51</string>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 </dict>

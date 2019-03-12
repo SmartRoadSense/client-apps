@@ -754,9 +754,6 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\game_splash.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout-land\activity_game.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\dialog_ride_sharing.xml" />
   </ItemGroup>
   <ItemGroup>

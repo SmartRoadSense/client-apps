@@ -68,11 +68,6 @@ namespace SmartRoadSense.Android {
         }
 
         public override bool DispatchKeyEvent(KeyEvent e) {
-            if(e.Action == KeyEventActions.Up && e.KeyCode == Keycode.Back) {
-                OnBackPressed();
-                return true;
-            }
-
             if(!UrhoSurface.DispatchKeyEvent(e)) {
                 return false;
             }

@@ -21,5 +21,6 @@ namespace SmartRoadSense.Shared
         {
             GameInstance.UI.Root.RemoveAllChildren();
         }
+
     }
 }

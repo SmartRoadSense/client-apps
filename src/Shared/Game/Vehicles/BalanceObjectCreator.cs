@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Urho;
 using Urho.Urho2D;
 

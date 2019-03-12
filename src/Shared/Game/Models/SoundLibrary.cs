@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace SmartRoadSense.Shared {
     public struct SoundLibrary {
         readonly static string BaseSoundsPath = "Sounds/";

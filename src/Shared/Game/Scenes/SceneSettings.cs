@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 #if __ANDROID__
 using Plugin.CurrentActivity;
 using Android.Content;

@@ -1,4 +1,4 @@
-﻿namespace SmartRoadSense.Shared {
+namespace SmartRoadSense.Shared {
     public interface ILevelManager {
         int LevelCount { get; set; }
         int SelectedLevelId { get; set; }

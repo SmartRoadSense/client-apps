@@ -4,7 +4,20 @@ root = true
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[*.resx]
+end_of_line = crlf
+
+[*.{xml,axml}]
+end_of_line = lf
+indent_style = space
+indent_size = tab
+tab_size = 4
+
+[*.config]
+end_of_line = crlf
+
 [*.cs]
+end_of_line = lf
 indent_style = space
 indent_size = tab
 tab_size = 4

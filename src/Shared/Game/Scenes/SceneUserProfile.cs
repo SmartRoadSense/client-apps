@@ -1,4 +1,4 @@
-﻿using Urho;
+using Urho;
 using Urho.Gui;
 using Urho.Resources;
 

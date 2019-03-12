@@ -1,6 +1,6 @@
 * -text
 
-*.cs -text diff=csharp
+*.cs eol=lf diff=csharp
 *.sln eol=crlf
 *.csproj eol=crlf
 *.shproj eol=crlf

@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) 2008-2015 the Urho3D project.
 // Copyright (c) 2015 Xamarin Inc
 //

@@ -1,4 +1,4 @@
-﻿using Urho.Urho2D;
+using Urho.Urho2D;
 namespace SmartRoadSense.Shared {
     public enum LevelBackgrounds {
         RANDOM = 0,

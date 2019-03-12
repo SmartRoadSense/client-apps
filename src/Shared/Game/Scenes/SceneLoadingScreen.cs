@@ -1,4 +1,4 @@
-﻿using Urho.Gui;
+using Urho.Gui;
 
 namespace SmartRoadSense.Shared
 {

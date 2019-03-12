@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace SmartRoadSense.Shared {
     public class OSDCommands {
         public bool Accelerating { get; set; }

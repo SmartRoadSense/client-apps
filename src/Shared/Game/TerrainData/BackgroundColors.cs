@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace SmartRoadSense.Shared {
     public static class BackgroundColors {
         public static Urho.Color MoonColor = Urho.Color.FromHex("202B2F");

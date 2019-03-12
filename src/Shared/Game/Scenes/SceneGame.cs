@@ -999,7 +999,7 @@ namespace SmartRoadSense.Shared
         {
             TouchEnabled = true;
 
-            InitShowHidePhysics();
+            //InitShowHidePhysics();
             InitButtonAccelerate();
             InitButtonBrake();
             InitButtonRotateLeft();

@@ -37,8 +37,8 @@ namespace SmartRoadSense.Shared {
                 lastComplededRace = 0;
                 
             counter = lastComplededRace + 1;
-            LevelManager.Instance.SelectedLevelId = counter;
-            LevelManager.Instance.LoadSingleLevel(LevelManager.Instance.SelectedLevelId);
+            TrackManager.Instance.SelectedTrackId = counter;
+            TrackManager.Instance.LoadSingleLevel(TrackManager.Instance.SelectedTrackId);
 
             CreateUI();
         }
@@ -323,7 +323,7 @@ namespace SmartRoadSense.Shared {
             StartRandom.ImageRect = AssetsCoordinates.Generic.Boxes.RankIncreaseBar;
             StartRandom.Pressed += (PressedEventArgs args) => {
                 //SessionManager.Instance.SelectedLevelId = "smoothed-averaged-20.csv";
-                LevelManager.Instance.SelectedLevelId = 0;
+                TrackManager.Instance.SelectedTrackId = 0;
                 Launcher(true);
             };
 
@@ -375,36 +375,36 @@ namespace SmartRoadSense.Shared {
                     next_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
                 }
                 else {
-                   var prevLevel = LevelManager.Instance.LoadSingleLevel(counter - 1);
+                   var prevLevel = TrackManager.Instance.LoadSingleLevel(counter - 1);
                     prev_level.Visible = true;
                     prev_level.Enabled = true;
                     prev_level.ImageRect = SelectLevelLandskape(prevLevel);
-                    prevLevelN.Value = string.Format("{0}", prevLevel.IdLevel);
+                    prevLevelN.Value = string.Format("{0}", prevLevel.IdTrack);
                 }
 
-                var level = LevelManager.Instance.LoadSingleLevel(counter);
+                var level = TrackManager.Instance.LoadSingleLevel(counter);
                 sel_level.Enabled = true;
                 sel_level.Visible = true;
                 sel_level.ImageRect = SelectLevelLandskape(level);
-                selLevelN.Value = "" + level.IdLevel;
+                selLevelN.Value = "" + level.IdTrack;
                 difficultyN.Value = "" + level.Difficulty;
-                BestTimeN.Value = string.Format("{0}", TimeSpan.FromMilliseconds(LevelManager.Instance.SelectedLevelModel.BestTime).MillisRepresentation());
+                BestTimeN.Value = string.Format("{0}", TimeSpan.FromMilliseconds(TrackManager.Instance.SelectedTrackModel.BestTime).MillisRepresentation());
 
                 if(counter + 1 >= racesNumber) {
                     next_level.Enabled = false;
                     next_level.Visible = false;
                 }
                 else {
-                    var nextLevel = LevelManager.Instance.LoadSingleLevel(counter + 1);
+                    var nextLevel = TrackManager.Instance.LoadSingleLevel(counter + 1);
                     next_level.Enabled = true;
                     next_level.Visible = true;
                     next_level.ImageRect = SelectLevelLandskape(nextLevel);
-                    nextLevelN.Value = string.Format("{0}", nextLevel.IdLevel);
+                    nextLevelN.Value = string.Format("{0}", nextLevel.IdTrack);
                 }
             }
         }
 
-        IntRect SelectLevelLandskape(LevelModel level) {
+        IntRect SelectLevelLandskape(TrackModel level) {
             var land = AssetsCoordinates.Generic.Boxes.LevelBlocked;
             int landskape = level.Landskape;
             int completed = level.Completed;
@@ -442,7 +442,7 @@ namespace SmartRoadSense.Shared {
                 else {
                     counter = 1 + counter;
                 }
-                LevelManager.Instance.SelectedLevelId = counter;
+                TrackManager.Instance.SelectedTrackId = counter;
                 UpdateActiveLevels();
             }
         }
@@ -450,7 +450,7 @@ namespace SmartRoadSense.Shared {
         void PreviousRace() {
             if(counter >= 0 && counter <= racesNumber) {
                 counter = counter <= 0 ? counter : counter - 1;
-                LevelManager.Instance.SelectedLevelId = counter;
+                TrackManager.Instance.SelectedTrackId = counter;
                 UpdateActiveLevels();
             }
         }

@@ -8,63 +8,63 @@ using Newtonsoft.Json;
 
 namespace SmartRoadSense.Shared {
     // Level manager - Type, upgrades, etc.
-    class LevelManager : ILevelManager, INotifyPropertyChanged {
+    class TrackManager : ITrackManager, INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public LevelManager() {
-            InitLevelManager();
+        public TrackManager() {
+            InitTrackManager();
         }
 
-        void InitLevelManager() {
-            if(Levels != null)
+        void InitTrackManager() {
+            if(Tracks != null)
                 return;
-            Levels = JsonReaderLevels.GetLevelsConfig();
+            Tracks = JsonReaderLevels.GetLevelsConfig();
         }
 
-        public static LevelManager Instance { get; } = new LevelManager();
+        public static TrackManager Instance { get; } = new TrackManager();
 
-        public int LevelCount {
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.LevelCount.Value, 0);
+        public int TrackCount {
+            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.TrackCount.Value, 0);
             set {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.LevelCount.Value, value);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.TrackCount.Value, value);
                 OnPropertyChanged();
             }
         }
 
-        public int SelectedLevelId {
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.IdLevel.Value, -1);
+        public int SelectedTrackId {
+            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.IdTrack.Value, -1);
             set {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.IdLevel.Value, value);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.IdTrack.Value, value);
                 OnPropertyChanged();
             }
         }
 
-        public LevelModel SelectedLevelModel {
+        public TrackModel SelectedTrackModel {
             get {
-                var levels = Levels;
-                return levels.LevelModel.First(i => i.IdLevel == SelectedLevelId);
+                var tracks = Tracks;
+                return tracks.TrackModel.First(i => i.IdTrack == SelectedTrackId);
             }
             set {
-                var levels = Levels;
-                var listItem = levels.LevelModel.First(i => i.IdLevel == value.IdLevel);
-                var index = levels.LevelModel.IndexOf(listItem);
+                var tracks = Tracks;
+                var listItem = tracks.TrackModel.First(i => i.IdTrack == value.IdTrack);
+                var index = tracks.TrackModel.IndexOf(listItem);
 
                 if(index != -1) {
-                    levels.LevelModel[index] = value;
-                    Levels = levels;
+                    tracks.TrackModel[index] = value;
+                    Tracks = tracks;
                     OnPropertyChanged("Levels");
                 }
             }
         }
 
-        public LevelsContainerModel Levels {
+        public TracksContainerModel Tracks {
             get 
             {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.Levels.Value, "");
-                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<LevelsContainerModel>(json);
+                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<TracksContainerModel>(json);
             }
             set 
             {
@@ -76,16 +76,16 @@ namespace SmartRoadSense.Shared {
             //set => JsonReaderLevels.SaveLevelsConfig(value);
         }
 
-        public LevelModel LoadSingleLevel (int levelId){
-            var level = Levels.LevelModel.FirstOrDefault(l => l.IdLevel == levelId);
-            SelectedLevelModel = level;
+        public TrackModel LoadSingleLevel (int levelId){
+            var level = Tracks.TrackModel.FirstOrDefault(l => l.IdTrack == levelId);
+            SelectedTrackModel = level;
             return level;
         }
 
-        public LastPlayedLevel LastPlayedLevelInfo {
+        public LastPlayedTrack LastPlayedTrackInfo {
             get {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.LastPlayedLevel.Value, "");
-                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<LastPlayedLevel>(json);
+                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<LastPlayedTrack>(json);
             }
             set {
                 var json = JsonConvert.SerializeObject(value);
@@ -100,7 +100,7 @@ namespace SmartRoadSense.Shared {
             get 
             {
                 var played = 0;
-                foreach(var lvl in Levels.LevelModel) {
+                foreach(var lvl in Tracks.TrackModel) {
                     played += lvl.TotalOfPlays;
                 }
                 return played;
@@ -111,7 +111,7 @@ namespace SmartRoadSense.Shared {
             get 
             {
                 var completed = 0;
-                foreach(var lvl in Levels.LevelModel) {
+                foreach(var lvl in Tracks.TrackModel) {
                     completed += lvl.Completed;
                 }
                 return completed;
@@ -122,7 +122,7 @@ namespace SmartRoadSense.Shared {
             get 
             {
                 var failed = 0;
-                foreach(var lvl in Levels.LevelModel) {
+                foreach(var lvl in Tracks.TrackModel) {
                     failed += lvl.TotalOfFailures;
                 }
                 return failed;
@@ -133,7 +133,7 @@ namespace SmartRoadSense.Shared {
             get {
                 double failed = 0;
                 double completed = 0;
-                foreach(var lvl in Levels.LevelModel) {
+                foreach(var lvl in Tracks.TrackModel) {
                     failed += lvl.TotalOfFailures;
                     completed += lvl.TotalOfPlays - failed;
                 }
@@ -149,7 +149,7 @@ namespace SmartRoadSense.Shared {
         public int MostPointsInSingleRace {
             get {
                 var points = 0;
-                foreach(var lvl in Levels.LevelModel) {
+                foreach(var lvl in Tracks.TrackModel) {
                     points = lvl.PointsObtained > points ? lvl.PointsObtained : points;
                 }
                 return points;

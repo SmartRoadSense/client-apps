@@ -13,7 +13,7 @@ namespace SmartRoadSense.Shared {
         /// <param name="GameInstance">Game instance.</param>
         public static string CreateSplashScreen(Game GameInstance, Node parent) {
             // Get data
-            var data = LevelManager.Instance.LoadingScreenFacts;
+            var data = TrackManager.Instance.LoadingScreenFacts;
             var rnd = new Random();
             var argIdx = rnd.Next(0, data.LoadingScreens.Count);
             var arg = data.LoadingScreens[argIdx];

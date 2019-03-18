@@ -217,7 +217,7 @@ namespace SmartRoadSense.Shared {
             NOfRacesValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             NOfRacesValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(200));
             NOfRacesValue.SetFont(font, dim.XScreenRatio * 30);
-            NOfRacesValue.Value = string.Format("{0}", LevelManager.Instance.PlayedLevels);
+            NOfRacesValue.Value = string.Format("{0}", TrackManager.Instance.PlayedLevels);
 
             // COMPLETED RACES NUMBER
             Text RacesCompleted = new Text();
@@ -233,7 +233,7 @@ namespace SmartRoadSense.Shared {
             RacesCompletedValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             RacesCompletedValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(260));
             RacesCompletedValue.SetFont(font, dim.XScreenRatio * 30);
-            RacesCompletedValue.Value = string.Format("{0}", LevelManager.Instance.CompletedLevels);
+            RacesCompletedValue.Value = string.Format("{0}", TrackManager.Instance.CompletedLevels);
 
             // FAILED RACES NUMBER
             Text RacesFailed = new Text();
@@ -249,7 +249,7 @@ namespace SmartRoadSense.Shared {
             RacesFailedValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             RacesFailedValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(320));
             RacesFailedValue.SetFont(font, dim.XScreenRatio * 30);
-            RacesFailedValue.Value = string.Format("{0}", LevelManager.Instance.FailedLevels);
+            RacesFailedValue.Value = string.Format("{0}", TrackManager.Instance.FailedLevels);
 
             // RACE COMPLETION RATIO
             Text RacesCompletitionRatio = new Text();
@@ -265,7 +265,7 @@ namespace SmartRoadSense.Shared {
             RacesCompletitionRatioValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             RacesCompletitionRatioValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(380));
             RacesCompletitionRatioValue.SetFont(font, dim.XScreenRatio * 30);
-            RacesCompletitionRatioValue.Value = string.Format("{0} %", LevelManager.Instance.CompletedPercentage.ToString("n2"));
+            RacesCompletitionRatioValue.Value = string.Format("{0} %", TrackManager.Instance.CompletedPercentage.ToString("n2"));
 
             // MOST SINGLE RACE POINTS
             Text MostPoints = new Text();
@@ -281,7 +281,7 @@ namespace SmartRoadSense.Shared {
             MostPointsValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             MostPointsValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(440));
             MostPointsValue.SetFont(font, dim.XScreenRatio * 30);
-            MostPointsValue.Value = string.Format("{0}", LevelManager.Instance.MostPointsInSingleRace);
+            MostPointsValue.Value = string.Format("{0}", TrackManager.Instance.MostPointsInSingleRace);
 
             // EXPERIENCE
             Text TotalPoints = new Text();

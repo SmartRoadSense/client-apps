@@ -15,7 +15,7 @@ namespace SmartRoadSense.Shared
         Sprite backgroundSprite;
         Sprite container;
         readonly Font font;
-        LastPlayedLevel _postLevelData;
+        LastPlayedTrack _postLevelData;
 
         public ScenePostRace(Game game, bool randomLevel = false) : base(game) 
 		{
@@ -131,8 +131,8 @@ namespace SmartRoadSense.Shared
             levelnumber.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             levelnumber.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(15));
             levelnumber.SetFont(font, dim.XScreenRatio * 50);
-            if(_postLevelData.LevelData != null)
-                levelnumber.Value = _postLevelData.LevelData.IdLevel.ToString();
+            if(_postLevelData.TrackData != null)
+                levelnumber.Value = _postLevelData.TrackData.IdTrack.ToString();
 
             Sprite LevelIcon = new Sprite();
             container.AddChild(LevelIcon);
@@ -194,7 +194,7 @@ namespace SmartRoadSense.Shared
             BestTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             BestTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             BestTot.SetFont(font, dim.XScreenRatio * 30);
-            BestTot.Value = TimeSpan.FromMilliseconds(_postLevelData.LevelData.BestTime).MillisRepresentation();
+            BestTot.Value = TimeSpan.FromMilliseconds(_postLevelData.TrackData.BestTime).MillisRepresentation();
 
             // COMPONENTS
             Sprite ComponentsIcon = new Sprite();
@@ -327,7 +327,7 @@ namespace SmartRoadSense.Shared
 
         public void UpdateLevelInfo() 
         {
-            var levelInfo = LevelManager.Instance.SelectedLevelModel;
+            var levelInfo = TrackManager.Instance.SelectedTrackModel;
 
             // Update races number
             levelInfo.TotalOfPlays += 1;
@@ -337,29 +337,26 @@ namespace SmartRoadSense.Shared
 
             // Best time
             levelInfo.BestTime = levelInfo.BestTime == 0
-                ? LevelManager.Instance.LastPlayedLevelInfo.Time
-                : levelInfo.BestTime > LevelManager.Instance.LastPlayedLevelInfo.Time
-                    ? LevelManager.Instance.LastPlayedLevelInfo.Time
+                ? TrackManager.Instance.LastPlayedTrackInfo.Time
+                : levelInfo.BestTime > TrackManager.Instance.LastPlayedTrackInfo.Time
+                    ? TrackManager.Instance.LastPlayedTrackInfo.Time
                     : levelInfo.BestTime;
                     
             // Update level info
-            LevelManager.Instance.SelectedLevelModel = levelInfo;
+            TrackManager.Instance.SelectedTrackModel = levelInfo;
 
             // Update last played level data
-            var lastPlayedLevel = LevelManager.Instance.LastPlayedLevelInfo;
-            lastPlayedLevel.LevelData = LevelManager.Instance.SelectedLevelModel;
-            LevelManager.Instance.LastPlayedLevelInfo = lastPlayedLevel;
+            var lastPlayedLevel = TrackManager.Instance.LastPlayedTrackInfo;
+            lastPlayedLevel.TrackData = TrackManager.Instance.SelectedTrackModel;
+            TrackManager.Instance.LastPlayedTrackInfo = lastPlayedLevel;
 
             // Set level data for current screen
             _postLevelData = lastPlayedLevel;
 
             // Update user experience points
-            // TODO: reactivate
-            /*
             var player = CharacterManager.Instance.User;
             player.Experience += _postLevelData.Points;
             CharacterManager.Instance.User = player;
-            */           
         }
     }
 }

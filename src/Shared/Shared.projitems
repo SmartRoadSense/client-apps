@@ -31,8 +31,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\TrackInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataLossException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumericalExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ILevelManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\LevelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ITrackManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\TrackManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\CharacterContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderCharacters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderVehicles.cs" />

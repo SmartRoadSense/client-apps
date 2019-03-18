@@ -39,6 +39,7 @@ namespace SmartRoadSense.Shared
         const string _groundColorNodeName = "GroundColorNode";
         const string _finishLineName = "FinishLineNode";
         const string _coinCollisionName = "CoinNode";
+        const string _componentCollisionName = "ComponentNode";
 
         const string _soundVolumeSlider = "SFX";
         const string _musicVolumeSlider = "MUSIC";
@@ -68,7 +69,9 @@ namespace SmartRoadSense.Shared
         bool _timer;
         readonly bool _randomLevel;
         int _coins;
+        int _coinPositionedCounter;
         int _components;
+        bool _componentsCollected;
         bool _removedFirstCoin;
 
         Stopwatch _stopwatch;
@@ -92,7 +95,7 @@ namespace SmartRoadSense.Shared
         List<Node> Bg3List = new List<Node>();
 
         // Level data
-        readonly LevelModel _levelData;
+        readonly TrackModel _levelData;
         readonly int _lvlLandscape;
         Action<EndViewRenderEventArgs> _actionCloseSplashScreen;
 
@@ -104,7 +107,7 @@ namespace SmartRoadSense.Shared
             RemoveAllChildren();
 
             // Get level data
-            _levelData = LevelManager.Instance.SelectedLevelModel;
+            _levelData = TrackManager.Instance.SelectedTrackModel;
 
             // Init scene
             _randomLevel = randomLevel;
@@ -306,6 +309,25 @@ namespace SmartRoadSense.Shared
                     }
                 }
 
+                // Component collect
+                if(string.Equals(obj.BodyA.Node.Name, _componentCollisionName) && !string.Equals(obj.BodyB.Node.Name, _componentCollisionName)) {
+                    obj.NodeA.Remove();
+                    _components += 1;
+                    // Update coin position
+                    var componentsBox = GameInstance.UI.Root.GetChild("componentsBox");
+                    var componentsText = (Text)componentsBox.GetChild("componentsText");
+                    componentsText.Value = string.Format("{0}", _components);
+                    // Play sound
+                    Sound sound = GameInstance.ResourceCache.GetSound(SoundLibrary.SFX.Component);
+                    if(sound != null) {
+                        Node soundNode = CreateChild("SoundComponent");
+                        SoundSource soundSource = soundNode.CreateComponent<SoundSource>();
+                        soundSource.SetSoundType(SoundType.Effect.ToString());
+                        soundSource.Play(sound);
+                        soundSource.Gain = 0.75f;
+                    }
+                }
+
                 // Game over
                 if(string.Equals(obj.BodyA.Node.Name, _balanceBodyName) && string.Equals(obj.BodyB.Node.Name, _groundBodyName)
                    || string.Equals(obj.BodyA.Node.Name, _groundBodyName) && string.Equals(obj.BodyB.Node.Name, _balanceBodyName))
@@ -355,7 +377,7 @@ namespace SmartRoadSense.Shared
             else 
             {
                 // TODO: get data based on selected level
-                var lvlId = LevelManager.Instance.SelectedLevelId;
+                var lvlId = TrackManager.Instance.SelectedTrackId;
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList());
             }
@@ -681,21 +703,18 @@ namespace SmartRoadSense.Shared
                 return;
 
             // Update failed race status
-            var levelData = LevelManager.Instance.SelectedLevelModel;
+            var levelData = TrackManager.Instance.SelectedTrackModel;
             levelData.TotalOfFailures += 1;
             levelData.TotalOfPlays += 1;
-            LevelManager.Instance.SelectedLevelModel = levelData;
+            TrackManager.Instance.SelectedTrackModel = levelData;
 
             // Lose experience points
-            // TODO: activate
-            /*
             var lostExp = CharacterLevelData.LostPoints(_distanceData.Distance(_vehicle.MainBody.Node.Position.X));
             var player = CharacterManager.Instance.User;
             player.Experience += lostExp;
             if(player.Experience < 0)
                 player.Experience = 0;
             CharacterManager.Instance.User = player;
-            */
         }
 
         void LevelComplete()
@@ -734,14 +753,14 @@ namespace SmartRoadSense.Shared
 
             btnContinue.Pressed += args => {
                 // Set post race data
-                var postRaceData = new LastPlayedLevel {
-                    LevelData = _levelData,
+                var postRaceData = new LastPlayedTrack {
+                    TrackData = _levelData,
                     Components = _components,
                     Coins = _coins,
                     Time = (int)_stopwatch.GetElapsedTime().TotalMilliseconds,
                     Points = CharacterLevelData.ObtainedPoints((int)_stopwatch.GetElapsedTime().TotalMilliseconds)
                 };
-                LevelManager.Instance.LastPlayedLevelInfo = postRaceData;
+                TrackManager.Instance.LastPlayedTrackInfo = postRaceData;
                 CloseGameLevel();
                 GameInstance.LaunchScene(GameScenesEnumeration.POST_RACE, _randomLevel);
             };
@@ -1422,9 +1441,41 @@ namespace SmartRoadSense.Shared
         }
 
         void PlaceCoin(Vector2 vector) {
-            var rnd = NextRandom(0, 101);
-            if(rnd < 70)
-                return;
+            if(_coinPositionedCounter == 0) {
+                var compRnd = NextRandom(0, 751);
+                if(compRnd == 0 && !_componentsCollected) {
+                    _componentsCollected = true;
+                    // Place component
+                    // Node
+                    Node componentNode = CreateChild(_componentCollisionName);
+                    componentNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
+                    componentNode.Scale = new Vector3(1.5f * GameInstance.ScreenInfo.XScreenRatio, 1.5f * GameInstance.ScreenInfo.YScreenRatio, 1.0f);
+                    StaticSprite2D componentStaticSprite = componentNode.CreateComponent<StaticSprite2D>();
+                    componentStaticSprite.Sprite = GameInstance.ResourceCache.GetSprite2D(AssetsCoordinates.Level.Collectible.ResourcePath);
+                    componentStaticSprite.Sprite.Rectangle = AssetsCoordinates.Level.Collectible.Wheels;
+
+                    // Collision shape
+                    var componentCollision = componentNode.CreateComponent<CollisionBox2D>();
+                    componentCollision.Size = new Vector2(0.75f, 0.75f);
+                    componentCollision.Friction = 0.25f;
+                    componentCollision.Density = 0.001f;
+                    componentCollision.Restitution = 0f;
+
+                    // Collision body
+                    var componentCenter = componentNode.CreateComponent<RigidBody2D>();
+                    componentCenter.BodyType = BodyType2D.Dynamic;
+                    componentCenter.Mass = 0.01f;
+                    return;
+                }
+
+                var rnd = NextRandom(0, 101);
+                if(rnd < 80)
+                    return;
+            }
+
+            if(_coinPositionedCounter == 0)
+                _coinPositionedCounter = 5;
+            _coinPositionedCounter--;
 
             // Node
             Node coinNode = CreateChild(_coinCollisionName);

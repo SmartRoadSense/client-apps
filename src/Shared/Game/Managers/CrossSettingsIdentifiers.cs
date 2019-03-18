@@ -5,6 +5,8 @@ namespace SmartRoadSense.Shared {
 
         CrossSettingsIdentifiers(string value) { Value = value; }
 
+        public static CrossSettingsIdentifiers TrackList => new CrossSettingsIdentifiers("TRACKS_LIST");
+
         // VEHICLE DATA
         public static CrossSettingsIdentifiers VehicleCount => new CrossSettingsIdentifiers("VEHICLES_COUNT");
         public static CrossSettingsIdentifiers IdVehicle => new CrossSettingsIdentifiers("VEHICLES_ID_VEHICLE");
@@ -28,8 +30,8 @@ namespace SmartRoadSense.Shared {
         //LEVEL DATA
         public static CrossSettingsIdentifiers Levels => new CrossSettingsIdentifiers("LEVEL_LEVELS");
         public static CrossSettingsIdentifiers LevelInfo => new CrossSettingsIdentifiers("LEVEL_INFO");
-        public static CrossSettingsIdentifiers LevelCount => new CrossSettingsIdentifiers("LEVELS_COUNT");
-        public static CrossSettingsIdentifiers IdLevel => new CrossSettingsIdentifiers("LEVELS_ID_LEVEL");
+        public static CrossSettingsIdentifiers TrackCount => new CrossSettingsIdentifiers("LEVELS_COUNT");
+        public static CrossSettingsIdentifiers IdTrack => new CrossSettingsIdentifiers("LEVELS_ID_LEVEL");
         public static CrossSettingsIdentifiers SelectedLevel => new CrossSettingsIdentifiers("LEVELS_SELECTED_LEVEL");
         public static CrossSettingsIdentifiers LastPlayedLevel => new CrossSettingsIdentifiers("LEVELS_LAST_PLAYED");
 

@@ -8,8 +8,8 @@ namespace SmartRoadSense.Shared {
     public static class JsonReaderLevels {
         const string LevelJsonFilename = "Levels.json";
 
-        static LevelsContainerModel LoadConfig() {
-            LevelsContainerModel levelContainer = null;
+        static TracksContainerModel LoadConfig() {
+            TracksContainerModel levelContainer = null;
             try {
                 var assembly = System.Reflection.Assembly.GetAssembly(typeof(App));
                 string[] resourceNames = assembly.GetManifestResourceNames();
@@ -19,7 +19,7 @@ namespace SmartRoadSense.Shared {
                     using(var reader = new StreamReader(s)) {
                         var txt = reader.ReadToEnd();
                         JsonSerializer serializer = new JsonSerializer();
-                        levelContainer = JsonConvert.DeserializeObject<LevelsContainerModel>(txt);
+                        levelContainer = JsonConvert.DeserializeObject<TracksContainerModel>(txt);
                         return levelContainer;
                     }
                 }
@@ -53,15 +53,15 @@ namespace SmartRoadSense.Shared {
         public static int GetLevelConfig() {
             var levelContainer = LoadConfig();
             if(levelContainer != null) {
-                System.Diagnostics.Debug.WriteLine("level count: {0}", levelContainer.LevelModel.Count);
-                LevelManager.Instance.LevelCount = levelContainer.LevelModel.Count;
-                return levelContainer.LevelModel.Count;
+                System.Diagnostics.Debug.WriteLine("level count: {0}", levelContainer.TrackModel.Count);
+                TrackManager.Instance.TrackCount = levelContainer.TrackModel.Count;
+                return levelContainer.TrackModel.Count;
             }
             else
                 return 0;
         }
 
-        public static LevelsContainerModel GetLevelsConfig() {
+        public static TracksContainerModel GetLevelsConfig() {
             return LoadConfig();
         }
         /*

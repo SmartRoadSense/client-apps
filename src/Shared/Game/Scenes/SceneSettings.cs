@@ -345,7 +345,7 @@ namespace SmartRoadSense.Shared {
                 Position = new IntVector2(GameInstance.ScreenInfo.SetX(1190), GameInstance.ScreenInfo.SetY(225)),
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Range = 1,
+                Range = 1.0f,
                 Value = SoundManager.Instance.EffectsGain,
                 Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath),
                 ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite
@@ -395,7 +395,7 @@ namespace SmartRoadSense.Shared {
                 Position = new IntVector2(GameInstance.ScreenInfo.SetX(1190), GameInstance.ScreenInfo.SetY(350)),
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Range = 1,
+                Range = 1.0f,
                 Value = SoundManager.Instance.MusicGain,
                 Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath),
                 ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite

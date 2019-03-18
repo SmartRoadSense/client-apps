@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace SmartRoadSense.Shared {
-    public class LevelsContainerModel {
+    public class TracksContainerModel {
         [JsonProperty("LEVELS")]
-        public List<LevelModel> LevelModel { get; set; }
+        public List<TrackModel> TrackModel { get; set; }
     }
 
-    public class LevelModel {
+    public class TrackModel {
         [JsonProperty("ID_LEVEL")]
-        public int IdLevel { get; set; }
+        public int IdTrack { get; set; }
 
         [JsonProperty("NAME")]
         public string Name { get; set; }

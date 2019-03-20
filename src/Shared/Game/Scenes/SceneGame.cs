@@ -74,6 +74,7 @@ namespace SmartRoadSense.Shared
         int _components;
         bool _componentsCollected;
         bool _removedFirstCoin;
+        int _buttonSize;
 
         Stopwatch _stopwatch;
         GameDistanceData _distanceData;
@@ -1022,6 +1023,7 @@ namespace SmartRoadSense.Shared
 #if DEBUG
             InitShowHidePhysics();
 #endif
+            InitButtonSize();
             InitButtonAccelerate();
             InitButtonBrake();
             InitButtonRotateLeft();
@@ -1045,12 +1047,26 @@ namespace SmartRoadSense.Shared
             };
         }
 
+        void InitButtonSize() {
+            switch(SettingsManager.Instance.GameplayButtonSize) {
+                case GameplayButtonSize.SMALL:
+                    _buttonSize = 140;
+                    break;
+                case GameplayButtonSize.MEDIUM:
+                    _buttonSize = 160;
+                    break;
+                case GameplayButtonSize.LARGE:
+                    _buttonSize = 180;
+                    break;
+            }
+        }
+
         void InitButtonAccelerate()
         {
             if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
-                btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+                btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
             else
-                btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+                btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
 
             btnA.Name = "Button0";
             btnA.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
@@ -1078,9 +1094,9 @@ namespace SmartRoadSense.Shared
         void InitButtonBrake() 
         {
             if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
-                btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+                btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
             else
-                btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+                btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
 
             btnB.Name = "Button1";
             btnB.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
@@ -1104,9 +1120,9 @@ namespace SmartRoadSense.Shared
         void InitButtonRotateLeft() 
         {
             if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
-                btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+                btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
             else
-                btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+                btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
 
             btnL.Name = "Button2";
             btnL.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
@@ -1135,9 +1151,9 @@ namespace SmartRoadSense.Shared
         void InitButtonRotateRight() 
         {
             if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
-                btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+                btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
             else
-                btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+                btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
 
             btnR.Name = "Button3";
             btnR.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
@@ -1165,10 +1181,11 @@ namespace SmartRoadSense.Shared
 
         void InitButtonBoost() 
         {
+
             if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
-                btnBoost = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, 380, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+                btnBoost = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, 380, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
             else
-                btnBoost = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, 380, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+                btnBoost = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, 380, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
 
             btnBoost.Name = "Button4";
             btnBoost.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);

@@ -168,8 +168,7 @@ namespace SmartRoadSense.Shared {
             b2.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             b2.SetPosition(0, 0);
             b2.SetFont(_baseFont, GameInstance.ScreenInfo.SetX(30));
-            
-                       
+
             ButtonsB.Pressed += args => {
                 switch(ButtonDimensions) {
                     case GameplayButtonSize.SMALL:

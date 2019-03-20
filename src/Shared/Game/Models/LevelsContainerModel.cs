@@ -12,6 +12,9 @@ namespace SmartRoadSense.Shared {
         [JsonProperty("ID_LEVEL")]
         public int IdTrack { get; set; }
 
+        [JsonProperty("GUID_LEVEL")]
+        public Guid GuidTrack { get; set; }
+
         [JsonProperty("NAME")]
         public string Name { get; set; }
 
@@ -19,7 +22,7 @@ namespace SmartRoadSense.Shared {
         public int Difficulty { get; set; }
 
         [JsonProperty("TRACK_LENGTH")]
-        public int TrackLength { get; set; }
+        public double TrackLength { get; set; }
 
         [JsonProperty("LANDSKAPE")]
         public int Landskape { get; set; } //0 - random, 1 - beach, 2 - moon, 3 - forest

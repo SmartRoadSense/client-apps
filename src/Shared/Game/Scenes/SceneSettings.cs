@@ -16,8 +16,8 @@ namespace SmartRoadSense.Shared {
     public class SceneSettings : BaseScene {
 
         Font _baseFont;
-        int ButtonDimensions;
-        int ButtonOrientation;
+        GameplayButtonSize ButtonDimensions;
+        ControllerPosition ButtonOrientation;
         Text a2;
         Text b2;
         Sprite Buttons;
@@ -29,8 +29,8 @@ namespace SmartRoadSense.Shared {
         }
 
         public void CreateUI() {
-            ButtonDimensions = CharacterManager.Instance.ButtonDimension;
-            ButtonOrientation = CharacterManager.Instance.ButtonOrientation;
+            ButtonDimensions = SettingsManager.Instance.GameplayButtonSize;
+            ButtonOrientation = SettingsManager.Instance.ControllerLayout;
             CreateBackground();
             CreateTopBar();
             CreateLeftSection();
@@ -111,7 +111,6 @@ namespace SmartRoadSense.Shared {
 
         void CreateLeftSection() {
          
-
             Sprite MiniGameScene = new Sprite();
             MiniGameScene.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             MiniGameScene.ImageRect = AssetsCoordinates.Generic.Boxes.MiniGameScreen;
@@ -146,7 +145,7 @@ namespace SmartRoadSense.Shared {
             ButtonsA.SetSize(GameInstance.ScreenInfo.SetX(345), GameInstance.ScreenInfo.SetY(81));
             ButtonsA.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
             ButtonsA.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(800));
-            //GameInstance.UI.Root.AddChild(ButtonsA);
+            GameInstance.UI.Root.AddChild(ButtonsA);
             
             Text b1 = new Text();
             ButtonsA.AddChild(b1);
@@ -162,7 +161,7 @@ namespace SmartRoadSense.Shared {
             ButtonsB.SetSize(GameInstance.ScreenInfo.SetX(595), GameInstance.ScreenInfo.SetY(81));
             ButtonsB.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
             ButtonsB.SetPosition(GameInstance.ScreenInfo.SetX(395), GameInstance.ScreenInfo.SetY(800));
-            //GameInstance.UI.Root.AddChild(ButtonsB);
+            GameInstance.UI.Root.AddChild(ButtonsB);
 
             b2 = new Text();
             ButtonsB.AddChild(b2);
@@ -172,28 +171,26 @@ namespace SmartRoadSense.Shared {
             
                        
             ButtonsB.Pressed += args => {
-                if (ButtonDimensions == 1) {
-                    b2.Value = "MEDIUM";
-                    ButtonDimensions = 2;
-                    CharacterManager.Instance.ButtonDimension = 2;
-                    SetButtonConfig();
-
-
+                switch(ButtonDimensions) {
+                    case GameplayButtonSize.SMALL:
+                        b2.Value = "MEDIUM";
+                        ButtonDimensions = GameplayButtonSize.MEDIUM;
+                        SettingsManager.Instance.GameplayButtonSize = GameplayButtonSize.MEDIUM;
+                        SetButtonConfig();
+                        break;
+                    case GameplayButtonSize.MEDIUM:
+                        b2.Value = "LARGE";
+                        ButtonDimensions = GameplayButtonSize.LARGE;
+                        SettingsManager.Instance.GameplayButtonSize = GameplayButtonSize.LARGE;
+                        SetButtonConfig();
+                        break;
+                    case GameplayButtonSize.LARGE:
+                        b2.Value = "SMALL";
+                        ButtonDimensions = GameplayButtonSize.SMALL;
+                        SettingsManager.Instance.GameplayButtonSize = GameplayButtonSize.SMALL;
+                        SetButtonConfig();
+                        break;
                 }
-                else if (ButtonDimensions == 2) {
-                    b2.Value = "LARGE";
-                    ButtonDimensions = 3;
-                    CharacterManager.Instance.ButtonDimension = 3;
-                    SetButtonConfig();
-
-                }
-                else if (ButtonDimensions == 3) {
-                    b2.Value = "SMALL";
-                    ButtonDimensions = 1;
-                    CharacterManager.Instance.ButtonDimension = 1;
-                    SetButtonConfig();
-                }
-
             };
 
 
@@ -203,7 +200,7 @@ namespace SmartRoadSense.Shared {
             AccBrake.SetSize(GameInstance.ScreenInfo.SetX(345), GameInstance.ScreenInfo.SetY(81));
             AccBrake.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
             AccBrake.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(900));
-            //GameInstance.UI.Root.AddChild(AccBrake);
+            GameInstance.UI.Root.AddChild(AccBrake);
 
             Text a1 = new Text();
             AccBrake.AddChild(a1);
@@ -218,94 +215,94 @@ namespace SmartRoadSense.Shared {
             AccBrakeB.SetSize(GameInstance.ScreenInfo.SetX(595), GameInstance.ScreenInfo.SetY(81));
             AccBrakeB.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
             AccBrakeB.SetPosition(GameInstance.ScreenInfo.SetX(395), GameInstance.ScreenInfo.SetY(900));
-            //GameInstance.UI.Root.AddChild(AccBrakeB);
+            GameInstance.UI.Root.AddChild(AccBrakeB);
 
             a2 = new Text();
             AccBrakeB.AddChild(a2);
             a2.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             a2.SetPosition(0, 0);
             a2.SetFont(_baseFont, GameInstance.ScreenInfo.SetX(30));
-            
 
             AccBrakeB.Pressed += args => {
-                 if(ButtonOrientation == 1) {
-                    
-                    ButtonOrientation = 2;
-                    CharacterManager.Instance.ButtonOrientation = 2;
+                 if(ButtonOrientation == ControllerPosition.LEFT_CONTROLLER) {
+                    ButtonOrientation = ControllerPosition.RIGHT_CONTROLLER;
+                    SettingsManager.Instance.ControllerLayout = ControllerPosition.RIGHT_CONTROLLER;
                     SetButtonConfig();
                  }
-                 else if(ButtonOrientation == 2) {
+                 else {
                     a2.Value = "RIGHT";
-                    ButtonOrientation = 1;
-                     CharacterManager.Instance.ButtonOrientation = 1;
+                    ButtonOrientation = ControllerPosition.LEFT_CONTROLLER;
+                    SettingsManager.Instance.ControllerLayout = ControllerPosition.LEFT_CONTROLLER;
                     SetButtonConfig();
-
                  }
 
              };
         }
 
-
         void SetButtonConfig() {
             switch(ButtonOrientation) {
-                case 1:
+                case ControllerPosition.RIGHT_CONTROLLER:
                     a2.Value = "RIGHT";
-                    ButtonOrientation = 1;
-                    CharacterManager.Instance.ButtonOrientation = 1;
+                    ButtonOrientation = ControllerPosition.RIGHT_CONTROLLER;
+                    SettingsManager.Instance.ControllerLayout = ControllerPosition.RIGHT_CONTROLLER;
                     Buttons.ImageRect = AssetsCoordinates.Generic.Boxes.ButtonsLeft;
                     AccBrakeBtn.ImageRect = AssetsCoordinates.Generic.Boxes.AccBrakeRight;
+                    switch(ButtonDimensions) {
+                        case GameplayButtonSize.SMALL:
+                            b2.Value = "SMALL";
+                            Buttons.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(224));
+                            Buttons.SetPosition(GameInstance.ScreenInfo.SetX(30), GameInstance.ScreenInfo.SetY(270));
+                            AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(120));
+                            AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(760), GameInstance.ScreenInfo.SetY(374));
+                            break;
+                        case GameplayButtonSize.MEDIUM:
+                            b2.Value = "MEDIUM";
+                            Buttons.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(243));
+                            Buttons.SetPosition(GameInstance.ScreenInfo.SetX(30), GameInstance.ScreenInfo.SetY(250));
+                            AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(130));
+                            AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(750), GameInstance.ScreenInfo.SetY(364));
+                            break;
+                        case GameplayButtonSize.LARGE:
+                            b2.Value = "LARGE";
+                            Buttons.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(262));
+                            Buttons.SetPosition(GameInstance.ScreenInfo.SetX(30), GameInstance.ScreenInfo.SetY(230));
+                            AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(140));
+                            AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(740), GameInstance.ScreenInfo.SetY(354));
+                            break;
+                    }
 
-                    if(ButtonDimensions == 1) {
-                        b2.Value = "SMALL";
-                        Buttons.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(224));
-                        Buttons.SetPosition(GameInstance.ScreenInfo.SetX(30), GameInstance.ScreenInfo.SetY(270));
-                        AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(120));
-                        AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(760), GameInstance.ScreenInfo.SetY(374));
-                    }
-                    else if(ButtonDimensions == 2) {
-                        b2.Value = "MEDIUM";
-                        Buttons.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(243));
-                        Buttons.SetPosition(GameInstance.ScreenInfo.SetX(30), GameInstance.ScreenInfo.SetY(250));
-                        AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(130));
-                        AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(750), GameInstance.ScreenInfo.SetY(364));
-                    }
-                    else if(ButtonDimensions == 3) {
-                        b2.Value = "LARGE";
-                        Buttons.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(262));
-                        Buttons.SetPosition(GameInstance.ScreenInfo.SetX(30), GameInstance.ScreenInfo.SetY(230));
-                        AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(140));
-                        AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(740), GameInstance.ScreenInfo.SetY(354));
-                    }
                     break;
-                case 2:
+                case ControllerPosition.LEFT_CONTROLLER:
                     a2.Value = "LEFT";
-                    ButtonOrientation = 2;
-                    CharacterManager.Instance.ButtonOrientation = 2;
+                    ButtonOrientation = ControllerPosition.LEFT_CONTROLLER;
+                    SettingsManager.Instance.ControllerLayout = ControllerPosition.LEFT_CONTROLLER;
                     Buttons.ImageRect = AssetsCoordinates.Generic.Boxes.ButtonsRight;
-                    //Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(230));
+                    Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(230));
                     AccBrakeBtn.ImageRect = AssetsCoordinates.Generic.Boxes.AccBrakeLeft;
-                    //AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(364));
+                    AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(364));
 
-                    if(ButtonDimensions == 1) {
-                        b2.Value = "SMALL";
-                        Buttons.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(224));
-                        Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(270));
-                        AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(120));
-                        AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(60), GameInstance.ScreenInfo.SetY(374));
-                    }
-                    else if(ButtonDimensions == 2) {
-                        b2.Value = "MEDIUM";
-                        Buttons.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(243));
-                        Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(250));
-                        AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(130));
-                        AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(364));
-                    }
-                    else if(ButtonDimensions == 3) {
-                        b2.Value = "LARGE";
-                        Buttons.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(262));
-                        Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(230));
-                        AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(140));
-                        AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(40), GameInstance.ScreenInfo.SetY(354));
+                    switch(ButtonDimensions) {
+                        case GameplayButtonSize.SMALL:
+                            b2.Value = "SMALL";
+                            Buttons.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(224));
+                            Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(270));
+                            AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(120), GameInstance.ScreenInfo.SetY(120));
+                            AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(60), GameInstance.ScreenInfo.SetY(374));
+                            break;
+                        case GameplayButtonSize.MEDIUM:
+                            b2.Value = "MEDIUM";
+                            Buttons.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(243));
+                            Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(250));
+                            AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(130), GameInstance.ScreenInfo.SetY(130));
+                            AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(364));
+                            break;
+                        case GameplayButtonSize.LARGE:
+                            b2.Value = "LARGE";
+                            Buttons.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(262));
+                            Buttons.SetPosition(GameInstance.ScreenInfo.SetX(730), GameInstance.ScreenInfo.SetY(230));
+                            AccBrakeBtn.SetSize(GameInstance.ScreenInfo.SetX(140), GameInstance.ScreenInfo.SetY(140));
+                            AccBrakeBtn.SetPosition(GameInstance.ScreenInfo.SetX(40), GameInstance.ScreenInfo.SetY(354));
+                            break;
                     }
 
                     break;

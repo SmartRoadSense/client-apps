@@ -58,23 +58,5 @@ namespace SmartRoadSense.Shared
                 OnPropertyChanged();
             }
         }
-
-        public int ButtonDimension {
-            //1 - 120; 2 - 130: 3 - 140
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.ButtonDimension.Value, 1);
-            set {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.ButtonDimension.Value, value);
-                OnPropertyChanged();
-            }
-        }
-
-        public int ButtonOrientation {
-            //1 - left; 2 - right
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.ButtonOrientation.Value, 1);
-            set {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.ButtonOrientation.Value, value);
-                OnPropertyChanged();
-            }
-        }
     }
 }

@@ -28,7 +28,7 @@ namespace SmartRoadSense.Shared {
         public static CrossSettingsIdentifiers SelectedCharacter => new CrossSettingsIdentifiers("CHARACTERS_SELECTED_CHARACTER");
 
         //LEVEL DATA
-        public static CrossSettingsIdentifiers Levels => new CrossSettingsIdentifiers("LEVEL_LEVELS");
+        public static CrossSettingsIdentifiers Tracks => new CrossSettingsIdentifiers("LEVEL_LEVELS");
         public static CrossSettingsIdentifiers LevelInfo => new CrossSettingsIdentifiers("LEVEL_INFO");
         public static CrossSettingsIdentifiers TrackCount => new CrossSettingsIdentifiers("LEVELS_COUNT");
         public static CrossSettingsIdentifiers IdTrack => new CrossSettingsIdentifiers("LEVELS_ID_LEVEL");

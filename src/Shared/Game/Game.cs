@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
 using Urho;
-using Urho.Actions;
-using Urho.Audio;
 using Urho.Gui;
 using Urho.Resources;
 using Urho.Urho2D;
@@ -29,11 +26,6 @@ namespace SmartRoadSense.Shared
         {
         }
 
-        /*
-        [Preserve]
-        public Game(ApplicationOptions options = null) : base(options) { }
-        */
-
         static Game() {
             UnhandledException += Application_UnhandledException;
         }
@@ -49,6 +41,8 @@ namespace SmartRoadSense.Shared
 
         protected override void Start() {
             InitResourceCache();
+
+            InitTracks();
 
             InitUiInfo();
 
@@ -77,6 +71,11 @@ namespace SmartRoadSense.Shared
             };
 
             Debug.WriteLine("RESOURCE CACHE - Initialized Resource Cache");
+        }
+
+        void InitTracks()
+        {
+            TrackManager.Instance.Init();
         }
 
         public void InitUiInfo() {
@@ -174,21 +173,6 @@ namespace SmartRoadSense.Shared
                     Bg1Node[i].Position = new Vector3(Bg1Node[i].Position.X + staticX * 1.2f, CameraNode.Position.Y, Bg1Node[i].Position.Z);
                 }
             }
-
-            // Update game screen debug text
-            if(backWheelSpeedText != null)
-                backWheelSpeedText.Value = string.Format(
-                    "linear velocity x: "
-                    + GameVehicle.MainBody.LinearVelocity.X
-                    + "\n"
-                    + "linear velocity y: "
-                    + GameVehicle.MainBody.LinearVelocity.Y
-                    + "\n"
-                    + "wheel 1 motor speed: "
-                    + GameVehicle.Wheel1.MotorSpeed.ToString()
-                    + "\n"
-                    + "wheel 2 motor speed: "
-                    + GameVehicle.Wheel2.MotorSpeed.ToString());
 
             // Do not move if the UI has a focused element (p.e.: pause menu)
             if(UI != null && UI.FocusElement != null)
@@ -340,15 +324,12 @@ namespace SmartRoadSense.Shared
         {
             GamePaused = true;
             // STOP BG
-
-            // TODO: stop time
         }
 
         public void ResumeGame()
         {
             // RESUME BG
             GamePaused = false;
-            // TODO: resume time
         }
 
     }

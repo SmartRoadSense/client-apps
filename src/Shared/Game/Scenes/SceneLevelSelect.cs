@@ -12,7 +12,7 @@ namespace SmartRoadSense.Shared {
         UIElement root;
         ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
         ResourceCache cache;
-        int counter;
+        int _counter;
         Button prev_level;
         Button sel_level;
         Button next_level;
@@ -21,7 +21,7 @@ namespace SmartRoadSense.Shared {
         Text nextLevelN;
         Text difficultyN;
         Text BestTimeN;
-        int racesNumber;
+        int _racesNumber;
         int lastComplededRace;
 
         public SceneLevelSelect(Game game) : base(game) {
@@ -30,15 +30,17 @@ namespace SmartRoadSense.Shared {
             cache = GameInstance.ResourceCache;
             font = cache.GetFont("Fonts/OpenSans-Bold.ttf");
 
-            racesNumber = JsonReaderLevels.GetLevelConfig();
+            _racesNumber = TrackManager.Instance.TrackCount;
             if(CharacterManager.Instance.User.LastCompletedRace > 0)
                 lastComplededRace = CharacterManager.Instance.User.LastCompletedRace;
             else
                 lastComplededRace = 0;
-                
-            counter = lastComplededRace + 1;
-            TrackManager.Instance.SelectedTrackId = counter;
-            TrackManager.Instance.LoadSingleLevel(TrackManager.Instance.SelectedTrackId);
+
+            if(TrackManager.Instance.Tracks.TrackModel.Count > 1) {
+                _counter = lastComplededRace + 1;
+                TrackManager.Instance.SelectedTrackId = _counter;
+                TrackManager.Instance.LoadSingleLevel(TrackManager.Instance.SelectedTrackId);
+            }
 
             CreateUI();
         }
@@ -96,6 +98,12 @@ namespace SmartRoadSense.Shared {
             screen_title.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             screen_title.ImageRect = AssetsCoordinates.Generic.Boxes.BoxTitle;
             screen_title.Enabled = false;
+            screen_title.Pressed += (PressedEventArgs args) => {
+#if DEBUG
+                TrackManager.Instance.Tracks = null;
+                TrackManager.Instance.Init();
+#endif
+            };
 
             Text buttonTitleText = new Text();
             screen_title.AddChild(buttonTitleText);
@@ -358,8 +366,9 @@ namespace SmartRoadSense.Shared {
         }
 
         void UpdateActiveLevels() {
-            if(racesNumber <= 1) {
-                // No races aviable.
+            if(_racesNumber == 1) {
+                // Only test track available
+                // TODO: show srs data collect text
                 prev_level.Visible = false;
                 sel_level.Enabled = false;
                 sel_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
@@ -367,7 +376,7 @@ namespace SmartRoadSense.Shared {
                 next_level.Visible = false;
             }
             else {
-                if(counter == 1) { // DON'T SHOW LEVEL 0 --> RANDOM LEVEL
+                if(_counter == 1) { // DON'T SHOW LEVEL 0 --> RANDOM LEVEL
                     prev_level.Visible = false;
                     sel_level.Enabled = false;
                     sel_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
@@ -375,14 +384,14 @@ namespace SmartRoadSense.Shared {
                     next_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
                 }
                 else {
-                   var prevLevel = TrackManager.Instance.LoadSingleLevel(counter - 1);
+                   var prevLevel = TrackManager.Instance.LoadSingleLevel(_counter - 1);
                     prev_level.Visible = true;
                     prev_level.Enabled = true;
                     prev_level.ImageRect = SelectLevelLandskape(prevLevel);
                     prevLevelN.Value = string.Format("{0}", prevLevel.IdTrack);
                 }
 
-                var level = TrackManager.Instance.LoadSingleLevel(counter);
+                var level = TrackManager.Instance.LoadSingleLevel(_counter);
                 sel_level.Enabled = true;
                 sel_level.Visible = true;
                 sel_level.ImageRect = SelectLevelLandskape(level);
@@ -390,12 +399,12 @@ namespace SmartRoadSense.Shared {
                 difficultyN.Value = "" + level.Difficulty;
                 BestTimeN.Value = string.Format("{0}", TimeSpan.FromMilliseconds(TrackManager.Instance.SelectedTrackModel.BestTime).MillisRepresentation());
 
-                if(counter + 1 >= racesNumber) {
+                if(_counter + 1 >= _racesNumber) {
                     next_level.Enabled = false;
                     next_level.Visible = false;
                 }
                 else {
-                    var nextLevel = TrackManager.Instance.LoadSingleLevel(counter + 1);
+                    var nextLevel = TrackManager.Instance.LoadSingleLevel(_counter + 1);
                     next_level.Enabled = true;
                     next_level.Visible = true;
                     next_level.ImageRect = SelectLevelLandskape(nextLevel);
@@ -435,22 +444,22 @@ namespace SmartRoadSense.Shared {
         }
 
         void NextRace() {
-            if(counter >= 0 && counter <= racesNumber) {
-                if(counter == racesNumber) {
-                    counter = racesNumber;
+            if(_counter >= 0 && _counter <= _racesNumber) {
+                if(_counter == _racesNumber) {
+                    _counter = _racesNumber;
                 }
                 else {
-                    counter = 1 + counter;
+                    _counter = 1 + _counter;
                 }
-                TrackManager.Instance.SelectedTrackId = counter;
+                TrackManager.Instance.SelectedTrackId = _counter;
                 UpdateActiveLevels();
             }
         }
 
         void PreviousRace() {
-            if(counter >= 0 && counter <= racesNumber) {
-                counter = counter <= 0 ? counter : counter - 1;
-                TrackManager.Instance.SelectedTrackId = counter;
+            if(_counter > 0 && _counter <= _racesNumber) {
+                _counter = _counter <= 0 ? _counter : _counter - 1;
+                TrackManager.Instance.SelectedTrackId = _counter;
                 UpdateActiveLevels();
             }
         }

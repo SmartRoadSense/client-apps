@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 namespace SmartRoadSense.Shared {
     public static class JsonReaderLevels {
+        /*
         const string LevelJsonFilename = "Levels.json";
 
         static TracksContainerModel LoadConfig() {
@@ -29,6 +30,7 @@ namespace SmartRoadSense.Shared {
                 return levelContainer;
             }
         }
+        */
         /*
         static void SaveConfig(string jsonText) {
             try {
@@ -50,20 +52,10 @@ namespace SmartRoadSense.Shared {
             }
         }
         */
-        public static int GetLevelConfig() {
-            var levelContainer = LoadConfig();
-            if(levelContainer != null) {
-                System.Diagnostics.Debug.WriteLine("level count: {0}", levelContainer.TrackModel.Count);
-                TrackManager.Instance.TrackCount = levelContainer.TrackModel.Count;
-                return levelContainer.TrackModel.Count;
-            }
-            else
-                return 0;
-        }
 
-        public static TracksContainerModel GetLevelsConfig() {
-            return LoadConfig();
-        }
+        //public static TracksContainerModel GetLevelsConfig() {
+        //    return LoadConfig();
+        //}
         /*
         public static void SaveLevelsConfig(LevelsContainerModel jsonObject) {
             var jsonText = JsonConvert.SerializeObject(jsonObject);

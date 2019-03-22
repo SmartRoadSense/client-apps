@@ -253,7 +253,7 @@ namespace SmartRoadSense.Shared.Data {
                         IsMovingSlowly = false;
 
                         if (measuredSpeed >= GpsTooFastSpeed) {
-                            Log.Warning(new ArgumentOutOfRangeException(nameof(measuredSpeed)), "Unforeseen GPS skip of {0} m in {1} ms", measuredDistance, intervalTime.TotalMilliseconds);
+                            Log.Debug("Unforeseen GPS skip of {0} m in {1} ms", measuredDistance, intervalTime.TotalMilliseconds);
                             ResetGpsLocation();
                             return;
                         }

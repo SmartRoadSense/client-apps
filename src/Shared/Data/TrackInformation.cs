@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartRoadSense.Shared.Data {
 
-    public class TrackInformation {
+    public struct TrackInformation {
 
         public TrackInformation(
             Guid id,
@@ -18,22 +18,22 @@ namespace SmartRoadSense.Shared.Data {
             RecordingDistance = distance;
         }
 
-        public Guid Id { get; private set; }
+        public readonly Guid Id;
 
         /// <summary>
         /// Gets the date on which the track was recorded.
         /// </summary>
-        public DateTime RecordedOn { get; private set; }
+        public readonly DateTime RecordedOn;
 
         /// <summary>
         /// Gets the length of the recording.
         /// </summary>
-        public TimeSpan RecordingLength { get; private set; }
+        public readonly TimeSpan RecordingLength;
 
         /// <summary>
         /// Gets the recorded distance (in kms).
         /// </summary>
-        public double RecordingDistance { get; private set; }
+        public readonly double RecordingDistance;
 
     }
 

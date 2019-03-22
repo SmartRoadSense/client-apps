@@ -94,7 +94,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SyncErrorEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SyncManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SyncResult.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TaskExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimeOrdering.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UserLog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\RecordingViewModel.cs" />

@@ -15,11 +15,10 @@ namespace SmartRoadSense.Shared.Data {
     /// </summary>
     public static class DataStore {
 
-        public static Task<IList<TrackInformation>> GetCollectedTracks() {
+        public static Task<IList<TrackInformation>> GetCollectedTracks(TimeOrdering ordering) {
             return Task.Run<IList<TrackInformation>>(() => {
                 using(var db = DatabaseUtility.OpenConnection()) {
-                    var m = db.GetMapping<StatisticRecord>();
-                    var records = db.Query<StatisticRecord>($"SELECT * FROM {m.TableName} ORDER BY {nameof(StatisticRecord.Start)} ASC");
+                    var records = db.GetTracks(ordering);
 
                     return (from r in records
                             select new TrackInformation(
@@ -46,90 +45,12 @@ namespace SmartRoadSense.Shared.Data {
         }
 
         /// <summary>
-        /// Gets the current entries in the data store.
-        /// </summary>
-        public static Task<IList<FileSystemToken>> GetEntries() {
-            return FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, FileNaming.DataQueueFileExtension);
-        }
-
-        /// <summary>
-        /// Performs file parsing on a background thread.
-        /// Returns null if the file is corrupted or cannot be parsed correctly.
-        /// </summary>
-        public static async Task<DataPackage> ParsePackage(this FileSystemToken fileToken) {
-            using (Stream fileStream = await fileToken.OpenReadStream()) {
-                return await Task.Run(() => {
-                    try {
-                        var parser = DataPackageParser.DetectParser(fileStream);
-                        fileStream.Position = 0;
-
-                        return parser.Parse(fileStream);
-                    }
-                    catch(JsonSerializationException ex) {
-                        Log.Error(ex, "File {0} is corrupted and cannot be parsed", fileToken);
-                        return null;
-                    }
-                });
-            }
-        }
-
-        /// <summary>
-        /// Performs file parsing on a background thread.
-        /// Returns null if the file is corrupted or cannot be parsed correctly.
-        /// </summary>
-        public static async Task<DataPackageInfo> ParsePackageInfo(this FileSystemToken fileToken) {
-            using (Stream fileStream = await fileToken.OpenReadStream()) {
-                return await Task.Run(() => {
-                    try {
-                        var parser = DataPackageParser.DetectParser(fileStream);
-                        fileStream.Position = 0;
-
-                        return parser.ParseInfo(fileStream);
-                    }
-                    catch (JsonSerializationException ex) {
-                        Log.Error(ex, "File {0} is corrupted and cannot be parsed", fileToken);
-                        return null;
-                    }
-                });
-            }
-        }
-
-        /// <summary>
         /// Deletes all queued data files.
         /// </summary>
-        public static async Task DeleteAll() {
-            var files = await FileOperations.EnumerateFolderAsync(FileNaming.DataQueuePath, string.Empty);
-            foreach (var file in files) {
-                try {
-                    await file.Delete();
-                    Log.Debug("Deleted file {0}", file);
-                }
-                catch(Exception ex) {
-                    Log.Error(ex, "Cannot delete file {0}", file);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Attempts to parse a file and extract its list of data pieces.
-        /// </summary>
-        /// <returns>List of data pieces or null if the file could not be parsed.</returns>
-        public static async Task<IList<DataPiece>> ExtractDataPieces(this FileSystemToken token) {
-            using (var fileStream = await token.OpenReadStream()) {
-                return await Task.Run(() => {
-                    try {
-                        var parser = DataPackageParser.DetectParser(fileStream);
-                        fileStream.Seek(0, SeekOrigin.Begin);
-
-                        var package = parser.Parse(fileStream);
-                        return package.Pieces;
-                    }
-                    catch (Exception ex) {
-                        Log.Error(ex, "Failed to parse file {0}", token);
-                        return null;
-                    }
-                });
-            }
+        public static Task DeleteAll() {
+            // TODO: this actually does nothing now
+            // Makes no sense to drop queued data files as all data is permanently stored
+            return Task.CompletedTask;
         }
 
     }

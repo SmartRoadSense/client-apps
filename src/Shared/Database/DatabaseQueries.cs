@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using SQLite;
 
 namespace SmartRoadSense.Shared.Database {
@@ -35,6 +34,14 @@ namespace SmartRoadSense.Shared.Database {
                   GROUP BY StatisticRecord.TrackId
                   HAVING UploadedCount IS NULL OR DataCount > UploadedCount
                   ORDER BY StatisticRecord.Start DESC"
+            );
+        }
+
+        public static IList<StatisticRecord> GetTracks(this SQLiteConnection c, TimeOrdering ordering = TimeOrdering.OldFirst) {
+            var m = c.GetMapping<StatisticRecord>();
+            string orderKeyword = (ordering == TimeOrdering.OldFirst) ? "ASC" : "DESC";
+            return c.Query<StatisticRecord>(
+                $"SELECT * FROM {m.TableName} ORDER BY {nameof(StatisticRecord.Start)} {orderKeyword}"
             );
         }
 

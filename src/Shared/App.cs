@@ -81,7 +81,7 @@ namespace SmartRoadSense.Shared {
 
             await FileNaming.InitializeFileStructure().ConfigureAwait(false);
 
-            await DatabaseUtility.Initialize();
+            await DatabaseUtility.Initialize().ConfigureAwait(false);
 
             _initialized = true;
         }

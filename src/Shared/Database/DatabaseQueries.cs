@@ -38,11 +38,13 @@ namespace SmartRoadSense.Shared.Database {
         }
 
         public static IList<StatisticRecord> GetTracks(this SQLiteConnection c, TimeOrdering ordering = TimeOrdering.OldFirst) {
-            var m = c.GetMapping<StatisticRecord>();
-            string orderKeyword = (ordering == TimeOrdering.OldFirst) ? "ASC" : "DESC";
             return c.Query<StatisticRecord>(
-                $"SELECT * FROM {m.TableName} ORDER BY {nameof(StatisticRecord.Start)} {orderKeyword}"
+                $"SELECT * FROM StatisticRecord ORDER BY StatisticRecord.Start {GetSql(ordering)}"
             );
+        }
+
+        private static string GetSql(TimeOrdering ordering) {
+            return (ordering == TimeOrdering.OldFirst) ? "ASC" : "DESC";
         }
 
     }

@@ -1506,5 +1506,9 @@ namespace SmartRoadSense.Shared
                     return BackgroundColors.MoonColor;
             }
         }
+
+      
     }
+
+
 }

@@ -69,23 +69,25 @@ namespace SmartRoadSense.Shared {
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
 
+
             //COINS
             Button coins = new Button();
             root.AddChild(coins);
             coins.SetStyleAuto(null);
-            coins.SetPosition((int)(dim.XScreenRatio * 165), (int)(dim.YScreenRatio * 60));
-            coins.SetSize((int)(dim.XScreenRatio * 70), (int)(dim.YScreenRatio * 70));
-            coins.Texture = generic_bts;
-            coins.ImageRect = new IntRect(60, 729, 110, 779);
-            coins.Visible = false;
+            coins.SetPosition((int)(dim.XScreenRatio * 180), (int)(dim.YScreenRatio * 60));
+            coins.SetSize((int)(dim.XScreenRatio * 75), (int)(dim.YScreenRatio * 70));
+            coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+
 
             //Wallet text
             Text wallet = new Text();
-            root.AddChild(wallet);
-            wallet.SetPosition((int)(dim.XScreenRatio * 250), (int)(dim.YScreenRatio * 70));
+            coins.AddChild(wallet);
+            wallet.SetPosition((int)(dim.XScreenRatio * 90), (int)(dim.YScreenRatio * 10));
             wallet.SetFont(font, dim.XScreenRatio * 30);
-            wallet.Value = string.Format("{0}", CharacterManager.Instance.User.Wallet);
-            wallet.Visible = false;
+            int wallet_tot = CharacterManager.Instance.Wallet;
+
+            wallet.Value = "" + wallet_tot;
 
             // SCREEN TITLE
             Button screen_title = new Button();

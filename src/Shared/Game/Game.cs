@@ -136,6 +136,9 @@ namespace SmartRoadSense.Shared
                 case GameScenesEnumeration.USER_PROFILE:
                     SceneManager.Instance.SetScene(new SceneUserProfile(this));
                     break;
+                case GameScenesEnumeration.CREDITS:
+                    SceneManager.Instance.SetScene(new SceneCredits(this));
+                    break;
             }
         }
 

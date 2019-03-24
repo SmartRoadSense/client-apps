@@ -13,3 +13,4 @@ src/Android/Config\.json
 src/iOS/Config\.json
 src/Toolkit/Config\.json
 *.exe.config
+*.designer.cs

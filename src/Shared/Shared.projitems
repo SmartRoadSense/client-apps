@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\TrackInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataLossException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneCredits.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumericalExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ITrackManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\TrackManager.cs" />

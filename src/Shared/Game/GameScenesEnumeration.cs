@@ -13,6 +13,7 @@ namespace SmartRoadSense.Shared
         PROFILE = 7,
         LEVEL_SELECT = 8,
         POST_RACE = 9,
-        USER_PROFILE = 10
+        USER_PROFILE = 10,
+        CREDITS = 11
     }
 }

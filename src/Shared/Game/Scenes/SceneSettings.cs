@@ -71,24 +71,25 @@ namespace SmartRoadSense.Shared {
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
 
+
             //COINS
             Button coins = new Button();
             GameInstance.UI.Root.AddChild(coins);
             coins.SetStyleAuto(null);
-            coins.SetPosition(GameInstance.ScreenInfo.SetX(165), GameInstance.ScreenInfo.SetY(60));
-            coins.SetSize(GameInstance.ScreenInfo.SetX(70), GameInstance.ScreenInfo.SetY(70));
-            coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            coins.ImageRect = AssetsCoordinates.Generic.Icons.CoinsIcon;
-            coins.Visible = false;
+            coins.SetPosition(GameInstance.ScreenInfo.SetX(180), GameInstance.ScreenInfo.SetY(60));
+            coins.SetSize(GameInstance.ScreenInfo.SetX(75), GameInstance.ScreenInfo.SetY(70));
+            coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+
 
             //Wallet text
             Text wallet = new Text();
-            GameInstance.UI.Root.AddChild(wallet);
-            wallet.SetPosition(GameInstance.ScreenInfo.SetX(250), GameInstance.ScreenInfo.SetY(70));
+            coins.AddChild(wallet);
+            wallet.SetPosition(GameInstance.ScreenInfo.SetX(90), GameInstance.ScreenInfo.SetY(10));
             wallet.SetFont(_baseFont, GameInstance.ScreenInfo.SetX(30));
             int wallet_tot = CharacterManager.Instance.Wallet;
+
             wallet.Value = "" + wallet_tot;
-            wallet.Visible = false;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -441,7 +442,7 @@ namespace SmartRoadSense.Shared {
                 OpenBrowser("https://twitter.com/smartroadsense");
             };
 
-            /*
+            
             Button Credits = new Button();
             containerR.AddChild(Credits);
             Credits.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
@@ -449,6 +450,9 @@ namespace SmartRoadSense.Shared {
             Credits.SetSize(GameInstance.ScreenInfo.SetX(600), GameInstance.ScreenInfo.SetY(100));
             Credits.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
             Credits.SetPosition(GameInstance.ScreenInfo.SetX(200), GameInstance.ScreenInfo.SetY(800));
+            Credits.Pressed += args => {
+                GameInstance.LaunchScene(GameScenesEnumeration.CREDITS);
+            };
 
             Text CreditsText = new Text();
             Credits.AddChild(CreditsText);
@@ -456,7 +460,7 @@ namespace SmartRoadSense.Shared {
             CreditsText.SetPosition(0, 0);
             CreditsText.SetFont(_baseFont, GameInstance.ScreenInfo.SetX(30));
             CreditsText.Value = "CREDITS";
-            */           
+                     
         }
 
         void OpenBrowser(string url) {

@@ -7,6 +7,7 @@ using Urho.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using Urho.Audio;
+using SmartRoadSense.Shared.Data;
 
 namespace SmartRoadSense.Shared
 {
@@ -278,7 +279,7 @@ namespace SmartRoadSense.Shared
             GameInstance.PostRenderUpdate = PostRenderUpdate;
         }
 
-        void CreateBackgroundScene()
+        async void CreateBackgroundScene()
         {
             CreateComponent<Octree>();
             CreateComponent<DebugRenderer>();
@@ -381,6 +382,10 @@ namespace SmartRoadSense.Shared
                 // TODO: get data based on selected level
                 var lvlId = TrackManager.Instance.SelectedTrackId;
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
+
+                //var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
+                //List<float> lst = srsTrack.OfType<float>().ToList();
+                //recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList());
             }
 

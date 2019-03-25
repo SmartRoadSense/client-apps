@@ -100,7 +100,7 @@ namespace SmartRoadSense.Shared.ViewModel {
 
             if (!App.Sync.IsSyncing) {
                 //Manager stopped syncing, files might have changed
-                RefreshUploadQueue().Forget();
+                RefreshUploadQueue();
             }
         }
 

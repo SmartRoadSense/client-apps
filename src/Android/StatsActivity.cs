@@ -56,7 +56,7 @@ namespace SmartRoadSense.Android {
 
         private void HandleShareClick(object sender, EventArgs e) {
             Log.Debug("Preparing sharable image");
-            PrepareImageAndShare().Forget();
+            PrepareImageAndShare();
         }
 
         private void UpdateKmCounter(TextView tv, double? kms) {

@@ -38,7 +38,7 @@ namespace SmartRoadSense.Android {
             Log.Debug("Start job command received (job {0})", @params.JobId);
 
             //Launch background thread for processing
-            JobHandler(@params).Forget();
+            JobHandler(@params);
 
             return true;
         }

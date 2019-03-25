@@ -65,7 +65,7 @@ namespace SmartRoadSense.Shared.Data {
             }
 
             //Kick off flushing on background thread
-            FlushCoreAsync(_data.ToArray()).Forget();
+            FlushCoreAsync(_data.ToArray());
 
             //NOTE: lock free switch, this MAY drop data in same cases,
             //      but this is preferable to locking on the queue

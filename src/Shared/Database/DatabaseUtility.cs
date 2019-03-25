@@ -10,7 +10,7 @@ namespace SmartRoadSense.Shared.Database {
     /// </summary>
     public static class DatabaseUtility {
 
-        public const int TargetDataVersion = 3;
+        public const int TargetDataVersion = 4;
 
         /// <summary>
         /// Initializes the database.
@@ -62,7 +62,7 @@ namespace SmartRoadSense.Shared.Database {
         }
 
         private static void Migrate(int currentVersion) {
-            if(currentVersion <= 2) {
+            if(currentVersion == 2) {
                 // Drop index on StatisticRecord and re-create both tables (adds columns)
                 using(var db = OpenConnection()) {
                     db.Execute("DROP INDEX IF EXISTS StatisticRecord_TrackId");
@@ -71,6 +71,15 @@ namespace SmartRoadSense.Shared.Database {
                 }
 
                 Log.Event("Database.migrate.2");
+            }
+            if(currentVersion == 3) {
+                // Additional migration to make sure that tables have all fields (better safe than sorry)
+                using(var db = OpenConnection()) {
+                    db.CreateTable<StatisticRecord>();
+                    db.CreateTable<TrackUploadRecord>();
+                }
+
+                Log.Event("Database.migrate.3");
             }
         }
 

@@ -167,13 +167,15 @@ namespace SmartRoadSense.Shared
             if(GamePaused)
                 return;
 
-            var staticX = GameVehicle.MainBody.LinearVelocity.X * PixelSize * ScreenInfo.XScreenRatio;
+            var staticX = GameVehicle.MainBody.LinearVelocity.X * timeStep;
+
+            //Debug.WriteLine($"WorldScale {}");
 
             if(CameraNode.Position.X >= 0.0f && GameVehicle.MainBody.LinearVelocity.X > 0.2) {
                 for(var i = 0; i < Bg3Node.Count; i++) {
-                    Bg3Node[i].Position = new Vector3(Bg3Node[i].Position.X + staticX * 2.1f, CameraNode.Position.Y, Bg3Node[i].Position.Z);
-                    Bg2Node[i].Position = new Vector3(Bg2Node[i].Position.X + staticX * 1.7f, CameraNode.Position.Y, Bg2Node[i].Position.Z);
-                    Bg1Node[i].Position = new Vector3(Bg1Node[i].Position.X + staticX * 1.2f, CameraNode.Position.Y, Bg1Node[i].Position.Z);
+                    Bg3Node[i].Position = new Vector3(Bg3Node[i].Position.X + staticX * 0.8f, CameraNode.Position.Y, Bg3Node[i].Position.Z);
+                    Bg2Node[i].Position = new Vector3(Bg2Node[i].Position.X + staticX * 0.55f, CameraNode.Position.Y, Bg2Node[i].Position.Z);
+                    Bg1Node[i].Position = new Vector3(Bg1Node[i].Position.X + staticX * 0.3f, CameraNode.Position.Y, Bg1Node[i].Position.Z);
                 }
             }
 
@@ -220,6 +222,7 @@ namespace SmartRoadSense.Shared
                 ShowCollisionGeometry = !ShowCollisionGeometry;
                 return;
             }
+
             if(Input.GetKeyPress(Key.X)) {
                 // Destroy everything game related
                 Engine.PostRenderUpdate -= PostRenderUpdate;

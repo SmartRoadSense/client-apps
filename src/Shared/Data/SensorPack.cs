@@ -16,7 +16,8 @@ namespace SmartRoadSense.Shared.Data {
 #endif
 
         public const int AccelerometerDesiredHz = 100;
-        public const int AccelerometerDesiredDelayMs = 1000 / AccelerometerDesiredHz;
+        public const int AccelerometerDesiredDelayMs = (int)(1000 / AccelerometerDesiredHz);
+        public const int AccelerometerToleratedDelayMs = (int)(AccelerometerDesiredDelayMs * 0.8);
 
         public const int LocationDesiredHz = 1;
         public const int LocationDesiredDelayMs = 1000 / LocationDesiredHz;
@@ -270,6 +271,8 @@ namespace SmartRoadSense.Shared.Data {
             _gpsLastAccuracy = accuracy;
         }
 
+        private DateTime? _lastAcceleration = null;
+
         /// <summary>
         /// Reports new acceleration values from the sensor.
         /// </summary>
@@ -277,6 +280,21 @@ namespace SmartRoadSense.Shared.Data {
         /// <param name="accY">Y-axis acceleration in m/s^2.</param>
         /// <param name="accZ">Z-axis acceleration in m/s^2.</param>
         protected void ReportNewAcceleration(double accX, double accY, double accZ) {
+            //NOTE: cannot use the sensor timestamp data, as this is HW dependent on Android
+            //      see https://code.google.com/p/android/issues/detail?id=56561
+            var timestamp = DateTime.UtcNow;
+
+            // Check accelerometer frequency
+            if(_lastAcceleration.HasValue) {
+                int accDelayMs = (int)((timestamp - _lastAcceleration.Value).TotalMilliseconds);
+                if(accDelayMs < AccelerometerToleratedDelayMs) {
+                    // Higher frequency than what was asked for, drop
+                    Log.Debug("Dropping accelerometer sample ({0}ms delay)", accDelayMs);
+                    return;
+                }
+            }
+            _lastAcceleration = timestamp;
+
             //Scale each axis individually
             accX *= _accelerometerScaleFactor;
             accY *= _accelerometerScaleFactor;
@@ -306,15 +324,6 @@ namespace SmartRoadSense.Shared.Data {
                   _gpsLastBearing.IsValid())) {
                 return;
             }
-
-            //TODO: check for acceleration sampling frequency here
-
-            //TODO: computation is now sync-locked to the accelerometer instead of the intended
-            //      100 Hz frequency. This should be changed.
-
-            //NOTE: cannot use the sensor timestamp data, as this is HW dependent on Android
-            //      see https://code.google.com/p/android/issues/detail?id=56561
-            var timestamp = DateTime.UtcNow;
 
             //Check for unfixed GPS timeout
             if (timestamp - _gpsLastUpdate > GpsUnfixedTimeout) {
@@ -392,6 +401,7 @@ namespace SmartRoadSense.Shared.Data {
             _gpsLastUpdate = DateTime.UtcNow;
             _lastTimeFastEnough = DateTime.MinValue;
             _lastTimeMoved = DateTime.MinValue;
+            _lastAcceleration = null;
 
             _accelerometerScaleFactor = Settings.CalibrationScaleFactor;
             Log.Debug("Sensor pack using scale factor of {0:P2}", _accelerometerScaleFactor);
@@ -434,6 +444,8 @@ namespace SmartRoadSense.Shared.Data {
             _gpsLastSpeed = float.NaN;
             _gpsLastBearing = 0f;
             _gpsLastAccuracy = 0;
+
+            _lastAcceleration = null;
 
             _engine.Reset();
         }

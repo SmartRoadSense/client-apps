@@ -47,7 +47,6 @@ namespace SmartRoadSense.Shared
 
             InitUiInfo();
 
-
             LaunchScene(GameScenesEnumeration.MENU);
 
             JsonReaderVehicles.GetVehicleConfig();
@@ -81,7 +80,7 @@ namespace SmartRoadSense.Shared
 
         void InitTracks()
         {
-            TrackManager.Instance.Init();
+            var initResult = TrackManager.Instance.Init();
         }
 
         public void InitUiInfo() {

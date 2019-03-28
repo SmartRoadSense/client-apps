@@ -12,7 +12,7 @@ namespace SmartRoadSense.Shared
         public static float PPECorrectionFactor = 20;
         public static float EndOfLevelSurfaceLength = 500;
 
-        public static List<Point> ArrayToMatrix(List<float> srsNormalizedData)
+        public static List<Point> ArrayToMatrix(List<float> srsNormalizedData, ScreenInfoRatio screenInfo)
         {
             List<Point> points = new List<Point>();
             uint idx = 0;
@@ -21,7 +21,7 @@ namespace SmartRoadSense.Shared
                 // Terrain point = collision chain index 
                 // + terrain X coord progressive value (same distance each step)
                 // + terrain Y coord from srs data
-                points.Add(new Point(idx, TerrainStepLength * idx + TerrainBeginningOffset, point));
+                points.Add(new Point(idx, TerrainStepLength * idx + TerrainBeginningOffset * screenInfo.XScreenRatio, point * screenInfo.YScreenRatio));
                 idx++;
             }
 

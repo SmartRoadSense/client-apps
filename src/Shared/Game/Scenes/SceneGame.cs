@@ -223,7 +223,6 @@ namespace SmartRoadSense.Shared
             GameInstance.Renderer.EndViewRender += _actionCloseSplashScreen;
 
             PostUpdate = new Action<PostUpdateEventArgs>((PostUpdateEventArgs obj) => {
-
                 if(_vehicle.MainBody == null)
                     return;
 
@@ -267,6 +266,7 @@ namespace SmartRoadSense.Shared
             PostRenderUpdate = new Action<PostRenderUpdateEventArgs>((PostRenderUpdateEventArgs obj) => {
                 var debugRendererComp = GetComponent<DebugRenderer>();
                 var physicsComponent = GetComponent<PhysicsWorld2D>();
+
                 if(physicsComponent != null && GameInstance.ShowCollisionGeometry) {
                     physicsComponent.DrawDebugGeometry(debugRendererComp, false);
                 }
@@ -375,7 +375,7 @@ namespace SmartRoadSense.Shared
                 var difficulty = NextRandom(5, 101);
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
                 //recs = TerrainGenerator.RandomTerrain();
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList());
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
             }
             else 
             {
@@ -386,7 +386,7 @@ namespace SmartRoadSense.Shared
                 //var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
                 //List<float> lst = srsTrack.OfType<float>().ToList();
                 //recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList());
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
             }
 
             collisionChain = groundNode.CreateComponent<CollisionChain2D>();
@@ -463,13 +463,13 @@ namespace SmartRoadSense.Shared
 
         void CreateForegroundScene() {
             // ADD VEHICLE
-            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache);
+            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache, GameInstance.ScreenInfo);
 
             // TODO: pass on selected balance object
             _vehicle = vehicleMain.InitCarInScene(VehicleLoad.BOX);
 
             // Create balance object
-            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName);
+            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName, GameInstance.ScreenInfo);
             _vehicle.BalanceObject = _balanceObject;
         }
 
@@ -598,7 +598,7 @@ namespace SmartRoadSense.Shared
 
             // FOREGROUND
             Node foregroundNode = CreateChild("fg");
-            foregroundNode.Position = new Vector3(x, 1.0f * GameInstance.ScreenInfo.YScreenRatio - 3.2f, 0.0f);
+            foregroundNode.Position = new Vector3(x, 1.0f * GameInstance.ScreenInfo.YScreenRatio - 3.5f, 0.0f);
             foregroundNode.Scale = new Vector3(ratioX, ratioY, 0.0f);
             StaticSprite2D fgStaticSprite = foregroundNode.CreateComponent<StaticSprite2D>();
             fgStaticSprite.Sprite = fgSprite;
@@ -1491,15 +1491,15 @@ namespace SmartRoadSense.Shared
                     // Place component
                     // Node
                     Node componentNode = CreateChild(_componentCollisionName);
-                    componentNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
-                    componentNode.Scale = new Vector3(1.5f * GameInstance.ScreenInfo.XScreenRatio, 1.5f * GameInstance.ScreenInfo.YScreenRatio, 1.0f);
+                    componentNode.Position = (new Vector3(vector.X, GameInstance.ScreenInfo.SetY(vector.Y - 1.15f), 0.75f));
+                    componentNode.Scale = new Vector3( GameInstance.ScreenInfo.SetX(1.5f), GameInstance.ScreenInfo.SetY(1.5f), 1.0f);
                     StaticSprite2D componentStaticSprite = componentNode.CreateComponent<StaticSprite2D>();
                     componentStaticSprite.Sprite = GameInstance.ResourceCache.GetSprite2D(AssetsCoordinates.Level.Collectible.ResourcePath);
                     componentStaticSprite.Sprite.Rectangle = AssetsCoordinates.Level.Collectible.Wheels;
 
                     // Collision shape
                     var componentCollision = componentNode.CreateComponent<CollisionBox2D>();
-                    componentCollision.Size = new Vector2(0.75f, 0.75f);
+                    componentCollision.Size = new Vector2(GameInstance.ScreenInfo.SetX(0.75f), GameInstance.ScreenInfo.SetY(0.75f));
                     componentCollision.Friction = 0.25f;
                     componentCollision.Density = 0.001f;
                     componentCollision.Restitution = 0f;

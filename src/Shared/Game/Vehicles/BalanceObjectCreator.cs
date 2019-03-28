@@ -5,12 +5,12 @@ using Urho.Urho2D;
 namespace SmartRoadSense.Shared {
     public static class BalanceObjectCreator {
 
-        public static Node CreateBalanceObject(Game GameInstance, BaseScene scene, string objectName)
+        public static Node CreateBalanceObject(Game GameInstance, BaseScene scene, string objectName, ScreenInfoRatio _screenInfo)
         {
 
             Node node = scene.CreateChild(objectName);
-            node.Position = (new Vector3(-0.51f, -0.39f, 3.0f));
-            node.Scale = new Vector3(1.0f, 1.0f, 0.0f);
+            node.Position = (new Vector3(-0.8f * _screenInfo.XScreenRatio, 0.5f * _screenInfo.YScreenRatio, 3.0f));
+            node.Scale = new Vector3(1.2f * _screenInfo.XScreenRatio, 1.2f * _screenInfo.YScreenRatio, 1.0f);
 
             // Create rigid body
             RigidBody2D body = node.CreateComponent<RigidBody2D>();
@@ -26,9 +26,9 @@ namespace SmartRoadSense.Shared {
             // Create box
             CollisionBox2D box = node.CreateComponent<CollisionBox2D>();
             // Set size
-            box.Size = new Vector2(0.32f, 0.32f);
+            box.Size = new Vector2(0.4f * _screenInfo.XScreenRatio, 0.4f * _screenInfo.YScreenRatio);
             // Set density
-            box.Density = 4.0f;
+            box.Density = 1.0f;
             // Set friction
             box.Friction = 1.0f;
             // Set restitution

@@ -48,8 +48,11 @@ namespace SmartRoadSense.Android {
         }
 
         public override void OnBackPressed() {
-            //base.OnBackPressed();
-            System.Diagnostics.Debug.WriteLine("back pressed");
+            int ExitFlag = Plugin.Settings.CrossSettings.Current.GetValueOrDefault("EXIT_FLAG", 0);
+            if(ExitFlag == 0) {
+                base.OnBackPressed();
+                System.Diagnostics.Debug.WriteLine("back pressed");
+            }
         }
 
         protected override void OnResume() {

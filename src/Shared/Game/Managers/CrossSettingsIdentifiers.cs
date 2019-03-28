@@ -6,6 +6,7 @@ namespace SmartRoadSense.Shared {
         CrossSettingsIdentifiers(string value) { Value = value; }
 
         public static CrossSettingsIdentifiers TrackList => new CrossSettingsIdentifiers("TRACKS_LIST");
+        //public static CrossSettingsIdentifiers ExitFlag => new CrossSettingsIdentifiers("EXIT_FLAG");
 
         // VEHICLE DATA
         public static CrossSettingsIdentifiers VehicleCount => new CrossSettingsIdentifiers("VEHICLES_COUNT");

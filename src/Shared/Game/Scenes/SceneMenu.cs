@@ -94,10 +94,10 @@ namespace SmartRoadSense.Shared
             btn_back.SetSize((int)(dim.XScreenRatio * 120), (int)(dim.YScreenRatio * 120));
             btn_back.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btn_back.ImageRect = AssetsCoordinates.Generic.Icons.BntBack;
-            btn_back.Pressed += args => {
+            btn_back.Pressed += async args => {
                 // Close game
                 GameInstance.Graphics.Close();
-                GameInstance.Exit();
+                await GameInstance.Exit();
             };
         }
 

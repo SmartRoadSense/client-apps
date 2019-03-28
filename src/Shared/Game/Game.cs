@@ -39,6 +39,7 @@ namespace SmartRoadSense.Shared
         /// </summary>
         public string JoystickLayoutPatch;// => JoystickLayoutPatches.WithZoomInAndOut;
 
+        DebugHud _debug;
         protected override void Start() {
             InitResourceCache();
 
@@ -46,11 +47,16 @@ namespace SmartRoadSense.Shared
 
             InitUiInfo();
 
+
             LaunchScene(GameScenesEnumeration.MENU);
 
             JsonReaderVehicles.GetVehicleConfig();
 
             CharacterLevelData.PointsToNextLevel();
+
+            _debug = Engine.CreateDebugHud();
+            _debug.ToggleAll();
+
         }
 
         void InitResourceCache() {
@@ -88,6 +94,8 @@ namespace SmartRoadSense.Shared
 
             XmlFile uiStyle = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             UI.Root.SetDefaultStyle(uiStyle);
+
+            Engine.MaxFps = 30;
         }
 
         void HandleKeyDown(KeyDownEventArgs e) {
@@ -167,11 +175,14 @@ namespace SmartRoadSense.Shared
             if(GamePaused)
                 return;
 
+            //Debug.WriteLine(_debug.ModeText.Value);
+            //Debug.WriteLine(_debug.MemoryText.Value);
+            //Debug.WriteLine(_debug.ProfilerText.Value);
+            //Debug.WriteLine("\n");
+
             var staticX = GameVehicle.MainBody.LinearVelocity.X * timeStep;
 
-            //Debug.WriteLine($"WorldScale {}");
-
-            if(CameraNode.Position.X >= 0.0f && GameVehicle.MainBody.LinearVelocity.X > 0.2) {
+            if(CameraNode.Position.X >= 0.0f && GameVehicle.MainBody.LinearVelocity.X > 0.01) {
                 for(var i = 0; i < Bg3Node.Count; i++) {
                     Bg3Node[i].Position = new Vector3(Bg3Node[i].Position.X + staticX * 0.8f, CameraNode.Position.Y, Bg3Node[i].Position.Z);
                     Bg2Node[i].Position = new Vector3(Bg2Node[i].Position.X + staticX * 0.55f, CameraNode.Position.Y, Bg2Node[i].Position.Z);
@@ -184,8 +195,8 @@ namespace SmartRoadSense.Shared
                 return;
 
             // Movement speed as world units per second
-            float moveSpeed = 2.0f;
-            float brakeSpeed = 2.0f;
+            float moveSpeed = 1.0f * timeStep;
+            float brakeSpeed = 1.0f * timeStep;
             moveSpeed = moveSpeed * VehicleManager.Instance.SelectedVehicleModel.Performance;
             brakeSpeed = brakeSpeed * VehicleManager.Instance.SelectedVehicleModel.Brake;
 
@@ -200,22 +211,22 @@ namespace SmartRoadSense.Shared
             //    camera.Zoom = camera.Zoom * 0.99f;
             //}
             if(OSDCommands.RotatingLeft) {
-                GameVehicle.MainBody.ApplyAngularImpulse(0.5f * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyAngularImpulse(0.5f * moveSpeed, true);
             }
             if(OSDCommands.RotatingRight) {
-                GameVehicle.MainBody.ApplyAngularImpulse(-0.5f * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyAngularImpulse(-0.5f * moveSpeed, true);
             }
             if(OSDCommands.Braking) {
                 if(GameVehicle.MainBody.LinearVelocity.X > 0.0f)
-                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(-Vector2.UnitX * brakeSpeed * timeStep, true);
+                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(-Vector2.UnitX * brakeSpeed, true);
                 else if(GameVehicle.MainBody.LinearVelocity.X < 0.0f)
-                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * brakeSpeed * timeStep, true);
+                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * brakeSpeed, true);
                 else
                     GameVehicle.MainBody.SetLinearVelocity(new Vector2(0, 0));
                 return;
             }
             if(OSDCommands.Accelerating) {
-                GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * moveSpeed, true);
                 return;
             }
             if(Input.GetKeyPress(Key.G)) {

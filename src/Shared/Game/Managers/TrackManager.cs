@@ -62,37 +62,50 @@ namespace SmartRoadSense.Shared {
                         continue;
 
                     // Don't import any tracks that are shorter than 
-                    var points = await DataStore.GetTrackPpe(t.Id);
-                    Debug.WriteLine($"TRACK DATA: {t.Id}: {t.RecordedOn} - {t.RecordingDistance} - {t.RecordingLength}, {points.Length} ppe points.");
+                    var points = await DataStore.GetTrackLength(t.Id);
+                    Debug.WriteLine($"TRACK DATA: {t.Id}: {t.RecordedOn} - {t.RecordingDistance} - {t.RecordingLength}, {points} ppe points.");
 
-                    if(points.Length < 900)
+                    if(points < 900)
                         continue;
 
                     // If track is longer than 3600 points, divide it into smaller tracks
-                    //if(points.Length > 3600) {
-                        var exists = currentTracks.TrackModel.Exists(track => track.GuidTrack == t.Id);
-                        if(exists)
-                            continue;
+                    int numTracks = 1;
+                    if(points > _maxTrackLength) {
 
-                        //var tracks = (double)points.Length / 3600;
-                       //tracks = Math.Truncate(tracks);
-                    //}
+                        var tracks = (double)points / _maxTrackLength;
+                        numTracks = (int)Math.Truncate(tracks);
+                        if((double)points % _maxTrackLength >= _minTrackLength)
+                            numTracks += 1;
+                    }
+                    var exists = currentTracks.TrackModel.Exists(track => track.GuidTrack == t.Id);
+                    if(exists)
+                        continue;
 
-                    var model = new TrackModel {
-                        IdTrack = currentTracks.TrackModel.Count,
-                        GuidTrack = t.Id,
-                        Name = "Track " + (currentTracks.TrackModel.Count + 1),
-                        Difficulty = CharacterManager.Instance.User.Level,
-                        TrackLength = t.RecordingDistance,
-                        Landskape = _random.Next(1, 4),
-                        Completed = 0,
-                        BestTime = 0,
-                        TotalOfPlays = 0,
-                        TotalOfFailures = 0,
-                        TotalPoints = 0,
-                        PointsObtained = 0
-                    };
-                    currentTracks.TrackModel.Add(model);
+                    var landskape = _random.Next(1, 4);
+                    for(var i = 0; i < numTracks; i++) {
+                        int trackLength = points;
+                        if(numTracks > 1) {
+                            if(i < numTracks - 1)
+                                trackLength = _maxTrackLength;
+                            else
+                                trackLength = points % _maxTrackLength;
+                        }
+                        var model = new TrackModel {
+                            IdTrack = currentTracks.TrackModel.Count,
+                            GuidTrack = t.Id,
+                            Name = "Track " + (currentTracks.TrackModel.Count + 1),
+                            Difficulty = CharacterManager.Instance.User.Level,
+                            TrackLength = trackLength,
+                            Landskape = landskape,
+                            Completed = 0,
+                            BestTime = 0,
+                            TotalOfPlays = 0,
+                            TotalOfFailures = 0,
+                            TotalPoints = 0,
+                            PointsObtained = 0
+                        };
+                        currentTracks.TrackModel.Add(model);
+                    }
                 }
 
                 Tracks = currentTracks;

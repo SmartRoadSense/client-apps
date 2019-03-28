@@ -380,11 +380,11 @@ namespace SmartRoadSense.Shared
             else 
             {
                 // TODO: get data based on selected level
-                var lvlId = TrackManager.Instance.SelectedTrackId;
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
 
-                //var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
-                //List<float> lst = srsTrack.OfType<float>().ToList();
+                var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
+                // Get only PPE points of partial track if it was > max length;
+                List<float> lst = srsTrack.OfType<float>().ToList();
                 //recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
             }

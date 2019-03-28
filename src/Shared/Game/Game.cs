@@ -80,6 +80,9 @@ namespace SmartRoadSense.Shared
 
         void InitTracks()
         {
+#if DEBUG
+            TrackManager.Instance.Tracks = null;
+#endif
             var initResult = TrackManager.Instance.Init();
         }
 

@@ -555,6 +555,7 @@
     <AndroidAsset Include="Assets\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_13.png" />
     <AndroidAsset Include="Assets\Data\Textures\Backgrounds\snowy_forest\bg2\bg2_13.png" />
     <AndroidAsset Include="Assets\Data\Textures\Backgrounds\snowy_forest\bg1\bg1_13.png" />
+    <AndroidAsset Include="Assets\Data\Textures\Backgrounds\loading_screen.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\circle.xml" />

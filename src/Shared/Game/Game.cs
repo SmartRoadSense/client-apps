@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Urho;
 using Urho.Gui;
 using Urho.Resources;
@@ -40,10 +41,10 @@ namespace SmartRoadSense.Shared
         public string JoystickLayoutPatch;// => JoystickLayoutPatches.WithZoomInAndOut;
 
         DebugHud _debug;
-        protected override void Start() {
+        protected override async void Start() {
             InitResourceCache();
 
-            InitTracks();
+            await InitTracks();
 
             InitUiInfo();
 
@@ -53,9 +54,8 @@ namespace SmartRoadSense.Shared
 
             CharacterLevelData.PointsToNextLevel();
 
-            _debug = Engine.CreateDebugHud();
-            _debug.ToggleAll();
-
+            //_debug = Engine.CreateDebugHud();
+            //_debug.ToggleAll();
         }
 
         void InitResourceCache() {
@@ -78,12 +78,12 @@ namespace SmartRoadSense.Shared
             Debug.WriteLine("RESOURCE CACHE - Initialized Resource Cache");
         }
 
-        void InitTracks()
+        async Task<bool> InitTracks()
         {
 #if DEBUG
             TrackManager.Instance.Tracks = null;
 #endif
-            var initResult = TrackManager.Instance.Init();
+            return await TrackManager.Instance.Init();
         }
 
         public void InitUiInfo() {

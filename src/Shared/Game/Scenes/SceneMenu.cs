@@ -45,18 +45,28 @@ namespace SmartRoadSense.Shared
             button.Pressed += args => {
                 switch(action) {
                     case 2:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.LEVEL_SELECT);
                         break;
                     case 3:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.GARAGE);
                         break;
                     case 7:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.PROFILE);
                         break;
                     case 9:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.SETTINGS);
                         break;
                     case 10:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.USER_PROFILE);
                         break;
                     case 11:
@@ -98,7 +108,13 @@ namespace SmartRoadSense.Shared
                 // Close game
                 GameInstance.Graphics.Close();
                 await GameInstance.Exit();
+                
             };
+#if __ANDROID__
+            btn_back.Visible = false;
+#else
+            btn_back.Visible = true;
+#endif
         }
 
         void CreateBackground() 
@@ -118,6 +134,7 @@ namespace SmartRoadSense.Shared
         }
 
         void CreateUI() {
+            Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 0);
             CreateBackground();
             CreateTopBar();
             CreateLogo();

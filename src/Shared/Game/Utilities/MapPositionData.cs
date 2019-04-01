@@ -31,7 +31,7 @@ namespace SmartRoadSense.Shared {
             _ratioY = ratioY;
         }
 
-        public int LocatorPosition(float currentPosition) {
+        public int LocatorPosition(float currentPosition, int trackLength) {
                 if(MapBoxEnd.Equals(0))
                     throw new Exception("Initialize has not been launched");
 
@@ -39,11 +39,11 @@ namespace SmartRoadSense.Shared {
                     ? MapBoxStart
                     : currentPosition > End
                         ? MapBoxEnd
-                        : ((1 / TerrainGenerator.TerrainStepLength) * (currentPosition * MapBoxEnd) / TerrainGenerator.TerrainEndPoints * _ratioX) + MapBoxStart;
+                        : ((1 / TerrainGenerator.TerrainStepLength) * (currentPosition * MapBoxEnd) / trackLength * _ratioX) + MapBoxStart;
                 return (int)x;
         }
 
-        public Vector2 TerrainPoint(Vector2 currentPosition) {
+        public Vector2 TerrainPoint(Vector2 currentPosition, int trackLength) {
             if(MapBoxEnd.Equals(0))
                 throw new Exception("Initialize has not been launched");
 
@@ -51,7 +51,7 @@ namespace SmartRoadSense.Shared {
                 ? MapBoxStart
                 : currentPosition.X > End
                     ? MapBoxEnd
-                    : ((1 / TerrainGenerator.TerrainStepLength) * (currentPosition.X * MapBoxEnd) / TerrainGenerator.TerrainEndPoints * _ratioX) + MapBoxStart;
+                    : ((1 / TerrainGenerator.TerrainStepLength) * (currentPosition.X * MapBoxEnd) / trackLength * _ratioX) + MapBoxStart;
 
             var y = currentPosition.Y < 0
                 ? MapBoxStart

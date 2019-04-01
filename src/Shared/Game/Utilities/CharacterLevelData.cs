@@ -86,12 +86,12 @@ namespace SmartRoadSense.Shared {
             return obtainedPoints;
         }
 
-        public static int LostPoints(int position) {
+        public static int LostPoints(int position, int trackLength) {
             var difficultyLevel = TrackManager.Instance.SelectedTrackModel.Difficulty;
             var characterLevel = CharacterManager.Instance.User.Level;
             double pointRatio = difficultyLevel / characterLevel;
 
-            var lostPoints = (TerrainGenerator.TerrainEndPoints - position) / TerrainGenerator.TerrainEndPoints * _lostPointsMax;
+            var lostPoints = (trackLength - position) / trackLength * _lostPointsMax;
             return -(int)Math.Round((lostPoints * pointRatio) * (difficultyLevel / 10 + Math.Pow(2, difficultyLevel / 10)));
         }
     }

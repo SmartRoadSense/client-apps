@@ -71,7 +71,7 @@ namespace SmartRoadSense.Shared {
                     // If track is longer than 3600 points, divide it into smaller tracks
                     int numTracks = 1;
                     if(points > _maxTrackLength) {
-
+                        Debug.WriteLine("Tracks over 3600 - dividing it");
                         var tracks = (double)points / _maxTrackLength;
                         numTracks = (int)Math.Truncate(tracks);
                         if((double)points % _maxTrackLength >= _minTrackLength)

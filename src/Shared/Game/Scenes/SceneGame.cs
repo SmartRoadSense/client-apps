@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Urho.Audio;
 using SmartRoadSense.Shared.Data;
+using System.Threading.Tasks;
 
 namespace SmartRoadSense.Shared
 {
@@ -76,6 +77,7 @@ namespace SmartRoadSense.Shared
         bool _componentsCollected;
         bool _removedFirstCoin;
         int _buttonSize;
+        int _trackLength;
 
         Stopwatch _stopwatch;
         GameDistanceData _distanceData;
@@ -103,7 +105,6 @@ namespace SmartRoadSense.Shared
         Action<EndViewRenderEventArgs> _actionCloseSplashScreen;
 
         public SceneGame(Game game, bool randomLevel) : base(game) {
-
             // Reset scene
             GameInstance.ResourceCache.ReleaseAllResources();
             RemoveAllComponents();
@@ -120,11 +121,16 @@ namespace SmartRoadSense.Shared
             else
                 _lvlLandscape = _levelData.Landskape;
 
+            InitGameplay();
+        }
+
+        async void InitGameplay() 
+        {
             // Start music and splashscreen
             InitSounds();
             SplashScreen();
 
-            CreateBackgroundScene();
+            await CreateBackgroundScene();
             CreateForegroundScene();
             CreateOSD();
 
@@ -243,12 +249,12 @@ namespace SmartRoadSense.Shared
                 // Update distance travelled
                 var distanceBox = GameInstance.UI.Root.GetChild("distanceBox");
                 Text distanceText = (Text)distanceBox.GetChild("distanceText");
-                distanceText.Value = _distanceData.DistanceText(_vehicle.MainBody.Node.Position.X);
+                distanceText.Value = _distanceData.DistanceText(_vehicle.MainBody.Node.Position.X, _trackLength);
 
                 // Update map indicator
                 var mapBox = GameInstance.UI.Root.GetChild("mapBox");
                 var MapIndicator = mapBox.GetChild("mapBar");
-                MapIndicator.SetPosition(_mapPositionData.LocatorPosition(_vehicle.MainBody.Node.Position.X), MapIndicator.Position.Y);
+                MapIndicator.SetPosition(_mapPositionData.LocatorPosition(_vehicle.MainBody.Node.Position.X, _trackLength), MapIndicator.Position.Y);
 
                 // Check if finish line has been reached
                 if(!_finishLinePassed && _vehicle.MainBody.Node.Position.X >= _finishLineEndX)
@@ -279,7 +285,7 @@ namespace SmartRoadSense.Shared
             GameInstance.PostRenderUpdate = PostRenderUpdate;
         }
 
-        async void CreateBackgroundScene()
+        async Task<bool> CreateBackgroundScene()
         {
             CreateComponent<Octree>();
             CreateComponent<DebugRenderer>();
@@ -374,18 +380,22 @@ namespace SmartRoadSense.Shared
             {
                 var difficulty = NextRandom(5, 101);
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
-                //recs = TerrainGenerator.RandomTerrain();
+                _trackLength = recs.Count();
+                //_trackLength = NextRandom(900, 3601);
+                //recs = TerrainGenerator.RandomTerrain(trackLength);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
             }
             else 
             {
                 // TODO: get data based on selected level
-                recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
+                //recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
 
                 var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
-                // Get only PPE points of partial track if it was > max length;
-                List<float> lst = srsTrack.OfType<float>().ToList();
-                //recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
+                var lst = new List<float>();
+                foreach(var t in srsTrack)
+                    lst.Add((float)t);
+                recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
+                _trackLength = recs.Count();
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
             }
 
@@ -439,7 +449,7 @@ namespace SmartRoadSense.Shared
 
             // SET FINISH LINE
             // node object
-            _finishLineEndX = TerrainGenerator.TerrainBeginningOffset + TerrainGenerator.TerrainStepLength * TerrainGenerator.TerrainEndPoints;
+            _finishLineEndX = TerrainGenerator.TerrainBeginningOffset + TerrainGenerator.TerrainStepLength * _trackLength;
             //_finishLineEndX = TerrainGenerator.TerrainBeginningOffset + 30.0f;
 
             var finishLineNode = CreateChild(_finishLineName);
@@ -459,6 +469,8 @@ namespace SmartRoadSense.Shared
             // INIT MAP BOX & DISTANCE TRAVELLED
             _distanceData = new GameDistanceData(0/* TODO change if vehicle starting position changes */, _finishLineEndX);
             _mapPositionData = new MapPositionData(0, _finishLineEndX);
+
+            return true;
         }
 
         void CreateForegroundScene() {
@@ -716,7 +728,7 @@ namespace SmartRoadSense.Shared
             TrackManager.Instance.SelectedTrackModel = levelData;
 
             // Lose experience points
-            var lostExp = CharacterLevelData.LostPoints(_distanceData.Distance(_vehicle.MainBody.Node.Position.X));
+            var lostExp = CharacterLevelData.LostPoints(_distanceData.Distance(_vehicle.MainBody.Node.Position.X, _trackLength), _trackLength);
             var player = CharacterManager.Instance.User;
             player.Experience += lostExp;
             if(player.Experience < 0)

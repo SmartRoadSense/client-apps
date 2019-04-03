@@ -322,7 +322,7 @@ namespace SmartRoadSense.Shared
                 if(string.Equals(obj.BodyA.Node.Name, _componentCollisionName) && !string.Equals(obj.BodyB.Node.Name, _componentCollisionName)) {
                     obj.NodeA.Remove();
                     _components += 1;
-                    // Update coin position
+                    // Update component text box
                     var componentsBox = GameInstance.UI.Root.GetChild("componentsBox");
                     var componentsText = (Text)componentsBox.GetChild("componentsText");
                     componentsText.Value = string.Format("{0}", _components);
@@ -380,14 +380,15 @@ namespace SmartRoadSense.Shared
             {
                 var difficulty = NextRandom(5, 101);
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
-                _trackLength = recs.Count();
                 //_trackLength = NextRandom(900, 3601);
                 //recs = TerrainGenerator.RandomTerrain(trackLength);
+                //terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
+                _trackLength = terrainData.Count();
             }
             else 
             {
-                // TODO: get data based on selected level
+                // Get data based on selected level
                 //recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
 
                 var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
@@ -395,8 +396,9 @@ namespace SmartRoadSense.Shared
                 foreach(var t in srsTrack)
                     lst.Add((float)t);
                 recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
-                _trackLength = recs.Count();
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
+                _trackLength = terrainData.Count();
+
             }
 
             collisionChain = groundNode.CreateComponent<CollisionChain2D>();
@@ -413,7 +415,7 @@ namespace SmartRoadSense.Shared
 
             // DRAW GROUND TERRAIN
 
-            for(var i = 0; i < recs.Count(); i++) {
+            for(var i = 0; i < _trackLength; i++) {
                 if(i > 0) {
                     var vertex1 = collisionChain.GetVertex((uint)i - 1);
                     var vertex2 = collisionChain.GetVertex((uint)i);
@@ -429,7 +431,7 @@ namespace SmartRoadSense.Shared
             var tmpSprite = GameInstance.ResourceCache.GetSprite2D(bgPath);
             tmpSprite.Rectangle = AssetsCoordinates.Backgrounds.GameplayBackgroundsGeneric.Background3.ImageRect;
             //
-            var backgroundsToDraw = recs.Count() * TerrainGenerator.TerrainStepLength / (tmpSprite.Rectangle.Right * Application.PixelSize);
+            var backgroundsToDraw = _trackLength * TerrainGenerator.TerrainStepLength / (tmpSprite.Rectangle.Right * Application.PixelSize);
 
             for(var i = 0; i < (int)backgroundsToDraw; i++) {
                 DrawBackground(i);

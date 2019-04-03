@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Urho;
+using System.Linq;
 
 namespace SmartRoadSense.Shared
 {
@@ -11,7 +12,7 @@ namespace SmartRoadSense.Shared
         public static float PPECorrectionFactor = 20;
         public static float EndOfLevelSurfaceLength = 500;
 
-        public static List<Point> ArrayToMatrix(List<float> srsNormalizedData, ScreenInfoRatio screenInfo)
+        public static List<Point> ArrayToMatrix(List<float> srsNormalizedData, ScreenInfoRatio screenInfo, bool addEndingPoints = true)
         {
             List<Point> points = new List<Point>();
             uint idx = 0;
@@ -22,6 +23,14 @@ namespace SmartRoadSense.Shared
                 // + terrain Y coord from srs data
                 points.Add(new Point(idx, TerrainStepLength * idx + TerrainBeginningOffset * screenInfo.XScreenRatio, point * screenInfo.YScreenRatio));
                 idx++;
+            }
+
+            if(addEndingPoints) {
+                var lastPoint = points.Last();
+                for(var i = 0; i < EndOfLevelSurfaceLength; i++) {
+                    points.Add(new Point(idx, TerrainStepLength * idx + TerrainBeginningOffset * screenInfo.XScreenRatio, lastPoint.Vector.Y * screenInfo.YScreenRatio));
+                    idx++;
+                }
             }
 
             return points;

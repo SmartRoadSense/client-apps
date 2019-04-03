@@ -98,6 +98,7 @@ namespace SmartRoadSense.Shared
         List<Node> Bg1List = new List<Node>();
         List<Node> Bg2List = new List<Node>();
         List<Node> Bg3List = new List<Node>();
+        Dictionary<int, Sprite2D> CollectableSprites = new Dictionary<int, Sprite2D>();
 
         // Level data
         readonly TrackModel _levelData;
@@ -130,6 +131,8 @@ namespace SmartRoadSense.Shared
             InitSounds();
             SplashScreen();
 
+            InitCollectables();
+
             await CreateBackgroundScene();
             CreateForegroundScene();
             CreateOSD();
@@ -156,6 +159,35 @@ namespace SmartRoadSense.Shared
             //GameInstance.InitGameDebugWindow();
             //GameInstance.DrawDebugControls();
 #endif
+        }
+
+        void InitCollectables() {
+            var texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Level.Collectible.ResourcePath);
+
+            Sprite2D sprite = new Sprite2D();
+            sprite.Texture = texture;
+            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Coin;
+            CollectableSprites.Add(0, sprite);
+
+            sprite = new Sprite2D();
+            sprite.Texture = texture;
+            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Brakes;
+            CollectableSprites.Add(1, sprite);
+
+            sprite = new Sprite2D();
+            sprite.Texture = texture;
+            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Performance;
+            CollectableSprites.Add(2, sprite);
+
+            sprite = new Sprite2D();
+            sprite.Texture = texture;
+            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Wheels;
+            CollectableSprites.Add(4, sprite);
+
+            sprite = new Sprite2D();
+            sprite.Texture = texture;
+            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Suspension;
+            CollectableSprites.Add(3, sprite);
         }
 
         void InitSounds() {
@@ -384,7 +416,8 @@ namespace SmartRoadSense.Shared
                 //recs = TerrainGenerator.RandomTerrain(trackLength);
                 //terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
-                _trackLength = terrainData.Count();
+                //_trackLength = terrainData.Count();
+                _trackLength = 3600;
             }
             else 
             {
@@ -421,7 +454,7 @@ namespace SmartRoadSense.Shared
                     var vertex2 = collisionChain.GetVertex((uint)i);
                     DrawTerrainFill(vertex1.X, vertex1.Y, vertex2.X, vertex2.Y, i);
                     if(i % 2 == 0 && vertex1.X > 2)
-                        PlaceCoin(vertex1);
+                        PlaceCoin(vertex1, (uint)i);
                 }
             }
 
@@ -1497,23 +1530,38 @@ namespace SmartRoadSense.Shared
             */
         }
 
-        void PlaceCoin(Vector2 vector) {
+        void PlaceCoin(Vector2 vector, uint id) {
+
             if(_coinPositionedCounter == 0) {
                 var compRnd = NextRandom(0, 751);
                 if(compRnd == 0 && !_componentsCollected) {
-                    _componentsCollected = true;
+                    //_componentsCollected = true;
+
                     // Place component
-                    // Node
                     Node componentNode = CreateChild(_componentCollisionName);
-                    componentNode.Position = (new Vector3(vector.X, GameInstance.ScreenInfo.SetY(vector.Y - 1.15f), 0.75f));
-                    componentNode.Scale = new Vector3( GameInstance.ScreenInfo.SetX(1.5f), GameInstance.ScreenInfo.SetY(1.5f), 1.0f);
-                    StaticSprite2D componentStaticSprite = componentNode.CreateComponent<StaticSprite2D>();
-                    componentStaticSprite.Sprite = GameInstance.ResourceCache.GetSprite2D(AssetsCoordinates.Level.Collectible.ResourcePath);
-                    componentStaticSprite.Sprite.Rectangle = AssetsCoordinates.Level.Collectible.Wheels;
+                    componentNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
+                    componentNode.Scale = new Vector3(2.0f * GameInstance.ScreenInfo.XScreenRatio, 2.0f * GameInstance.ScreenInfo.YScreenRatio, 1.0f);
+
+                    var componentStaticSprite = componentNode.CreateComponent<StaticSprite2D>();
+                    // Get sprite for component
+                    switch(NextRandom(1, 5)) {
+                        case 1:
+                            componentStaticSprite.Sprite = CollectableSprites[1];
+                            break;
+                        case 2:
+                            componentStaticSprite.Sprite = CollectableSprites[2];
+                            break;
+                        case 3:
+                            componentStaticSprite.Sprite = CollectableSprites[3];
+                            break;
+                        case 4:
+                            componentStaticSprite.Sprite = CollectableSprites[4];
+                            break;
+                    }
 
                     // Collision shape
                     var componentCollision = componentNode.CreateComponent<CollisionBox2D>();
-                    componentCollision.Size = new Vector2(GameInstance.ScreenInfo.SetX(0.75f), GameInstance.ScreenInfo.SetY(0.75f));
+                    componentCollision.Size = new Vector2(GameInstance.ScreenInfo.SetX(1.0f), GameInstance.ScreenInfo.SetY(1.0f));
                     componentCollision.Friction = 0.25f;
                     componentCollision.Density = 0.001f;
                     componentCollision.Restitution = 0f;
@@ -1522,6 +1570,12 @@ namespace SmartRoadSense.Shared
                     var componentCenter = componentNode.CreateComponent<RigidBody2D>();
                     componentCenter.BodyType = BodyType2D.Dynamic;
                     componentCenter.Mass = 0.01f;
+
+                    if(_removedFirstCoin)
+                        return;
+
+                    _removedFirstCoin = true;
+                    RemoveChild(GetChild(componentNode.ID));
                     return;
                 }
 
@@ -1539,8 +1593,7 @@ namespace SmartRoadSense.Shared
             coinNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
             coinNode.Scale = new Vector3(1.5f * GameInstance.ScreenInfo.XScreenRatio, 1.5f *  GameInstance.ScreenInfo.YScreenRatio, 1.0f);
             StaticSprite2D coinStaticSprite = coinNode.CreateComponent<StaticSprite2D>();
-            coinStaticSprite.Sprite = GameInstance.ResourceCache.GetSprite2D(AssetsCoordinates.Level.Collectible.ResourcePath);
-            coinStaticSprite.Sprite.Rectangle = AssetsCoordinates.Level.Collectible.Coin;
+            coinStaticSprite.Sprite = CollectableSprites[0];
 
             // Collision shape
             var coinCollision = coinNode.CreateComponent<CollisionBox2D>();
@@ -1558,7 +1611,7 @@ namespace SmartRoadSense.Shared
                 return;
 
             _removedFirstCoin = true;
-            RemoveChild(GetChild(_coinCollisionName));
+            RemoveChild(GetChild(coinNode.ID));
         }
 
         Slider CreateSlider(int x, int y, int xSize, int ySize, string text, UIElement container) {

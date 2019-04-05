@@ -81,5 +81,18 @@ namespace SmartRoadSense.Shared
                 OnPropertyChanged();
             }
         }
+
+        public CollectedComponentsContainer CollectedComponents
+        {
+            get {
+                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedVehicle.Value, "");
+                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<CollectedComponentsContainer>(json);
+            }
+            set {
+                var json = JsonConvert.SerializeObject(value);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedVehicle.Value, json);
+                OnPropertyChanged();
+            }
+        }
     }
 }

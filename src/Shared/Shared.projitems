@@ -165,7 +165,6 @@
     <None Include="$(MSBuildThisFileDirectory)Config.sample.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Vehicles.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed_averaged.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\track_game.csv" />
@@ -181,5 +180,6 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\Characters.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\Levels.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\LoadingScreenData.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\Vehicles.json" />
   </ItemGroup>
 </Project>

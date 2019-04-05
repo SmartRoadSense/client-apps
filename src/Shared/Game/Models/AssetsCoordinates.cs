@@ -74,13 +74,33 @@ namespace SmartRoadSense.Shared
                 readonly static public IntRect BoxSuspensionUpgrade = new IntRect(584, 680, 1140, 776);
                 readonly static public IntRect BoxBrakeUpgrade = new IntRect(0, 790, 555, 888);
                 readonly static public IntRect BoxWheelUpgrade = new IntRect(1168, 680, 1722, 776);
+                readonly static public IntRect BoxPerformanceUpgradeNew = new IntRect(1156, 144, 1718, 234);
+                readonly static public IntRect BoxSuspensionUpgradeNew = new IntRect(1156, 250, 1718, 340);
+                readonly static public IntRect BoxBrakeUpgradeNew = new IntRect(1156, 360, 1718, 450);
+                readonly static public IntRect BoxWheelUpgradeNew = new IntRect(1156, 467, 1718, 557);
+
                 readonly static public IntRect BarBoosterDropDown = new IntRect(588, 790, 1430, 888);
                 readonly static public IntRect ButtonContinue = new IntRect(700, 400, 1130, 540);
                 readonly static public IntRect BoxInstructions = new IntRect(0, 150, 620, 220);
                 readonly static public IntRect BoxInfoLocked = new IntRect(296, 570, 985, 673);
                 readonly static public IntRect BarUnkockedItem = new IntRect(1040, 570, 1727, 673);
                 readonly static public IntRect BtnUpgrade = new IntRect(0, 570, 265, 650);
-                
+                readonly static public IntRect ComponentsAlign = new IntRect(2912, 1402, 3938, 1677);
+                readonly static public IntRect ComponentBodyGreen = new IntRect(3762, 1696, 3869, 1802);
+                readonly static public IntRect ComponentBodyRed = new IntRect(3607, 1696, 3713, 1802);
+                readonly static public IntRect ComponentDrivetrainGreen = new IntRect(3451, 1696, 3557, 1802);
+                readonly static public IntRect ComponentDrivetrainRed = new IntRect(3295, 1696, 3401, 1802);
+                readonly static public IntRect ComponentEngineGreen = new IntRect(3136, 1696, 3243, 1802);
+                readonly static public IntRect ComponentEngineRed = new IntRect(2976, 1696, 3083, 1802);
+
+
+                readonly static public IntRect ComponentSuspensionGreen = new IntRect(3450, 1854, 3557, 1960);
+                readonly static public IntRect ComponentSuspensionRed = new IntRect(3300, 1854, 3407, 1960);
+                readonly static public IntRect ComponentWhellGreen = new IntRect(3140, 1854, 3248, 1960);
+                readonly static public IntRect ComponentWhellRed = new IntRect(2976, 1854, 3083, 1960);
+
+
+
                 //only level
                 readonly static public IntRect MapBox = new IntRect(0, 1194, 1016, 1360);
                 readonly static public IntRect TimeBestBox = new IntRect(0, 1395, 356, 1481);

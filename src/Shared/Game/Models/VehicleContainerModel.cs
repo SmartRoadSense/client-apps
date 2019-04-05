@@ -43,6 +43,9 @@ namespace SmartRoadSense.Shared {
 
         [JsonProperty("UNLOCK_COST")]
         public int UnlockCost { get; set; }
+
+        [JsonProperty("COMPONENTS")]
+        public Components Components { get; set; }
     }
 
     public class VehicleImagePosition
@@ -94,5 +97,24 @@ namespace SmartRoadSense.Shared {
 
         [JsonProperty("Y")]
         public int Y { get; set; }
+    }
+
+    public class Components {
+        [JsonProperty("SUSPENSIONS")]
+        public bool Suspensions { get; set; }
+
+        [JsonProperty("PERFORMANCE")]
+        public bool Performance { get; set; }
+
+        [JsonProperty("WHEELS")]
+        public bool Wheels { get; set; }
+
+        [JsonProperty("BRAKES")]
+        public bool Brakes { get; set; }
+    }
+
+    public class VehiclesUnlockedList {
+        [JsonProperty("UNLOCKED")]
+        public List<int> VehicleIds { get; set; }
     }
 }

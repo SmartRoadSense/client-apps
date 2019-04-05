@@ -9,6 +9,8 @@ using System.Linq;
 using Urho.Audio;
 using SmartRoadSense.Shared.Data;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
 
 namespace SmartRoadSense.Shared
 {
@@ -1492,42 +1494,62 @@ namespace SmartRoadSense.Shared
             var distanceBox = GameInstance.UI.Root.GetChild("distanceBox");
             distanceBox.AddChild(distanceText);
 
-            /*
-            // Draw map line
-            var mapBox = GameInstance.UI.Root.GetChild("mapBox");
-            var mapLineNode = CreateChild("mapLineNode");
 
-            for(var i = 0; i < terrainData.Count - TerrainGenerator.EndOfLevelSurfaceLength; i+=10) {
+            // Draw map line
+            BorderImage mapBox = GameInstance.UI.Root.GetChild("mapBox") as BorderImage;
+
+            var mapTrack = new BorderImage {
+                Size = mapBox.Size,
+                Position = new IntVector2(0, 0)
+            };
+            mapTrack.SetColor(Color.FromHex("#55555555"));
+            //mapBox.AddChild(mapTrack);
+
+            Image img = new Image();
+            img.SetSize(mapBox.Width, mapBox.Height, 4);
+
+            for(var i = 0; i < terrainData.Count - _trackLength; i++) {
                 Vector2 point1;
                 Vector2 point2;
-                if(i <= 10) {
+                if(i <= 0) {
                     continue;
                 }
-                else {
-                    var range = terrainData.GetRange(i - 10, 10);
-                    point1 = range.First().Vector;
-                    point2 = range.Last().Vector;
-                    if(point1.X <= 0)
-                        continue;
-                }
-                var map1 = _mapPositionData.TerrainPoint(point1);
-                var map2 = _mapPositionData.TerrainPoint(point2);
 
-                var mapLineGeometry = mapLineNode.CreateComponent<CustomGeometry>(CreateMode.Local, (uint)i);
-                mapLineGeometry.BeginGeometry(0, PrimitiveType.LineList);
-                var material = new Material();
-                material.SetTechnique(0, CoreAssets.Techniques.NoTextureUnlitVCol);
-                mapLineGeometry.SetMaterial(material);
+                var range = terrainData.GetRange(i - 1, 1);
+                point1 = range.First().Vector;
+                point2 = range.Last().Vector;
 
-                var color = new Color(1.0f, 1.0f / 255.0f, 1.0f / 255.0f, 1.0f);
-                mapLineGeometry.DefineVertex(new Vector3(map1.X, map1.Y, 0.0f));
-                mapLineGeometry.DefineColor(color);
-                mapLineGeometry.DefineVertex(new Vector3(map2.X, map2.Y, 0.0f));
-                mapLineGeometry.DefineColor(color);
+                if(point1.X <= 0)
+                    continue;
 
-                mapLineGeometry.Commit();
+                var map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
+                var map2 = _mapPositionData.TerrainPoint(point2, _trackLength);
             }
-            */
+
+            /*
+            for(var w = 0; w < img.Width; w++) {
+                for(var h = 0; h < img.Height; h++) {
+                    if(img.Width > img.Width/2)
+                    img.SetPixel(w, h, new Urho.Color(NextRandom(0f,1f), NextRandom(0f, 1f), NextRandom(0f, 1f), NextRandom(0f, 1f)));
+                }
+            }
+            var texture = new Texture2D {
+                FilterMode = TextureFilterMode.Nearest,
+            };
+
+
+            texture.SetNumLevels(1);
+            var res1 = texture.SetSize(mapBox.Width, mapBox.Height, Graphics.RGBAFormat, TextureUsage.Dynamic);
+            Debug.WriteLine("set size: " + res1);
+            var res2 = texture.SetData(0, 0, 0, mapBox.Width, mapBox.Height, img.DataBytes);
+            Debug.WriteLine("set data: " + res2);
+            //var material = Material.FromImage(img);
+
+            mapBox.Texture = texture;
+            mapBox.SetFullImageRect();
+
+            mapTrack.UseDerivedOpacity = true;
+            */           
         }
 
         void PlaceCoin(Vector2 vector, uint id) {

@@ -58,17 +58,27 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public int VehiclesUnlocked 
+        public VehicleContainerModel VehiclesUnlocked 
         {
-            get 
-            {
-                var unlocked = 0;
-                var vehicles = JsonReaderVehicles.GetVehicles();
-                foreach(var vehicle in vehicles.VehicleModel) {
-                    if(vehicle.UnlockCost <= CharacterManager.Instance.User.Level)
-                        unlocked += 1;
+            get {
+                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.UnlockedVehicles.Value, "");
+                var vehicleIdList = string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<VehiclesUnlockedList>(json);
+                if(vehicleIdList == null || vehicleIdList.VehicleIds.IsEmpty())
+                    return null;
+
+                var vehicles = new VehicleContainerModel {
+                    VehicleModel = new List<VehicleModel>()
+                };
+
+                foreach(var id in vehicleIdList.VehicleIds) {
+                    vehicles.VehicleModel.Add(JsonReaderVehicles.GetSingleVehicle(id));
                 }
-                return unlocked;
+                return vehicles;
+            }
+            set {
+                var json = JsonConvert.SerializeObject(value);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.UnlockedVehicles.Value, json);
+                OnPropertyChanged();
             }
         }
     }

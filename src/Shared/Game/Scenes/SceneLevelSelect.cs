@@ -219,7 +219,24 @@ namespace SmartRoadSense.Shared {
             container.ImageRect = AssetsCoordinates.Generic.Boxes.ContainerTrasparent;
             container.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 1400));
             container.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(240));
+            /*
+            ScrollBar scrollBar = new ScrollBar();
+            container.AddChild(scrollBar);
 
+            scrollBar.SetPosition(GameInstance.ScreenInfo.SetX(10), GameInstance.ScreenInfo.SetY(10));
+            scrollBar.SetSize(GameInstance.ScreenInfo.SetX(1800), GameInstance.ScreenInfo.SetY(20));
+            scrollBar.SetColor(Color.Cyan);
+            scrollBar.Range = TrackManager.Instance.TrackCount;
+
+            var slider = scrollBar.Slider;
+            slider.Range = TrackManager.Instance.TrackCount;
+            slider.SetColor(Color.Blue);
+           
+             slider.DragEnd += (DragEndEventArgs args) => {
+                Debug.WriteLine("Scrollbar Value: " + scrollBar.Value);
+                Debug.WriteLine("Slider: " + slider.Value);
+            };
+            */
             prev_level = new Button();
             container.AddChild(prev_level);
             prev_level.SetStyleAuto(null);

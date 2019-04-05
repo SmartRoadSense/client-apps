@@ -175,7 +175,7 @@ namespace SmartRoadSense.Shared {
             // Vehicle image - root element
             img_vehicle = root.CreateSprite();
             img_vehicle.Texture = vehicle;
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
+            JsonReaderVehicles.SelectSingleVehicle(vehicle_id);
             img_vehicle.SetSize((int)(dim.XScreenRatio * 600), (int)(dim.YScreenRatio * 600));
             img_vehicle.SetPosition((int)(dim.XScreenRatio * 200), (int)(dim.YScreenRatio * 200));
 
@@ -242,7 +242,7 @@ namespace SmartRoadSense.Shared {
             {
                 VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
                 VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
+                JsonReaderVehicles.SelectSingleVehicle(vehicle_id); // Updates selected vehicle model
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
 
@@ -408,7 +408,7 @@ namespace SmartRoadSense.Shared {
             else if (x == 1) { // right arrow
                 vehicle_id = vehicle_id >= vehicles_count - 1 ? 0 : 1 + vehicle_id;
             }
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
+            JsonReaderVehicles.SelectSingleVehicle(vehicle_id);
             GetCarImg();
         }
 
@@ -480,7 +480,7 @@ namespace SmartRoadSense.Shared {
             Action<PressedEventArgs> select = new Action<PressedEventArgs>((PressedEventArgs a) => {
                 VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
                 VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
+                JsonReaderVehicles.SelectSingleVehicle(vehicle_id); // Updates selected vehicle model
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 
                 quitWindow.Visible = false;

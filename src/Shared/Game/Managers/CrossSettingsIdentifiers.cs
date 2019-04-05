@@ -13,6 +13,7 @@ namespace SmartRoadSense.Shared {
         public static CrossSettingsIdentifiers IdVehicle => new CrossSettingsIdentifiers("VEHICLES_ID_VEHICLE");
         public static CrossSettingsIdentifiers SelectedGarageVehicle => new CrossSettingsIdentifiers("VEHICLES_SELECTED_GARAGE_VEHICLE");
         public static CrossSettingsIdentifiers SelectedVehicle => new CrossSettingsIdentifiers("VEHICLES_SELECTED_VEHICLE");
+        public static CrossSettingsIdentifiers UnlockedVehicles => new CrossSettingsIdentifiers("VEHICLES_UNLOCKED_VEHICLES");
 
         // VEHICLE UPGRADES
         /*

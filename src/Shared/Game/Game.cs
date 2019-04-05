@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Urho;
 using Urho.Gui;
 using Urho.Resources;
@@ -39,13 +40,15 @@ namespace SmartRoadSense.Shared
         /// </summary>
         public string JoystickLayoutPatch;// => JoystickLayoutPatches.WithZoomInAndOut;
 
-        DebugHud _debug;
-        protected override void Start() {
+        //DebugHud _debug;
+        protected override async void Start() {
             InitResourceCache();
 
-            InitTracks();
-
             InitUiInfo();
+
+            InitLoadingScreen();
+
+            await InitTracks();
 
             LaunchScene(GameScenesEnumeration.MENU);
 
@@ -53,9 +56,8 @@ namespace SmartRoadSense.Shared
 
             CharacterLevelData.PointsToNextLevel();
 
-            _debug = Engine.CreateDebugHud();
-            _debug.ToggleAll();
-
+            //_debug = Engine.CreateDebugHud();
+            //_debug.ToggleAll();
         }
 
         void InitResourceCache() {
@@ -78,11 +80,6 @@ namespace SmartRoadSense.Shared
             Debug.WriteLine("RESOURCE CACHE - Initialized Resource Cache");
         }
 
-        void InitTracks()
-        {
-            var initResult = TrackManager.Instance.Init();
-        }
-
         public void InitUiInfo() {
             Options.AdditionalFlags = " -hd";
 
@@ -95,6 +92,24 @@ namespace SmartRoadSense.Shared
             UI.Root.SetDefaultStyle(uiStyle);
 
             Engine.MaxFps = 30;
+        }
+
+        void InitLoadingScreen() {
+            var splashScreen = new BorderImage {
+                Texture = ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.LoadingGameScreen.ResourcePath),
+                ImageRect = AssetsCoordinates.Backgrounds.LoadingGameScreen.ImageRect,
+                Size = new IntVector2(ScreenInfo.SetX(1920), ScreenInfo.SetY(1080)),
+                Position = new IntVector2(ScreenInfo.SetX(0), ScreenInfo.SetY(0))
+            };
+            UI.Root.AddChild(splashScreen);
+            Engine.RunFrame();
+        }
+
+        async Task<bool> InitTracks() {
+#if DEBUG
+            TrackManager.Instance.Tracks = null;
+#endif
+            return await TrackManager.Instance.Init();
         }
 
         void HandleKeyDown(KeyDownEventArgs e) {

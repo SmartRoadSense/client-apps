@@ -241,6 +241,11 @@ namespace SmartRoadSense.Shared
                 public readonly static IntRect ImageRect = new IntRect(0, 0, 1920, 1080);
             }
 
+            public struct LoadingGameScreen {
+                public readonly static string ResourcePath = AssetPath + "loading_screen.png";
+                public readonly static IntRect ImageRect = new IntRect(0, 0, 1334, 750);
+            }
+
             public struct LoadingScreen {
                 readonly static string ResourcePath = AssetPath + "Loading/";
 

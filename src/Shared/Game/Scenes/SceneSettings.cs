@@ -11,6 +11,7 @@ using Foundation;
 #endif
 using Urho;
 using Urho.Gui;
+using System.Diagnostics;
 
 namespace SmartRoadSense.Shared {
     public class SceneSettings : BaseScene {
@@ -117,7 +118,7 @@ namespace SmartRoadSense.Shared {
             MiniGameScene.ImageRect = AssetsCoordinates.Generic.Boxes.MiniGameScreen;
             MiniGameScene.SetSize(GameInstance.ScreenInfo.SetX(940), GameInstance.ScreenInfo.SetY(530));
             MiniGameScene.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
-            MiniGameScene.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetX(250));
+            MiniGameScene.SetPosition(GameInstance.ScreenInfo.SetX(50), GameInstance.ScreenInfo.SetY(230));
             GameInstance.UI.Root.AddChild(MiniGameScene);
 
             Sprite PausaButton = new Sprite();
@@ -309,8 +310,8 @@ namespace SmartRoadSense.Shared {
             }
         }
 
-
         void CreateRightSection() {
+            var audio = GameInstance.Audio;
 
             var cont_base = GameInstance.ResourceCache.GetTexture2D("Textures/Garage/cont_base.png");
             Sprite containerR = new Sprite();
@@ -337,26 +338,27 @@ namespace SmartRoadSense.Shared {
             SFXtext.Value = "SFX";
 
             //slider
-            Slider sfxSlider = new Slider() {
+            Slider sfxSlider = new Slider {
                 Size = new IntVector2(GameInstance.ScreenInfo.SetX(500), GameInstance.ScreenInfo.SetY(100)),
-                Position = new IntVector2(GameInstance.ScreenInfo.SetX(1190), GameInstance.ScreenInfo.SetY(225)),
+                Position = new IntVector2(GameInstance.ScreenInfo.SetX(230), GameInstance.ScreenInfo.SetY(225)),
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Range = 1.0f,
-                Value = SoundManager.Instance.EffectsGain,
                 Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath),
-                ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite
-
+                ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite,
+                Range = 1.0f
             };
-            GameInstance.UI.Root.AddChild(sfxSlider);
+            containerR.AddChild(sfxSlider);
+            sfxSlider.SetStyleAuto(null);
+            sfxSlider.Range = 1.0f;
 
             var knob = sfxSlider.Knob;
             knob.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             knob.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarKnob;
             knob.SetFixedSize(GameInstance.ScreenInfo.SetX(45), GameInstance.ScreenInfo.SetY(100));
+            sfxSlider.Value = audio.GetMasterGain(SoundType.Effect.ToString());
 
             sfxSlider.SliderChanged += (SliderChangedEventArgs args) => {
-                GameInstance.Audio.SetMasterGain(SoundType.Effect.ToString(), args.Value);
+                audio.SetMasterGain(SoundType.Effect.ToString(), args.Value);
                 SoundManager.Instance.EffectsGain = args.Value;
             };
 
@@ -385,27 +387,24 @@ namespace SmartRoadSense.Shared {
             MusicText.SetFont(_baseFont, GameInstance.ScreenInfo.SetX(30));
             MusicText.Value = "MUSIC";
 
-
             //slider
-            Slider MusicSlider = new Slider() {
-                Size = new IntVector2(GameInstance.ScreenInfo.SetX(500), GameInstance.ScreenInfo.SetY(100)),
-                Position = new IntVector2(GameInstance.ScreenInfo.SetX(1190), GameInstance.ScreenInfo.SetY(350)),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Range = 1.0f,
-                Value = SoundManager.Instance.MusicGain,
-                Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath),
-                ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite
-            };
-            GameInstance.UI.Root.AddChild(MusicSlider);
+            Slider musicSlider = new Slider();
+            containerR.AddChild(musicSlider);
+            musicSlider.SetStyleAuto(null);
+            musicSlider.SetPosition(GameInstance.ScreenInfo.SetX(230), GameInstance.ScreenInfo.SetY(350));
+            musicSlider.SetSize(GameInstance.ScreenInfo.SetX(500), GameInstance.ScreenInfo.SetY(100));
+            musicSlider.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            musicSlider.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite;
+            musicSlider.Range = 1.0f;
 
-            var knob2 = MusicSlider.Knob;
-            knob2.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            knob2.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarKnob;
-            knob2.SetFixedSize(GameInstance.ScreenInfo.SetX(45), GameInstance.ScreenInfo.SetY(100));
+            var knobM = musicSlider.Knob;
+            knobM.SetFixedSize(GameInstance.ScreenInfo.SetX(45), GameInstance.ScreenInfo.SetY(100));
+            knobM.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            knobM.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarKnob;
+            musicSlider.Value = audio.GetMasterGain(SoundType.Music.ToString());
 
-            MusicSlider.SliderChanged += (SliderChangedEventArgs args) => {
-                GameInstance.Audio.SetMasterGain(SoundType.Music.ToString(), args.Value);
+            musicSlider.SliderChanged += (SliderChangedEventArgs args) => {
+                audio.SetMasterGain(SoundType.Music.ToString(), args.Value);
                 SoundManager.Instance.MusicGain = args.Value;
             };
 

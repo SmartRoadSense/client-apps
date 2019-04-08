@@ -559,8 +559,8 @@ namespace SmartRoadSense.Shared
             material.SetTechnique(0, CoreAssets.Techniques.NoTextureUnlitVCol);
             geom.SetMaterial(material);
 
-            var terrainColor = new Color(26.0f / 255.0f, 26.0f / 255.0f, 26.0f / 255.0f, 1.0f);
-            var terrainEndColor = new Color(130.0f / 255.0f, 120.0f / 255.0f, 120.0f / 255.0f, 1.0f);
+            var terrainColor = new Urho.Color(26.0f / 255.0f, 26.0f / 255.0f, 26.0f / 255.0f, 1.0f);
+            var terrainEndColor = new Urho.Color(130.0f / 255.0f, 120.0f / 255.0f, 120.0f / 255.0f, 1.0f);
 
             var A = new Vector3(x1, y1, 0.0f);          /* A-B */
             var B = new Vector3(x2, y2, 0.0f);          /* | | */
@@ -695,7 +695,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             gameOverWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             gameOverWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            gameOverWindow.SetColor(Color.FromHex("#22000000"));
+            gameOverWindow.SetColor(Urho.Color.FromHex("#22000000"));
             gameOverWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             gameOverWindow.Name = "GameOverWindow";
 
@@ -786,7 +786,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             levelCompleteWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             levelCompleteWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            levelCompleteWindow.SetColor(Color.FromHex("#22000000"));
+            levelCompleteWindow.SetColor(Urho.Color.FromHex("#22000000"));
             levelCompleteWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             levelCompleteWindow.Name = "LevelCompleteWindow";
 
@@ -843,7 +843,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             pauseWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             pauseWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            pauseWindow.SetColor(Color.FromHex("#22000000"));
+            pauseWindow.SetColor(Urho.Color.FromHex("#22000000"));
             pauseWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             pauseWindow.Name = "PauseWindow";
 
@@ -859,11 +859,11 @@ namespace SmartRoadSense.Shared
             rectangle.ImageRect = AssetsCoordinates.Generic.Boxes.PauseMenuBox;
 
             Text restart = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 50, 50, 50, HorizontalAlignment.Left, VerticalAlignment.Top, "Restart");
-            restart.SetColor(Color.White);
+            restart.SetColor(Urho.Color.White);
             Text settings = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 50, 50, 0, HorizontalAlignment.Left, VerticalAlignment.Center, "Settings");
-            settings.SetColor(Color.White);
+            settings.SetColor(Urho.Color.White);
             Text quit = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 50, 50, -50, HorizontalAlignment.Left, VerticalAlignment.Bottom, "Quit");
-            quit.SetColor(Color.White);
+            quit.SetColor(Urho.Color.White);
 
             Button btnRestart = GameButton.CreateButton(rectangle, GameInstance.ScreenInfo, -50, 30, 140, 140, HorizontalAlignment.Right, VerticalAlignment.Top);
             btnRestart.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
@@ -972,7 +972,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             quitWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             quitWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            quitWindow.SetColor(Color.FromHex("#22000000"));
+            quitWindow.SetColor(Urho.Color.FromHex("#22000000"));
             quitWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             quitWindow.Name = "QuitWindow";
 
@@ -989,7 +989,7 @@ namespace SmartRoadSense.Shared
             Text warningText = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 35, 250, 0, HorizontalAlignment.Left, VerticalAlignment.Center, "Are you sure? Game progress will be lost.");
             warningText.Wordwrap = true;
             warningText.SetSize(GameInstance.ScreenInfo.SetX(750-270), GameInstance.ScreenInfo.SetY(240));
-            warningText.SetColor(Color.White);
+            warningText.SetColor(Urho.Color.White);
 
             var quitButton = new Button();
             quitButton.SetPosition(GameInstance.ScreenInfo.SetX(-85), GameInstance.ScreenInfo.SetY(200));
@@ -1000,7 +1000,7 @@ namespace SmartRoadSense.Shared
             quitWindow.AddChild(quitButton);
 
             Text confirmText = GameText.CreateText(quitButton, GameInstance.ScreenInfo, font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "Yes");
-            confirmText.SetColor(Color.White);
+            confirmText.SetColor(Urho.Color.White);
 
             quitButton.Pressed += (PressedEventArgs args) => {
                 CloseGameLevel();
@@ -1016,7 +1016,7 @@ namespace SmartRoadSense.Shared
             quitWindow.AddChild(continueButton);
 
             Text cancelText = GameText.CreateText(continueButton, GameInstance.ScreenInfo, font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "No");
-            cancelText.SetColor(Color.White);
+            cancelText.SetColor(Urho.Color.White);
 
             continueButton.Pressed += (PressedEventArgs args) => {
                 quitWindow.Visible = false;
@@ -1502,7 +1502,7 @@ namespace SmartRoadSense.Shared
                 Size = mapBox.Size,
                 Position = new IntVector2(0, 0)
             };
-            mapTrack.SetColor(Color.FromHex("#55555555"));
+            mapTrack.SetColor(Urho.Color.FromHex("#55555555"));
             //mapBox.AddChild(mapTrack);
 
             Image img = new Image();

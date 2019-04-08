@@ -28,7 +28,7 @@ namespace SmartRoadSense.Shared.Data {
 #if DEBUG
         private readonly TimeSpan GpsDistanceErrorTimeout = TimeSpan.FromMinutes(2);
 #else
-        private readonly TimeSpan GpsDistanceErrorTimeout = TimeSpan.FromMinutes(6);
+        private readonly TimeSpan GpsDistanceErrorTimeout = TimeSpan.FromMinutes(5);
 #endif
 
         /// <summary>
@@ -116,8 +116,7 @@ namespace SmartRoadSense.Shared.Data {
 
                 //IF the sensor started working now, reset timeout timers
                 if (_locationSensorStatus != LocationSensorStatus.Working && value == LocationSensorStatus.Working) {
-                    _lastTimeFastEnough = DateTime.UtcNow;
-                    _lastTimeMoved = DateTime.UtcNow;
+                    _lastTimeMoved = DateTime.MaxValue;
                 }
 
                 if (_locationSensorStatus != value) {
@@ -196,7 +195,6 @@ namespace SmartRoadSense.Shared.Data {
         private DateTime _gpsLastUpdate;
 
         private DateTime _lastTimeMoved;
-        private DateTime _lastTimeFastEnough;
 
         private double _gpsLastLatitude = double.NaN;
         private double _gpsLastLongitude = double.NaN;
@@ -250,7 +248,6 @@ namespace SmartRoadSense.Shared.Data {
                     _lastTimeMoved = timestamp;
 
                     if (measuredSpeed >= GpsFastEnoughSpeed) {
-                        _lastTimeFastEnough = timestamp;
                         IsMovingSlowly = false;
 
                         if (measuredSpeed >= GpsTooFastSpeed) {
@@ -399,8 +396,7 @@ namespace SmartRoadSense.Shared.Data {
 
             //GPS times are set to now as a starting point
             _gpsLastUpdate = DateTime.UtcNow;
-            _lastTimeFastEnough = DateTime.MinValue;
-            _lastTimeMoved = DateTime.MinValue;
+            _lastTimeMoved = DateTime.MaxValue;
             _lastAcceleration = null;
 
             _accelerometerScaleFactor = Settings.CalibrationScaleFactor;

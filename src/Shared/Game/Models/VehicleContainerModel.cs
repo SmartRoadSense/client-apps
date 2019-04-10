@@ -95,4 +95,36 @@ namespace SmartRoadSense.Shared {
         [JsonProperty("Y")]
         public int Y { get; set; }
     }
+
+    public class Components {
+        [JsonProperty("SUSPENSIONS")]
+        public bool Suspensions { get; set; }
+
+        [JsonProperty("PERFORMANCE")]
+        public bool Performance { get; set; }
+
+        [JsonProperty("WHEELS")]
+        public bool Wheels { get; set; }
+
+        [JsonProperty("BRAKES")]
+        public bool Brakes { get; set; }
+    }
+
+    public class VehiclesUnlockedList {
+        [JsonProperty("UNLOCKED")]
+        public List<int> VehicleIds { get; set; }
+    }
+
+    public class CollectedComponentsContainer {
+        [JsonProperty("COMPONENT_LIST")]
+        public List<CollectedComponents> CollectedComponentsList { get; set; }
+    }
+
+    public class CollectedComponents {
+        [JsonProperty("VEHICLE_ID")]
+        public int VehicleId { get; set; }
+
+        [JsonProperty("COMPONENTS")]
+        public Components VehicleComponents { get; set; }
+    }
 }

@@ -158,21 +158,23 @@ namespace SmartRoadSense.Shared {
         }
 
         void CreateNewVehicleBar() {
-            var vehicleBackgroung = cache.GetTexture2D("Textures/Garage/vehicle_bar_big.png");
+
+            var vehicleBackgroung = cache.GetTexture2D(AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Path);
             var vehicle = cache.GetTexture2D("Textures/Garage/vehicles2.png");
 
             Sprite VehicleBar = root.CreateSprite();
             VehicleBar.Texture = vehicleBackgroung;
             VehicleBar.SetSize((int)(dim.XScreenRatio * 1920), (int)(dim.YScreenRatio * 480));
             VehicleBar.SetPosition((int)(dim.XScreenRatio * 0), (int)(dim.YScreenRatio * 300));
-            //VehicleBar.ImageRect = new IntRect(0, 0, 56, 56);
-
-
+            VehicleBar.ImageRect = AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Rectangle;
+            VehicleBar.UseDerivedOpacity = false;
+            VehicleBar.Opacity = 0.75f;
 
             PrevVehicle = new Button();
             VehicleBar.AddChild(PrevVehicle);
             PrevVehicle.Texture = vehicle;
             PrevVehicle.Opacity = 0.7f;
+            PrevVehicle.UseDerivedOpacity = false;
             PrevVehicle.SetSize((int)(dim.XScreenRatio * 450), (int)(dim.YScreenRatio * 450));
             PrevVehicle.SetPosition((int)(dim.XScreenRatio * 0), (int)(dim.YScreenRatio * 0));
             PrevVehicle.Pressed += args => {
@@ -182,14 +184,15 @@ namespace SmartRoadSense.Shared {
             // Selected Vehicle image - root element
             SelectedVehicle = new Button();
             VehicleBar.AddChild(SelectedVehicle);
+            SelectedVehicle.UseDerivedOpacity = false;
             SelectedVehicle.Texture = vehicle;
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
+            JsonReaderVehicles.SelectSingleVehicle(vehicle_id);
             SelectedVehicle.SetSize((int)(dim.XScreenRatio * 600), (int)(dim.YScreenRatio * 600));
             SelectedVehicle.SetPosition((int)(dim.XScreenRatio * 650), (int)(dim.YScreenRatio * -100));
             SelectedVehicle.Pressed += args => {
                 VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
                 VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
+                JsonReaderVehicles.SelectSingleVehicle(vehicle_id); // Updates selected vehicle model
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
                 
@@ -209,10 +212,11 @@ namespace SmartRoadSense.Shared {
             LockedVehicle.SetSize((int)(dim.XScreenRatio * 80), (int)(dim.YScreenRatio * 80));
 
             NextVehicle = new Button();
+            NextVehicle.UseDerivedOpacity = false;
             VehicleBar.AddChild(NextVehicle);
             NextVehicle.Texture = vehicle;
-            PrevVehicle.Opacity = 0.7f;
-            //JsonReaderVehicles.GetSingleVehicle(vehicle_id + 1);
+            NextVehicle.Opacity = 0.7f;
+            JsonReaderVehicles.SelectSingleVehicle(vehicle_id + 1);
             NextVehicle.SetSize((int)(dim.XScreenRatio * 450), (int)(dim.YScreenRatio * 450));
             NextVehicle.SetPosition((int)(dim.XScreenRatio * 1400), (int)(dim.YScreenRatio * 0));
             NextVehicle.Pressed += args => {
@@ -379,7 +383,7 @@ namespace SmartRoadSense.Shared {
             // Vehicle image - root element
             img_vehicle = root.CreateSprite();
             img_vehicle.Texture = vehicle;
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
+            JsonReaderVehicles.SelectSingleVehicle(vehicle_id);
             img_vehicle.SetSize((int)(dim.XScreenRatio * 600), (int)(dim.YScreenRatio * 600));
             img_vehicle.SetPosition((int)(dim.XScreenRatio * 200), (int)(dim.YScreenRatio * 200));
 
@@ -450,7 +454,7 @@ namespace SmartRoadSense.Shared {
             {
                 VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
                 VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
+                JsonReaderVehicles.SelectSingleVehicle(vehicle_id); // Updates selected vehicle model
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
 
@@ -580,7 +584,7 @@ namespace SmartRoadSense.Shared {
             else {
                 prev = vehicle_id - 1;
             }
-            JsonReaderVehicles.GetSingleVehicle(prev);
+            JsonReaderVehicles.SelectSingleVehicle(prev);
             int leftP = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Left;
             int topP = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Top;
             int rightP = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Right;
@@ -594,7 +598,7 @@ namespace SmartRoadSense.Shared {
             else {
                 next = vehicle_id + 1;
             }
-            JsonReaderVehicles.GetSingleVehicle(next);
+            JsonReaderVehicles.SelectSingleVehicle(next);
             int leftN = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Left;
             int topN = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Top;
             int rightN = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Right;
@@ -609,7 +613,7 @@ namespace SmartRoadSense.Shared {
             else if (x == 1) { // right arrow
                 vehicle_id = vehicle_id >= vehicles_count - 1 ? 0 : 1 + vehicle_id;
             }
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
+            JsonReaderVehicles.SelectSingleVehicle(vehicle_id);
             GetCarImg();
         }
 
@@ -681,7 +685,7 @@ namespace SmartRoadSense.Shared {
             Action<PressedEventArgs> select = new Action<PressedEventArgs>((PressedEventArgs a) => {
                 VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
                 VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
+                JsonReaderVehicles.SelectSingleVehicle(vehicle_id); // Updates selected vehicle model
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 
                 quitWindow.Visible = false;

@@ -45,7 +45,8 @@ namespace SmartRoadSense.Shared {
                 for(var i = 1; i <= 100; i++) {
                     points += PointsToNextLevel(i);
                     if(CharacterManager.Instance.User.Experience <= points) {
-                        currentLvlPoints = CharacterManager.Instance.User.Experience - (points - PointsToNextLevel(i - 1));
+                        // TODO: happens that result is negative !
+                        currentLvlPoints = Math.Abs(CharacterManager.Instance.User.Experience - (points - PointsToNextLevel(i - 1)));
                         break;
                     }
                 }
@@ -61,13 +62,12 @@ namespace SmartRoadSense.Shared {
             var pointModifier = 0;
 
             // Scale to difficulty level compared to user level
-            /* TODO: reactivate
-            var difficultyLevel = LevelManager.Instance.SelectedLevelModel.Difficulty;
+            var difficultyLevel = TrackManager.Instance.SelectedTrackModel.Difficulty;
             var characterLevel = CharacterManager.Instance.User.Level;
             double pointRatio = difficultyLevel / characterLevel;
-            */
-            var difficultyLevel = 1;    // TEMP
-            double pointRatio = 1;      // TEMP
+           
+            //var difficultyLevel = 1;    // TEMP
+            //double pointRatio = 1;      // TEMP
 
             if(time <= bestTimeToBeat) {
                 // MAX POINTS
@@ -86,12 +86,12 @@ namespace SmartRoadSense.Shared {
             return obtainedPoints;
         }
 
-        public static int LostPoints(int position) {
+        public static int LostPoints(int position, int trackLength) {
             var difficultyLevel = TrackManager.Instance.SelectedTrackModel.Difficulty;
             var characterLevel = CharacterManager.Instance.User.Level;
             double pointRatio = difficultyLevel / characterLevel;
 
-            var lostPoints = (TerrainGenerator.TerrainEndPoints - position) / TerrainGenerator.TerrainEndPoints * _lostPointsMax;
+            var lostPoints = (trackLength - position) / trackLength * _lostPointsMax;
             return -(int)Math.Round((lostPoints * pointRatio) * (difficultyLevel / 10 + Math.Pow(2, difficultyLevel / 10)));
         }
     }

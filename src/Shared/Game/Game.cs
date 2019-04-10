@@ -41,14 +41,15 @@ namespace SmartRoadSense.Shared
         public string JoystickLayoutPatch;// => JoystickLayoutPatches.WithZoomInAndOut;
 
         //DebugHud _debug;
-        protected override async void Start() {
+        protected override void Start() {
+
             InitResourceCache();
 
             InitUiInfo();
 
             InitLoadingScreen();
 
-            await InitTracks();
+            Task.Run(async () => { await InitTracks(); }).Wait();
 
             LaunchScene(GameScenesEnumeration.MENU);
 

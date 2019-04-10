@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Urho;
+using System.Linq;
 
 namespace SmartRoadSense.Shared
 {
@@ -8,11 +9,10 @@ namespace SmartRoadSense.Shared
     {
         public static float TerrainStepLength = 0.5f;
         public static float TerrainBeginningOffset = -15.0f;
-        public static float TerrainEndPoints = 3600;
         public static float PPECorrectionFactor = 20;
         public static float EndOfLevelSurfaceLength = 500;
 
-        public static List<Point> ArrayToMatrix(List<float> srsNormalizedData, ScreenInfoRatio screenInfo)
+        public static List<Point> ArrayToMatrix(List<float> srsNormalizedData, ScreenInfoRatio screenInfo, bool addEndingPoints = true)
         {
             List<Point> points = new List<Point>();
             uint idx = 0;
@@ -23,6 +23,14 @@ namespace SmartRoadSense.Shared
                 // + terrain Y coord from srs data
                 points.Add(new Point(idx, TerrainStepLength * idx + TerrainBeginningOffset * screenInfo.XScreenRatio, point * screenInfo.YScreenRatio));
                 idx++;
+            }
+
+            if(addEndingPoints) {
+                var lastPoint = points.Last();
+                for(var i = 0; i < EndOfLevelSurfaceLength; i++) {
+                    points.Add(new Point(idx, TerrainStepLength * idx + TerrainBeginningOffset * screenInfo.XScreenRatio, lastPoint.Vector.Y * screenInfo.YScreenRatio));
+                    idx++;
+                }
             }
 
             return points;
@@ -39,14 +47,14 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public static List<float> RandomTerrain() 
+        public static List<float> RandomTerrain(int trackLength) 
         {
             var level = CharacterManager.Instance.User.Level;
 
             // TODO: modify difficulty based on user level
 
             List<float> data = new List<float>();
-            for(var i = 0; i < TerrainEndPoints; i++)
+            for(var i = 0; i < trackLength; i++)
                 data.Add(i > 0 ? data[i-1] + NextRandom(-0.05f, 0.05f) : NextRandom(-0.05f, 0.05f));
 
             var endTrace = data[data.Count - 1];

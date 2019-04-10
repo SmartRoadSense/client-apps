@@ -99,8 +99,6 @@ namespace SmartRoadSense.Shared
                 readonly static public IntRect ComponentWhellGreen = new IntRect(3140, 1854, 3248, 1960);
                 readonly static public IntRect ComponentWhellRed = new IntRect(2976, 1854, 3083, 1960);
 
-
-
                 //only level
                 readonly static public IntRect MapBox = new IntRect(0, 1194, 1016, 1360);
                 readonly static public IntRect TimeBestBox = new IntRect(0, 1395, 356, 1481);
@@ -170,11 +168,15 @@ namespace SmartRoadSense.Shared
                 //SOCIAL
                 readonly static public IntRect Facebook = new IntRect(1912, 1681, 2062, 1831);
                 readonly static public IntRect Tweeter = new IntRect(2112, 1681, 2262, 1831);
+            }
 
+            public struct Garage {
+                readonly static string AssetPath = BaseTexturesAssetsPath + "Garage/";
 
-
-
-
+                public struct VehicleBackgroundBar {
+                    public readonly static string Path = AssetPath + "vehicle_bar_big.png";
+                    public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
             }
         }
 

@@ -996,6 +996,7 @@
     <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\bg3\bg3_13.png" />
     <BundleResource Include="Resources\Data\Textures\Backgrounds\snowy_forest\fg\fg_13.png" />
     <BundleResource Include="Resources\Data\Textures\Backgrounds\loading_screen.png" />
+    <BundleResource Include="Resources\Data\Textures\Garage\vehicle_bar_big.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

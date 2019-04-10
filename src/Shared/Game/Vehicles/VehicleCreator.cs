@@ -43,8 +43,8 @@ namespace SmartRoadSense.Shared {
             _mainBody.LinearDamping = 0.2f;
             _mainBody.AngularDamping = 0.2f;
             _mainBody.Bullet = true;
-            _mainBody.Mass = 8.0f;
-            _mainBody.SetMassCenter(new Vector2(-0.1f * _screenInfo.XScreenRatio, -0.1f * _screenInfo.YScreenRatio));
+            _mainBody.Mass = 1.0f;
+            //_mainBody.SetMassCenter(new Vector2(-2.1f * _screenInfo.XScreenRatio, -0.1f * _screenInfo.YScreenRatio));
 
             // Outer body for collision - null mass
             CollisionChain2D bodyBounds = box.CreateComponent<CollisionChain2D>();
@@ -77,11 +77,12 @@ namespace SmartRoadSense.Shared {
             CollisionBox2D shape = box.CreateComponent<CollisionBox2D>(); 
             // Set size
             shape.Size = new Vector2(0.32f * _screenInfo.XScreenRatio, 0.32f * _screenInfo.YScreenRatio); 
-            shape.Density = 10.0f;      // Set shape density (kilograms per meter squared)
+            shape.Density = 8.0f;      // Set shape density (kilograms per meter squared)
             shape.Friction = 0.8f;      // Set friction
             shape.Restitution = 0.0f;   // Set restitution (no bounce)
-            // Update center of collision body
-            shape.SetCenter(0.0f * _screenInfo.XScreenRatio, -0.5f * _screenInfo.YScreenRatio);   
+
+            // Update center of collision body - moves center of mass
+            shape.SetCenter(-0.3f * _screenInfo.XScreenRatio, -1.0f * _screenInfo.YScreenRatio);   
 
             // Create a ball (will be cloned later)
             Node ball1WheelNode = scene.CreateChild("Wheel");
@@ -105,7 +106,7 @@ namespace SmartRoadSense.Shared {
 
             // Create a vehicle from a compound of 2 ConstraintWheel2Ds
             var car = box;
-            car.Scale = new Vector3(1.5f * _screenInfo.XScreenRatio, 1.5f * _screenInfo.YScreenRatio, 1.0f);
+            car.Scale = new Vector3(1.5f * _screenInfo.XScreenRatio, 1.5f * _screenInfo.YScreenRatio, 0.0f);
 
             // DEFINES POSITION OF SPRITE AND MAIN BODY MASS
             car.Position = new Vector3(0.0f * _screenInfo.XScreenRatio, _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
@@ -118,7 +119,7 @@ namespace SmartRoadSense.Shared {
             ballBody.LinearDamping = 0.1f;
             ballBody.AngularDamping = 0.1f;
             ballBody.Bullet = true;
-            ballBody.Mass = 10.0f;
+            ballBody.Mass = 2.0f;
 
             // WHEEL COLLISION
             CollisionCircle2D ballShape = ball1WheelNode.CreateComponent<CollisionCircle2D>(); // Create circle shape

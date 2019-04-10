@@ -423,11 +423,13 @@ namespace SmartRoadSense.Shared {
             {
                 selectable.ImageRect = new IntRect(380, 295, 480, 405);
                 buttonText.Value = "Selected vehicle";
+                LockedVehicle.Visible = false;
             }
             else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
             {
                 // TODO: unlockable with components 
                 buttonText.Value = "Vehicle not available";
+                LockedVehicle.Visible = true;
             }
             else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost >= 0)
             {
@@ -435,11 +437,13 @@ namespace SmartRoadSense.Shared {
                 {
                     selectable.ImageRect = new IntRect(250, 295, 350, 405);
                     buttonText.Value = "Tap to select this vehicle";
+                    LockedVehicle.Visible = false;
                 }
                 else 
                 {
                     selectable.ImageRect = new IntRect(120, 295, 220, 405);
                     buttonText.Value = "Vehicle not available";
+                    LockedVehicle.Visible = true;
                 }
             }
             bt_confirm.Pressed += args => 
@@ -450,7 +454,7 @@ namespace SmartRoadSense.Shared {
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
 
-                //QuitConfirm("Are you sure you want to unlock this vehicle?");
+                QuitConfirm("Are you sure you want to unlock this vehicle?");
             };
 
             //CreateUpgradeBars_old();
@@ -516,11 +520,13 @@ namespace SmartRoadSense.Shared {
                 screen_info.Value = "Tap to unlock this vehicle";
                 cont_upgrade.Visible = true;
                 cont_components.Visible = false;
+                LockedVehicle.Visible = false;
             }
 
             if(vehicle_id == vehicle_selected && vehicle_id != -1) {
                 System.Diagnostics.Debug.WriteLine(vehicle_id + " + " + vehicle_selected);
                 screen_info.Value = "Selected vehicle.";
+                LockedVehicle.Visible = false;
             }
             else if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCost) {
                 if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
@@ -528,6 +534,7 @@ namespace SmartRoadSense.Shared {
                     screen_info.Value = "Collect components to unlock this vehicle";
                     cont_upgrade.Visible = false;
                     cont_components.Visible = true;
+                    LockedVehicle.Visible = true;
                 }
                 else
                 {
@@ -535,6 +542,7 @@ namespace SmartRoadSense.Shared {
                     screen_info.Value = "Tap to unlock this vehicle";
                     cont_upgrade.Visible = true;
                     cont_components.Visible = false;
+                    LockedVehicle.Visible = false;
                 }
 
             }
@@ -542,6 +550,7 @@ namespace SmartRoadSense.Shared {
                 screen_info.Value = "Vehicle not available";
                 cont_upgrade.Visible = true;
                 cont_components.Visible = false;
+                LockedVehicle.Visible = true;
             }
 
             var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");

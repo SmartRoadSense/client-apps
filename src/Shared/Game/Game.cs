@@ -57,6 +57,8 @@ namespace SmartRoadSense.Shared
 
             CharacterLevelData.PointsToNextLevel();
 
+            VehicleManager.Instance.Init();
+
             //_debug = Engine.CreateDebugHud();
             //_debug.ToggleAll();
         }

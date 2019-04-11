@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace SmartRoadSense.Shared
 {
@@ -15,6 +16,30 @@ namespace SmartRoadSense.Shared
         }
 
         public static VehicleManager Instance { get; } = new VehicleManager();
+
+        public void Init() {
+            List<CollectedComponents> components = new List<CollectedComponents>();
+            if(CollectedComponents != null && CollectedComponents.CollectedComponentsList != null)
+                components = CollectedComponents.CollectedComponentsList;
+
+            foreach(var v in Vehicles.VehicleModel) {
+                if(v.UnlockCost < 0 && !components.Exists(e => e.VehicleId == v.IdVehicle)) {
+                    components.Add(new CollectedComponents { VehicleId = v.IdVehicle, VehicleComponents = new Components() });
+                }
+            }
+
+            if(CollectedComponents == null) {
+                CollectedComponents = new CollectedComponentsContainer {
+                    CollectedComponentsList = components
+                };
+            }
+
+            else {
+                var collected = CollectedComponents;
+                collected.CollectedComponentsList = components;
+                CollectedComponents = collected;
+            }
+        }
 
         public int VehicleCount {
             get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.VehicleCount.Value, 0);
@@ -81,16 +106,20 @@ namespace SmartRoadSense.Shared
                 OnPropertyChanged();
             }
         }
+        public VehicleContainerModel Vehicles 
+        {
+            get => JsonReaderVehicles.GetVehicles();
+        }
 
         public CollectedComponentsContainer CollectedComponents
         {
             get {
-                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedVehicle.Value, "");
+                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.CollectedComponents.Value, "");
                 return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<CollectedComponentsContainer>(json);
             }
             set {
                 var json = JsonConvert.SerializeObject(value);
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedVehicle.Value, json);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.CollectedComponents.Value, json);
                 OnPropertyChanged();
             }
         }

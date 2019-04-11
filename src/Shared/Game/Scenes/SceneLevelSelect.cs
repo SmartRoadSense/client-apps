@@ -8,14 +8,14 @@ namespace SmartRoadSense.Shared {
     public class SceneLevelSelect : BaseScene {
 
         Font font;
-        Sprite container;
+        Sprite _container;
         UIElement root;
         ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
         ResourceCache cache;
         int _counter;
-        Button prev_level;
-        Button sel_level;
-        Button next_level;
+        Button _prevLevel;
+        Button _selLevel;
+        Button _nextLevel;
         Text prevLevelN;
         Text selLevelN;
         Text nextLevelN;
@@ -23,6 +23,7 @@ namespace SmartRoadSense.Shared {
         Text BestTimeN;
         int _racesNumber;
         int lastComplededRace;
+        Window _noTrackWindow;
 
         public SceneLevelSelect(Game game) : base(game) {
             dim = GameInstance.ScreenInfo;
@@ -139,30 +140,33 @@ namespace SmartRoadSense.Shared {
             infoText.SetPosition(dim.SetX(0), dim.SetY(160));
             infoText.SetColor(Color.Transparent);
 
+            /*
             var text = new Text();
             text.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), 20);
             text.SetPosition(dim.SetX(20), dim.SetY(15));
-            text.Value = "Use SmartRoadSense to collect road data and unlock new levels! *";
+            text.Value = "Use SmartRoadSense to collect road data and unlock new levels!";
             text.UseDerivedOpacity = false;
+            infoText.AddChild(text);   
 
-            infoText.AddChild(text);           
+                  
             var smallText = new Text();
             smallText.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), 8);
             smallText.SetPosition(dim.SetX(20), dim.SetY(67));
             smallText.Value = "*This feature will be available starting from the next app release. Stay tuned for updates!";
             smallText.UseDerivedOpacity = false;
             infoText.AddChild(smallText);
+            */           
         }
 
         void CreateLevelBar() {
-            container = root.CreateSprite();
-            container.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            container.ImageRect = AssetsCoordinates.Generic.Boxes.ContainerTrasparent;
-            container.SetSize((int)(dim.XScreenRatio * 800), (int)(dim.YScreenRatio * 400));
-            container.SetPosition(GameInstance.ScreenInfo.SetX(500), GameInstance.ScreenInfo.SetY(30));
+            _container = root.CreateSprite();
+            _container.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _container.ImageRect = AssetsCoordinates.Generic.Boxes.ContainerTrasparent;
+            _container.SetSize((int)(dim.XScreenRatio * 800), (int)(dim.YScreenRatio * 400));
+            _container.SetPosition(GameInstance.ScreenInfo.SetX(500), GameInstance.ScreenInfo.SetY(30));
 
             Sprite LevelToComplete = new Sprite();
-            container.AddChild(LevelToComplete);
+            _container.AddChild(LevelToComplete);
             LevelToComplete.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             LevelToComplete.ImageRect = AssetsCoordinates.Generic.Boxes.LevelToComplete;
             LevelToComplete.SetSize((int)(dim.XScreenRatio * 400), (int)(dim.YScreenRatio * 100));
@@ -181,7 +185,7 @@ namespace SmartRoadSense.Shared {
             int size = y - x;
 
             Sprite LevelCompleted = new Sprite();
-            container.AddChild(LevelCompleted);
+            _container.AddChild(LevelCompleted);
             LevelCompleted.Texture = buttons;
             LevelCompleted.ImageRect = new IntRect(x, 1410, y, 1471);
             LevelCompleted.SetSize(dim.SetX(size), dim.SetY(100));
@@ -190,7 +194,7 @@ namespace SmartRoadSense.Shared {
 
             // LEVEL INDICATOR
             Sprite LevelInd = new Sprite();
-            container.AddChild(LevelInd);
+            _container.AddChild(LevelInd);
             LevelInd.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             LevelInd.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlueBox;
             LevelInd.SetSize((int)(dim.XScreenRatio * 140), (int)(dim.YScreenRatio * 140));
@@ -214,11 +218,32 @@ namespace SmartRoadSense.Shared {
         }
 
         void CreateScreenBody() {
-            container = root.CreateSprite();
-            container.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            container.ImageRect = AssetsCoordinates.Generic.Boxes.ContainerTrasparent;
-            container.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 1400));
-            container.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(240));
+            _container = root.CreateSprite();
+            _container.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _container.ImageRect = AssetsCoordinates.Generic.Boxes.ContainerTrasparent;
+            _container.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 1400));
+            _container.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(240));
+
+            // No track window
+            _noTrackWindow = new Window();
+            _container.AddChild(_noTrackWindow);
+            _noTrackWindow.SetPosition(GameInstance.ScreenInfo.SetY(1180), GameInstance.ScreenInfo.SetY(200));
+            _noTrackWindow.SetSize(GameInstance.ScreenInfo.SetX(650), GameInstance.ScreenInfo.SetY(450));
+            _noTrackWindow.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _noTrackWindow.ImageRect = AssetsCoordinates.Generic.Boxes.PauseMenuBox;
+            _noTrackWindow.Opacity = 0.5f;
+            //_noTrackWindow.SetColor(Color.Black);
+
+            var noTrackText = new Text();
+            _noTrackWindow.AddChild(noTrackText);
+            noTrackText.SetPosition(GameInstance.ScreenInfo.SetX(20), GameInstance.ScreenInfo.SetY(15));
+            noTrackText.SetSize((int)(dim.XScreenRatio * 610), (int)(dim.YScreenRatio * 370));
+            noTrackText.UseDerivedOpacity = false;
+            noTrackText.Value = "Use SmartRoadSense to collect at least 15 minutes of road data and unlock new levels!";
+            noTrackText.Wordwrap = true;
+            noTrackText.SetColor(Color.White);
+            noTrackText.SetFont(font, 20);
+
             /*
             ScrollBar scrollBar = new ScrollBar();
             container.AddChild(scrollBar);
@@ -237,20 +262,20 @@ namespace SmartRoadSense.Shared {
                 Debug.WriteLine("Slider: " + slider.Value);
             };
             */
-            prev_level = new Button();
-            container.AddChild(prev_level);
-            prev_level.SetStyleAuto(null);
-            prev_level.Opacity = 0.5f;
-            prev_level.SetPosition(GameInstance.ScreenInfo.SetX(250), GameInstance.ScreenInfo.SetY(250));
-            prev_level.SetSize((int)(dim.YScreenRatio * 400), (int)(dim.YScreenRatio * 400));
-            prev_level.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _prevLevel = new Button();
+            _container.AddChild(_prevLevel);
+            _prevLevel.SetStyleAuto(null);
+            _prevLevel.Opacity = 0.5f;
+            _prevLevel.SetPosition(GameInstance.ScreenInfo.SetX(250), GameInstance.ScreenInfo.SetY(250));
+            _prevLevel.SetSize((int)(dim.YScreenRatio * 400), (int)(dim.YScreenRatio * 400));
+            _prevLevel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             //prev_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBeach;
-            prev_level.Pressed += (PressedEventArgs args) => {
+            _prevLevel.Pressed += (PressedEventArgs args) => {
                 PreviousRace();
              };
 
             Text prevLevel = new Text();
-            prev_level.AddChild(prevLevel);
+            _prevLevel.AddChild(prevLevel);
             prevLevel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             prevLevel.SetPosition(0, GameInstance.ScreenInfo.SetY(30));
             prevLevel.Opacity = 0.5f;
@@ -259,7 +284,7 @@ namespace SmartRoadSense.Shared {
             prevLevel.Value = "TRACK";
 
             prevLevelN = new Text();
-            prev_level.AddChild(prevLevelN);
+            _prevLevel.AddChild(prevLevelN);
             prevLevelN.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             prevLevelN.SetPosition(0, GameInstance.ScreenInfo.SetY(120));
             prevLevelN.Opacity = 0.5f;
@@ -268,15 +293,15 @@ namespace SmartRoadSense.Shared {
             prevLevelN.Value = "1";
 
             /* SELECTED */
-            sel_level = new Button();
-            container.AddChild(sel_level);
-            sel_level.SetStyleAuto(null);
-            sel_level.SetPosition(GameInstance.ScreenInfo.SetY(700), GameInstance.ScreenInfo.SetY(200));
-            sel_level.SetSize((int)(dim.XScreenRatio * 450), (int)(dim.YScreenRatio * 450));
-            sel_level.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _selLevel = new Button();
+            _container.AddChild(_selLevel);
+            _selLevel.SetStyleAuto(null);
+            _selLevel.SetPosition(GameInstance.ScreenInfo.SetY(700), GameInstance.ScreenInfo.SetY(200));
+            _selLevel.SetSize((int)(dim.XScreenRatio * 450), (int)(dim.YScreenRatio * 450));
+            _selLevel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
 
             Text selLevel = new Text();
-            sel_level.AddChild(selLevel);
+            _selLevel.AddChild(selLevel);
             selLevel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             selLevel.SetPosition(GameInstance.ScreenInfo.SetX(-40), GameInstance.ScreenInfo.SetY(40));
             selLevel.SetFont(font, dim.XScreenRatio * 50);
@@ -284,15 +309,15 @@ namespace SmartRoadSense.Shared {
             selLevel.Value = "TRACK";
 
             selLevelN = new Text();
-            sel_level.AddChild(selLevelN);
+            _selLevel.AddChild(selLevelN);
             selLevelN.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             selLevelN.SetPosition(GameInstance.ScreenInfo.SetX(100), GameInstance.ScreenInfo.SetY(40));
             selLevelN.SetFont(font, dim.XScreenRatio * 50);
             selLevelN.SetColor(Color.Black);
-            selLevelN.Value = "2";
+            selLevelN.Value = "";
 
             Text difficulty = new Text();
-            sel_level.AddChild(difficulty);
+            _selLevel.AddChild(difficulty);
             difficulty.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Center);
             difficulty.SetPosition(GameInstance.ScreenInfo.SetX(20), GameInstance.ScreenInfo.SetY(120));
             difficulty.SetFont(font, dim.XScreenRatio * 30);
@@ -300,15 +325,15 @@ namespace SmartRoadSense.Shared {
             difficulty.Value = "Difficulty:";
 
             difficultyN = new Text();
-            sel_level.AddChild(difficultyN);
+            _selLevel.AddChild(difficultyN);
             difficultyN.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             difficultyN.SetPosition(GameInstance.ScreenInfo.SetX(-20), GameInstance.ScreenInfo.SetY(120));
             difficultyN.SetFont(font, dim.XScreenRatio * 30);
             difficultyN.SetColor(Color.Gray);
-            difficultyN.Value = "10";
+            difficultyN.Value = "N/A";
 
             Text BestTime = new Text();
-            sel_level.AddChild(BestTime);
+            _selLevel.AddChild(BestTime);
             BestTime.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Center);
             BestTime.SetPosition(GameInstance.ScreenInfo.SetX(20), GameInstance.ScreenInfo.SetY(180));
             BestTime.SetFont(font, dim.XScreenRatio * 30);
@@ -316,28 +341,28 @@ namespace SmartRoadSense.Shared {
             BestTime.Value = "Best Time:";
 
             BestTimeN = new Text();
-            sel_level.AddChild(BestTimeN);
+            _selLevel.AddChild(BestTimeN);
             BestTimeN.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             BestTimeN.SetPosition(GameInstance.ScreenInfo.SetX(-20), GameInstance.ScreenInfo.SetY(180));
             BestTimeN.SetFont(font, dim.XScreenRatio * 30);
             BestTimeN.SetColor(Color.Gray);
-            BestTimeN.Value = "00:00:10";
+            BestTimeN.Value = "00:00:0";
 
             /*END SELECTED */
 
-            next_level = new Button();
-            container.AddChild(next_level);
-            next_level.Opacity = 0.5f;
-            next_level.SetStyleAuto(null);
-            next_level.SetPosition(GameInstance.ScreenInfo.SetX(1280), GameInstance.ScreenInfo.SetY(250));
-            next_level.SetSize((int)(dim.XScreenRatio * 400), (int)(dim.YScreenRatio * 400));
-            next_level.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            next_level.Pressed += (PressedEventArgs args) => {
+            _nextLevel = new Button();
+            _container.AddChild(_nextLevel);
+            _nextLevel.Opacity = 0.5f;
+            _nextLevel.SetStyleAuto(null);
+            _nextLevel.SetPosition(GameInstance.ScreenInfo.SetX(1280), GameInstance.ScreenInfo.SetY(250));
+            _nextLevel.SetSize((int)(dim.XScreenRatio * 400), (int)(dim.YScreenRatio * 400));
+            _nextLevel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _nextLevel.Pressed += (PressedEventArgs args) => {
                 NextRace();
             };
 
             Text nextLevel = new Text();
-            next_level.AddChild(nextLevel);
+            _nextLevel.AddChild(nextLevel);
             nextLevel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             nextLevel.SetPosition(0, GameInstance.ScreenInfo.SetY(30));
             nextLevel.Opacity = 0.5f;
@@ -346,7 +371,7 @@ namespace SmartRoadSense.Shared {
             nextLevel.Value = "TRACK";
 
             nextLevelN = new Text();
-            next_level.AddChild(nextLevelN);
+            _nextLevel.AddChild(nextLevelN);
             nextLevelN.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             nextLevelN.SetPosition(0, GameInstance.ScreenInfo.SetY(120));
             nextLevelN.Opacity = 0.5f;
@@ -359,7 +384,7 @@ namespace SmartRoadSense.Shared {
             /*START BUTTONS - random & selected level*/
 
             Button StartRandom = new Button();
-            container.AddChild(StartRandom);
+            _container.AddChild(StartRandom);
             StartRandom.SetStyleAuto(null);
             //StartRandom.Opacity = 0.25f;
             StartRandom.SetPosition(GameInstance.ScreenInfo.SetX(100), GameInstance.ScreenInfo.SetY(700));
@@ -381,14 +406,15 @@ namespace SmartRoadSense.Shared {
             level.Value = "RANDOM TRACK";
 
             Button StartGame = new Button();
-            container.AddChild(StartGame);
+            _container.AddChild(StartGame);
             StartGame.SetStyleAuto(null);
             StartGame.SetPosition(GameInstance.ScreenInfo.SetX(1150), GameInstance.ScreenInfo.SetY(700));
             StartGame.SetSize((int)(dim.XScreenRatio * 700), (int)(dim.YScreenRatio * 100));
             StartGame.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             StartGame.ImageRect = AssetsCoordinates.Generic.Boxes.RaceCompleted;
             StartGame.Pressed += (PressedEventArgs args) => {
-                Launcher();
+                if(_counter > 1)
+                    Launcher();
             };
 
             Text go = new Text();
@@ -406,45 +432,56 @@ namespace SmartRoadSense.Shared {
             if(_racesNumber == 1) {
                 // Only test track available
                 // TODO: show srs data collect text
-                prev_level.Visible = false;
-                sel_level.Enabled = false;
-                sel_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
-                next_level.Enabled = false;
-                next_level.Visible = false;
+                _prevLevel.Visible = false;
+                _selLevel.Enabled = false;
+                _selLevel.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
+                _nextLevel.Enabled = false;
+                _nextLevel.Visible = false;
+                difficultyN.Value = "0";
+                BestTimeN.Value = "N/A";
+
+                _noTrackWindow.Visible = true;
             }
             else {
                 if(_counter == 1) { // DON'T SHOW LEVEL 0 --> RANDOM LEVEL
-                    prev_level.Visible = false;
-                    sel_level.Enabled = false;
-                    sel_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
-                    next_level.Enabled = true;
-                    next_level.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
+                    _noTrackWindow.Visible = true;
+                    _prevLevel.Visible = false;
+                    _selLevel.Enabled = false;
+                    _selLevel.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
+                    _nextLevel.Enabled = true;
+                    _nextLevel.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
                 }
                 else {
-                   var prevLevel = TrackManager.Instance.LoadSingleLevel(_counter - 1);
-                    prev_level.Visible = true;
-                    prev_level.Enabled = true;
-                    prev_level.ImageRect = SelectLevelLandskape(prevLevel);
+                    _noTrackWindow.Visible = false;
+
+                    var prevLevel = TrackManager.Instance.LoadSingleLevel(_counter - 1);
+                    _prevLevel.Visible = true;
+                    _prevLevel.Enabled = true;
+                    _prevLevel.ImageRect = SelectLevelLandskape(prevLevel);
                     prevLevelN.Value = string.Format("{0}", prevLevel.IdTrack);
                 }
 
                 var level = TrackManager.Instance.LoadSingleLevel(_counter);
-                sel_level.Enabled = true;
-                sel_level.Visible = true;
-                sel_level.ImageRect = SelectLevelLandskape(level);
+                _selLevel.Enabled = true;
+                _selLevel.Visible = true;
+                _selLevel.ImageRect = SelectLevelLandskape(level);
                 selLevelN.Value = "" + level.IdTrack;
                 difficultyN.Value = "" + level.Difficulty;
                 BestTimeN.Value = string.Format("{0}", TimeSpan.FromMilliseconds(TrackManager.Instance.SelectedTrackModel.BestTime).MillisRepresentation());
 
                 if(_counter + 1 >= _racesNumber) {
-                    next_level.Enabled = false;
-                    next_level.Visible = false;
+                    _noTrackWindow.Visible = true;
+
+                    _nextLevel.Enabled = false;
+                    _nextLevel.Visible = false;
                 }
                 else {
+                    _noTrackWindow.Visible = false;
+
                     var nextLevel = TrackManager.Instance.LoadSingleLevel(_counter + 1);
-                    next_level.Enabled = true;
-                    next_level.Visible = true;
-                    next_level.ImageRect = SelectLevelLandskape(nextLevel);
+                    _nextLevel.Enabled = true;
+                    _nextLevel.Visible = true;
+                    _nextLevel.ImageRect = SelectLevelLandskape(nextLevel);
                     nextLevelN.Value = string.Format("{0}", nextLevel.IdTrack);
                 }
             }

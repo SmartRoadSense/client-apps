@@ -358,6 +358,18 @@ namespace SmartRoadSense.Shared
             var player = CharacterManager.Instance.User;
             player.Experience += _postLevelData.Points;
             CharacterManager.Instance.User = player;
+
+            // Update components
+            if(_postLevelData.Components > 0) {
+                var collected = VehicleManager.Instance.CollectedComponents;
+                foreach(var vehicle in collected.CollectedComponentsList) {
+                    if(!vehicle.VehicleComponents.Brakes) {
+                        vehicle.VehicleComponents.Brakes = true;
+                        break;
+                    }
+                }
+                VehicleManager.Instance.CollectedComponents = collected;
+            }
         }
     }
 }

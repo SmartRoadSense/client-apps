@@ -37,7 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\CharacterContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderCharacters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderVehicles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderLevels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LevelsContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\VehicleContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneProfile.cs" />

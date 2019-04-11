@@ -29,14 +29,12 @@ namespace SmartRoadSense.Shared
 
     public class SceneGame : BaseScene
     {
-        const uint NumObjects = 1;
         const float CameraDistance = 2.5f;
         const float _cameraStartingX = 0.0f;
         const float _cameraStartingY = 0.0f;
         const float _cameraStartingZ = -2.0f;
         const float _vehicleOffsetX = 1.5f;
         const float _vehicleOffsetY = 1.2f;
-        const float _speedStep = (float)Math.PI / 2;
 
         const string _balanceBodyName = "BalanceBody";
         const string _groundBodyName = "GroundBody";
@@ -66,9 +64,7 @@ namespace SmartRoadSense.Shared
         Button btnR;
         Button btnBoost;
 
-        bool _finishLinePassed { get; set; }
-        bool TouchEnabled { get; set; }
-        const float TouchSensitivity = 2;
+        bool _finishLinePassed;
         int _lastBackground;
         float _finishLineEndX;
         bool _timer;
@@ -127,7 +123,7 @@ namespace SmartRoadSense.Shared
             InitGameplay();
         }
 
-        async void InitGameplay() 
+         void InitGameplay() 
         {
             // Start music and splashscreen
             InitSounds();
@@ -135,7 +131,8 @@ namespace SmartRoadSense.Shared
 
             InitCollectables();
 
-            await CreateBackgroundScene();
+            CreateBackgroundScene();
+            //await CreateBackgroundScene();
             CreateForegroundScene();
             CreateOSD();
 
@@ -166,29 +163,34 @@ namespace SmartRoadSense.Shared
         void InitCollectables() {
             var texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Level.Collectible.ResourcePath);
 
-            Sprite2D sprite = new Sprite2D();
-            sprite.Texture = texture;
-            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Coin;
+            Sprite2D sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Coin
+            };
             CollectableSprites.Add(0, sprite);
 
-            sprite = new Sprite2D();
-            sprite.Texture = texture;
-            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Brakes;
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Brakes
+            };
             CollectableSprites.Add(1, sprite);
 
-            sprite = new Sprite2D();
-            sprite.Texture = texture;
-            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Performance;
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Performance
+            };
             CollectableSprites.Add(2, sprite);
 
-            sprite = new Sprite2D();
-            sprite.Texture = texture;
-            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Wheels;
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Wheels
+            };
             CollectableSprites.Add(4, sprite);
 
-            sprite = new Sprite2D();
-            sprite.Texture = texture;
-            sprite.Rectangle = AssetsCoordinates.Level.Collectible.Suspension;
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Suspension
+            };
             CollectableSprites.Add(3, sprite);
         }
 
@@ -319,7 +321,7 @@ namespace SmartRoadSense.Shared
             GameInstance.PostRenderUpdate = PostRenderUpdate;
         }
 
-        async Task<bool> CreateBackgroundScene()
+        void CreateBackgroundScene()
         {
             CreateComponent<Octree>();
             CreateComponent<DebugRenderer>();
@@ -360,6 +362,7 @@ namespace SmartRoadSense.Shared
                     var componentsBox = GameInstance.UI.Root.GetChild("componentsBox");
                     var componentsText = (Text)componentsBox.GetChild("componentsText");
                     componentsText.Value = string.Format("{0}", _components);
+
                     // Play sound
                     Sound sound = GameInstance.ResourceCache.GetSound(SoundLibrary.SFX.Component);
                     if(sound != null) {
@@ -425,8 +428,9 @@ namespace SmartRoadSense.Shared
             {
                 // Get data based on selected level
                 //recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
+                var srsTrack = DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack).Result;
 
-                var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
+                //var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
                 var lst = new List<float>();
                 foreach(var t in srsTrack)
                     lst.Add((float)t);
@@ -507,7 +511,7 @@ namespace SmartRoadSense.Shared
             _distanceData = new GameDistanceData(0/* TODO change if vehicle starting position changes */, _finishLineEndX);
             _mapPositionData = new MapPositionData(0, _finishLineEndX);
 
-            return true;
+            //return true;
         }
 
         void CreateForegroundScene() {
@@ -1072,8 +1076,6 @@ namespace SmartRoadSense.Shared
 
         void InitOSD()
         {
-            TouchEnabled = true;
-
 #if DEBUG
             InitShowHidePhysics();
 #endif
@@ -1557,7 +1559,7 @@ namespace SmartRoadSense.Shared
             if(_coinPositionedCounter == 0) {
                 var compRnd = NextRandom(0, 751);
                 if(compRnd == 0 && !_componentsCollected) {
-                    //_componentsCollected = true;
+                    _componentsCollected = true;
 
                     // Place component
                     Node componentNode = CreateChild(_componentCollisionName);

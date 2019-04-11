@@ -177,6 +177,26 @@ namespace SmartRoadSense.Shared
                     public readonly static string Path = AssetPath + "vehicle_bar_big.png";
                     public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
                 }
+
+                public struct GarageButtons {
+                    public readonly static string Path = AssetPath + "garage_bts.png";
+                    //public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
+
+                public struct FullVehicles {
+                    public readonly static string ResourcePath = AssetPath + "vehicles2.png";
+                    //public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
+
+                public struct GreenBars {
+                    public readonly static string ResourcePath = AssetPath + "green_bars.png";
+                    //public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
+
+                public struct ContBase {
+                    public readonly static string ResourcePath = AssetPath + "cont_base.png";
+                    public readonly static IntRect TrasparentItem = new IntRect(0, 0, 54, 54);
+                }
             }
         }
 

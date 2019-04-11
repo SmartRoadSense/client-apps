@@ -52,7 +52,8 @@ namespace SmartRoadSense.Shared {
             font = cache.GetFont("Fonts/OpenSans-Bold.ttf");
             ui = GameInstance.UI;
             JsonReaderVehicles.GetVehicleConfig();
-            var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
+            var garage_bts = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GarageButtons.Path);
+
             vehicles_count = VehicleManager.Instance.VehicleCount;
             vehicle_selected = VehicleManager.Instance.CurrentGarageVehicleId;
             CreateUI();
@@ -70,7 +71,7 @@ namespace SmartRoadSense.Shared {
 
         void CreateBackground() {
             //TODO: animated background
-            var backgroundTexture = cache.GetTexture2D("Textures/MenuBackground.png");
+            var backgroundTexture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.FixedBackground.ResourcePath);
             if(backgroundTexture == null)
                 return;
             backgroundSprite = root.CreateSprite();
@@ -159,8 +160,8 @@ namespace SmartRoadSense.Shared {
 
         void CreateNewVehicleBar() {
 
-            var vehicleBackgroung = cache.GetTexture2D(AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Path);
-            var vehicle = cache.GetTexture2D("Textures/Garage/vehicles2.png");
+            var vehicleBackgroung = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Path);
+            var vehicle = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
 
             Sprite VehicleBar = root.CreateSprite();
             VehicleBar.Texture = vehicleBackgroung;
@@ -228,15 +229,15 @@ namespace SmartRoadSense.Shared {
         }
 
         void CreateUpgradeBars() {
-            var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
-            var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");
-            var cont_base = cache.GetTexture2D("Textures/Garage/cont_base.png");
-            var vehicle = cache.GetTexture2D("Textures/Garage/vehicles2.png");
+            var garage_bts = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GarageButtons.Path);
+            var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
+            var cont_base = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.ContBase.ResourcePath);
+            var vehicle = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
             cont_upgrade = root.CreateSprite();
             cont_upgrade.Texture = cont_base;
             cont_upgrade.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 300));
             cont_upgrade.SetPosition((int)(dim.XScreenRatio * 0), (int)(dim.YScreenRatio * 700));
-            cont_upgrade.ImageRect = new IntRect(0, 0, 56, 56);
+            cont_upgrade.ImageRect = AssetsCoordinates.Generic.Garage.ContBase.TrasparentItem;
 
             performance_bar = new BorderImage();
             cont_upgrade.AddChild(performance_bar);
@@ -316,7 +317,7 @@ namespace SmartRoadSense.Shared {
         }
 
         void SetUpgrade() {
-            var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");
+            var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
             int perf = VehicleManager.Instance.SelectedVehicleModel.Performance;
             int whe = VehicleManager.Instance.SelectedVehicleModel.Wheel;
             int susp = VehicleManager.Instance.SelectedVehicleModel.Suspensions;
@@ -355,10 +356,10 @@ namespace SmartRoadSense.Shared {
             brake_bar_a.SetPosition((int)(dim.XScreenRatio * 90), (int)(dim.YScreenRatio * 16));
             brake_bar_a.ImageRect = new IntRect(0, 75, brake, 140);
         }
-
+        /*
         void CreateVehicleBar() {
             var cont_base = cache.GetTexture2D("Textures/Garage/cont_base.png");
-            var vehicle = cache.GetTexture2D("Textures/Garage/vehicles2.png");
+            var vehicle = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
             var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
 
             // Buttons container (root element)
@@ -427,11 +428,13 @@ namespace SmartRoadSense.Shared {
             {
                 selectable.ImageRect = new IntRect(380, 295, 480, 405);
                 buttonText.Value = "Selected vehicle";
+                LockedVehicle.Visible = false;
             }
             else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
             {
                 // TODO: unlockable with components 
                 buttonText.Value = "Vehicle not available";
+                LockedVehicle.Visible = true;
             }
             else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost >= 0)
             {
@@ -439,11 +442,13 @@ namespace SmartRoadSense.Shared {
                 {
                     selectable.ImageRect = new IntRect(250, 295, 350, 405);
                     buttonText.Value = "Tap to select this vehicle";
+                    LockedVehicle.Visible = false;
                 }
                 else 
                 {
                     selectable.ImageRect = new IntRect(120, 295, 220, 405);
                     buttonText.Value = "Vehicle not available";
+                    LockedVehicle.Visible = true;
                 }
             }
             bt_confirm.Pressed += args => 
@@ -454,7 +459,7 @@ namespace SmartRoadSense.Shared {
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
 
-                //QuitConfirm("Are you sure you want to unlock this vehicle?");
+                QuitConfirm("Are you sure you want to unlock this vehicle?");
             };
 
             //CreateUpgradeBars_old();
@@ -499,7 +504,7 @@ namespace SmartRoadSense.Shared {
             brake_bar_a.SetSize((int)(dim.XScreenRatio * brake), (int)(dim.YScreenRatio * 72));
             brake_bar_a.SetPosition((int)(dim.XScreenRatio * 1085), (int)(dim.YScreenRatio * 570));
             brake_bar_a.ImageRect = new IntRect(0, 75, brake, 140);
-        }
+        }*/
 
         void GetCarImg() {
 
@@ -520,11 +525,13 @@ namespace SmartRoadSense.Shared {
                 screen_info.Value = "Tap to unlock this vehicle";
                 cont_upgrade.Visible = true;
                 cont_components.Visible = false;
+                LockedVehicle.Visible = false;
             }
 
             if(vehicle_id == vehicle_selected && vehicle_id != -1) {
                 System.Diagnostics.Debug.WriteLine(vehicle_id + " + " + vehicle_selected);
                 screen_info.Value = "Selected vehicle.";
+                LockedVehicle.Visible = false;
             }
             else if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCost) {
                 if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
@@ -532,6 +539,7 @@ namespace SmartRoadSense.Shared {
                     screen_info.Value = "Collect components to unlock this vehicle";
                     cont_upgrade.Visible = false;
                     cont_components.Visible = true;
+                    LockedVehicle.Visible = true;
                 }
                 else
                 {
@@ -539,6 +547,7 @@ namespace SmartRoadSense.Shared {
                     screen_info.Value = "Tap to unlock this vehicle";
                     cont_upgrade.Visible = true;
                     cont_components.Visible = false;
+                    LockedVehicle.Visible = false;
                 }
 
             }
@@ -546,9 +555,10 @@ namespace SmartRoadSense.Shared {
                 screen_info.Value = "Vehicle not available";
                 cont_upgrade.Visible = true;
                 cont_components.Visible = false;
+                LockedVehicle.Visible = true;
             }
 
-            var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");
+            var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
             int perf = VehicleManager.Instance.SelectedVehicleModel.Performance;
             int whe = VehicleManager.Instance.SelectedVehicleModel.Wheel;
             int susp = VehicleManager.Instance.SelectedVehicleModel.Suspensions;

@@ -7,6 +7,10 @@ namespace SmartRoadSense.Shared {
     {
         [JsonProperty("VEHICLES")]
         public List<VehicleModel> VehicleModel { get; set; }
+
+        public VehicleContainerModel() {
+            VehicleModel = new List<VehicleModel>();
+        }
     }
 
     public class VehicleModel
@@ -113,6 +117,10 @@ namespace SmartRoadSense.Shared {
     public class VehiclesUnlockedList {
         [JsonProperty("UNLOCKED")]
         public List<int> VehicleIds { get; set; }
+
+        public VehiclesUnlockedList() {
+            VehicleIds = new List<int>();
+        }
     }
 
     public class CollectedComponentsContainer {

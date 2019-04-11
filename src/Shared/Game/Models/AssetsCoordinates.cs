@@ -92,12 +92,10 @@ namespace SmartRoadSense.Shared
                 readonly static public IntRect ComponentDrivetrainRed = new IntRect(3295, 1696, 3401, 1802);
                 readonly static public IntRect ComponentEngineGreen = new IntRect(3136, 1696, 3243, 1802);
                 readonly static public IntRect ComponentEngineRed = new IntRect(2976, 1696, 3083, 1802);
-
-
                 readonly static public IntRect ComponentSuspensionGreen = new IntRect(3450, 1854, 3557, 1960);
                 readonly static public IntRect ComponentSuspensionRed = new IntRect(3300, 1854, 3407, 1960);
-                readonly static public IntRect ComponentWhellGreen = new IntRect(3140, 1854, 3248, 1960);
-                readonly static public IntRect ComponentWhellRed = new IntRect(2976, 1854, 3083, 1960);
+                readonly static public IntRect ComponentWheelGreen = new IntRect(3140, 1854, 3248, 1960);
+                readonly static public IntRect ComponentWheelRed = new IntRect(2976, 1854, 3083, 1960);
 
                 //only level
                 readonly static public IntRect MapBox = new IntRect(0, 1194, 1016, 1360);

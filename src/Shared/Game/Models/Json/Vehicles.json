@@ -170,7 +170,7 @@
       "SUSPENSIONS": "3",
       "WHEEL": "3",
       "BRAKE": "7",
-      "UNLOCK_COST": "0"
+      "UNLOCK_COST": "10000"
     },
     {
       "ID_VEHICLE": "4",
@@ -209,7 +209,7 @@
       "SUSPENSIONS": "3",
       "WHEEL": "3",
       "BRAKE": "3",
-      "UNLOCK_COST": "0"
+      "UNLOCK_COST": "10000"
     },
     {
       "ID_VEHICLE": "5",

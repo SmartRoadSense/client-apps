@@ -58,16 +58,6 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public int SelectedVehicleId
-        {
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.IdVehicle.Value, -1);
-            set 
-            {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.IdVehicle.Value, value);
-                OnPropertyChanged();
-            }
-        }
-
         public VehicleModel SelectedVehicleModel
         {
             get
@@ -87,18 +77,11 @@ namespace SmartRoadSense.Shared
         {
             get {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.UnlockedVehicles.Value, "");
-                var vehicleIdList = string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<VehiclesUnlockedList>(json);
-                if(vehicleIdList == null || vehicleIdList.VehicleIds.IsEmpty())
-                    return null;
+                var vehicleIdList = string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<VehicleContainerModel>(json);
+                if(vehicleIdList == null || vehicleIdList.VehicleModel.IsEmpty())
+                    return new VehicleContainerModel();
 
-                var vehicles = new VehicleContainerModel {
-                    VehicleModel = new List<VehicleModel>()
-                };
-
-                foreach(var id in vehicleIdList.VehicleIds) {
-                    vehicles.VehicleModel.Add(JsonReaderVehicles.GetSingleVehicle(id));
-                }
-                return vehicles;
+                return vehicleIdList;
             }
             set {
                 var json = JsonConvert.SerializeObject(value);
@@ -106,6 +89,15 @@ namespace SmartRoadSense.Shared
                 OnPropertyChanged();
             }
         }
+
+        public void UnlockVehicle() {
+            var vehiclesUnlocked = Instance.VehiclesUnlocked;
+            if(!vehiclesUnlocked.VehicleModel.Contains(Instance.SelectedVehicleModel)) {
+                vehiclesUnlocked.VehicleModel.Add(Instance.SelectedVehicleModel);
+                Instance.VehiclesUnlocked = vehiclesUnlocked;
+            }
+        }
+
         public VehicleContainerModel Vehicles 
         {
             get => JsonReaderVehicles.GetVehicles();

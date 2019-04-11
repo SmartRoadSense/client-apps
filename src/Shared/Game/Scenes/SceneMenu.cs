@@ -16,7 +16,7 @@ namespace SmartRoadSense.Shared
             dim = GameInstance.ScreenInfo;
             if(CharacterManager.Instance.User == null)
                 GameInstance.LaunchScene(GameScenesEnumeration.PROFILE);
-            else if(VehicleManager.Instance.SelectedVehicleId == -1) 
+            else if(VehicleManager.Instance.SelectedVehicleModel == null || VehicleManager.Instance.SelectedVehicleModel.IdVehicle == -1) 
                 GameInstance.LaunchScene(GameScenesEnumeration.GARAGE);
             else 
                 CreateUI();

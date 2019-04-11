@@ -1508,7 +1508,7 @@ namespace SmartRoadSense.Shared
             //mapBox.AddChild(mapTrack);
 
             Image img = new Image();
-            img.SetSize(mapBox.Width, mapBox.Height, 4);
+            img.SetSize(mapBox.Width/2, mapBox.Height, 4);
 
             for(var i = 0; i < terrainData.Count - _trackLength; i++) {
                 Vector2 point1;
@@ -1528,7 +1528,7 @@ namespace SmartRoadSense.Shared
                 var map2 = _mapPositionData.TerrainPoint(point2, _trackLength);
             }
 
-            /*
+
             for(var w = 0; w < img.Width; w++) {
                 for(var h = 0; h < img.Height; h++) {
                     if(img.Width > img.Width/2)
@@ -1539,19 +1539,17 @@ namespace SmartRoadSense.Shared
                 FilterMode = TextureFilterMode.Nearest,
             };
 
-
             texture.SetNumLevels(1);
-            var res1 = texture.SetSize(mapBox.Width, mapBox.Height, Graphics.RGBAFormat, TextureUsage.Dynamic);
+            var res1 = texture.SetSize(mapBox.Width/2, mapBox.Height, Graphics.RGBAFormat, TextureUsage.Dynamic);
             Debug.WriteLine("set size: " + res1);
-            var res2 = texture.SetData(0, 0, 0, mapBox.Width, mapBox.Height, img.DataBytes);
+            var res2 = texture.SetData(0, 0, 0, mapBox.Width/2, mapBox.Height, img.DataBytes);
             Debug.WriteLine("set data: " + res2);
             //var material = Material.FromImage(img);
 
             mapBox.Texture = texture;
-            mapBox.SetFullImageRect();
+            mapBox.ImageRect = new IntRect(0,0, img.Width, img.Height);
 
-            mapTrack.UseDerivedOpacity = true;
-            */           
+            //mapTrack.UseDerivedOpacity = true;
         }
 
         void PlaceCoin(Vector2 vector, uint id) {

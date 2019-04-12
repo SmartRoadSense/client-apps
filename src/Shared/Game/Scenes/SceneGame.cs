@@ -8,9 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using Urho.Audio;
 using SmartRoadSense.Shared.Data;
-using System.Threading.Tasks;
-using System.Drawing;
 using System.IO;
+#if __ANDROID__
+using Android.Runtime;
+#else
+using System.Drawing;
+#endif
 
 namespace SmartRoadSense.Shared
 {
@@ -80,6 +83,7 @@ namespace SmartRoadSense.Shared
         Stopwatch _stopwatch;
         GameDistanceData _distanceData;
         MapPositionData _mapPositionData;
+        Texture2D textureMap;
 
         static readonly Random random = new Random();
         /// Return a random float between 0.0 (inclusive) and 1.0 (exclusive.)
@@ -229,8 +233,7 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        void SplashScreen() 
-        {
+        void SplashScreen() {
             var splashScrName = SplashScreenCreator.CreateSplashScreen(GameInstance, this);
             GameInstance.Engine.RunFrame();
 
@@ -1499,16 +1502,23 @@ namespace SmartRoadSense.Shared
 
             // Draw map line
             BorderImage mapBox = GameInstance.UI.Root.GetChild("mapBox") as BorderImage;
+            mapBox.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
 
             var mapTrack = new BorderImage {
                 Size = mapBox.Size,
                 Position = new IntVector2(0, 0)
             };
-            mapTrack.SetColor(Urho.Color.FromHex("#55555555"));
+            mapTrack.SetColor(Urho.Color.Blue);
             //mapBox.AddChild(mapTrack);
 
             Image img = new Image();
-            img.SetSize(mapBox.Width/2, mapBox.Height, 4);
+            img.SetSize(2048, 512, 4);
+            // Draw transparentImage
+            for(var w = 0; w < img.Width; w++) {
+                for(var h = 0; h < img.Height; h++) {
+                    img.SetPixel(w, h, new Urho.Color(1.0f, 0.0f, 0.0f, 0.0f));
+                }
+            }
 
             for(var i = 0; i < terrainData.Count - _trackLength; i++) {
                 Vector2 point1;
@@ -1526,29 +1536,29 @@ namespace SmartRoadSense.Shared
 
                 var map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
                 var map2 = _mapPositionData.TerrainPoint(point2, _trackLength);
+
+                // Game coords to image pixels
+                var x = (int)map1.X;
+                var y = mapBox.Height - (int)map1.Y ;
+               
+                img.SetPixel(x, y, new Urho.Color(0.0f, 1.0f, 1.0f, 1.0f));
             }
 
-
-            for(var w = 0; w < img.Width; w++) {
-                for(var h = 0; h < img.Height; h++) {
-                    if(img.Width > img.Width/2)
-                    img.SetPixel(w, h, new Urho.Color(NextRandom(0f,1f), NextRandom(0f, 1f), NextRandom(0f, 1f), NextRandom(0f, 1f)));
-                }
-            }
-            var texture = new Texture2D {
-                FilterMode = TextureFilterMode.Nearest,
-            };
-
-            texture.SetNumLevels(1);
-            var res1 = texture.SetSize(mapBox.Width/2, mapBox.Height, Graphics.RGBAFormat, TextureUsage.Dynamic);
-            Debug.WriteLine("set size: " + res1);
-            var res2 = texture.SetData(0, 0, 0, mapBox.Width/2, mapBox.Height, img.DataBytes);
-            Debug.WriteLine("set data: " + res2);
-            //var material = Material.FromImage(img);
-
-            mapBox.Texture = texture;
-            mapBox.ImageRect = new IntRect(0,0, img.Width, img.Height);
-
+#if __IOS__
+            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var filePath = Path.Combine(documents, "track_img.png");//You can set the fileName what you want just take care of extension
+#else 
+            var sdCard = App.Context.GetExternalFilesDir(null).AbsolutePath;
+            Java.IO.File dir = new Java.IO.File("/urho");
+            dir.Mkdirs();
+            var filePath = Path.Combine(dir.Path, "track_img.png"); //You can set the fileName what you want just take care of extension
+#endif
+            var save = img.SavePNG(filePath);
+            Debug.WriteLine("png saved: " + save);
+            textureMap = GameInstance.ResourceCache.GetTexture2D(filePath);
+            mapBox.Texture = textureMap;
+            //mapTrack.Texture = textureMap;
+            //mapTrack.ImageRect = mapBox.ImageRect;
             //mapTrack.UseDerivedOpacity = true;
         }
 

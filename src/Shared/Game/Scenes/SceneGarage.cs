@@ -30,6 +30,13 @@ namespace SmartRoadSense.Shared {
         Button _prevVehicle;
         Sprite _lockedVehicle;
         Sprite _contComponents;
+        BorderImage Body;
+        BorderImage Wheel;
+        BorderImage Suspensions;
+        BorderImage Engine;
+        int wallet_tot;
+        Text wallet;
+
 
         public SceneGarage(Game game) : base(game) {
             _idDVehicle = VehicleManager.Instance.SelectedVehicleModel != null ? VehicleManager.Instance.SelectedVehicleModel.IdVehicle : -1;
@@ -94,11 +101,11 @@ namespace SmartRoadSense.Shared {
             coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
 
             //Wallet text
-            Text wallet = new Text();
+            wallet = new Text();
             coins.AddChild(wallet);
             wallet.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 10));
             wallet.SetFont(_font, _dim.XScreenRatio * 30);
-            int wallet_tot = CharacterManager.Instance.Wallet;
+            wallet_tot = CharacterManager.Instance.Wallet;
             wallet.Value = ""+ wallet_tot;
 
             // SCREEN TITLE
@@ -177,8 +184,15 @@ namespace SmartRoadSense.Shared {
 
                 // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
                 if(!VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Exists(v => v.IdVehicle == VehicleManager.Instance.SelectedVehicleModel.IdVehicle)) {
-                    // TODO: check if user has enough coins to unlock
-                    // TODO: remove vehicle cost from user's wallet
+                    // DONE: check if user has enough coins to unlock
+                    // DONE: remove vehicle cost from user's wallet
+                    if(wallet_tot > VehicleManager.Instance.SelectedVehicleModel.UnlockCost && VehicleManager.Instance.SelectedVehicleModel.UnlockCost != -1) {
+                        wallet.Value = "" + (wallet_tot - VehicleManager.Instance.SelectedVehicleModel.UnlockCost);
+                    }else{
+                        QuitConfirm("You have insufficient funds to purchase this vehicle! Play Levels To earn more money!");
+                    }
+
+                    
 
                     // Unlock vehicle
                     VehicleManager.Instance.UnlockVehicle();
@@ -274,41 +288,58 @@ namespace SmartRoadSense.Shared {
             Drivetrain.SetPosition((int)(dim.XScreenRatio * 300), (int)(dim.YScreenRatio * 150));
             */
 
-            BorderImage Body = new BorderImage();
+            Body = new BorderImage();
             _contComponents.AddChild(Body);
             Body.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             Body.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentBodyRed;
             Body.SetSize(_dim.SetX(150), _dim.SetY(150));
-            Body.SetPosition(_dim.SetX(-350), _dim.SetY(150));
+            Body.SetPosition(_dim.SetX(-300), _dim.SetY(150));
             Body.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
 
-            BorderImage Engine = new BorderImage();
+            Engine = new BorderImage();
             _contComponents.AddChild(Engine);
             Engine.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             Engine.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentEngineRed;
             Engine.SetSize(_dim.SetX(150), _dim.SetY(150));
-            Engine.SetPosition(_dim.SetX(-180), _dim.SetY(150));
+            Engine.SetPosition(_dim.SetX(-130), _dim.SetY(150));
             Engine.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
 
-            BorderImage Suspensions = new BorderImage();
+            Suspensions = new BorderImage();
             _contComponents.AddChild(Suspensions);
             Suspensions.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             Suspensions.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentSuspensionRed;
             Suspensions.SetSize(_dim.SetX(150), _dim.SetY(150));
-            Suspensions.SetPosition(_dim.SetX(180), _dim.SetY(150));
+            Suspensions.SetPosition(_dim.SetX(50), _dim.SetY(150));
             Suspensions.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
 
-            BorderImage Wheel = new BorderImage();
+            Wheel = new BorderImage();
             _contComponents.AddChild(Wheel);
             Wheel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             Wheel.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentWheelRed;
             Wheel.SetSize(_dim.SetX(150), _dim.SetY(150));
-            Wheel.SetPosition(_dim.SetX(350), _dim.SetY(150));
+            Wheel.SetPosition(_dim.SetX(250), _dim.SetY(150));
             Wheel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
 
             SetUpgrade();
+            SetColectedComponents();
             GetCarImg();
         }
+
+
+        void SetColectedComponents() {
+            if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) {
+                if (VehicleManager.Instance.CollectedComponents.CollectedComponentsList != null) {
+                    // TODO: Check the collected component
+
+                    //Wheel.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentWheelGreen;
+                    //Suspensions.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentSuspensionRed;
+                    //Body.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentBodyRed;
+                    //Engine.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentEngineRed;
+                    
+                }
+            }
+        }
+        
 
         void SetUpgrade() {
             var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
@@ -359,7 +390,7 @@ namespace SmartRoadSense.Shared {
 
         void GetCarImg() {
             /*SELECTED VEHICLE*/
-            int left = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Left;
+                    int left = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Left;
             int top = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Top;
             int right = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Right;
             int bottom = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Bottom;

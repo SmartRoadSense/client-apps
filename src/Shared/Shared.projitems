@@ -149,6 +149,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ISoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LoadingScreenData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderLoadingScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\Extentions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Calibration\" />

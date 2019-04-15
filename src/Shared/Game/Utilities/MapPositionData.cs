@@ -57,7 +57,6 @@ namespace SmartRoadSense.Shared {
                 ? MapBoxStart
                 :  (currentPosition.Y / MapBoxYEnd * _ratioY) + MapBoxYStart;
 
-            y = Multiply(y);
             return new Vector2(x, y);
         }
 

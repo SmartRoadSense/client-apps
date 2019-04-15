@@ -1502,14 +1502,14 @@ namespace SmartRoadSense.Shared
 
             // Draw map line
             BorderImage mapBox = GameInstance.UI.Root.GetChild("mapBox") as BorderImage;
-            mapBox.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
+            //mapBox.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
 
             var mapTrack = new BorderImage {
                 Size = mapBox.Size,
-                Position = new IntVector2(0, 0)
+                Position = new IntVector2(0, 0),
             };
-            mapTrack.SetColor(Urho.Color.Blue);
-            //mapBox.AddChild(mapTrack);
+            //mapTrack.SetColor(Urho.Color.Blue);
+            mapBox.AddChild(mapTrack);
 
             Image img = new Image();
             img.SetSize(2048, 512, 4);
@@ -1520,29 +1520,57 @@ namespace SmartRoadSense.Shared
                 }
             }
 
-            for(var i = 0; i < terrainData.Count - _trackLength; i++) {
-                Vector2 point1;
-                Vector2 point2;
-                if(i <= 0) {
-                    continue;
-                }
+            var trackMap = new Dictionary<int, int>();
+            var offset = 30;
+            var trackColor = new Urho.Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-                var range = terrainData.GetRange(i - 1, 1);
-                point1 = range.First().Vector;
-                point2 = range.Last().Vector;
-
+            for(var i = 0; i < _trackLength; i++) {
+                Vector2 point1 = terrainData[i].Vector;
                 if(point1.X <= 0)
                     continue;
 
-                var map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
-                var map2 = _mapPositionData.TerrainPoint(point2, _trackLength);
+                Vector2 map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
+                var y = (int)(mapBox.Height - Extentions.Multiply(map1.Y));
 
-                // Game coords to image pixels
-                var x = (int)map1.X;
-                var y = mapBox.Height - (int)map1.Y ;
-               
-                img.SetPixel(x, y, new Urho.Color(0.0f, 1.0f, 1.0f, 1.0f));
+                if(!trackMap.ContainsKey((int)map1.X)) {
+                    if(trackMap.Count < 1) {
+                        img.SetPixel((int)map1.X, y - offset, trackColor);
+                        img.SetPixel((int)map1.X, y - offset - 1, trackColor);
+
+                        trackMap.Add((int)map1.X, y - offset);
+                    }
+                    else {
+                        var abs = y - offset - trackMap.Last().Value;
+                        if(Math.Abs(abs) > 1) {
+                            y = abs > 0
+                              ? trackMap.Last().Value + 1
+                              : trackMap.Last().Value - 1;
+                            img.SetPixel((int)map1.X, y, trackColor);
+                            img.SetPixel((int)map1.X, y - 1, trackColor);
+
+                            trackMap.Add((int)map1.X, y);
+                        }
+                        else {
+                            img.SetPixel((int)map1.X, y - offset, trackColor);
+                            img.SetPixel((int)map1.X, y - offset - 1, trackColor);
+
+                            trackMap.Add((int)map1.X, y - offset);
+                        }
+                    }
+                }
             }
+            trackMap = null;
+
+            // Order values of list
+            /*
+            var myList = mapPoints.ToList();
+            myList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
+            var smallest = Extentions.Multiply(myList.First().Value);
+            var multiplierFactor = smallest / myList.First().Value;
+            var biggest = Extentions.Multiply(myList.Last().Value);
+            var diff = biggest - smallest;
+            */
+
 
 #if __IOS__
             var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -1556,10 +1584,10 @@ namespace SmartRoadSense.Shared
             var save = img.SavePNG(filePath);
             Debug.WriteLine("png saved: " + save);
             textureMap = GameInstance.ResourceCache.GetTexture2D(filePath);
-            mapBox.Texture = textureMap;
-            //mapTrack.Texture = textureMap;
-            //mapTrack.ImageRect = mapBox.ImageRect;
-            //mapTrack.UseDerivedOpacity = true;
+            //mapBox.Texture = textureMap;
+            mapTrack.Texture = textureMap;
+            mapTrack.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
+            mapTrack.UseDerivedOpacity = true;
         }
 
         void PlaceCoin(Vector2 vector, uint id) {

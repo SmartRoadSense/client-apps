@@ -188,8 +188,10 @@ namespace SmartRoadSense.Shared {
                     // DONE: remove vehicle cost from user's wallet
                     if(wallet_tot > VehicleManager.Instance.SelectedVehicleModel.UnlockCost && VehicleManager.Instance.SelectedVehicleModel.UnlockCost != -1) {
                         wallet.Value = "" + (wallet_tot - VehicleManager.Instance.SelectedVehicleModel.UnlockCost);
-                    }else{
-                        QuitConfirm("You have insufficient funds to purchase this vehicle! Play Levels To earn more money!");
+                        //QuitConfirm("...");
+                    }
+                    else{
+                        //QuitConfirm("You have insufficient funds to purchase this vehicle! Play Levels To earn more money!");
                     }
 
                     

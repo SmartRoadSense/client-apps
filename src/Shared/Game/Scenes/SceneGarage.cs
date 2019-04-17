@@ -37,7 +37,6 @@ namespace SmartRoadSense.Shared {
         int wallet_tot;
         Text wallet;
         VehicleModel _currentVehicleModel;
-        VehicleModel _selectedVehicleModel;
 
         public SceneGarage(Game game) : base(game) {
             _idDVehicle = VehicleManager.Instance.SelectedVehicleModel != null ? VehicleManager.Instance.SelectedVehicleModel.IdVehicle : -1;
@@ -51,7 +50,6 @@ namespace SmartRoadSense.Shared {
             JsonReaderVehicles.GetVehicleConfig();
 
             _currentVehicleModel = VehicleManager.Instance.SelectedVehicleModel;
-            _selectedVehicleModel = VehicleManager.Instance.SelectedVehicleModel;
 
             CreateUI();
         }
@@ -135,7 +133,7 @@ namespace SmartRoadSense.Shared {
             _screenInfo.SetPosition(_dim.SetX(0), _dim.SetY(220));
             _screenInfo.SetFont(_font, _dim.SetX(40));
             _screenInfo.SetColor(Color.White);
-            if(VehicleManager.Instance.VehiclesUnlocked == null || VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Count == 0) {
+            if(VehicleManager.Instance.UnlockedVehicles == null || VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) {
                 _screenInfo.Value = "Please select a free starting vehicle.";
             }
             else if(_currentVehicleModel.IdVehicle == _idDVehicle) {
@@ -177,38 +175,51 @@ namespace SmartRoadSense.Shared {
             VehicleBar.AddChild(_selectedVehicle);
             _selectedVehicle.UseDerivedOpacity = false;
             _selectedVehicle.Texture = vehicle;
-            JsonReaderVehicles.SelectSingleVehicle(_idDVehicle);
+            _currentVehicleModel = VehicleManager.Instance.GetVehicleFromId(_idDVehicle);
             _selectedVehicle.SetSize((int)(_dim.XScreenRatio * 600), (int)(_dim.YScreenRatio * 600));
             _selectedVehicle.SetPosition((int)(_dim.XScreenRatio * 650), (int)(_dim.YScreenRatio * -100));
 
             _selectedVehicle.Pressed += args => {
                 VehicleManager.Instance.CurrentGarageVehicleId = _idDVehicle;
-                _selectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
                 Debug.WriteLine("SAVED ID = " + _idDVehicle);
 
-                // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
-                if(!VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) {
+                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) 
+                {
+                    // TODO: show popup of unlock
+                    // Unlock vehicle
+                    VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                    VehicleManager.Instance.UnlockVehicle();
+
+                    // TODO: update UI
+                    Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
+                    GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+
+                }
+                else if (!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
+                {
+                    // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
+
                     // DONE: check if user has enough coins to unlock
                     // DONE: remove vehicle cost from user's wallet
                     if(wallet_tot > _currentVehicleModel.UnlockCost && _currentVehicleModel.UnlockCost != -1) {
                         wallet.Value = "" + (wallet_tot - _currentVehicleModel.UnlockCost);
+
+                        // Unlock vehicle
+                        VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                        VehicleManager.Instance.UnlockVehicle();
+
+                        // TODO: update UI
+                        Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
+                        GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+
                         //QuitConfirm("...");
                     }
-                    else{
+                    else {
                         //QuitConfirm("You have insufficient funds to purchase this vehicle! Play Levels To earn more money!");
                     }
-
-                    
-
-                    // Unlock vehicle
-                    VehicleManager.Instance.UnlockVehicle();
-
-                    // TODO: update UI
-                    Debug.WriteLine("Unlocked vehicle " + _selectedVehicleModel.IdVehicle);
                 }
                 else 
                 {
-                    GameInstance.LaunchScene(GameScenesEnumeration.MENU);
                 }
             };
 
@@ -365,8 +376,8 @@ namespace SmartRoadSense.Shared {
             var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
 
             var selectedVehicle = _currentVehicleModel;
-            if(VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Contains(selectedVehicle))
-                selectedVehicle = VehicleManager.Instance.VehiclesUnlocked.VehicleModel.First(v => v.IdVehicle == _currentVehicleModel.IdVehicle);
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(selectedVehicle))
+                selectedVehicle = VehicleManager.Instance.UnlockedVehicles.VehicleModel.First(v => v.IdVehicle == _currentVehicleModel.IdVehicle);
 
             int perf = selectedVehicle.Performance;
             int whe = selectedVehicle.Wheel;
@@ -417,7 +428,7 @@ namespace SmartRoadSense.Shared {
             _selectedVehicle.ImageRect = new IntRect(left, top, right, bottom);
             _carName.Value = _currentVehicleModel.Name;
 
-            switch(VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Count) {
+            switch(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count) {
                 case 0:
                     // STARTING VEHICLE LOGIC
                     if(_currentVehicleModel.UnlockCost > -1) {
@@ -443,7 +454,7 @@ namespace SmartRoadSense.Shared {
                     }
                     else 
                     {
-                        if(VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Contains(_currentVehicleModel)) 
+                        if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(_currentVehicleModel)) 
                         {
                             _screenInfo.Value = "Tap to select this vehicle";
                             if(_currentVehicleModel.UnlockCost == -1) 
@@ -484,8 +495,8 @@ namespace SmartRoadSense.Shared {
 
             var selectedVehicle = _currentVehicleModel;
             
-            if(VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Contains(selectedVehicle))
-                selectedVehicle = VehicleManager.Instance.VehiclesUnlocked.VehicleModel.First(v => v.IdVehicle == _currentVehicleModel.IdVehicle);
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(selectedVehicle))
+                selectedVehicle = VehicleManager.Instance.UnlockedVehicles.VehicleModel.First(v => v.IdVehicle == _currentVehicleModel.IdVehicle);
                 
             int perf = selectedVehicle.Performance;
             int whe = selectedVehicle.Wheel;
@@ -566,7 +577,7 @@ namespace SmartRoadSense.Shared {
                 }
             }
             else {
-                if(VehicleManager.Instance.VehiclesUnlocked.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle))
+                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle))
                     _lockedVehicle.Visible = false;
                 else
                     _lockedVehicle.Visible = true;
@@ -638,7 +649,7 @@ namespace SmartRoadSense.Shared {
             Action<PressedEventArgs> select = new Action<PressedEventArgs>((PressedEventArgs a) => {
                 VehicleManager.Instance.CurrentGarageVehicleId = _idDVehicle;
                 VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
-                JsonReaderVehicles.SelectSingleVehicle(_idDVehicle); // Updates selected vehicle model
+                //JsonReaderVehicles.SelectSingleVehicle(_idDVehicle); // Updates selected vehicle model
                 System.Diagnostics.Debug.WriteLine("SAVED ID = " + _idDVehicle);
 
                 VehicleManager.Instance.UnlockVehicle();

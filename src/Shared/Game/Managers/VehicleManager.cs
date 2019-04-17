@@ -73,7 +73,7 @@ namespace SmartRoadSense.Shared
             return Vehicles.VehicleModel.Find(v => v.IdVehicle == id);
         }
 
-        public VehicleContainerModel VehiclesUnlocked 
+        public VehicleContainerModel UnlockedVehicles 
         {
             get {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.UnlockedVehicles.Value, "");
@@ -91,10 +91,10 @@ namespace SmartRoadSense.Shared
         }
 
         public void UnlockVehicle() {
-            var vehiclesUnlocked = Instance.VehiclesUnlocked;
+            var vehiclesUnlocked = Instance.UnlockedVehicles;
             if(!vehiclesUnlocked.VehicleModel.Contains(Instance.SelectedVehicleModel)) {
                 vehiclesUnlocked.VehicleModel.Add(Instance.SelectedVehicleModel);
-                Instance.VehiclesUnlocked = vehiclesUnlocked;
+                Instance.UnlockedVehicles = vehiclesUnlocked;
             }
         }
 

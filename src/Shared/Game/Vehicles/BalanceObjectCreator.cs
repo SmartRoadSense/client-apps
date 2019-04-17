@@ -9,8 +9,8 @@ namespace SmartRoadSense.Shared {
         {
 
             Node node = scene.CreateChild(objectName);
-            node.Position = (new Vector3(-0.8f * _screenInfo.XScreenRatio, 0.5f * _screenInfo.YScreenRatio, 3.0f));
-            node.Scale = new Vector3(1.2f * _screenInfo.XScreenRatio, 1.2f * _screenInfo.YScreenRatio, 1.0f);
+            node.Position = (new Vector3(-0.7f * _screenInfo.XScreenRatio, 0.5f * _screenInfo.YScreenRatio, 3.0f));
+            //node.Scale = new Vector3(1.0f, 1.0f, 1.0f);
 
             // Create rigid body
             RigidBody2D body = node.CreateComponent<RigidBody2D>();
@@ -26,9 +26,9 @@ namespace SmartRoadSense.Shared {
             // Create box
             CollisionBox2D box = node.CreateComponent<CollisionBox2D>();
             // Set size
-            box.Size = new Vector2(0.4f * _screenInfo.XScreenRatio, 0.4f * _screenInfo.YScreenRatio);
+            box.Size = new Vector2(0.25f, 0.25f);
             // Set density
-            box.Density = 1.0f;
+            box.Density = 0.8f;
             // Set friction
             box.Friction = 1.0f;
             // Set restitution

@@ -110,7 +110,7 @@ namespace SmartRoadSense.Shared
 
         async Task<bool> InitTracks() {
 #if DEBUG
-            TrackManager.Instance.Tracks = null;
+            //TrackManager.Instance.Tracks = null;
 #endif
             return await TrackManager.Instance.Init();
         }

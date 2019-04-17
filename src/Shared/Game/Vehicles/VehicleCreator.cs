@@ -46,28 +46,32 @@ namespace SmartRoadSense.Shared {
             _mainBody.Mass = 1.0f;
             //_mainBody.SetMassCenter(new Vector2(-2.1f * _screenInfo.XScreenRatio, -0.1f * _screenInfo.YScreenRatio));
 
-            // Outer body for collision - null mass
+            /****************************************/
+            /* Outer body for collision - null mass */
+            /****************************************/
+            float startVX = -1.2f;
+            float startVY = -0.55f;
             CollisionChain2D bodyBounds = box.CreateComponent<CollisionChain2D>();
             bodyBounds.VertexCount = 9;
-            bodyBounds.SetVertex(0, new Vector2(-1.5f * _screenInfo.XScreenRatio, -0.7f * _screenInfo.YScreenRatio)); // BOTTOM LEFT
-            bodyBounds.SetVertex(1, new Vector2(-1.5f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
-            bodyBounds.SetVertex(2, new Vector2(-0.3f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
-            bodyBounds.SetVertex(3, new Vector2(-0.3f * _screenInfo.XScreenRatio, -0.5f * _screenInfo.YScreenRatio));
-            bodyBounds.SetVertex(4, new Vector2(0.0f * _screenInfo.XScreenRatio, -0.5f * _screenInfo.YScreenRatio));
-            bodyBounds.SetVertex(5, new Vector2(0.0f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
-            bodyBounds.SetVertex(6, new Vector2(0.5f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
-            bodyBounds.SetVertex(7, new Vector2(0.5f * _screenInfo.XScreenRatio, -0.7f * _screenInfo.YScreenRatio));  // BOTTOM RIGHT
-            bodyBounds.SetVertex(8, new Vector2(-1.5f * _screenInfo.XScreenRatio, -0.7f * _screenInfo.YScreenRatio)); // BOTTOM LEFT   
+            bodyBounds.SetVertex(0, new Vector2(startVX, startVY)); // BOTTOM LEFT
+            bodyBounds.SetVertex(1, new Vector2(startVX, startVY + 0.1f));
+            bodyBounds.SetVertex(2, new Vector2(startVX + 1.0f, startVY + 0.1f));
+            bodyBounds.SetVertex(3, new Vector2(startVX + 1.0f, startVY + 0.2f));
+            bodyBounds.SetVertex(4, new Vector2(startVX + 1.3f, startVY + 0.2f));
+            bodyBounds.SetVertex(5, new Vector2(startVX + 1.3f, startVY + 0.1f));
+            bodyBounds.SetVertex(6, new Vector2(startVX + 1.8f, startVY + 0.1f));
+            bodyBounds.SetVertex(7, new Vector2(startVX + 1.8f, startVY));  // BOTTOM RIGHT
+            bodyBounds.SetVertex(8, new Vector2(startVX, startVY)); // BOTTOM LEFT   
             bodyBounds.Friction = 1.0f;
             bodyBounds.Restitution = 0.0f;
 
             CollisionChain2D backBounds = box.CreateComponent<CollisionChain2D>();
             backBounds.VertexCount = 4;
-            backBounds.SetVertex(0, new Vector2(-1.5f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
-            backBounds.SetVertex(1, new Vector2(-1.5f * _screenInfo.XScreenRatio, -0.4f * _screenInfo.YScreenRatio));
-            backBounds.SetVertex(2, new Vector2(-1.45f * _screenInfo.XScreenRatio, -0.4f * _screenInfo.YScreenRatio));
-            backBounds.SetVertex(3, new Vector2(-1.45f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
-            backBounds.SetVertex(4, new Vector2(-1.5f * _screenInfo.XScreenRatio, -0.6f * _screenInfo.YScreenRatio));
+            backBounds.SetVertex(0, new Vector2(startVX, startVY + 0.1f));
+            backBounds.SetVertex(1, new Vector2(startVX, startVY + 0.3f));
+            backBounds.SetVertex(2, new Vector2(startVX + 0.05f, startVY + 0.3f));
+            backBounds.SetVertex(3, new Vector2(startVX + 0.05f, startVY + 0.1f));
+            backBounds.SetVertex(4, new Vector2(startVX, startVY + 0.1f));
 
             backBounds.Friction = 1.0f;
             backBounds.Restitution = 0.0f;
@@ -76,43 +80,37 @@ namespace SmartRoadSense.Shared {
             // Create box shape
             CollisionBox2D shape = box.CreateComponent<CollisionBox2D>(); 
             // Set size
-            shape.Size = new Vector2(0.32f * _screenInfo.XScreenRatio, 0.32f * _screenInfo.YScreenRatio); 
+            shape.Size = new Vector2(0.32f, 0.32f); 
             shape.Density = 8.0f;      // Set shape density (kilograms per meter squared)
             shape.Friction = 0.8f;      // Set friction
             shape.Restitution = 0.0f;   // Set restitution (no bounce)
 
             // Update center of collision body - moves center of mass
-            shape.SetCenter(-0.3f * _screenInfo.XScreenRatio, -1.0f * _screenInfo.YScreenRatio);   
-
-            // Create a ball (will be cloned later)
-            Node ball1WheelNode = scene.CreateChild("Wheel");
-            StaticSprite2D ballSprite = ball1WheelNode.CreateComponent<StaticSprite2D>();
-
-            if(_vehicleModel.WheelsPosition.Count == 1) {
-                l = _vehicleModel.WheelsPosition[0].Left;
-                t = _vehicleModel.WheelsPosition[0].Top;
-                r = _vehicleModel.WheelsPosition[0].Right;
-                b = _vehicleModel.WheelsPosition[0].Bottom;
-            }
-            else
-            {
-                // TODO if vehicle has different wheel textures
-            }
-
-            sprite = new Sprite2D {
-                Texture = cache.GetTexture2D("Textures/Garage/vehicles_wheels.png"),
-                Rectangle = new IntRect(l, t, r, b)
-            };
+            shape.SetCenter(-0.2f, -0.65f);   
 
             // Create a vehicle from a compound of 2 ConstraintWheel2Ds
             var car = box;
-            car.Scale = new Vector3(1.5f * _screenInfo.XScreenRatio, 1.5f * _screenInfo.YScreenRatio, 0.0f);
+            //car.Scale = new Vector3(1.5f * _screenInfo.XScreenRatio, 1.5f * _screenInfo.YScreenRatio, 0.0f);
 
             // DEFINES POSITION OF SPRITE AND MAIN BODY MASS
             car.Position = new Vector3(0.0f * _screenInfo.XScreenRatio, _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
 
-            // DEFINE WHEELS
-            ballSprite.Sprite = sprite;
+            /*****************/
+            /* DEFINE WHEELS */
+            /*****************/
+            // Create a ball (will be cloned later)
+            Node ball1WheelNode = scene.CreateChild("Wheel");
+            StaticSprite2D ballSprite = ball1WheelNode.CreateComponent<StaticSprite2D>();
+
+            var wheelSprites = new List<Sprite2D>();
+            foreach(var w in _vehicleModel.WheelsPosition) {
+                wheelSprites.Add(new Sprite2D {
+                    Texture = cache.GetTexture2D("Textures/Garage/vehicles_wheels.png"),
+                    Rectangle = new IntRect(w.Left, w.Top, w.Right, w.Bottom)
+                });
+            }
+
+            ballSprite.Sprite = wheelSprites[0];
 
             RigidBody2D ballBody = ball1WheelNode.CreateComponent<RigidBody2D>();
             ballBody.BodyType = BodyType2D.Dynamic;
@@ -131,7 +129,7 @@ namespace SmartRoadSense.Shared {
             // CLONE AND POSITION WHEELS
             Node ball2WheelNode = ball1WheelNode.Clone(CreateMode.Replicated);
             StaticSprite2D ball2Sprite = ball2WheelNode.CreateComponent<StaticSprite2D>();
-            ball2Sprite.Sprite = sprite;
+            ball2Sprite.Sprite = wheelSprites[0];
 
             // TODO: change for more than 2 wheels
             for(var i = 0; i < _vehicleModel.WheelsBodyPosition.Count; i++) {
@@ -143,7 +141,7 @@ namespace SmartRoadSense.Shared {
 
                     // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
                     ball1WheelNode.Position = new Vector3(x1, y1 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
-                    ball1WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
+                    //ball1WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
                 }
                 if(i == 1) {
                     float x2 = _vehicleModel.WheelsBodyPosition[i].X % _vehicleImgPos;
@@ -153,7 +151,7 @@ namespace SmartRoadSense.Shared {
 
                     // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
                     ball2WheelNode.Position = new Vector3(x2, y2 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
-                    ball2WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
+                    //ball2WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
                 }
             }
 

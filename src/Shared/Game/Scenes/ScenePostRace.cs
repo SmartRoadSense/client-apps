@@ -7,14 +7,15 @@ namespace SmartRoadSense.Shared
 {
     public class ScenePostRace : BaseScene
 	{
+        readonly UIElement root;
+        readonly ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
+        readonly ResourceCache cache;
+        readonly Font font;
+        readonly TrackModel _levelInfo;
 
-        UIElement root;
-        ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
-        ResourceCache cache;
         Sprite black_bar;
         Sprite backgroundSprite;
         Sprite container;
-        readonly Font font;
         LastPlayedTrack _postLevelData;
 
         public ScenePostRace(Game game, bool randomLevel = false) : base(game) 
@@ -23,6 +24,7 @@ namespace SmartRoadSense.Shared
             root = GameInstance.UI.Root;
             cache = GameInstance.ResourceCache;
             font = cache.GetFont(GameInstance.defaultFont);
+            _levelInfo = TrackManager.Instance.SelectedTrackModel ?? null;
 
             // Update best time data if not random level
             if(!randomLevel)
@@ -132,7 +134,7 @@ namespace SmartRoadSense.Shared
             levelnumber.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             levelnumber.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(15));
             levelnumber.SetFont(font, dim.XScreenRatio * 50);
-            if(_postLevelData.TrackData != null)
+            if(_postLevelData != null && _postLevelData.TrackData != null)
                 levelnumber.Value = _postLevelData.TrackData.IdTrack.ToString();
 
             Sprite LevelIcon = new Sprite();
@@ -328,23 +330,21 @@ namespace SmartRoadSense.Shared
 
         public void UpdateLevelInfo() 
         {
-            var levelInfo = TrackManager.Instance.SelectedTrackModel;
-
             // Update races number
-            levelInfo.TotalOfPlays += 1;
+            _levelInfo.TotalOfPlays += 1;
 
             // Completed status
-            levelInfo.Completed = (int)LevelSettings.COMPLETED.TRUE;
+            _levelInfo.Completed = (int)LevelSettings.COMPLETED.TRUE;
 
             // Best time
-            levelInfo.BestTime = levelInfo.BestTime == 0
+            _levelInfo.BestTime = _levelInfo.BestTime == 0
                 ? TrackManager.Instance.LastPlayedTrackInfo.Time
-                : levelInfo.BestTime > TrackManager.Instance.LastPlayedTrackInfo.Time
+                : _levelInfo.BestTime > TrackManager.Instance.LastPlayedTrackInfo.Time
                     ? TrackManager.Instance.LastPlayedTrackInfo.Time
-                    : levelInfo.BestTime;
+                    : _levelInfo.BestTime;
                     
             // Update level info
-            TrackManager.Instance.SelectedTrackModel = levelInfo;
+            TrackManager.Instance.SelectedTrackModel = _levelInfo;
 
             // Update last played level data
             var lastPlayedLevel = TrackManager.Instance.LastPlayedTrackInfo;

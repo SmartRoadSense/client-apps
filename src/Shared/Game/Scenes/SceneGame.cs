@@ -1601,7 +1601,7 @@ namespace SmartRoadSense.Shared
                     // Place component
                     Node componentNode = CreateChild(_componentCollisionName);
                     componentNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
-                    componentNode.Scale = new Vector3(2.0f * GameInstance.ScreenInfo.XScreenRatio, 2.0f * GameInstance.ScreenInfo.YScreenRatio, 1.0f);
+                    componentNode.Scale = new Vector3(2.0f, 2.0f, 1.0f);
 
                     var componentStaticSprite = componentNode.CreateComponent<StaticSprite2D>();
                     // Get sprite for component
@@ -1652,7 +1652,7 @@ namespace SmartRoadSense.Shared
             // Node
             Node coinNode = CreateChild(_coinCollisionName);
             coinNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
-            coinNode.Scale = new Vector3(1.5f * GameInstance.ScreenInfo.XScreenRatio, 1.5f *  GameInstance.ScreenInfo.YScreenRatio, 1.0f);
+            coinNode.Scale = new Vector3(1.5f, 1.5f, 1.0f);
             StaticSprite2D coinStaticSprite = coinNode.CreateComponent<StaticSprite2D>();
             coinStaticSprite.Sprite = CollectableSprites[0];
 

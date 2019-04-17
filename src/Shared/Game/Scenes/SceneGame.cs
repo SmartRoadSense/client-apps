@@ -1577,9 +1577,10 @@ namespace SmartRoadSense.Shared
             var filePath = Path.Combine(documents, "track_img.png");//You can set the fileName what you want just take care of extension
 #else 
             var sdCard = App.Context.GetExternalFilesDir(null).AbsolutePath;
-            Java.IO.File dir = new Java.IO.File("/urho");
-            dir.Mkdirs();
-            var filePath = Path.Combine(dir.Path, "track_img.png"); //You can set the fileName what you want just take care of extension
+            var filePath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "track_img.png");
+            //Java.IO.File dir = new Java.IO.File("/urho");
+            //dir.Mkdirs();
+            //var filePath = Path.Combine(dir.Path, "track_img.png"); //You can set the fileName what you want just take care of extension
 #endif
             var save = img.SavePNG(filePath);
             Debug.WriteLine("png saved: " + save);

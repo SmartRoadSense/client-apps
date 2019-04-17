@@ -49,8 +49,7 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public int CurrentGarageVehicleId
-        {
+        public int CurrentGarageVehicleId {
             get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, -1);
             set {
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, value);
@@ -58,19 +57,20 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public VehicleModel SelectedVehicleModel
-        {
-            get
-            {
+        public VehicleModel SelectedVehicleModel {
+            get {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedVehicle.Value, "");
-                return string.IsNullOrEmpty(json)? null : JsonConvert.DeserializeObject<VehicleModel>(json);
+                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<VehicleModel>(json);
             }
-            set 
-            {
+            set {
                 var json = JsonConvert.SerializeObject(value);
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedVehicle.Value, json);
                 OnPropertyChanged();
             }
+        }
+
+        public VehicleModel GetVehicleFromId(int id) {
+            return Vehicles.VehicleModel.Find(v => v.IdVehicle == id);
         }
 
         public VehicleContainerModel VehiclesUnlocked 

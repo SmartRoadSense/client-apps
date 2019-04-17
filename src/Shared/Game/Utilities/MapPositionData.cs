@@ -59,5 +59,13 @@ namespace SmartRoadSense.Shared {
 
             return new Vector2(x, y);
         }
+
+        float Multiply(float value) {
+            if(value < 1) {
+                value *= 10;
+                value = Multiply(value);
+            }
+            return value;
+        }
     }
 }

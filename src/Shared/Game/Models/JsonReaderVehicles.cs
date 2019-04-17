@@ -62,6 +62,7 @@ namespace SmartRoadSense.Shared {
 
         public static VehicleModel GetSingleVehicle(int id) {
             LoadConfig();
+            System.Diagnostics.Debug.WriteLine("ID-GETSINGLE: " + id);
             return  _vehicleContainer.VehicleModel.FirstOrDefault(vehicleContainer => vehicleContainer.IdVehicle == id);
         }
 

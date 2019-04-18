@@ -342,7 +342,13 @@ namespace SmartRoadSense.Shared
                 : _levelInfo.BestTime > TrackManager.Instance.LastPlayedTrackInfo.Time
                     ? TrackManager.Instance.LastPlayedTrackInfo.Time
                     : _levelInfo.BestTime;
-                    
+
+            // Last race Points
+            _levelInfo.PointsObtained = TrackManager.Instance.LastPlayedTrackInfo.Points;
+
+            // Total points 
+            _levelInfo.TotalPoints += TrackManager.Instance.LastPlayedTrackInfo.Points;
+
             // Update level info
             TrackManager.Instance.SelectedTrackModel = _levelInfo;
 
@@ -354,9 +360,15 @@ namespace SmartRoadSense.Shared
             // Set level data for current screen
             _postLevelData = lastPlayedLevel;
 
-            // Update user experience points
             var player = CharacterManager.Instance.User;
-            player.Experience += _postLevelData.Points;
+
+            // Update user experience points
+            player.Experience += TrackManager.Instance.LastPlayedTrackInfo.Points;
+
+            // Update user coins
+            player.Wallet += TrackManager.Instance.LastPlayedTrackInfo.Coins;
+
+            // Save updates
             CharacterManager.Instance.User = player;
 
             // Update components

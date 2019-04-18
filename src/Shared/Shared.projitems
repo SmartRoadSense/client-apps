@@ -39,7 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderVehicles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LevelsContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\VehicleContainerModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneProfileImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneUserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\PopUP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PpeMapper.cs" />

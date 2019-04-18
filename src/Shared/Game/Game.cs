@@ -59,6 +59,9 @@ namespace SmartRoadSense.Shared
 
             VehicleManager.Instance.Init();
 
+#if DEBUG
+            CharacterManager.Instance.Wallet += 10000;
+#endif
             //_debug = Engine.CreateDebugHud();
             //_debug.ToggleAll();
         }
@@ -141,7 +144,7 @@ namespace SmartRoadSense.Shared
                     SceneManager.Instance.SetScene(new SceneGarage(this));
                     break;
                 case GameScenesEnumeration.PROFILE:
-                    SceneManager.Instance.SetScene(new SceneProfile(this, modifier));
+                    SceneManager.Instance.SetScene(new SceneProfileImage(this, modifier));
                     break;
                 case GameScenesEnumeration.SETTINGS:
                     SceneManager.Instance.SetScene(new SceneSettings(this));
@@ -166,7 +169,6 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        const float _speedStep = (float)Math.PI / 2;
         public Node CameraNode { get; set; }
         public Vehicle GameVehicle { get; set; }
         public Vehicle GameVehiclePause { get; set; }
@@ -212,10 +214,10 @@ namespace SmartRoadSense.Shared
                 return;
 
             // Movement speed as world units per second
-            float moveSpeed = 1.0f * timeStep;
-            float brakeSpeed = 1.0f * timeStep;
-            moveSpeed = moveSpeed * VehicleManager.Instance.SelectedVehicleModel.Performance;
-            brakeSpeed = brakeSpeed * VehicleManager.Instance.SelectedVehicleModel.Brake;
+            float moveSpeed = 1.5f * timeStep;
+            float brakeSpeed = 1.5f * timeStep;
+            moveSpeed *= VehicleManager.Instance.SelectedVehicleModel.Performance;
+            brakeSpeed *= VehicleManager.Instance.SelectedVehicleModel.Brake;
 
             Camera camera = CameraNode.GetComponent<Camera>();
             //camera.Zoom = camera.Zoom * 0.999f;

@@ -730,7 +730,7 @@ namespace SmartRoadSense.Shared
             gameOverWindow.AddChild(restartText);
             restartText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             restartText.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(200));
-            restartText.SetFont(font, 50);
+            restartText.SetFont(font, GameInstance.ScreenInfo.SetX(50));
             restartText.Value = "Press        to Restart";
 
             btnRestart.Pressed += args => {
@@ -751,7 +751,7 @@ namespace SmartRoadSense.Shared
             gameOverWindow.AddChild(quitText);
             quitText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             quitText.SetPosition(GameInstance.ScreenInfo.SetX(-10), GameInstance.ScreenInfo.SetY(380));
-            quitText.SetFont(font, 50);
+            quitText.SetFont(font, GameInstance.ScreenInfo.SetX(50));
             quitText.Value = "Press        to Exit";
 
             btnQuit.Pressed += args => {
@@ -1524,13 +1524,17 @@ namespace SmartRoadSense.Shared
             var offset = 30;
             var trackColor = new Urho.Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-            for(var i = 0; i < _trackLength; i++) {
+            for(var i = 1; i < _trackLength; i++) {
                 Vector2 point1 = terrainData[i].Vector;
                 if(point1.X <= 0)
                     continue;
-
+                
                 Vector2 map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
-                var y = (int)(mapBox.Height - Extentions.Multiply(map1.Y));
+                int y = 0;
+                if(map1.Y.Equals(0)) 
+                    y = mapBox.Height;
+                else
+                    y = (int)(mapBox.Height - Extentions.Multiply(map1.Y));
 
                 if(!trackMap.ContainsKey((int)map1.X)) {
                     if(trackMap.Count < 1) {
@@ -1652,13 +1656,13 @@ namespace SmartRoadSense.Shared
             // Node
             Node coinNode = CreateChild(_coinCollisionName);
             coinNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
-            coinNode.Scale = new Vector3(1.5f, 1.5f, 1.0f);
+            //coinNode.Scale = new Vector3(1.0f, 1.0f, 1.0f);
             StaticSprite2D coinStaticSprite = coinNode.CreateComponent<StaticSprite2D>();
             coinStaticSprite.Sprite = CollectableSprites[0];
 
             // Collision shape
             var coinCollision = coinNode.CreateComponent<CollisionBox2D>();
-            coinCollision.Size = new Vector2(0.75f, 0.75f);// Set radius
+            coinCollision.Size = new Vector2(0.5f, 0.5f);// Set radius
             coinCollision.Friction = 0.25f;
             coinCollision.Density = 0.001f;
             coinCollision.Restitution = 0f;

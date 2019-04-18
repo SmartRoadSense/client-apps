@@ -121,8 +121,8 @@ namespace SmartRoadSense.Shared {
             screen_title.Enabled = false;
             screen_title.Pressed += (PressedEventArgs args) => {
 #if DEBUG
-                TrackManager.Instance.Tracks = null;
-                TrackManager.Instance.Init();
+               //TrackManager.Instance.Tracks = null;
+                //TrackManager.Instance.Init();
 #endif
             };
 
@@ -413,7 +413,7 @@ namespace SmartRoadSense.Shared {
             StartGame.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             StartGame.ImageRect = AssetsCoordinates.Generic.Boxes.RaceCompleted;
             StartGame.Pressed += (PressedEventArgs args) => {
-                if(_counter > 1)
+                if(_counter >= 1)
                     Launcher();
             };
 
@@ -431,7 +431,6 @@ namespace SmartRoadSense.Shared {
         void UpdateActiveLevels() {
             if(_racesNumber == 1) {
                 // Only test track available
-                // TODO: show srs data collect text
                 _prevLevel.Visible = false;
                 _selLevel.Enabled = false;
                 _selLevel.ImageRect = AssetsCoordinates.Generic.Boxes.LevelBlocked;
@@ -471,7 +470,6 @@ namespace SmartRoadSense.Shared {
 
                 if(_counter + 1 >= _racesNumber) {
                     _noTrackWindow.Visible = true;
-
                     _nextLevel.Enabled = false;
                     _nextLevel.Visible = false;
                 }

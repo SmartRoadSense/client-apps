@@ -459,6 +459,8 @@ namespace SmartRoadSense.Shared {
             CreditsText.SetPosition(0, 0);
             CreditsText.SetFont(_baseFont, GameInstance.ScreenInfo.SetX(30));
             CreditsText.Value = "CREDITS";
+
+            Credits.Visible = false;
                      
         }
 

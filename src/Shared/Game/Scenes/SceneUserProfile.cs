@@ -69,7 +69,6 @@ namespace SmartRoadSense.Shared {
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
 
-
             //COINS
             Button coins = new Button();
             root.AddChild(coins);
@@ -85,9 +84,7 @@ namespace SmartRoadSense.Shared {
             coins.AddChild(wallet);
             wallet.SetPosition((int)(dim.XScreenRatio * 90), (int)(dim.YScreenRatio * 10));
             wallet.SetFont(font, dim.XScreenRatio * 30);
-            int wallet_tot = CharacterManager.Instance.Wallet;
-
-            wallet.Value = "" + wallet_tot;
+            wallet.Value = "" + CharacterManager.Instance.Wallet;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -104,7 +101,6 @@ namespace SmartRoadSense.Shared {
             buttonTitleText.SetPosition(0, 0);
             buttonTitleText.SetFont(font, dim.XScreenRatio * 30);
             buttonTitleText.Value = "PROFILE";
-            
         }
 
         void CreateProfileBar() {
@@ -318,7 +314,6 @@ namespace SmartRoadSense.Shared {
             CoinsCollectedValue.Value = string.Format("{0}", CharacterManager.Instance.User.Wallet);
 
             // VEHICLES OWNED
-            /*
             Text VehiclesOwned = new Text();
             container.AddChild(VehiclesOwned);
             VehiclesOwned.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
@@ -332,8 +327,8 @@ namespace SmartRoadSense.Shared {
             VehiclesOwnedValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             VehiclesOwnedValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(620));
             VehiclesOwnedValue.SetFont(font, dim.XScreenRatio * 30);
-            VehiclesOwnedValue.Value = "TODO";
-            */
+            VehiclesOwnedValue.Value = string.Format($"{VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count}");
+
             // UNLOCKED VEHICLES 
             /*
             Text VehiclesUnlocked = new Text();

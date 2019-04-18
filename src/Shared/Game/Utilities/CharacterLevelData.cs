@@ -57,18 +57,15 @@ namespace SmartRoadSense.Shared {
         public static int ObtainedPoints(int time) {
             var obtainedPoints = 50;
             var maxBasePoints = 200;
-            var bestTimeToBeat = 120000;
-            var slowestTimeToBeat = 180000;
-            var pointModifier = 0;
+            var bestTimeToBeat = 150000;
+            var slowestTimeToBeat = 210000;
+            double pointModifier = 0;
 
             // Scale to difficulty level compared to user level
             var difficultyLevel = TrackManager.Instance.SelectedTrackModel.Difficulty;
             var characterLevel = CharacterManager.Instance.User.Level;
             double pointRatio = difficultyLevel / characterLevel;
            
-            //var difficultyLevel = 1;    // TEMP
-            //double pointRatio = 1;      // TEMP
-
             if(time <= bestTimeToBeat) {
                 // MAX POINTS
                 pointModifier = maxBasePoints;
@@ -79,6 +76,8 @@ namespace SmartRoadSense.Shared {
                 var playerTime = steppedTime - (time - bestTimeToBeat);
 
                 pointModifier = playerTime / steppedTime * maxBasePoints;
+            } else {
+                pointModifier = obtainedPoints;
             }
 
             obtainedPoints = (int)Math.Round((pointModifier * pointRatio) * (difficultyLevel / 10 + Math.Pow(2, difficultyLevel / 10)));

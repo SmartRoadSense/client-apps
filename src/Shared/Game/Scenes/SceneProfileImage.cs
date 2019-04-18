@@ -5,7 +5,7 @@ using Urho.Resources;
 
 
 namespace SmartRoadSense.Shared {
-    public class SceneProfile : BaseScene {
+    public class SceneProfileImage : BaseScene {
         ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
         ResourceCache cache;
         Sprite backgroundSprite;
@@ -30,7 +30,7 @@ namespace SmartRoadSense.Shared {
         bool _isUserProfile;
         LineEdit lineEdit;
 
-        public SceneProfile(Game game, bool IsUserProfile = false) : base(game) {
+        public SceneProfileImage(Game game, bool IsUserProfile = false) : base(game) {
             dim = GameInstance.ScreenInfo;
             root = GameInstance.UI.Root;
             cache = GameInstance.ResourceCache;

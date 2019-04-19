@@ -419,13 +419,13 @@ namespace SmartRoadSense.Shared
             if(_randomLevel) 
             {
                 var difficulty = NextRandom(5, 101);
-                recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
-                //_trackLength = NextRandom(900, 3601);
-                //recs = TerrainGenerator.RandomTerrain(trackLength);
+                //recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
+                _trackLength = NextRandom(901, 3601);
+                recs = TerrainGenerator.RandomTerrain(_trackLength);
                 //terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, true);
                 //_trackLength = terrainData.Count();
-                _trackLength = 3600;
+                //_trackLength = 3600;
             }
             else 
             {
@@ -438,7 +438,7 @@ namespace SmartRoadSense.Shared
                 foreach(var t in srsTrack)
                     lst.Add((float)t);
                 recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, true);
                 _trackLength = terrainData.Count();
 
             }

@@ -173,7 +173,8 @@ namespace SmartRoadSense.Shared
             TimeTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             TimeTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             TimeTot.SetFont(font, dim.XScreenRatio * 30);
-            TimeTot.Value = TimeSpan.FromMilliseconds(_postLevelData.Time).MillisRepresentation();
+            if(_postLevelData != null && _postLevelData.TrackData != null)
+                TimeTot.Value = TimeSpan.FromMilliseconds(_postLevelData.Time).MillisRepresentation();
 
             // BEST TIME
             Sprite BestIcon = new Sprite();
@@ -197,7 +198,8 @@ namespace SmartRoadSense.Shared
             BestTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             BestTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             BestTot.SetFont(font, dim.XScreenRatio * 30);
-            BestTot.Value = TimeSpan.FromMilliseconds(_postLevelData.TrackData.BestTime).MillisRepresentation();
+            if(_postLevelData != null && _postLevelData.TrackData != null)
+                BestTot.Value = TimeSpan.FromMilliseconds(_postLevelData.TrackData.BestTime).MillisRepresentation();
 
             // COMPONENTS
             Sprite ComponentsIcon = new Sprite();
@@ -221,7 +223,8 @@ namespace SmartRoadSense.Shared
             ComponentsTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             ComponentsTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             ComponentsTot.SetFont(font, dim.XScreenRatio * 30);
-            ComponentsTot.Value = "x" + _postLevelData.Components;
+            if(_postLevelData != null && _postLevelData.TrackData != null)
+                ComponentsTot.Value = "x" + _postLevelData.Components;
 
             // COINS
             Sprite CoinsIcon = new Sprite();
@@ -245,7 +248,8 @@ namespace SmartRoadSense.Shared
             CoinsTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             CoinsTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             CoinsTot.SetFont(font, dim.XScreenRatio * 30);
-            CoinsTot.Value = "x" + _postLevelData.Coins;
+            if(_postLevelData != null && _postLevelData.TrackData != null)
+                CoinsTot.Value = "x" + _postLevelData.Coins;
 
             // POINTS
             Sprite PointsIcon = new Sprite();
@@ -269,7 +273,8 @@ namespace SmartRoadSense.Shared
             PointsTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             PointsTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             PointsTot.SetFont(font, dim.XScreenRatio * 30);
-            PointsTot.Value = _postLevelData.Points.ToString();
+            if(_postLevelData != null && _postLevelData.TrackData != null)
+                PointsTot.Value = _postLevelData.Points.ToString();
 
             // CHARACTER LEVEL
             Sprite RankRadBox1 = new Sprite();

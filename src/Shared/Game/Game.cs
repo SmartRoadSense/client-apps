@@ -60,10 +60,10 @@ namespace SmartRoadSense.Shared
             VehicleManager.Instance.Init();
 
 #if DEBUG
-            CharacterManager.Instance.Wallet += 10000;
-#endif
+            //CharacterManager.Instance.Wallet += 10000;
             //_debug = Engine.CreateDebugHud();
             //_debug.ToggleAll();
+#endif
         }
 
         void InitResourceCache() {

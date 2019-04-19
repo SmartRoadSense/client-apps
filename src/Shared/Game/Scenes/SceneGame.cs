@@ -7,6 +7,13 @@ using Urho.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using Urho.Audio;
+using SmartRoadSense.Shared.Data;
+using System.IO;
+#if __ANDROID__
+using Android.Runtime;
+#else
+using System.Drawing;
+#endif
 
 namespace SmartRoadSense.Shared
 {
@@ -25,20 +32,19 @@ namespace SmartRoadSense.Shared
 
     public class SceneGame : BaseScene
     {
-        const uint NumObjects = 1;
         const float CameraDistance = 2.5f;
         const float _cameraStartingX = 0.0f;
         const float _cameraStartingY = 0.0f;
         const float _cameraStartingZ = -2.0f;
         const float _vehicleOffsetX = 1.5f;
         const float _vehicleOffsetY = 1.2f;
-        const float _speedStep = (float)Math.PI / 2;
 
         const string _balanceBodyName = "BalanceBody";
         const string _groundBodyName = "GroundBody";
         const string _groundColorNodeName = "GroundColorNode";
         const string _finishLineName = "FinishLineNode";
         const string _coinCollisionName = "CoinNode";
+        const string _componentCollisionName = "ComponentNode";
 
         const string _soundVolumeSlider = "SFX";
         const string _musicVolumeSlider = "MUSIC";
@@ -59,21 +65,25 @@ namespace SmartRoadSense.Shared
         Button btnB;
         Button btnL;
         Button btnR;
+        Button btnBoost;
 
-        bool _finishLinePassed { get; set; }
-        bool TouchEnabled { get; set; }
-        const float TouchSensitivity = 2;
+        bool _finishLinePassed;
         int _lastBackground;
         float _finishLineEndX;
         bool _timer;
         readonly bool _randomLevel;
         int _coins;
+        int _coinPositionedCounter;
         int _components;
+        bool _componentsCollected;
         bool _removedFirstCoin;
+        int _buttonSize;
+        int _trackLength;
 
         Stopwatch _stopwatch;
         GameDistanceData _distanceData;
         MapPositionData _mapPositionData;
+        Texture2D textureMap;
 
         static readonly Random random = new Random();
         /// Return a random float between 0.0 (inclusive) and 1.0 (exclusive.)
@@ -90,21 +100,21 @@ namespace SmartRoadSense.Shared
         List<Node> Bg1List = new List<Node>();
         List<Node> Bg2List = new List<Node>();
         List<Node> Bg3List = new List<Node>();
+        Dictionary<int, Sprite2D> CollectableSprites = new Dictionary<int, Sprite2D>();
 
         // Level data
-        readonly LevelModel _levelData;
+        readonly TrackModel _levelData;
         readonly int _lvlLandscape;
         Action<EndViewRenderEventArgs> _actionCloseSplashScreen;
 
         public SceneGame(Game game, bool randomLevel) : base(game) {
-
             // Reset scene
             GameInstance.ResourceCache.ReleaseAllResources();
             RemoveAllComponents();
             RemoveAllChildren();
 
             // Get level data
-            _levelData = LevelManager.Instance.SelectedLevelModel;
+            _levelData = TrackManager.Instance.SelectedTrackModel;
 
             // Init scene
             _randomLevel = randomLevel;
@@ -114,11 +124,19 @@ namespace SmartRoadSense.Shared
             else
                 _lvlLandscape = _levelData.Landskape;
 
+            InitGameplay();
+        }
+
+         void InitGameplay() 
+        {
             // Start music and splashscreen
             InitSounds();
             SplashScreen();
 
+            InitCollectables();
+
             CreateBackgroundScene();
+            //await CreateBackgroundScene();
             CreateForegroundScene();
             CreateOSD();
 
@@ -144,6 +162,40 @@ namespace SmartRoadSense.Shared
             //GameInstance.InitGameDebugWindow();
             //GameInstance.DrawDebugControls();
 #endif
+        }
+
+        void InitCollectables() {
+            var texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Level.Collectible.ResourcePath);
+
+            Sprite2D sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Coin
+            };
+            CollectableSprites.Add(0, sprite);
+
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Brakes
+            };
+            CollectableSprites.Add(1, sprite);
+
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Performance
+            };
+            CollectableSprites.Add(2, sprite);
+
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Wheels
+            };
+            CollectableSprites.Add(4, sprite);
+
+            sprite = new Sprite2D {
+                Texture = texture,
+                Rectangle = AssetsCoordinates.Level.Collectible.Suspension
+            };
+            CollectableSprites.Add(3, sprite);
         }
 
         void InitSounds() {
@@ -181,8 +233,7 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        void SplashScreen() 
-        {
+        void SplashScreen() {
             var splashScrName = SplashScreenCreator.CreateSplashScreen(GameInstance, this);
             GameInstance.Engine.RunFrame();
 
@@ -217,7 +268,6 @@ namespace SmartRoadSense.Shared
             GameInstance.Renderer.EndViewRender += _actionCloseSplashScreen;
 
             PostUpdate = new Action<PostUpdateEventArgs>((PostUpdateEventArgs obj) => {
-
                 if(_vehicle.MainBody == null)
                     return;
 
@@ -238,12 +288,12 @@ namespace SmartRoadSense.Shared
                 // Update distance travelled
                 var distanceBox = GameInstance.UI.Root.GetChild("distanceBox");
                 Text distanceText = (Text)distanceBox.GetChild("distanceText");
-                distanceText.Value = _distanceData.DistanceText(_vehicle.MainBody.Node.Position.X);
+                distanceText.Value = _distanceData.DistanceText(_vehicle.MainBody.Node.Position.X, _trackLength);
 
                 // Update map indicator
                 var mapBox = GameInstance.UI.Root.GetChild("mapBox");
                 var MapIndicator = mapBox.GetChild("mapBar");
-                MapIndicator.SetPosition(_mapPositionData.LocatorPosition(_vehicle.MainBody.Node.Position.X), MapIndicator.Position.Y);
+                MapIndicator.SetPosition(_mapPositionData.LocatorPosition(_vehicle.MainBody.Node.Position.X, _trackLength), MapIndicator.Position.Y);
 
                 // Check if finish line has been reached
                 if(!_finishLinePassed && _vehicle.MainBody.Node.Position.X >= _finishLineEndX)
@@ -261,6 +311,7 @@ namespace SmartRoadSense.Shared
             PostRenderUpdate = new Action<PostRenderUpdateEventArgs>((PostRenderUpdateEventArgs obj) => {
                 var debugRendererComp = GetComponent<DebugRenderer>();
                 var physicsComponent = GetComponent<PhysicsWorld2D>();
+
                 if(physicsComponent != null && GameInstance.ShowCollisionGeometry) {
                     physicsComponent.DrawDebugGeometry(debugRendererComp, false);
                 }
@@ -303,6 +354,26 @@ namespace SmartRoadSense.Shared
                         // In case we also play music, set the sound volume below maximum so that we don't clip the output
                         soundSource.Gain = 0.75f;
                         // Set the sound component to automatically remove its scene node from the scene when the sound is done playing
+                    }
+                }
+
+                // Component collect
+                if(string.Equals(obj.BodyA.Node.Name, _componentCollisionName) && !string.Equals(obj.BodyB.Node.Name, _componentCollisionName)) {
+                    obj.NodeA.Remove();
+                    _components += 1;
+                    // Update component text box
+                    var componentsBox = GameInstance.UI.Root.GetChild("componentsBox");
+                    var componentsText = (Text)componentsBox.GetChild("componentsText");
+                    componentsText.Value = string.Format("{0}", _components);
+
+                    // Play sound
+                    Sound sound = GameInstance.ResourceCache.GetSound(SoundLibrary.SFX.Component);
+                    if(sound != null) {
+                        Node soundNode = CreateChild("SoundComponent");
+                        SoundSource soundSource = soundNode.CreateComponent<SoundSource>();
+                        soundSource.SetSoundType(SoundType.Effect.ToString());
+                        soundSource.Play(sound);
+                        soundSource.Gain = 0.75f;
                     }
                 }
 
@@ -349,15 +420,27 @@ namespace SmartRoadSense.Shared
             {
                 var difficulty = NextRandom(5, 101);
                 recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
-                //recs = TerrainGenerator.RandomTerrain();
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList());
+                //_trackLength = NextRandom(900, 3601);
+                //recs = TerrainGenerator.RandomTerrain(trackLength);
+                //terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
+                //_trackLength = terrainData.Count();
+                _trackLength = 3600;
             }
             else 
             {
-                // TODO: get data based on selected level
-                var lvlId = LevelManager.Instance.SelectedLevelId;
-                recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList());
+                // Get data based on selected level
+                //recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), CharacterManager.Instance.User.Level);
+                var srsTrack = DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack).Result;
+
+                //var srsTrack = await DataStore.GetTrackPpe(TrackManager.Instance.SelectedTrackModel.GuidTrack);
+                var lst = new List<float>();
+                foreach(var t in srsTrack)
+                    lst.Add((float)t);
+                recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo);
+                _trackLength = terrainData.Count();
+
             }
 
             collisionChain = groundNode.CreateComponent<CollisionChain2D>();
@@ -374,13 +457,13 @@ namespace SmartRoadSense.Shared
 
             // DRAW GROUND TERRAIN
 
-            for(var i = 0; i < recs.Count(); i++) {
+            for(var i = 0; i < _trackLength; i++) {
                 if(i > 0) {
                     var vertex1 = collisionChain.GetVertex((uint)i - 1);
                     var vertex2 = collisionChain.GetVertex((uint)i);
                     DrawTerrainFill(vertex1.X, vertex1.Y, vertex2.X, vertex2.Y, i);
                     if(i % 2 == 0 && vertex1.X > 2)
-                        PlaceCoin(vertex1);
+                        PlaceCoin(vertex1, (uint)i);
                 }
             }
 
@@ -390,7 +473,7 @@ namespace SmartRoadSense.Shared
             var tmpSprite = GameInstance.ResourceCache.GetSprite2D(bgPath);
             tmpSprite.Rectangle = AssetsCoordinates.Backgrounds.GameplayBackgroundsGeneric.Background3.ImageRect;
             //
-            var backgroundsToDraw = recs.Count() * TerrainGenerator.TerrainStepLength / (tmpSprite.Rectangle.Right * Application.PixelSize);
+            var backgroundsToDraw = _trackLength * TerrainGenerator.TerrainStepLength / (tmpSprite.Rectangle.Right * Application.PixelSize);
 
             for(var i = 0; i < (int)backgroundsToDraw; i++) {
                 DrawBackground(i);
@@ -410,7 +493,7 @@ namespace SmartRoadSense.Shared
 
             // SET FINISH LINE
             // node object
-            _finishLineEndX = TerrainGenerator.TerrainBeginningOffset + TerrainGenerator.TerrainStepLength * TerrainGenerator.TerrainEndPoints;
+            _finishLineEndX = TerrainGenerator.TerrainBeginningOffset + TerrainGenerator.TerrainStepLength * _trackLength;
             //_finishLineEndX = TerrainGenerator.TerrainBeginningOffset + 30.0f;
 
             var finishLineNode = CreateChild(_finishLineName);
@@ -430,17 +513,19 @@ namespace SmartRoadSense.Shared
             // INIT MAP BOX & DISTANCE TRAVELLED
             _distanceData = new GameDistanceData(0/* TODO change if vehicle starting position changes */, _finishLineEndX);
             _mapPositionData = new MapPositionData(0, _finishLineEndX);
+
+            //return true;
         }
 
         void CreateForegroundScene() {
             // ADD VEHICLE
-            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache);
+            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache, GameInstance.ScreenInfo);
 
             // TODO: pass on selected balance object
             _vehicle = vehicleMain.InitCarInScene(VehicleLoad.BOX);
 
             // Create balance object
-            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName);
+            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName, GameInstance.ScreenInfo);
             _vehicle.BalanceObject = _balanceObject;
         }
 
@@ -481,8 +566,8 @@ namespace SmartRoadSense.Shared
             material.SetTechnique(0, CoreAssets.Techniques.NoTextureUnlitVCol);
             geom.SetMaterial(material);
 
-            var terrainColor = new Color(26.0f / 255.0f, 26.0f / 255.0f, 26.0f / 255.0f, 1.0f);
-            var terrainEndColor = new Color(130.0f / 255.0f, 120.0f / 255.0f, 120.0f / 255.0f, 1.0f);
+            var terrainColor = new Urho.Color(26.0f / 255.0f, 26.0f / 255.0f, 26.0f / 255.0f, 1.0f);
+            var terrainEndColor = new Urho.Color(130.0f / 255.0f, 120.0f / 255.0f, 120.0f / 255.0f, 1.0f);
 
             var A = new Vector3(x1, y1, 0.0f);          /* A-B */
             var B = new Vector3(x2, y2, 0.0f);          /* | | */
@@ -569,7 +654,7 @@ namespace SmartRoadSense.Shared
 
             // FOREGROUND
             Node foregroundNode = CreateChild("fg");
-            foregroundNode.Position = new Vector3(x, 1.0f * GameInstance.ScreenInfo.YScreenRatio - 3.2f, 0.0f);
+            foregroundNode.Position = new Vector3(x, 1.0f * GameInstance.ScreenInfo.YScreenRatio - 3.5f, 0.0f);
             foregroundNode.Scale = new Vector3(ratioX, ratioY, 0.0f);
             StaticSprite2D fgStaticSprite = foregroundNode.CreateComponent<StaticSprite2D>();
             fgStaticSprite.Sprite = fgSprite;
@@ -617,7 +702,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             gameOverWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             gameOverWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            gameOverWindow.SetColor(Color.FromHex("#22000000"));
+            gameOverWindow.SetColor(Urho.Color.FromHex("#22000000"));
             gameOverWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             gameOverWindow.Name = "GameOverWindow";
 
@@ -645,7 +730,7 @@ namespace SmartRoadSense.Shared
             gameOverWindow.AddChild(restartText);
             restartText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             restartText.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(200));
-            restartText.SetFont(font, 50);
+            restartText.SetFont(font, GameInstance.ScreenInfo.SetX(50));
             restartText.Value = "Press        to Restart";
 
             btnRestart.Pressed += args => {
@@ -666,7 +751,7 @@ namespace SmartRoadSense.Shared
             gameOverWindow.AddChild(quitText);
             quitText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             quitText.SetPosition(GameInstance.ScreenInfo.SetX(-10), GameInstance.ScreenInfo.SetY(380));
-            quitText.SetFont(font, 50);
+            quitText.SetFont(font, GameInstance.ScreenInfo.SetX(50));
             quitText.Value = "Press        to Exit";
 
             btnQuit.Pressed += args => {
@@ -681,21 +766,18 @@ namespace SmartRoadSense.Shared
                 return;
 
             // Update failed race status
-            var levelData = LevelManager.Instance.SelectedLevelModel;
+            var levelData = TrackManager.Instance.SelectedTrackModel;
             levelData.TotalOfFailures += 1;
             levelData.TotalOfPlays += 1;
-            LevelManager.Instance.SelectedLevelModel = levelData;
+            TrackManager.Instance.SelectedTrackModel = levelData;
 
             // Lose experience points
-            // TODO: activate
-            /*
-            var lostExp = CharacterLevelData.LostPoints(_distanceData.Distance(_vehicle.MainBody.Node.Position.X));
+            var lostExp = CharacterLevelData.LostPoints(_distanceData.Distance(_vehicle.MainBody.Node.Position.X, _trackLength), _trackLength);
             var player = CharacterManager.Instance.User;
             player.Experience += lostExp;
             if(player.Experience < 0)
                 player.Experience = 0;
             CharacterManager.Instance.User = player;
-            */
         }
 
         void LevelComplete()
@@ -711,7 +793,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             levelCompleteWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             levelCompleteWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            levelCompleteWindow.SetColor(Color.FromHex("#22000000"));
+            levelCompleteWindow.SetColor(Urho.Color.FromHex("#22000000"));
             levelCompleteWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             levelCompleteWindow.Name = "LevelCompleteWindow";
 
@@ -734,14 +816,14 @@ namespace SmartRoadSense.Shared
 
             btnContinue.Pressed += args => {
                 // Set post race data
-                var postRaceData = new LastPlayedLevel {
-                    LevelData = _levelData,
+                var postRaceData = new LastPlayedTrack {
+                    TrackData = _levelData,
                     Components = _components,
                     Coins = _coins,
                     Time = (int)_stopwatch.GetElapsedTime().TotalMilliseconds,
                     Points = CharacterLevelData.ObtainedPoints((int)_stopwatch.GetElapsedTime().TotalMilliseconds)
                 };
-                LevelManager.Instance.LastPlayedLevelInfo = postRaceData;
+                TrackManager.Instance.LastPlayedTrackInfo = postRaceData;
                 CloseGameLevel();
                 GameInstance.LaunchScene(GameScenesEnumeration.POST_RACE, _randomLevel);
             };
@@ -768,7 +850,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             pauseWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             pauseWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            pauseWindow.SetColor(Color.FromHex("#22000000"));
+            pauseWindow.SetColor(Urho.Color.FromHex("#22000000"));
             pauseWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             pauseWindow.Name = "PauseWindow";
 
@@ -784,11 +866,11 @@ namespace SmartRoadSense.Shared
             rectangle.ImageRect = AssetsCoordinates.Generic.Boxes.PauseMenuBox;
 
             Text restart = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 50, 50, 50, HorizontalAlignment.Left, VerticalAlignment.Top, "Restart");
-            restart.SetColor(Color.White);
+            restart.SetColor(Urho.Color.White);
             Text settings = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 50, 50, 0, HorizontalAlignment.Left, VerticalAlignment.Center, "Settings");
-            settings.SetColor(Color.White);
+            settings.SetColor(Urho.Color.White);
             Text quit = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 50, 50, -50, HorizontalAlignment.Left, VerticalAlignment.Bottom, "Quit");
-            quit.SetColor(Color.White);
+            quit.SetColor(Urho.Color.White);
 
             Button btnRestart = GameButton.CreateButton(rectangle, GameInstance.ScreenInfo, -50, 30, 140, 140, HorizontalAlignment.Right, VerticalAlignment.Top);
             btnRestart.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
@@ -897,7 +979,7 @@ namespace SmartRoadSense.Shared
             // Set Window size and layout settings
             quitWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             quitWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            quitWindow.SetColor(Color.FromHex("#22000000"));
+            quitWindow.SetColor(Urho.Color.FromHex("#22000000"));
             quitWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             quitWindow.Name = "QuitWindow";
 
@@ -914,7 +996,7 @@ namespace SmartRoadSense.Shared
             Text warningText = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 35, 250, 0, HorizontalAlignment.Left, VerticalAlignment.Center, "Are you sure? Game progress will be lost.");
             warningText.Wordwrap = true;
             warningText.SetSize(GameInstance.ScreenInfo.SetX(750-270), GameInstance.ScreenInfo.SetY(240));
-            warningText.SetColor(Color.White);
+            warningText.SetColor(Urho.Color.White);
 
             var quitButton = new Button();
             quitButton.SetPosition(GameInstance.ScreenInfo.SetX(-85), GameInstance.ScreenInfo.SetY(200));
@@ -925,7 +1007,7 @@ namespace SmartRoadSense.Shared
             quitWindow.AddChild(quitButton);
 
             Text confirmText = GameText.CreateText(quitButton, GameInstance.ScreenInfo, font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "Yes");
-            confirmText.SetColor(Color.White);
+            confirmText.SetColor(Urho.Color.White);
 
             quitButton.Pressed += (PressedEventArgs args) => {
                 CloseGameLevel();
@@ -941,7 +1023,7 @@ namespace SmartRoadSense.Shared
             quitWindow.AddChild(continueButton);
 
             Text cancelText = GameText.CreateText(continueButton, GameInstance.ScreenInfo, font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "No");
-            cancelText.SetColor(Color.White);
+            cancelText.SetColor(Urho.Color.White);
 
             continueButton.Pressed += (PressedEventArgs args) => {
                 quitWindow.Visible = false;
@@ -997,11 +1079,10 @@ namespace SmartRoadSense.Shared
 
         void InitOSD()
         {
-            TouchEnabled = true;
-
 #if DEBUG
             InitShowHidePhysics();
 #endif
+            InitButtonSize();
             InitButtonAccelerate();
             InitButtonBrake();
             InitButtonRotateLeft();
@@ -1025,9 +1106,27 @@ namespace SmartRoadSense.Shared
             };
         }
 
+        void InitButtonSize() {
+            switch(SettingsManager.Instance.GameplayButtonSize) {
+                case GameplayButtonSize.SMALL:
+                    _buttonSize = 140;
+                    break;
+                case GameplayButtonSize.MEDIUM:
+                    _buttonSize = 160;
+                    break;
+                case GameplayButtonSize.LARGE:
+                    _buttonSize = 180;
+                    break;
+            }
+        }
+
         void InitButtonAccelerate()
         {
-            btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+            if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
+                btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+            else
+                btnA = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+
             btnA.Name = "Button0";
             btnA.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btnA.ImageRect = AssetsCoordinates.Generic.Icons.AButton;
@@ -1053,7 +1152,11 @@ namespace SmartRoadSense.Shared
 
         void InitButtonBrake() 
         {
-            btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, 160, 160, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+            if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
+                btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+            else
+                btnB = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+
             btnB.Name = "Button1";
             btnB.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btnB.ImageRect = AssetsCoordinates.Generic.Icons.BButton;
@@ -1075,7 +1178,11 @@ namespace SmartRoadSense.Shared
 
         void InitButtonRotateLeft() 
         {
-            btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
+                btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            else
+                btnL = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, -190, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+
             btnL.Name = "Button2";
             btnL.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btnL.ImageRect = AssetsCoordinates.Generic.Icons.RLeftButton;
@@ -1102,7 +1209,11 @@ namespace SmartRoadSense.Shared
 
         void InitButtonRotateRight() 
         {
-            btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
+                btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            else
+                btnR = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -240, -40, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+
             btnR.Name = "Button3";
             btnR.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btnR.ImageRect = AssetsCoordinates.Generic.Icons.RRightButton;
@@ -1129,18 +1240,23 @@ namespace SmartRoadSense.Shared
 
         void InitButtonBoost() 
         {
-            var btn = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, 380, 160, 160, HorizontalAlignment.Left, VerticalAlignment.Bottom);
-            btn.Name = "Button4";
-            btn.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
-            btn.ImageRect = AssetsCoordinates.Generic.Icons.BoosterIcon;
-            btn.HoverOffset = new IntVector2(0, 0);
-            btn.PressedOffset = new IntVector2(0, 0);
 
-            btn.Pressed += (PressedEventArgs args) => {
+            if(SettingsManager.Instance.ControllerLayout == ControllerPosition.RIGHT_CONTROLLER)
+                btnBoost = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, 100, 380, _buttonSize, _buttonSize, HorizontalAlignment.Left, VerticalAlignment.Bottom);
+            else
+                btnBoost = GameButton.CreateButton(GameInstance.UI.Root, GameInstance.ScreenInfo, -100, 380, _buttonSize, _buttonSize, HorizontalAlignment.Right, VerticalAlignment.Bottom);
+
+            btnBoost.Name = "Button4";
+            btnBoost.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            btnBoost.ImageRect = AssetsCoordinates.Generic.Icons.BoosterIcon;
+            btnBoost.HoverOffset = new IntVector2(0, 0);
+            btnBoost.PressedOffset = new IntVector2(0, 0);
+
+            btnBoost.Pressed += (PressedEventArgs args) => {
                 Debug.WriteLine("BOOST DOWN");
             };
 
-            btn.Released += (ReleasedEventArgs args) => {
+            btnBoost.Released += (ReleasedEventArgs args) => {
                 Debug.WriteLine("BOOST UP");
             };
         }
@@ -1383,60 +1499,170 @@ namespace SmartRoadSense.Shared
             var distanceBox = GameInstance.UI.Root.GetChild("distanceBox");
             distanceBox.AddChild(distanceText);
 
-            /*
+
             // Draw map line
-            var mapBox = GameInstance.UI.Root.GetChild("mapBox");
-            var mapLineNode = CreateChild("mapLineNode");
+            BorderImage mapBox = GameInstance.UI.Root.GetChild("mapBox") as BorderImage;
+            //mapBox.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
 
-            for(var i = 0; i < terrainData.Count - TerrainGenerator.EndOfLevelSurfaceLength; i+=10) {
-                Vector2 point1;
-                Vector2 point2;
-                if(i <= 10) {
-                    continue;
+            var mapTrack = new BorderImage {
+                Size = mapBox.Size,
+                Position = new IntVector2(0, 0),
+            };
+            //mapTrack.SetColor(Urho.Color.Blue);
+            mapBox.AddChild(mapTrack);
+
+            Image img = new Image();
+            img.SetSize(2048, 512, 4);
+            // Draw transparentImage
+            for(var w = 0; w < img.Width; w++) {
+                for(var h = 0; h < img.Height; h++) {
+                    img.SetPixel(w, h, new Urho.Color(1.0f, 0.0f, 0.0f, 0.0f));
                 }
-                else {
-                    var range = terrainData.GetRange(i - 10, 10);
-                    point1 = range.First().Vector;
-                    point2 = range.Last().Vector;
-                    if(point1.X <= 0)
-                        continue;
-                }
-                var map1 = _mapPositionData.TerrainPoint(point1);
-                var map2 = _mapPositionData.TerrainPoint(point2);
-
-                var mapLineGeometry = mapLineNode.CreateComponent<CustomGeometry>(CreateMode.Local, (uint)i);
-                mapLineGeometry.BeginGeometry(0, PrimitiveType.LineList);
-                var material = new Material();
-                material.SetTechnique(0, CoreAssets.Techniques.NoTextureUnlitVCol);
-                mapLineGeometry.SetMaterial(material);
-
-                var color = new Color(1.0f, 1.0f / 255.0f, 1.0f / 255.0f, 1.0f);
-                mapLineGeometry.DefineVertex(new Vector3(map1.X, map1.Y, 0.0f));
-                mapLineGeometry.DefineColor(color);
-                mapLineGeometry.DefineVertex(new Vector3(map2.X, map2.Y, 0.0f));
-                mapLineGeometry.DefineColor(color);
-
-                mapLineGeometry.Commit();
             }
+
+            var trackMap = new Dictionary<int, int>();
+            var offset = 30;
+            var trackColor = new Urho.Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+            for(var i = 1; i < _trackLength; i++) {
+                Vector2 point1 = terrainData[i].Vector;
+                if(point1.X <= 0)
+                    continue;
+                
+                Vector2 map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
+                int y = 0;
+                if(map1.Y.Equals(0)) 
+                    y = mapBox.Height;
+                else
+                    y = (int)(mapBox.Height - Extentions.Multiply(map1.Y));
+
+                if(!trackMap.ContainsKey((int)map1.X)) {
+                    if(trackMap.Count < 1) {
+                        img.SetPixel((int)map1.X, y - offset, trackColor);
+                        img.SetPixel((int)map1.X, y - offset - 1, trackColor);
+
+                        trackMap.Add((int)map1.X, y - offset);
+                    }
+                    else {
+                        var abs = y - offset - trackMap.Last().Value;
+                        if(Math.Abs(abs) > 1) {
+                            y = abs > 0
+                              ? trackMap.Last().Value + 1
+                              : trackMap.Last().Value - 1;
+                            img.SetPixel((int)map1.X, y, trackColor);
+                            img.SetPixel((int)map1.X, y - 1, trackColor);
+
+                            trackMap.Add((int)map1.X, y);
+                        }
+                        else {
+                            img.SetPixel((int)map1.X, y - offset, trackColor);
+                            img.SetPixel((int)map1.X, y - offset - 1, trackColor);
+
+                            trackMap.Add((int)map1.X, y - offset);
+                        }
+                    }
+                }
+            }
+            trackMap = null;
+
+            // Order values of list
+            /*
+            var myList = mapPoints.ToList();
+            myList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
+            var smallest = Extentions.Multiply(myList.First().Value);
+            var multiplierFactor = smallest / myList.First().Value;
+            var biggest = Extentions.Multiply(myList.Last().Value);
+            var diff = biggest - smallest;
             */
+
+
+#if __IOS__
+            var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var filePath = Path.Combine(documents, "track_img.png");//You can set the fileName what you want just take care of extension
+#else 
+            var sdCard = App.Context.GetExternalFilesDir(null).AbsolutePath;
+            var filePath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "track_img.png");
+            //Java.IO.File dir = new Java.IO.File("/urho");
+            //dir.Mkdirs();
+            //var filePath = Path.Combine(dir.Path, "track_img.png"); //You can set the fileName what you want just take care of extension
+#endif
+            var save = img.SavePNG(filePath);
+            Debug.WriteLine("png saved: " + save);
+            textureMap = GameInstance.ResourceCache.GetTexture2D(filePath);
+            //mapBox.Texture = textureMap;
+            mapTrack.Texture = textureMap;
+            mapTrack.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
+            mapTrack.UseDerivedOpacity = true;
         }
 
-        void PlaceCoin(Vector2 vector) {
-            var rnd = NextRandom(0, 101);
-            if(rnd < 70)
-                return;
+        void PlaceCoin(Vector2 vector, uint id) {
+
+            if(_coinPositionedCounter == 0) {
+                var compRnd = NextRandom(0, 751);
+                if(compRnd == 0 && !_componentsCollected) {
+                    _componentsCollected = true;
+
+                    // Place component
+                    Node componentNode = CreateChild(_componentCollisionName);
+                    componentNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
+                    componentNode.Scale = new Vector3(2.0f, 2.0f, 1.0f);
+
+                    var componentStaticSprite = componentNode.CreateComponent<StaticSprite2D>();
+                    // Get sprite for component
+                    switch(NextRandom(1, 5)) {
+                        case 1:
+                            componentStaticSprite.Sprite = CollectableSprites[1];
+                            break;
+                        case 2:
+                            componentStaticSprite.Sprite = CollectableSprites[2];
+                            break;
+                        case 3:
+                            componentStaticSprite.Sprite = CollectableSprites[3];
+                            break;
+                        case 4:
+                            componentStaticSprite.Sprite = CollectableSprites[4];
+                            break;
+                    }
+
+                    // Collision shape
+                    var componentCollision = componentNode.CreateComponent<CollisionBox2D>();
+                    componentCollision.Size = new Vector2(GameInstance.ScreenInfo.SetX(1.0f), GameInstance.ScreenInfo.SetY(1.0f));
+                    componentCollision.Friction = 0.25f;
+                    componentCollision.Density = 0.001f;
+                    componentCollision.Restitution = 0f;
+
+                    // Collision body
+                    var componentCenter = componentNode.CreateComponent<RigidBody2D>();
+                    componentCenter.BodyType = BodyType2D.Dynamic;
+                    componentCenter.Mass = 0.01f;
+
+                    if(_removedFirstCoin)
+                        return;
+
+                    _removedFirstCoin = true;
+                    RemoveChild(GetChild(componentNode.ID));
+                    return;
+                }
+
+                var rnd = NextRandom(0, 101);
+                if(rnd < 80)
+                    return;
+            }
+
+            if(_coinPositionedCounter == 0)
+                _coinPositionedCounter = 5;
+            _coinPositionedCounter--;
 
             // Node
             Node coinNode = CreateChild(_coinCollisionName);
             coinNode.Position = (new Vector3(vector.X, vector.Y - 1.15f, 0.75f));
-            coinNode.Scale = new Vector3(1.5f * GameInstance.ScreenInfo.XScreenRatio, 1.5f *  GameInstance.ScreenInfo.YScreenRatio, 1.0f);
+            //coinNode.Scale = new Vector3(1.0f, 1.0f, 1.0f);
             StaticSprite2D coinStaticSprite = coinNode.CreateComponent<StaticSprite2D>();
-            coinStaticSprite.Sprite = GameInstance.ResourceCache.GetSprite2D(AssetsCoordinates.Level.Collectible.ResourcePath);
-            coinStaticSprite.Sprite.Rectangle = AssetsCoordinates.Level.Collectible.Coin;
+            coinStaticSprite.Sprite = CollectableSprites[0];
 
             // Collision shape
             var coinCollision = coinNode.CreateComponent<CollisionBox2D>();
-            coinCollision.Size = new Vector2(0.75f, 0.75f);// Set radius
+            coinCollision.Size = new Vector2(0.5f, 0.5f);// Set radius
             coinCollision.Friction = 0.25f;
             coinCollision.Density = 0.001f;
             coinCollision.Restitution = 0f;
@@ -1450,7 +1676,7 @@ namespace SmartRoadSense.Shared
                 return;
 
             _removedFirstCoin = true;
-            RemoveChild(GetChild(_coinCollisionName));
+            RemoveChild(GetChild(coinNode.ID));
         }
 
         Slider CreateSlider(int x, int y, int xSize, int ySize, string text, UIElement container) {
@@ -1506,5 +1732,9 @@ namespace SmartRoadSense.Shared
                     return BackgroundColors.MoonColor;
             }
         }
+
+      
     }
+
+
 }

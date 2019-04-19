@@ -9,20 +9,20 @@ namespace SmartRoadSense.Shared {
             End = endX;
         }
 
-        public int Distance(float currentPosition) {
+        public int Distance(float currentPosition, int terrainLength) {
             int x = currentPosition < Start
                 ? 0
                 : currentPosition > End
-                    ? (int)TerrainGenerator.TerrainEndPoints
+                    ? terrainLength
                     : (int)(currentPosition * (1 / TerrainGenerator.TerrainStepLength));
             return x;
         }
 
-        public string DistanceText(float currentPosition) {
+        public string DistanceText(float currentPosition, int terrainLength) {
             var x = currentPosition < Start
                 ? 0
                 : currentPosition > End
-                    ? TerrainGenerator.TerrainEndPoints
+                    ? terrainLength
                     : (int)currentPosition * (1 / TerrainGenerator.TerrainStepLength);
             return string.Format("{0} m", x);
         }

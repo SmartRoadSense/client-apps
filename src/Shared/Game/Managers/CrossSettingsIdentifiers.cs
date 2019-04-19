@@ -5,11 +5,16 @@ namespace SmartRoadSense.Shared {
 
         CrossSettingsIdentifiers(string value) { Value = value; }
 
+        public static CrossSettingsIdentifiers TrackList => new CrossSettingsIdentifiers("TRACKS_LIST");
+        //public static CrossSettingsIdentifiers ExitFlag => new CrossSettingsIdentifiers("EXIT_FLAG");
+
         // VEHICLE DATA
         public static CrossSettingsIdentifiers VehicleCount => new CrossSettingsIdentifiers("VEHICLES_COUNT");
         public static CrossSettingsIdentifiers IdVehicle => new CrossSettingsIdentifiers("VEHICLES_ID_VEHICLE");
         public static CrossSettingsIdentifiers SelectedGarageVehicle => new CrossSettingsIdentifiers("VEHICLES_SELECTED_GARAGE_VEHICLE");
         public static CrossSettingsIdentifiers SelectedVehicle => new CrossSettingsIdentifiers("VEHICLES_SELECTED_VEHICLE");
+        public static CrossSettingsIdentifiers UnlockedVehicles => new CrossSettingsIdentifiers("VEHICLES_UNLOCKED_VEHICLES");
+        public static CrossSettingsIdentifiers CollectedComponents => new CrossSettingsIdentifiers("VEHICLES_COLLECTED_COMPONENTS");
 
         // VEHICLE UPGRADES
         /*
@@ -26,10 +31,10 @@ namespace SmartRoadSense.Shared {
         public static CrossSettingsIdentifiers SelectedCharacter => new CrossSettingsIdentifiers("CHARACTERS_SELECTED_CHARACTER");
 
         //LEVEL DATA
-        public static CrossSettingsIdentifiers Levels => new CrossSettingsIdentifiers("LEVEL_LEVELS");
+        public static CrossSettingsIdentifiers Tracks => new CrossSettingsIdentifiers("LEVEL_LEVELS");
         public static CrossSettingsIdentifiers LevelInfo => new CrossSettingsIdentifiers("LEVEL_INFO");
-        public static CrossSettingsIdentifiers LevelCount => new CrossSettingsIdentifiers("LEVELS_COUNT");
-        public static CrossSettingsIdentifiers IdLevel => new CrossSettingsIdentifiers("LEVELS_ID_LEVEL");
+        public static CrossSettingsIdentifiers TrackCount => new CrossSettingsIdentifiers("LEVELS_COUNT");
+        public static CrossSettingsIdentifiers IdTrack => new CrossSettingsIdentifiers("LEVELS_ID_LEVEL");
         public static CrossSettingsIdentifiers SelectedLevel => new CrossSettingsIdentifiers("LEVELS_SELECTED_LEVEL");
         public static CrossSettingsIdentifiers LastPlayedLevel => new CrossSettingsIdentifiers("LEVELS_LAST_PLAYED");
 

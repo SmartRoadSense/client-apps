@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
+using System.Threading.Tasks;
 using Urho;
-using Urho.Actions;
-using Urho.Audio;
 using Urho.Gui;
 using Urho.Resources;
 using Urho.Urho2D;
@@ -29,11 +27,6 @@ namespace SmartRoadSense.Shared
         {
         }
 
-        /*
-        [Preserve]
-        public Game(ApplicationOptions options = null) : base(options) { }
-        */
-
         static Game() {
             UnhandledException += Application_UnhandledException;
         }
@@ -47,16 +40,30 @@ namespace SmartRoadSense.Shared
         /// </summary>
         public string JoystickLayoutPatch;// => JoystickLayoutPatches.WithZoomInAndOut;
 
+        //DebugHud _debug;
         protected override void Start() {
+
             InitResourceCache();
 
             InitUiInfo();
+
+            InitLoadingScreen();
+
+            Task.Run(async () => { await InitTracks(); }).Wait();
 
             LaunchScene(GameScenesEnumeration.MENU);
 
             JsonReaderVehicles.GetVehicleConfig();
 
             CharacterLevelData.PointsToNextLevel();
+
+            VehicleManager.Instance.Init();
+
+#if DEBUG
+            CharacterManager.Instance.Wallet += 10000;
+#endif
+            //_debug = Engine.CreateDebugHud();
+            //_debug.ToggleAll();
         }
 
         void InitResourceCache() {
@@ -89,6 +96,26 @@ namespace SmartRoadSense.Shared
 
             XmlFile uiStyle = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             UI.Root.SetDefaultStyle(uiStyle);
+
+            Engine.MaxFps = 30;
+        }
+
+        void InitLoadingScreen() {
+            var splashScreen = new BorderImage {
+                Texture = ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.LoadingGameScreen.ResourcePath),
+                ImageRect = AssetsCoordinates.Backgrounds.LoadingGameScreen.ImageRect,
+                Size = new IntVector2(ScreenInfo.SetX(1920), ScreenInfo.SetY(1080)),
+                Position = new IntVector2(ScreenInfo.SetX(0), ScreenInfo.SetY(0))
+            };
+            UI.Root.AddChild(splashScreen);
+            Engine.RunFrame();
+        }
+
+        async Task<bool> InitTracks() {
+#if DEBUG
+            //TrackManager.Instance.Tracks = null;
+#endif
+            return await TrackManager.Instance.Init();
         }
 
         void HandleKeyDown(KeyDownEventArgs e) {
@@ -117,7 +144,7 @@ namespace SmartRoadSense.Shared
                     SceneManager.Instance.SetScene(new SceneGarage(this));
                     break;
                 case GameScenesEnumeration.PROFILE:
-                    SceneManager.Instance.SetScene(new SceneProfile(this, modifier));
+                    SceneManager.Instance.SetScene(new SceneProfileImage(this, modifier));
                     break;
                 case GameScenesEnumeration.SETTINGS:
                     SceneManager.Instance.SetScene(new SceneSettings(this));
@@ -136,10 +163,12 @@ namespace SmartRoadSense.Shared
                 case GameScenesEnumeration.USER_PROFILE:
                     SceneManager.Instance.SetScene(new SceneUserProfile(this));
                     break;
+                case GameScenesEnumeration.CREDITS:
+                    SceneManager.Instance.SetScene(new SceneCredits(this));
+                    break;
             }
         }
 
-        const float _speedStep = (float)Math.PI / 2;
         public Node CameraNode { get; set; }
         public Vehicle GameVehicle { get; set; }
         public Vehicle GameVehiclePause { get; set; }
@@ -165,40 +194,30 @@ namespace SmartRoadSense.Shared
             if(GamePaused)
                 return;
 
-            var staticX = GameVehicle.MainBody.LinearVelocity.X * PixelSize * ScreenInfo.XScreenRatio;
+            //Debug.WriteLine(_debug.ModeText.Value);
+            //Debug.WriteLine(_debug.MemoryText.Value);
+            //Debug.WriteLine(_debug.ProfilerText.Value);
+            //Debug.WriteLine("\n");
 
-            if(CameraNode.Position.X >= 0.0f && GameVehicle.MainBody.LinearVelocity.X > 0.2) {
+            var staticX = GameVehicle.MainBody.LinearVelocity.X * timeStep;
+
+            if(CameraNode.Position.X >= 0.0f && GameVehicle.MainBody.LinearVelocity.X > 0.01) {
                 for(var i = 0; i < Bg3Node.Count; i++) {
-                    Bg3Node[i].Position = new Vector3(Bg3Node[i].Position.X + staticX * 2.1f, CameraNode.Position.Y, Bg3Node[i].Position.Z);
-                    Bg2Node[i].Position = new Vector3(Bg2Node[i].Position.X + staticX * 1.7f, CameraNode.Position.Y, Bg2Node[i].Position.Z);
-                    Bg1Node[i].Position = new Vector3(Bg1Node[i].Position.X + staticX * 1.2f, CameraNode.Position.Y, Bg1Node[i].Position.Z);
+                    Bg3Node[i].Position = new Vector3(Bg3Node[i].Position.X + staticX * 0.8f, CameraNode.Position.Y, Bg3Node[i].Position.Z);
+                    Bg2Node[i].Position = new Vector3(Bg2Node[i].Position.X + staticX * 0.55f, CameraNode.Position.Y, Bg2Node[i].Position.Z);
+                    Bg1Node[i].Position = new Vector3(Bg1Node[i].Position.X + staticX * 0.3f, CameraNode.Position.Y, Bg1Node[i].Position.Z);
                 }
             }
-
-            // Update game screen debug text
-            if(backWheelSpeedText != null)
-                backWheelSpeedText.Value = string.Format(
-                    "linear velocity x: "
-                    + GameVehicle.MainBody.LinearVelocity.X
-                    + "\n"
-                    + "linear velocity y: "
-                    + GameVehicle.MainBody.LinearVelocity.Y
-                    + "\n"
-                    + "wheel 1 motor speed: "
-                    + GameVehicle.Wheel1.MotorSpeed.ToString()
-                    + "\n"
-                    + "wheel 2 motor speed: "
-                    + GameVehicle.Wheel2.MotorSpeed.ToString());
 
             // Do not move if the UI has a focused element (p.e.: pause menu)
             if(UI != null && UI.FocusElement != null)
                 return;
 
             // Movement speed as world units per second
-            float moveSpeed = 2.0f;
-            float brakeSpeed = 2.0f;
-            moveSpeed = moveSpeed * VehicleManager.Instance.SelectedVehicleModel.Performance;
-            brakeSpeed = brakeSpeed * VehicleManager.Instance.SelectedVehicleModel.Brake;
+            float moveSpeed = 1.5f * timeStep;
+            float brakeSpeed = 1.5f * timeStep;
+            moveSpeed *= VehicleManager.Instance.SelectedVehicleModel.Performance;
+            brakeSpeed *= VehicleManager.Instance.SelectedVehicleModel.Brake;
 
             Camera camera = CameraNode.GetComponent<Camera>();
             //camera.Zoom = camera.Zoom * 0.999f;
@@ -211,28 +230,29 @@ namespace SmartRoadSense.Shared
             //    camera.Zoom = camera.Zoom * 0.99f;
             //}
             if(OSDCommands.RotatingLeft) {
-                GameVehicle.MainBody.ApplyAngularImpulse(0.5f * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyAngularImpulse(0.5f * moveSpeed, true);
             }
             if(OSDCommands.RotatingRight) {
-                GameVehicle.MainBody.ApplyAngularImpulse(-0.5f * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyAngularImpulse(-0.5f * moveSpeed, true);
             }
             if(OSDCommands.Braking) {
                 if(GameVehicle.MainBody.LinearVelocity.X > 0.0f)
-                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(-Vector2.UnitX * brakeSpeed * timeStep, true);
+                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(-Vector2.UnitX * brakeSpeed, true);
                 else if(GameVehicle.MainBody.LinearVelocity.X < 0.0f)
-                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * brakeSpeed * timeStep, true);
+                    GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * brakeSpeed, true);
                 else
                     GameVehicle.MainBody.SetLinearVelocity(new Vector2(0, 0));
                 return;
             }
             if(OSDCommands.Accelerating) {
-                GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * moveSpeed * timeStep, true);
+                GameVehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * moveSpeed, true);
                 return;
             }
             if(Input.GetKeyPress(Key.G)) {
                 ShowCollisionGeometry = !ShowCollisionGeometry;
                 return;
             }
+
             if(Input.GetKeyPress(Key.X)) {
                 // Destroy everything game related
                 Engine.PostRenderUpdate -= PostRenderUpdate;
@@ -340,15 +360,12 @@ namespace SmartRoadSense.Shared
         {
             GamePaused = true;
             // STOP BG
-
-            // TODO: stop time
         }
 
         public void ResumeGame()
         {
             // RESUME BG
             GamePaused = false;
-            // TODO: resume time
         }
 
     }

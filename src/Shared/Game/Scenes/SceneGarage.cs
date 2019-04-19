@@ -2,52 +2,55 @@ using System;
 using Urho;
 using Urho.Gui;
 using Urho.Resources;
+using System.Linq;
+using System.Diagnostics;
 
 namespace SmartRoadSense.Shared {
     public class SceneGarage : BaseScene {
-        ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
-        ResourceCache cache;
-        Sprite img_vehicle;
-        Sprite black_bar;
-        Sprite cont_upgrade;
-        Sprite upgrademenu;        
-        Sprite performance_bar;
-        Sprite performance_bar_a;
-        Sprite selectable;
-        Sprite suspensions_bar;
-        Sprite suspensions_bar_a;
-        Sprite cont_downBar;
-        Sprite brake_bar;
-        Sprite brake_bar_a;
-        Text screen_info;
-        Sprite wheel_bar;
-        Sprite wheel_bar_a;
-        Sprite backgroundSprite;
-        UI ui;
-        Text buttonText;
-        Font font;
-        UIElement root;
-        int vehicle_selected;
-        int vehicle_id;
-        Button bt_confirm;
-        int vehicles_count;
-        Window window;
-        
+        readonly ScreenInfoRatio _dim; //variabile rapporto dimensioni schermo
+        readonly ResourceCache _cache;
+        Sprite _blackBar;
+        Sprite _contUpgrade;
+        BorderImage _performanceBar;
+        Sprite _performanceBarA;
+        BorderImage _suspensionsBar;
+        Sprite _suspensionsBarA;
+        BorderImage _brakeBar;
+        Sprite _brakeBarA;
+        Text _screenInfo;
+        BorderImage _wheelBar;
+        Sprite _wheelBarA;
+        Text _carName;
+        Sprite _backgroundSprite;
+        readonly Font _font;
+        readonly UIElement _root;
+        int _idDVehicle;
+        Button _selectedVehicle;
+        Button _nextVehicle;
+        Button _prevVehicle;
+        Sprite _lockedVehicle;
+        Sprite _contComponents;
+        BorderImage Body;
+        BorderImage Wheel;
+        BorderImage Suspensions;
+        BorderImage Engine;
+        int wallet_tot;
+        Text wallet;
+        VehicleModel _currentVehicleModel;
 
         public SceneGarage(Game game) : base(game) {
-            vehicle_id = VehicleManager.Instance.SelectedVehicleId;
-            if(vehicle_id < 0)
-                vehicle_id = 0;
+            _idDVehicle = VehicleManager.Instance.SelectedVehicleModel != null ? VehicleManager.Instance.SelectedVehicleModel.IdVehicle : -1;
+            if(_idDVehicle < 0)
+                _idDVehicle = 0;
 
-            dim = GameInstance.ScreenInfo;
-            root = GameInstance.UI.Root;
-            cache = GameInstance.ResourceCache;
-            font = cache.GetFont("Fonts/OpenSans-Bold.ttf");
-            ui = GameInstance.UI;
+            _dim = GameInstance.ScreenInfo;
+            _root = GameInstance.UI.Root;
+            _cache = GameInstance.ResourceCache;
+            _font = _cache.GetFont("Fonts/OpenSans-Bold.ttf");
             JsonReaderVehicles.GetVehicleConfig();
-            var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
-            vehicles_count = VehicleManager.Instance.VehicleCount;
-            vehicle_selected = VehicleManager.Instance.CurrentGarageVehicleId;
+
+            _currentVehicleModel = VehicleManager.Instance.SelectedVehicleModel;
+
             CreateUI();
         }
 
@@ -59,31 +62,31 @@ namespace SmartRoadSense.Shared {
 
         void CreateBackground() {
             //TODO: animated background
-            var backgroundTexture = cache.GetTexture2D("Textures/MenuBackground.png");
+            var backgroundTexture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.FixedBackground.ResourcePath);
             if(backgroundTexture == null)
                 return;
-            backgroundSprite = root.CreateSprite();
-            backgroundSprite.Texture = backgroundTexture;
-            backgroundSprite.SetSize((int)(dim.XScreenRatio * 1920), (int)(dim.YScreenRatio * 1080));
-            backgroundSprite.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
-            backgroundSprite.SetPosition(0, 0);
+            _backgroundSprite = _root.CreateSprite();
+            _backgroundSprite.Texture = backgroundTexture;
+            _backgroundSprite.SetSize((int)(_dim.XScreenRatio * 1920), (int)(_dim.YScreenRatio * 1080));
+            _backgroundSprite.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
+            _backgroundSprite.SetPosition(0, 0);
         }
 
         void CreateTopBar() {
 
-            black_bar = root.CreateSprite();
-            root.AddChild(black_bar);
-            black_bar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.TopBar.ResourcePath);
-            black_bar.Opacity = 0.5f;
-            black_bar.SetPosition(0, (int)(dim.YScreenRatio * 30));
-            black_bar.SetSize((int)(dim.XScreenRatio * 2000), (int)(dim.YScreenRatio * 140));
-            black_bar.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
+            _blackBar = _root.CreateSprite();
+            _root.AddChild(_blackBar);
+            _blackBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.TopBar.ResourcePath);
+            _blackBar.Opacity = 0.5f;
+            _blackBar.SetPosition(0, (int)(_dim.YScreenRatio * 30));
+            _blackBar.SetSize((int)(_dim.XScreenRatio * 2000), (int)(_dim.YScreenRatio * 140));
+            _blackBar.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
 
             Button btn_back = new Button();
-            root.AddChild(btn_back);
+            _root.AddChild(btn_back);
             btn_back.SetStyleAuto(null);
-            btn_back.SetPosition((int)(dim.XScreenRatio * 40), (int)(dim.YScreenRatio * 40));
-            btn_back.SetSize((int)(dim.XScreenRatio * 120), (int)(dim.YScreenRatio * 120));
+            btn_back.SetPosition((int)(_dim.XScreenRatio * 40), (int)(_dim.YScreenRatio * 40));
+            btn_back.SetSize((int)(_dim.XScreenRatio * 120), (int)(_dim.YScreenRatio * 120));
             btn_back.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btn_back.ImageRect = AssetsCoordinates.Generic.Icons.BntBack;
             btn_back.Pressed += args => {
@@ -92,29 +95,27 @@ namespace SmartRoadSense.Shared {
 
             //COINS
             Button coins = new Button();
-            root.AddChild(coins);
+            _root.AddChild(coins);
             coins.SetStyleAuto(null);
-            coins.SetPosition((int)(dim.XScreenRatio * 165), (int)(dim.YScreenRatio * 60));
-            coins.SetSize((int)(dim.XScreenRatio * 70), (int)(dim.YScreenRatio * 70));
+            coins.SetPosition((int)(_dim.XScreenRatio * 180), (int)(_dim.YScreenRatio * 60));
+            coins.SetSize((int)(_dim.XScreenRatio * 75), (int)(_dim.YScreenRatio * 70));
             coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
-            coins.ImageRect = AssetsCoordinates.Generic.Icons.CoinsIcon;
-            coins.Visible = false;
+            coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
 
             //Wallet text
-            Text wallet = new Text();
-            root.AddChild(wallet);
-            wallet.SetPosition((int)(dim.XScreenRatio * 250), (int)(dim.YScreenRatio * 70));
-            wallet.SetFont(font, dim.XScreenRatio * 30);
-            int wallet_tot = CharacterManager.Instance.Wallet;
+            wallet = new Text();
+            coins.AddChild(wallet);
+            wallet.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 10));
+            wallet.SetFont(_font, _dim.XScreenRatio * 30);
+            wallet_tot = CharacterManager.Instance.Wallet;
             wallet.Value = ""+ wallet_tot;
-            wallet.Visible = false;
 
             // SCREEN TITLE
             Button screen_title = new Button();
-            root.AddChild(screen_title);
+            _root.AddChild(screen_title);
             screen_title.SetStyleAuto(null);
-            screen_title.SetPosition((int)(dim.XScreenRatio * 1500), (int)(dim.YScreenRatio * 50));
-            screen_title.SetSize((int)(dim.XScreenRatio * 400), (int)(dim.YScreenRatio * 100));
+            screen_title.SetPosition((int)(_dim.XScreenRatio * 1500), (int)(_dim.YScreenRatio * 50));
+            screen_title.SetSize((int)(_dim.XScreenRatio * 400), (int)(_dim.YScreenRatio * 100));
             screen_title.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             screen_title.ImageRect = AssetsCoordinates.Generic.Boxes.BoxTitle;
             screen_title.Enabled = false;
@@ -123,294 +124,468 @@ namespace SmartRoadSense.Shared {
             screen_title.AddChild(buttonTitleText);
             buttonTitleText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             buttonTitleText.SetPosition(0, 0);
-            buttonTitleText.SetFont(font, dim.XScreenRatio * 30);
+            buttonTitleText.SetFont(_font, _dim.XScreenRatio * 30);
             buttonTitleText.Value = "VEHICLE SELECT";
 
-            screen_info = new Text();
-            screen_title.AddChild(screen_info);
-            screen_info.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Center);
-            screen_info.SetPosition((int)(dim.XScreenRatio * 0), (int)(dim.YScreenRatio * 90));
-            screen_info.SetFont(font, dim.XScreenRatio * 20);
-            screen_info.SetColor(Color.White);
-            if(VehicleManager.Instance.SelectedVehicleId == -1) {
-                screen_info.Value = "Please select a free starting vehicle.";
+            _screenInfo = new Text();
+            _root.AddChild(_screenInfo);
+            _screenInfo.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
+            _screenInfo.SetPosition(_dim.SetX(0), _dim.SetY(220));
+            _screenInfo.SetFont(_font, _dim.SetX(40));
+            _screenInfo.SetColor(Color.White);
+            if(VehicleManager.Instance.UnlockedVehicles == null || VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) {
+                _screenInfo.Value = "Please select a free starting vehicle.";
             }
-            else if(VehicleManager.Instance.SelectedVehicleId == vehicle_id) {
-                screen_info.Value = "";
+            else if(_currentVehicleModel.IdVehicle == _idDVehicle) {
+                _screenInfo.Value = "";
                 //screen_info.Value = "Selected vehicle.";
             }
             else {
-                screen_info.Value = "";
+                _screenInfo.Value = "";
                 //screen_info.Value = "Tap to unlock this vehicle";
             }
         }
 
         void CreateVehicleBar() {
-            var cont_base = cache.GetTexture2D("Textures/Garage/cont_base.png");
-            var vehicle = cache.GetTexture2D("Textures/Garage/vehicles2.png");
-            var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
+            var vehicleBackground = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Path);
+            var vehicle = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
 
-            // Buttons container (root element)
-            cont_downBar = root.CreateSprite();
-            cont_downBar.Texture = cont_base;
-            cont_downBar.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 300));
-            cont_downBar.SetPosition((int)(dim.XScreenRatio * 10), (int)(dim.YScreenRatio * 700));
-            cont_downBar.ImageRect = new IntRect(0, 0, 56, 56);
+            Sprite VehicleBar = _root.CreateSprite();
+            VehicleBar.Texture = vehicleBackground;
+            VehicleBar.SetSize(_dim.SetX(1920), _dim.SetY(480));
+            VehicleBar.SetPosition(_dim.SetX(0), _dim.SetY(330));
+            VehicleBar.ImageRect = AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Rectangle;
+            VehicleBar.UseDerivedOpacity = false;
+            VehicleBar.Opacity = 0.75f;
+            VehicleBar.VerticalAlignment = VerticalAlignment.Top;
 
-            // Left arrow - child
-            Button btl_left = new Button();
-            cont_downBar.AddChild(btl_left);
-            btl_left.SetStyleAuto(null);
-            btl_left.SetPosition((int)(dim.XScreenRatio * -800), (int)(dim.YScreenRatio * 600));
-            btl_left.SetSize((int)(dim.XScreenRatio * 200), (int)(dim.YScreenRatio * 200));
-            btl_left.Texture = garage_bts;
-            btl_left.ImageRect = new IntRect(560, 420, 730, 600);
-            btl_left.Pressed += args => {
+            _prevVehicle = new Button();
+            VehicleBar.AddChild(_prevVehicle);
+            _prevVehicle.Texture = vehicle;
+            _prevVehicle.Opacity = 0.7f;
+            _prevVehicle.UseDerivedOpacity = false;
+            _prevVehicle.SetSize((int)(_dim.XScreenRatio * 450), (int)(_dim.YScreenRatio * 450));
+            _prevVehicle.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 0));
+            _prevVehicle.Pressed += args => {
                 Next_vehicle(0);
             };
 
-            // Vehicle image - root element
-            img_vehicle = root.CreateSprite();
-            img_vehicle.Texture = vehicle;
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
-            img_vehicle.SetSize((int)(dim.XScreenRatio * 600), (int)(dim.YScreenRatio * 600));
-            img_vehicle.SetPosition((int)(dim.XScreenRatio * 200), (int)(dim.YScreenRatio * 200));
+            // Selected Vehicle image - root element
+            _selectedVehicle = new Button();
+            VehicleBar.AddChild(_selectedVehicle);
+            _selectedVehicle.UseDerivedOpacity = false;
+            _selectedVehicle.Texture = vehicle;
+            _currentVehicleModel = VehicleManager.Instance.GetVehicleFromId(_idDVehicle);
+            _selectedVehicle.SetSize((int)(_dim.XScreenRatio * 600), (int)(_dim.YScreenRatio * 600));
+            _selectedVehicle.SetPosition((int)(_dim.XScreenRatio * 650), (int)(_dim.YScreenRatio * -100));
 
-            // Vehicle locked symbol - root element
-            selectable = root.CreateSprite();
-            root.AddChild(selectable);
-            selectable.Texture = garage_bts;
-            selectable.SetPosition((int)(dim.XScreenRatio * 480), (int)(dim.YScreenRatio * 830));
-            selectable.SetSize((int)(dim.XScreenRatio * 150), (int)(dim.YScreenRatio * 150));
-                selectable.ImageRect = new IntRect(110, 295, 205, 405);
+            _selectedVehicle.Pressed += args => {
+                VehicleManager.Instance.CurrentGarageVehicleId = _idDVehicle;
+                Debug.WriteLine("SAVED ID = " + _idDVehicle);
 
-            // Right arrow - child
-            Button btl_right = new Button();
-            cont_downBar.AddChild(btl_right);
-            btl_right.SetStyleAuto(null);
-            btl_right.SetPosition((int)(dim.XScreenRatio * 700), (int)(dim.YScreenRatio * 600));
-            btl_right.SetSize((int)(dim.XScreenRatio * 200), (int)(dim.YScreenRatio * 200));
-            btl_right.Texture = garage_bts;
-            btl_right.ImageRect = new IntRect(730, 420, 900, 600);
-            btl_right.Pressed += args => {
-                Next_vehicle(1);
-            };
-
-            // button for tre vehicle selection - child
-            bt_confirm = new Button();
-            cont_downBar.AddChild(bt_confirm);
-            bt_confirm.SetStyleAuto(null);
-            bt_confirm.SetPosition((int)(dim.XScreenRatio * -400), (int)(dim.YScreenRatio * 650));
-            bt_confirm.SetSize((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 100));
-            bt_confirm.ImageRect = new IntRect(0, 215, 625, 295);
-            buttonText = new Text();
-            bt_confirm.AddChild(buttonText);
-            buttonText.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            buttonText.SetPosition((int)(dim.XScreenRatio * 35), 0);
-            buttonText.SetFont(font, dim.XScreenRatio * 35);
-            // var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
-            bt_confirm.Texture = garage_bts;
-            vehicle_selected = VehicleManager.Instance.SelectedVehicleId;
-
-            if(vehicle_id == vehicle_selected) 
-            {
-                selectable.ImageRect = new IntRect(380, 295, 480, 405);
-                buttonText.Value = "Selected vehicle";
-            }
-            else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
-            {
-                // TODO: unlockable with components 
-                buttonText.Value = "Vehicle not available";
-            }
-            else if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost >= 0)
-            {
-                if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCost) 
+                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) 
                 {
-                    selectable.ImageRect = new IntRect(250, 295, 350, 405);
-                    buttonText.Value = "Tap to select this vehicle";
+                    // TODO: show popup of unlock
+                    // Unlock vehicle
+                    VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                    VehicleManager.Instance.UnlockVehicle();
+
+                    // TODO: update UI
+                    Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
+                    GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+
+                }
+                else if (!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
+                {
+                    // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
+
+                    // DONE: check if user has enough coins to unlock
+                    // DONE: remove vehicle cost from user's wallet
+                    if(wallet_tot > _currentVehicleModel.UnlockCost && _currentVehicleModel.UnlockCost != -1) {
+                        wallet.Value = "" + (wallet_tot - _currentVehicleModel.UnlockCost);
+
+                        // Unlock vehicle
+                        VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                        VehicleManager.Instance.UnlockVehicle();
+
+                        // TODO: update UI
+                        Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
+                        GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+
+                        //QuitConfirm("...");
+                    }
+                    else {
+                        //QuitConfirm("You have insufficient funds to purchase this vehicle! Play Levels To earn more money!");
+                    }
                 }
                 else 
                 {
-                    selectable.ImageRect = new IntRect(120, 295, 220, 405);
-                    buttonText.Value = "Vehicle not available";
                 }
-            }
-            bt_confirm.Pressed += args => 
-            {
-                VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
-                VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
-                System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
-                GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+            };
 
-                //QuitConfirm("Are you sure you want to unlock this vehicle?");
+            _carName = new Text();
+            _selectedVehicle.AddChild(_carName);
+            _carName.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * -80));
+            _carName.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
+            _carName.SetFont(_font, _dim.SetX(40));
+
+            _lockedVehicle = new Sprite();
+            _selectedVehicle.AddChild(_lockedVehicle);
+            _lockedVehicle.SetPosition((int)(_dim.XScreenRatio * 630), (int)(_dim.YScreenRatio * 200));
+            _lockedVehicle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _lockedVehicle.ImageRect = AssetsCoordinates.Generic.Icons.IconLocked;
+            _lockedVehicle.SetSize(_dim.SetX(100), _dim.SetY(100));
+
+            _nextVehicle = new Button();
+            VehicleBar.AddChild(_nextVehicle);
+            _nextVehicle.UseDerivedOpacity = false;
+            _nextVehicle.Texture = vehicle;
+            _nextVehicle.Opacity = 0.7f;
+            _nextVehicle.SetSize((int)(_dim.XScreenRatio * 450), (int)(_dim.YScreenRatio * 450));
+            _nextVehicle.SetPosition((int)(_dim.XScreenRatio * 1400), (int)(_dim.YScreenRatio * 0));
+            _nextVehicle.Pressed += args => {
+                Next_vehicle(1);
             };
 
             CreateUpgradeBars();
-            SetUpgrade();
-            GetCarImg();
         }
 
         void CreateUpgradeBars() {
-            var garage_bts = cache.GetTexture2D("Textures/Garage/garage_bts.png");
-            var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");
-            var cont_base = cache.GetTexture2D("Textures/Garage/cont_base.png");
-            var vehicle = cache.GetTexture2D("Textures/Garage/vehicles2.png");
-            cont_upgrade = root.CreateSprite();
-            cont_downBar.Texture = cont_base;
-            cont_downBar.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 300));
-            cont_downBar.SetPosition((int)(dim.XScreenRatio * 900), (int)(dim.YScreenRatio * 200));
-            cont_downBar.ImageRect = new IntRect(0, 0, 56 , 56);
+            var contBase = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.ContBase.ResourcePath);
 
+            // UPDGRADES
+            _contUpgrade = _root.CreateSprite();
+            _contUpgrade.Texture = contBase;
+            _contUpgrade.SetSize((int)(_dim.XScreenRatio * 1200), (int)(_dim.YScreenRatio * 300));
+            _contUpgrade.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 750));
+            _contUpgrade.ImageRect = AssetsCoordinates.Generic.Garage.ContBase.TrasparentItem;
 
-            upgrademenu = new Sprite();
-            cont_upgrade.AddChild(upgrademenu);
-            upgrademenu.Texture = garage_bts;
-            upgrademenu.SetSize((int)(dim.XScreenRatio * 838), (int)(dim.YScreenRatio * 95));
-            upgrademenu.SetPosition((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 250));
-            upgrademenu.ImageRect = new IntRect(0, 930, 840, 1023);
-            upgrademenu.Visible = false;
+            _performanceBar = new BorderImage();
+            _contUpgrade.AddChild(_performanceBar);
+            _performanceBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _performanceBar.ImageRect = AssetsCoordinates.Generic.Boxes.BoxPerformanceUpgrade;
+            _performanceBar.SetSize((int)(_dim.XScreenRatio * 550), (int)(_dim.YScreenRatio * 95));
+            _performanceBar.SetPosition((int)(_dim.XScreenRatio * 1000), (int)(_dim.YScreenRatio * 100));
 
-            performance_bar = new Sprite();
-            cont_upgrade.AddChild(performance_bar);
-            performance_bar.Texture = garage_bts;
-            performance_bar.SetSize((int)(dim.XScreenRatio * 550), (int)(dim.YScreenRatio * 95));
-            performance_bar.SetPosition((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 650));
-            performance_bar.ImageRect = new IntRect(0, 420, 560, 515);
+            _suspensionsBar = new BorderImage();
+            _contUpgrade.AddChild(_suspensionsBar);
+            _suspensionsBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _suspensionsBar.ImageRect = AssetsCoordinates.Generic.Boxes.BoxSuspensionUpgrade;
+            _suspensionsBar.SetSize((int)(_dim.XScreenRatio * 550), (int)(_dim.YScreenRatio * 95));
+            _suspensionsBar.SetPosition((int)(_dim.XScreenRatio * 1000), (int)(_dim.YScreenRatio * 200));
 
-            suspensions_bar = new Sprite();
-            cont_upgrade.AddChild(suspensions_bar);
-            suspensions_bar.Texture = garage_bts;
-            suspensions_bar.SetSize((int)(dim.XScreenRatio * 550), (int)(dim.YScreenRatio * 95));
-            suspensions_bar.SetPosition((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 350));
-            suspensions_bar.ImageRect = new IntRect(0, 515, 560, 610);            
+            _wheelBar = new BorderImage();
+            _contUpgrade.AddChild(_wheelBar);
+            _wheelBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _wheelBar.ImageRect = AssetsCoordinates.Generic.Boxes.BoxWheelUpgrade;
+            _wheelBar.SetSize((int)(_dim.XScreenRatio * 550), (int)(_dim.YScreenRatio * 95));
+            _wheelBar.SetPosition((int)(_dim.XScreenRatio * 440), (int)(_dim.YScreenRatio * 100));
 
-            wheel_bar = new Sprite();
-            cont_upgrade.AddChild(wheel_bar);
-            wheel_bar.Texture = garage_bts;
-            wheel_bar.SetSize((int)(dim.XScreenRatio * 550), (int)(dim.YScreenRatio * 95));
-            wheel_bar.SetPosition((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 450));
-            wheel_bar.ImageRect = new IntRect(0, 610, 560, 705);
+            _brakeBar = new BorderImage();
+            _contUpgrade.AddChild(_brakeBar);
+            _brakeBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            _brakeBar.ImageRect = AssetsCoordinates.Generic.Boxes.BoxBrakeUpgrade;
+            _brakeBar.SetSize((int)(_dim.XScreenRatio * 550), (int)(_dim.YScreenRatio * 95));
+            _brakeBar.SetPosition((int)(_dim.XScreenRatio * 440), (int)(_dim.YScreenRatio * 200));
 
-            brake_bar = new Sprite();
-            cont_upgrade.AddChild(brake_bar);
-            brake_bar.Texture = garage_bts;
-            brake_bar.SetSize((int)(dim.XScreenRatio * 550), (int)(dim.YScreenRatio * 95));
-            brake_bar.SetPosition((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 550));
-            brake_bar.ImageRect = new IntRect(0, 705, 560, 800);          
+            // COMPONENTS
+            _contComponents = _root.CreateSprite();
+            _contComponents.Texture = contBase;
+            _contComponents.SetSize(_dim.SetX(1920), _dim.SetY(300));
+            _contComponents.SetPosition(_dim.SetX(0), _dim.SetY(720));
+            _contComponents.ImageRect = new IntRect(0, 0, 56, 56);
+
+            /*
+            BorderImage Drivetrain = new BorderImage();
+            contComponents.AddChild(Drivetrain);
+            Drivetrain.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            Drivetrain.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentDrivetrainRed;
+            Drivetrain.SetSize((int)(dim.XScreenRatio * 150), (int)(dim.YScreenRatio * 150));
+            Drivetrain.SetPosition((int)(dim.XScreenRatio * 300), (int)(dim.YScreenRatio * 150));
+            */
+
+            Body = new BorderImage();
+            _contComponents.AddChild(Body);
+            Body.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            Body.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentBodyRed;
+            Body.SetSize(_dim.SetX(150), _dim.SetY(150));
+            Body.SetPosition(_dim.SetX(-300), _dim.SetY(150));
+            Body.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
+
+            Engine = new BorderImage();
+            _contComponents.AddChild(Engine);
+            Engine.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            Engine.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentEngineRed;
+            Engine.SetSize(_dim.SetX(150), _dim.SetY(150));
+            Engine.SetPosition(_dim.SetX(-130), _dim.SetY(150));
+            Engine.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
+
+            Suspensions = new BorderImage();
+            _contComponents.AddChild(Suspensions);
+            Suspensions.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            Suspensions.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentSuspensionRed;
+            Suspensions.SetSize(_dim.SetX(150), _dim.SetY(150));
+            Suspensions.SetPosition(_dim.SetX(130), _dim.SetY(150));
+            Suspensions.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
+
+            Wheel = new BorderImage();
+            _contComponents.AddChild(Wheel);
+            Wheel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            Wheel.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentWheelRed;
+            Wheel.SetSize(_dim.SetX(150), _dim.SetY(150));
+            Wheel.SetPosition(_dim.SetX(300), _dim.SetY(150));
+            Wheel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
+
+            SetUpgrade();
+            SetColectedComponents();
+            GetCarImg();
         }
 
+
+        void SetColectedComponents() {
+            if(_currentVehicleModel.UnlockCost == -1) {
+                
+                if (VehicleManager.Instance.CollectedComponents.CollectedComponentsList != null) {
+                    foreach(var v in VehicleManager.Instance.CollectedComponents.CollectedComponentsList) {
+                        if(v.VehicleId == _currentVehicleModel.IdVehicle) {
+                            //v.VehicleComponents.Suspensions = true;
+
+                            if (v.VehicleComponents.Suspensions) {
+                                Suspensions.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentSuspensionGreen;
+                            }
+                            if(v.VehicleComponents.Wheels) {
+                                Wheel.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentWheelGreen;
+                            }
+                            if(v.VehicleComponents.Performance) {
+                                Engine.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentEngineGreen;
+                            }
+                            if(v.VehicleComponents.Brakes) {
+                                Body.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentBodyGreen;
+                            }
+                        }
+                    }
+
+
+
+                }
+            }
+        }
+        
+
         void SetUpgrade() {
-            var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");
-            int perf = VehicleManager.Instance.SelectedVehicleModel.Performance;
-            int whe = VehicleManager.Instance.SelectedVehicleModel.Wheel;
-            int susp = VehicleManager.Instance.SelectedVehicleModel.Suspensions;
-            int brk = VehicleManager.Instance.SelectedVehicleModel.Brake;
-            // pref, whe, sup or brk *20 equals the X Size of the performance bar.
+            var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
+
+            var selectedVehicle = _currentVehicleModel;
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(selectedVehicle))
+                selectedVehicle = VehicleManager.Instance.UnlockedVehicles.VehicleModel.First(v => v.IdVehicle == _currentVehicleModel.IdVehicle);
+
+            int perf = selectedVehicle.Performance;
+            int whe = selectedVehicle.Wheel;
+            int susp = selectedVehicle.Suspensions;
+            int brk = selectedVehicle.Brake;
+
+            // perf, whe, sup or brk *20 equals the X Size of the performance bar.
             int performance = perf * 20;
             int wheels = whe * 20;
             int suspensions = susp * 20;
             int brake = brk * 20;
 
-            performance_bar_a = root.CreateSprite();
-            performance_bar_a.Texture = green_bars;
-            performance_bar_a.SetPosition((int)(dim.XScreenRatio * 1085), (int)(dim.YScreenRatio * 670));
-            performance_bar_a.SetSize((int)(dim.XScreenRatio * performance), (int)(dim.YScreenRatio * 72));
-            performance_bar_a.ImageRect = new IntRect(0, 75, performance, 140);
+            _performanceBarA = new Sprite(); 
+            _performanceBar.AddChild(_performanceBarA);
+            _performanceBarA.Texture = green_bars;
+            _performanceBarA.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 16));
+            _performanceBarA.SetSize((int)(_dim.XScreenRatio * performance), (int)(_dim.YScreenRatio * 80));
+            _performanceBarA.ImageRect = new IntRect(0, 75, performance, 140);
 
-            suspensions_bar_a = root.CreateSprite();
-            suspensions_bar_a.Texture = green_bars;
-            suspensions_bar_a.SetSize((int)(dim.XScreenRatio * suspensions), (int)(dim.YScreenRatio * 72));
-            suspensions_bar_a.SetPosition((int)(dim.XScreenRatio * 1085), (int)(dim.YScreenRatio * 370));
-            suspensions_bar_a.ImageRect = new IntRect(0, 75, suspensions, 140);
-            
-            wheel_bar_a = root.CreateSprite();
-            wheel_bar_a.Texture = green_bars;
-            wheel_bar_a.SetSize((int)(dim.XScreenRatio * wheels), (int)(dim.YScreenRatio * 72));
-            wheel_bar_a.SetPosition((int)(dim.XScreenRatio * 1085), (int)(dim.YScreenRatio * 470));
-            wheel_bar_a.ImageRect = new IntRect(0, 75, wheels, 140);
+            _suspensionsBarA = new Sprite();
+            _suspensionsBar.AddChild(_suspensionsBarA);
+            _suspensionsBarA.Texture = green_bars;
+            _suspensionsBarA.SetSize((int)(_dim.XScreenRatio * suspensions), (int)(_dim.YScreenRatio * 80));
+            _suspensionsBarA.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 16));
+            _suspensionsBarA.ImageRect = new IntRect(0, 75, suspensions, 140);
 
-            brake_bar_a = root.CreateSprite();
-            brake_bar_a.Texture = green_bars;
-            brake_bar_a.SetSize((int)(dim.XScreenRatio * brake), (int)(dim.YScreenRatio * 72));
-            brake_bar_a.SetPosition((int)(dim.XScreenRatio * 1085), (int)(dim.YScreenRatio * 570));
-            brake_bar_a.ImageRect = new IntRect(0, 75, brake, 140);
+            _wheelBarA = new Sprite();
+            _wheelBar.AddChild(_wheelBarA);
+            _wheelBarA.Texture = green_bars;
+            _wheelBarA.SetSize((int)(_dim.XScreenRatio * wheels), (int)(_dim.YScreenRatio * 80));
+            _wheelBarA.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 16));
+            _wheelBarA.ImageRect = new IntRect(0, 75, wheels, 140);
+
+            _brakeBarA = new Sprite();
+            _brakeBar.AddChild(_brakeBarA);
+            _brakeBarA.Texture = green_bars;
+            _brakeBarA.SetSize((int)(_dim.XScreenRatio * brake), (int)(_dim.YScreenRatio * 80));
+            _brakeBarA.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 16));
+            _brakeBarA.ImageRect = new IntRect(0, 75, brake, 140);
         }
 
         void GetCarImg() {
-            int left = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Left;
-            int top = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Top;
-            int right = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Right;
-            int bottom = VehicleManager.Instance.SelectedVehicleModel.ImagePosition.Bottom;
+            /*SELECTED VEHICLE*/
+            int left = _currentVehicleModel.ImagePosition.Left;
+            int top = _currentVehicleModel.ImagePosition.Top;
+            int right = _currentVehicleModel.ImagePosition.Right;
+            int bottom = _currentVehicleModel.ImagePosition.Bottom;
+            _selectedVehicle.ImageRect = new IntRect(left, top, right, bottom);
+            _carName.Value = _currentVehicleModel.Name;
 
-            img_vehicle.ImageRect = new IntRect(left, top, right, bottom);
-            if(vehicle_id == vehicle_selected && vehicle_id != -1) {
-                bt_confirm.Enabled = true;
-                selectable.ImageRect = new IntRect(380, 295, 480, 405);
-                buttonText.Value = "Selected vehicle";
-                System.Diagnostics.Debug.WriteLine(vehicle_id + " + " + vehicle_selected);
-                screen_info.Value = "";
-                //screen_info.Value = "Selected vehicle.";
+            switch(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count) {
+                case 0:
+                    // STARTING VEHICLE LOGIC
+                    if(_currentVehicleModel.UnlockCost > -1) {
+                        _screenInfo.Value = "Tap to unlock this vehicle";
+                        _contUpgrade.Visible = false;
+                        _contComponents.Visible = false;
+                    } 
+                    else 
+                    {
+                        _screenInfo.Value = "Vehicle not available";
+                        _contUpgrade.Visible = false;
+                        _contComponents.Visible = false;
+                    }
+                    break;
+                default:
+                    // GAME VEHICLE SELECT LOGIC
+                    if(_idDVehicle == VehicleManager.Instance.CurrentGarageVehicleId && _idDVehicle != -1) 
+                    {
+                        Debug.WriteLine(_idDVehicle + " + " + VehicleManager.Instance.CurrentGarageVehicleId);
+                        _screenInfo.Value = "Selected vehicle";
+                        _contUpgrade.Visible = true;
+                        _contComponents.Visible = false;
+                    }
+                    else 
+                    {
+                        if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(_currentVehicleModel)) 
+                        {
+                            _screenInfo.Value = "Tap to select this vehicle";
+                            if(_currentVehicleModel.UnlockCost == -1) 
+                            {
+                                _contUpgrade.Visible = true;
+                                _contComponents.Visible = true;
+                            }
+                            else 
+                            {
+                                _contUpgrade.Visible = true;
+                                _contComponents.Visible = false;
+                            }
+                        }
+                        else if (CharacterManager.Instance.User.Wallet >= _currentVehicleModel.UnlockCost) 
+                        {
+                            if(_currentVehicleModel.UnlockCost == -1) 
+                            {
+                                _screenInfo.Value = "Collect all components to unlock this vehicle";
+                                _contUpgrade.Visible = false;
+                                _contComponents.Visible = true;
+                            }
+                            else 
+                            {
+                                _screenInfo.Value = "Tap to unlock this vehicle";
+                                _contUpgrade.Visible = false;
+                                _contComponents.Visible = false;
+                            }
+                        }
+                        else 
+                        {
+                            _screenInfo.Value = "Vehicle not available";
+                            _contUpgrade.Visible = true;
+                            _contComponents.Visible = false;
+                        }
+                    }
+                    break;
             }
-            else if(CharacterManager.Instance.User.Wallet >= VehicleManager.Instance.SelectedVehicleModel.UnlockCost) {
-                if(VehicleManager.Instance.SelectedVehicleModel.UnlockCost == -1) 
-                {
-                    bt_confirm.Enabled = false;
-                    selectable.ImageRect = new IntRect(120, 295, 220, 405);
-                    buttonText.Value = "Vehicle not available";
-                    screen_info.Value = "";
-                }
-                else
-                {
-                    bt_confirm.Enabled = true;
-                    selectable.ImageRect = new IntRect(250, 295, 350, 405);
-                    buttonText.Value = "Tap to select this vehicle";
-                    screen_info.Value = "";
-                    //screen_info.Value = "Tap to unlock this vehicle";
-                }
 
-            }
-            else {
-                bt_confirm.Enabled = false;
-                selectable.ImageRect = new IntRect(120, 295, 220, 405);
-                buttonText.Value = "Vehicle not available";
-                screen_info.Value = "";
-                //screen_info.Value = "Vehicle not available";
-            }
-
-            var green_bars = cache.GetTexture2D("Textures/Garage/green_bars.png");
-            int perf = VehicleManager.Instance.SelectedVehicleModel.Performance;
-            int whe = VehicleManager.Instance.SelectedVehicleModel.Wheel;
-            int susp = VehicleManager.Instance.SelectedVehicleModel.Suspensions;
-            int brk = VehicleManager.Instance.SelectedVehicleModel.Brake;
+            var selectedVehicle = _currentVehicleModel;
+            
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(selectedVehicle))
+                selectedVehicle = VehicleManager.Instance.UnlockedVehicles.VehicleModel.First(v => v.IdVehicle == _currentVehicleModel.IdVehicle);
+                
+            int perf = selectedVehicle.Performance;
+            int whe = selectedVehicle.Wheel;
+            int susp = selectedVehicle.Suspensions;
+            int brk = selectedVehicle.Brake;
 
             int performance = perf * 20;
             int wheels = whe * 20;
             int suspensions = susp * 20;
             int brake = brk * 20;
-            performance_bar_a.SetSize((int)(dim.XScreenRatio * performance), (int)(dim.YScreenRatio * 72));
-            performance_bar_a.ImageRect = new IntRect(0, 75, performance, 140);
-            suspensions_bar_a.SetSize((int)(dim.XScreenRatio * suspensions), (int)(dim.YScreenRatio * 72));
-            suspensions_bar_a.ImageRect = new IntRect(0, 75, suspensions, 140);
-            wheel_bar_a.SetSize((int)(dim.XScreenRatio * wheels), (int)(dim.YScreenRatio * 72));
-            wheel_bar_a.ImageRect = new IntRect(0, 75, wheels, 140);
-            brake_bar_a.SetSize((int)(dim.XScreenRatio * brake), (int)(dim.YScreenRatio * 72));
-            brake_bar_a.ImageRect = new IntRect(0, 75, brake, 140);
+
+            _performanceBarA.SetSize((int)(_dim.XScreenRatio * performance), (int)(_dim.YScreenRatio * 72));
+            _performanceBarA.ImageRect = new IntRect(0, 75, performance, 140);
+            _suspensionsBarA.SetSize((int)(_dim.XScreenRatio * suspensions), (int)(_dim.YScreenRatio * 72));
+            _suspensionsBarA.ImageRect = new IntRect(0, 75, suspensions, 140);
+            _wheelBarA.SetSize((int)(_dim.XScreenRatio * wheels), (int)(_dim.YScreenRatio * 72));
+            _wheelBarA.ImageRect = new IntRect(0, 75, wheels, 140);
+            _brakeBarA.SetSize((int)(_dim.XScreenRatio * brake), (int)(_dim.YScreenRatio * 72));
+            _brakeBarA.ImageRect = new IntRect(0, 75, brake, 140);
+
+            /* PREV VEHICLE */
+            int prev;
+            if(_currentVehicleModel.IdVehicle == 0) {
+                prev = VehicleManager.Instance.VehicleCount - 1;
+            }
+            else {
+                prev = _currentVehicleModel.IdVehicle - 1;
+            }
+
+            var _prevVehicleModel = VehicleManager.Instance.GetVehicleFromId(prev);
+            int leftP = _prevVehicleModel.ImagePosition.Left;
+            int topP = _prevVehicleModel.ImagePosition.Top;
+            int rightP = _prevVehicleModel.ImagePosition.Right;
+            int bottomP = _prevVehicleModel.ImagePosition.Bottom;
+            _prevVehicle.ImageRect = new IntRect(leftP, topP, rightP, bottomP);
+
+            /* NEXT VEHICLE */
+            int next;
+            if (_currentVehicleModel.IdVehicle == VehicleManager.Instance.VehicleCount-1) {
+                next = 0;
+            }
+            else {
+                next = 1 + _currentVehicleModel.IdVehicle;
+            }
+
+            var nextVehicle = VehicleManager.Instance.GetVehicleFromId(next);
+            System.Diagnostics.Debug.WriteLine("NEXT = " + next + "PREV = " + prev + "SELECTED = " + _currentVehicleModel.IdVehicle);
+            int leftN = nextVehicle.ImagePosition.Left;
+            int topN = nextVehicle.ImagePosition.Top;
+            int rightN = nextVehicle.ImagePosition.Right;
+            int bottomN = nextVehicle.ImagePosition.Bottom;
+            _nextVehicle.ImageRect = new IntRect(leftN, topN, rightN, bottomN);
+
+            LockedVehicle();
         }
 
         void Next_vehicle(int x) {
             if ( x == 0) { // left arrow
-                vehicle_id = vehicle_id <= 0 ? vehicles_count - 1 : vehicle_id - 1;
+                _idDVehicle = _idDVehicle <= 0 ? VehicleManager.Instance.VehicleCount - 1 : _idDVehicle - 1;
             }
             else if (x == 1) { // right arrow
-                vehicle_id = vehicle_id >= vehicles_count - 1 ? 0 : 1 + vehicle_id;
+                _idDVehicle = _idDVehicle >= VehicleManager.Instance.VehicleCount - 1 ? 0 : 1 + _idDVehicle;
             }
-            JsonReaderVehicles.GetSingleVehicle(vehicle_id);
+            _currentVehicleModel = VehicleManager.Instance.GetVehicleFromId(_idDVehicle);
             GetCarImg();
         }
 
 
-        void QuitConfirm(String text) {
+        void LockedVehicle() {
+            if(_currentVehicleModel.UnlockCost == -1) {
+                foreach(var v in VehicleManager.Instance.CollectedComponents.CollectedComponentsList) {
+                    if(v.VehicleId == _currentVehicleModel.IdVehicle) {
+                        if(!v.VehicleComponents.Brakes || !v.VehicleComponents.Wheels || !v.VehicleComponents.Suspensions || !v.VehicleComponents.Performance)
+                            _lockedVehicle.Visible = true;
+                        else
+                            _lockedVehicle.Visible = false;
+                    }
+                }
+            }
+            else {
+                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle))
+                    _lockedVehicle.Visible = false;
+                else
+                    _lockedVehicle.Visible = true;
+            }
+
+        }
+
+        void QuitConfirm(string text) {
             var quitWindow = new Window();
             GameInstance.UI.Root.AddChild(quitWindow);
             GameInstance.UI.SetFocusElement(null);
@@ -427,11 +602,9 @@ namespace SmartRoadSense.Shared {
             windowSprite.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.TopBar.ResourcePath);
             windowSprite.Opacity = 0.75f;
             windowSprite.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
-            windowSprite.SetSize((int)(dim.XScreenRatio * 1920), (int)(dim.YScreenRatio * 1080));
+            windowSprite.SetSize((int)(_dim.XScreenRatio * 1920), (int)(_dim.YScreenRatio * 1080));
             windowSprite.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
             windowSprite.SetPosition(0, 0);
-
-            Font font = GameInstance.ResourceCache.GetFont(GameInstance.defaultFont);
 
             Window rectangle = new Window();
             quitWindow.AddChild(rectangle);
@@ -441,7 +614,7 @@ namespace SmartRoadSense.Shared {
             rectangle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             rectangle.ImageRect = AssetsCoordinates.Generic.Boxes.BoxConfirmation;
 
-            Text warningText = GameText.CreateText(rectangle, GameInstance.ScreenInfo, font, 35, 250, 0, HorizontalAlignment.Left, VerticalAlignment.Center, text);
+            Text warningText = GameText.CreateText(rectangle, GameInstance.ScreenInfo, _font, 35, 250, 0, HorizontalAlignment.Left, VerticalAlignment.Center, text);
             warningText.Wordwrap = true;
             warningText.SetSize(GameInstance.ScreenInfo.SetX(750 - 270), GameInstance.ScreenInfo.SetY(240));
             warningText.SetColor(Color.White);
@@ -454,7 +627,7 @@ namespace SmartRoadSense.Shared {
             quitButton.ImageRect = AssetsCoordinates.Generic.Boxes.SelectionPositive;
             quitWindow.AddChild(quitButton);
 
-            Text confirmText = GameText.CreateText(quitButton, GameInstance.ScreenInfo, font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "Yes");
+            Text confirmText = GameText.CreateText(quitButton, GameInstance.ScreenInfo, _font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "Yes");
             confirmText.SetColor(Color.White);
 
             quitButton.Pressed += (PressedEventArgs args) => {
@@ -470,34 +643,23 @@ namespace SmartRoadSense.Shared {
             continueButton.ImageRect = AssetsCoordinates.Generic.Boxes.SelectionNegative;
             quitWindow.AddChild(continueButton);
 
-            Text cancelText = GameText.CreateText(continueButton, GameInstance.ScreenInfo, font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "No");
+            Text cancelText = GameText.CreateText(continueButton, GameInstance.ScreenInfo, _font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "No");
             cancelText.SetColor(Color.White);
 
-
             Action<PressedEventArgs> select = new Action<PressedEventArgs>((PressedEventArgs a) => {
-                VehicleManager.Instance.CurrentGarageVehicleId = vehicle_id;
-                VehicleManager.Instance.SelectedVehicleId = vehicle_id;
-                JsonReaderVehicles.GetSingleVehicle(vehicle_id); // Updates selected vehicle model
-                System.Diagnostics.Debug.WriteLine("SAVED ID = " + vehicle_id);
-                
+                VehicleManager.Instance.CurrentGarageVehicleId = _idDVehicle;
+                VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                //JsonReaderVehicles.SelectSingleVehicle(_idDVehicle); // Updates selected vehicle model
+                System.Diagnostics.Debug.WriteLine("SAVED ID = " + _idDVehicle);
+
+                VehicleManager.Instance.UnlockVehicle();
+
                 quitWindow.Visible = false;
                 quitWindow.Remove();
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             });
 
             quitButton.Pressed += select;          
-
-
         }
-
-
-        
-
-
     }
-
 }
-    
-
-       
-

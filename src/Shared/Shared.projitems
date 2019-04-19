@@ -30,16 +30,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\DataReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\TrackInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exceptions\DataLossException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneCredits.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NumericalExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ILevelManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\LevelManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ITrackManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\TrackManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\CharacterContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderCharacters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderVehicles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderLevels.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LevelsContainerModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\VehicleContainerModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneProfile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneProfileImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Scenes\SceneUserProfile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\PopUP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PpeMapper.cs" />
@@ -149,6 +149,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Game\Managers\ISoundManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\LoadingScreenData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Models\JsonReaderLoadingScreen.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Utilities\Extentions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Calibration\" />
@@ -158,12 +159,12 @@
     <Folder Include="$(MSBuildThisFileDirectory)Game\TerrainData\" />
     <Folder Include="$(MSBuildThisFileDirectory)Game\UI\" />
     <Folder Include="$(MSBuildThisFileDirectory)Strings\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Game\Models\Json\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Config.sample.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Vehicles.json" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed_averaged.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\track_game.csv" />
@@ -176,12 +177,9 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-15.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-20.csv" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\TerrainData\smoothed-averaged-30.csv" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\LoadingScreenData.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Characters.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Levels.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\Characters.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\Levels.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\LoadingScreenData.json" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Game\Models\Json\Vehicles.json" />
   </ItemGroup>
 </Project>

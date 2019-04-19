@@ -16,7 +16,7 @@ namespace SmartRoadSense.Shared
             dim = GameInstance.ScreenInfo;
             if(CharacterManager.Instance.User == null)
                 GameInstance.LaunchScene(GameScenesEnumeration.PROFILE);
-            else if(VehicleManager.Instance.SelectedVehicleId == -1) 
+            else if(VehicleManager.Instance.SelectedVehicleModel == null || VehicleManager.Instance.SelectedVehicleModel.IdVehicle == -1) 
                 GameInstance.LaunchScene(GameScenesEnumeration.GARAGE);
             else 
                 CreateUI();
@@ -45,18 +45,28 @@ namespace SmartRoadSense.Shared
             button.Pressed += args => {
                 switch(action) {
                     case 2:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.LEVEL_SELECT);
                         break;
                     case 3:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.GARAGE);
                         break;
                     case 7:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.PROFILE);
                         break;
                     case 9:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.SETTINGS);
                         break;
                     case 10:
+
+                        Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 1);
                         GameInstance.LaunchScene(GameScenesEnumeration.USER_PROFILE);
                         break;
                     case 11:
@@ -94,11 +104,17 @@ namespace SmartRoadSense.Shared
             btn_back.SetSize((int)(dim.XScreenRatio * 120), (int)(dim.YScreenRatio * 120));
             btn_back.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             btn_back.ImageRect = AssetsCoordinates.Generic.Icons.BntBack;
-            btn_back.Pressed += args => {
+            btn_back.Pressed += async args => {
                 // Close game
                 GameInstance.Graphics.Close();
-                GameInstance.Exit();
+                await GameInstance.Exit();
+                
             };
+#if __ANDROID__
+            btn_back.Visible = false;
+#else
+            btn_back.Visible = true;
+#endif
         }
 
         void CreateBackground() 
@@ -118,6 +134,7 @@ namespace SmartRoadSense.Shared
         }
 
         void CreateUI() {
+            Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("EXIT_FLAG", 0);
             CreateBackground();
             CreateTopBar();
             CreateLogo();

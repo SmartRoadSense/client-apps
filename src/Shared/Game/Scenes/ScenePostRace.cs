@@ -7,15 +7,16 @@ namespace SmartRoadSense.Shared
 {
     public class ScenePostRace : BaseScene
 	{
+        readonly UIElement root;
+        readonly ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
+        readonly ResourceCache cache;
+        readonly Font font;
+        readonly TrackModel _levelInfo;
 
-        UIElement root;
-        ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
-        ResourceCache cache;
         Sprite black_bar;
         Sprite backgroundSprite;
         Sprite container;
-        readonly Font font;
-        LastPlayedLevel _postLevelData;
+        LastPlayedTrack _postLevelData;
 
         public ScenePostRace(Game game, bool randomLevel = false) : base(game) 
 		{
@@ -23,6 +24,7 @@ namespace SmartRoadSense.Shared
             root = GameInstance.UI.Root;
             cache = GameInstance.ResourceCache;
             font = cache.GetFont(GameInstance.defaultFont);
+            _levelInfo = TrackManager.Instance.SelectedTrackModel ?? null;
 
             // Update best time data if not random level
             if(!randomLevel)
@@ -66,24 +68,25 @@ namespace SmartRoadSense.Shared
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
 
+
             //COINS
             Button coins = new Button();
             root.AddChild(coins);
             coins.SetStyleAuto(null);
-            coins.SetPosition((int)(dim.XScreenRatio * 165), (int)(dim.YScreenRatio * 60));
-            coins.SetSize((int)(dim.XScreenRatio * 70), (int)(dim.YScreenRatio * 70));
+            coins.SetPosition((int)(dim.XScreenRatio * 180), (int)(dim.YScreenRatio * 60));
+            coins.SetSize((int)(dim.XScreenRatio * 75), (int)(dim.YScreenRatio * 70));
             coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
-            coins.ImageRect = AssetsCoordinates.Generic.Icons.CoinsIcon;
-            coins.Visible = false;
+            coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+
 
             //Wallet text
             Text wallet = new Text();
-            root.AddChild(wallet);
-            wallet.SetPosition((int)(dim.XScreenRatio * 250), (int)(dim.YScreenRatio * 70));
+            coins.AddChild(wallet);
+            wallet.SetPosition((int)(dim.XScreenRatio * 90), (int)(dim.YScreenRatio * 10));
             wallet.SetFont(font, dim.XScreenRatio * 30);
             int wallet_tot = CharacterManager.Instance.Wallet;
+
             wallet.Value = "" + wallet_tot;
-            wallet.Visible = false;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -131,8 +134,8 @@ namespace SmartRoadSense.Shared
             levelnumber.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             levelnumber.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(15));
             levelnumber.SetFont(font, dim.XScreenRatio * 50);
-            if(_postLevelData.LevelData != null)
-                levelnumber.Value = _postLevelData.LevelData.IdLevel.ToString();
+            if(_postLevelData != null && _postLevelData.TrackData != null)
+                levelnumber.Value = _postLevelData.TrackData.IdTrack.ToString();
 
             Sprite LevelIcon = new Sprite();
             container.AddChild(LevelIcon);
@@ -194,7 +197,7 @@ namespace SmartRoadSense.Shared
             BestTot.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             BestTot.SetPosition(GameInstance.ScreenInfo.SetX(-30), GameInstance.ScreenInfo.SetY(0));
             BestTot.SetFont(font, dim.XScreenRatio * 30);
-            BestTot.Value = TimeSpan.FromMilliseconds(_postLevelData.LevelData.BestTime).MillisRepresentation();
+            BestTot.Value = TimeSpan.FromMilliseconds(_postLevelData.TrackData.BestTime).MillisRepresentation();
 
             // COMPONENTS
             Sprite ComponentsIcon = new Sprite();
@@ -327,39 +330,58 @@ namespace SmartRoadSense.Shared
 
         public void UpdateLevelInfo() 
         {
-            var levelInfo = LevelManager.Instance.SelectedLevelModel;
-
             // Update races number
-            levelInfo.TotalOfPlays += 1;
+            _levelInfo.TotalOfPlays += 1;
 
             // Completed status
-            levelInfo.Completed = (int)LevelSettings.COMPLETED.TRUE;
+            _levelInfo.Completed = (int)LevelSettings.COMPLETED.TRUE;
 
             // Best time
-            levelInfo.BestTime = levelInfo.BestTime == 0
-                ? LevelManager.Instance.LastPlayedLevelInfo.Time
-                : levelInfo.BestTime > LevelManager.Instance.LastPlayedLevelInfo.Time
-                    ? LevelManager.Instance.LastPlayedLevelInfo.Time
-                    : levelInfo.BestTime;
-                    
+            _levelInfo.BestTime = _levelInfo.BestTime == 0
+                ? TrackManager.Instance.LastPlayedTrackInfo.Time
+                : _levelInfo.BestTime > TrackManager.Instance.LastPlayedTrackInfo.Time
+                    ? TrackManager.Instance.LastPlayedTrackInfo.Time
+                    : _levelInfo.BestTime;
+
+            // Last race Points
+            _levelInfo.PointsObtained = TrackManager.Instance.LastPlayedTrackInfo.Points;
+
+            // Total points 
+            _levelInfo.TotalPoints += TrackManager.Instance.LastPlayedTrackInfo.Points;
+
             // Update level info
-            LevelManager.Instance.SelectedLevelModel = levelInfo;
+            TrackManager.Instance.SelectedTrackModel = _levelInfo;
 
             // Update last played level data
-            var lastPlayedLevel = LevelManager.Instance.LastPlayedLevelInfo;
-            lastPlayedLevel.LevelData = LevelManager.Instance.SelectedLevelModel;
-            LevelManager.Instance.LastPlayedLevelInfo = lastPlayedLevel;
+            var lastPlayedLevel = TrackManager.Instance.LastPlayedTrackInfo;
+            lastPlayedLevel.TrackData = TrackManager.Instance.SelectedTrackModel;
+            TrackManager.Instance.LastPlayedTrackInfo = lastPlayedLevel;
 
             // Set level data for current screen
             _postLevelData = lastPlayedLevel;
 
-            // Update user experience points
-            // TODO: reactivate
-            /*
             var player = CharacterManager.Instance.User;
-            player.Experience += _postLevelData.Points;
+
+            // Update user experience points
+            player.Experience += TrackManager.Instance.LastPlayedTrackInfo.Points;
+
+            // Update user coins
+            player.Wallet += TrackManager.Instance.LastPlayedTrackInfo.Coins;
+
+            // Save updates
             CharacterManager.Instance.User = player;
-            */           
+
+            // Update components
+            if(_postLevelData.Components > 0) {
+                var collected = VehicleManager.Instance.CollectedComponents;
+                foreach(var vehicle in collected.CollectedComponentsList) {
+                    if(!vehicle.VehicleComponents.Brakes) {
+                        vehicle.VehicleComponents.Brakes = true;
+                        break;
+                    }
+                }
+                VehicleManager.Instance.CollectedComponents = collected;
+            }
         }
     }
 }

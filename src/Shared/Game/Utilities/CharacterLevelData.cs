@@ -4,6 +4,7 @@ namespace SmartRoadSense.Shared {
 
         static readonly int _startingPoints = 700;
         static readonly int _scalingPoints = 50;
+        static readonly int _lostPointsMax = 250;
 
         public static int PointsToNextLevel(int lvl = -1) {
             if(CharacterManager.Instance.User == null)
@@ -44,7 +45,8 @@ namespace SmartRoadSense.Shared {
                 for(var i = 1; i <= 100; i++) {
                     points += PointsToNextLevel(i);
                     if(CharacterManager.Instance.User.Experience <= points) {
-                        currentLvlPoints = CharacterManager.Instance.User.Experience - (points - PointsToNextLevel(i - 1));
+                        // TODO: happens that result is negative !
+                        currentLvlPoints = Math.Abs(CharacterManager.Instance.User.Experience - (points - PointsToNextLevel(i - 1)));
                         break;
                     }
                 }
@@ -55,15 +57,15 @@ namespace SmartRoadSense.Shared {
         public static int ObtainedPoints(int time) {
             var obtainedPoints = 50;
             var maxBasePoints = 200;
-            var bestTimeToBeat = 120000;
-            var slowestTimeToBeat = 180000;
-            var pointModifier = 0;
+            var bestTimeToBeat = 150000;
+            var slowestTimeToBeat = 210000;
+            double pointModifier = 0;
 
             // Scale to difficulty level compared to user level
-            var difficultyLevel = LevelManager.Instance.SelectedLevelModel.Difficulty;
+            var difficultyLevel = TrackManager.Instance.SelectedTrackModel.Difficulty;
             var characterLevel = CharacterManager.Instance.User.Level;
             double pointRatio = difficultyLevel / characterLevel;
-
+           
             if(time <= bestTimeToBeat) {
                 // MAX POINTS
                 pointModifier = maxBasePoints;
@@ -74,6 +76,8 @@ namespace SmartRoadSense.Shared {
                 var playerTime = steppedTime - (time - bestTimeToBeat);
 
                 pointModifier = playerTime / steppedTime * maxBasePoints;
+            } else {
+                pointModifier = obtainedPoints;
             }
 
             obtainedPoints = (int)Math.Round((pointModifier * pointRatio) * (difficultyLevel / 10 + Math.Pow(2, difficultyLevel / 10)));
@@ -81,13 +85,12 @@ namespace SmartRoadSense.Shared {
             return obtainedPoints;
         }
 
-        public static int LostPoints(int position) {
-            var lostPointsMax = 250;
-            var difficultyLevel = LevelManager.Instance.SelectedLevelModel.Difficulty;
+        public static int LostPoints(int position, int trackLength) {
+            var difficultyLevel = TrackManager.Instance.SelectedTrackModel.Difficulty;
             var characterLevel = CharacterManager.Instance.User.Level;
             double pointRatio = difficultyLevel / characterLevel;
 
-            var lostPoints = (TerrainGenerator.TerrainEndPoints - position) / TerrainGenerator.TerrainEndPoints * lostPointsMax;
+            var lostPoints = (trackLength - position) / trackLength * _lostPointsMax;
             return -(int)Math.Round((lostPoints * pointRatio) * (difficultyLevel / 10 + Math.Pow(2, difficultyLevel / 10)));
         }
     }

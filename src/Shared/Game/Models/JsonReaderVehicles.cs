@@ -7,11 +7,11 @@ namespace SmartRoadSense.Shared {
     public static class JsonReaderVehicles {
         const string VehicleJsonFilename = "Vehicles.json";
 
-        static VehicleContainerModel vehicleContainer = null;
+        static VehicleContainerModel _vehicleContainer = null;
 
         static void LoadConfig() 
         {
-            if(vehicleContainer != null)
+            if(_vehicleContainer != null)
                 return;
                
             try {
@@ -23,7 +23,7 @@ namespace SmartRoadSense.Shared {
                     using(var reader = new System.IO.StreamReader(s)) {
                         var txt = reader.ReadToEnd();
                         JsonSerializer serializer = new JsonSerializer();
-                        vehicleContainer = JsonConvert.DeserializeObject<VehicleContainerModel>(txt);
+                        _vehicleContainer = JsonConvert.DeserializeObject<VehicleContainerModel>(txt);
                     }
                 }
             }
@@ -35,17 +35,17 @@ namespace SmartRoadSense.Shared {
         public static void GetVehicleConfig() 
         {
             LoadConfig();
-            if(vehicleContainer != null) 
+            if(_vehicleContainer != null) 
             {
-                System.Diagnostics.Debug.WriteLine("vehicle count: {0}", vehicleContainer.VehicleModel.Count);
-                VehicleManager.Instance.VehicleCount = vehicleContainer.VehicleModel.Count;
+                System.Diagnostics.Debug.WriteLine("vehicle count: {0}", _vehicleContainer.VehicleModel.Count);
+                VehicleManager.Instance.VehicleCount = _vehicleContainer.VehicleModel.Count;
             }
         }
 
-        public static void GetSingleVehicle(int id) 
+        public static void SelectSingleVehicle(int id) 
         {
             LoadConfig();
-            var vehicle = vehicleContainer.VehicleModel.FirstOrDefault(vehicleContainer => vehicleContainer.IdVehicle == id);
+            var vehicle = _vehicleContainer.VehicleModel.FirstOrDefault(vehicleContainer => vehicleContainer.IdVehicle == id);
             VehicleManager.Instance.SelectedVehicleModel = vehicle;   
                 
             System.Diagnostics.Debug.WriteLine("name: " + vehicle.Name);
@@ -60,10 +60,16 @@ namespace SmartRoadSense.Shared {
             System.Diagnostics.Debug.WriteLine("");
         }
 
+        public static VehicleModel GetSingleVehicle(int id) {
+            LoadConfig();
+            System.Diagnostics.Debug.WriteLine("ID-GETSINGLE: " + id);
+            return  _vehicleContainer.VehicleModel.FirstOrDefault(vehicleContainer => vehicleContainer.IdVehicle == id);
+        }
+
         public static VehicleContainerModel GetVehicles () 
         {
             LoadConfig();
-            return vehicleContainer;
+            return _vehicleContainer;
         }
     }
 }

@@ -1,10 +1,9 @@
-using System;
 using Newtonsoft.Json;
 
 namespace SmartRoadSense.Shared {
-    public class LastPlayedLevel {
+    public class LastPlayedTrack {
         [JsonProperty("LEVEL_DATA")]
-        public LevelModel LevelData { get; set; }
+        public TrackModel TrackData { get; set; }
 
         [JsonProperty("TIME")]
         public int Time { get; set; }

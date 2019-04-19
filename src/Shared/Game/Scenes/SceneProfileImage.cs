@@ -5,7 +5,7 @@ using Urho.Resources;
 
 
 namespace SmartRoadSense.Shared {
-    public class SceneProfile : BaseScene {
+    public class SceneProfileImage : BaseScene {
         ScreenInfoRatio dim; //variabile rapporto dimensioni schermo
         ResourceCache cache;
         Sprite backgroundSprite;
@@ -30,7 +30,7 @@ namespace SmartRoadSense.Shared {
         bool _isUserProfile;
         LineEdit lineEdit;
 
-        public SceneProfile(Game game, bool IsUserProfile = false) : base(game) {
+        public SceneProfileImage(Game game, bool IsUserProfile = false) : base(game) {
             dim = GameInstance.ScreenInfo;
             root = GameInstance.UI.Root;
             cache = GameInstance.ResourceCache;
@@ -89,24 +89,25 @@ namespace SmartRoadSense.Shared {
                     GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
 
+
             //COINS
             Button coins = new Button();
             root.AddChild(coins);
             coins.SetStyleAuto(null);
-            coins.SetPosition((int)(dim.XScreenRatio * 165), (int)(dim.YScreenRatio * 60));
-            coins.SetSize((int)(dim.XScreenRatio * 70), (int)(dim.YScreenRatio * 70));
-            coins.Texture = generic_bts;
-            coins.ImageRect = new IntRect(60, 729, 110, 779);
-            coins.Visible = false;
+            coins.SetPosition((int)(dim.XScreenRatio * 180), (int)(dim.YScreenRatio * 60));
+            coins.SetSize((int)(dim.XScreenRatio * 75), (int)(dim.YScreenRatio * 70));
+            coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+
 
             //Wallet text
             Text wallet = new Text();
-            root.AddChild(wallet);
-            wallet.SetPosition((int)(dim.XScreenRatio * 250), (int)(dim.YScreenRatio * 70));
+            coins.AddChild(wallet);
+            wallet.SetPosition((int)(dim.XScreenRatio * 90), (int)(dim.YScreenRatio * 10));
             wallet.SetFont(font, dim.XScreenRatio * 30);
             int wallet_tot = CharacterManager.Instance.Wallet;
+
             wallet.Value = "" + wallet_tot;
-            wallet.Visible = false;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -499,5 +500,7 @@ namespace SmartRoadSense.Shared {
                 CharacterManager.Instance.User = user;
             }
         }
+
+
     }
 }

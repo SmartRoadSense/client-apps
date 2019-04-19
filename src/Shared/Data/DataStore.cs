@@ -31,16 +31,25 @@ namespace SmartRoadSense.Shared.Data {
             });
         }
 
-        public static Task<double[]> GetTrackPpe(Guid trackId) {
-            return Task.Run(() => {
-                var filePath = FileNaming.GetDataTrackFilepath(trackId);
-                using(var s = File.Open(filePath, FileMode.Open, FileAccess.Read)) {
-                    using(var reader = new StreamReader(s)) {
-
-                    }
+        public static Task<int> GetTrackLength(Guid trackId) {
+            return Task.Run(async () => {
+                var reader = new DataReader(trackId);
+                int length = 0;
+                while(await reader.Advance()) {
+                    length++;
                 }
+                return length;
+            });
+        }
 
-                return new double[0];
+        public static Task<double[]> GetTrackPpe(Guid trackId) {
+            return Task.Run(async () => {
+                var reader = new DataReader(trackId);
+                List<double> data = new List<double>();
+                while(await reader.Advance()) {
+                    data.Add(reader.Current.Ppe);
+                }
+                return data.ToArray();
             });
         }
 

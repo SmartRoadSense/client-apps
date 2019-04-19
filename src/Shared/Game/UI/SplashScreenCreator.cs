@@ -13,7 +13,7 @@ namespace SmartRoadSense.Shared {
         /// <param name="GameInstance">Game instance.</param>
         public static string CreateSplashScreen(Game GameInstance, Node parent) {
             // Get data
-            var data = LevelManager.Instance.LoadingScreenFacts;
+            var data = TrackManager.Instance.LoadingScreenFacts;
             var rnd = new Random();
             var argIdx = rnd.Next(0, data.LoadingScreens.Count);
             var arg = data.LoadingScreens[argIdx];
@@ -104,7 +104,7 @@ namespace SmartRoadSense.Shared {
 
             var btnContinue = new Button {
                 Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath),
-                ImageRect = AssetsCoordinates.Generic.Boxes.LoadingContinueButton,
+                ImageRect = AssetsCoordinates.Generic.Boxes.GroupSelected,
                 Name = "ButtonContinue",
                 Position = new IntVector2(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0)),
                 Size = new IntVector2(GameInstance.ScreenInfo.SetX(400), GameInstance.ScreenInfo.SetY(95)),
@@ -131,7 +131,7 @@ namespace SmartRoadSense.Shared {
             topBar.SetSize(GameInstance.ScreenInfo.SetX(2000), GameInstance.ScreenInfo.SetY(120));
 
             Button screenTitle = new Button();
-            screenTitle.SetStyleAuto(null);
+            //screenTitle.SetStyleAuto(null);
             screenTitle.HorizontalAlignment = HorizontalAlignment.Right;
             screenTitle.VerticalAlignment = VerticalAlignment.Center;
             screenTitle.SetPosition(GameInstance.ScreenInfo.SetX(-150), GameInstance.ScreenInfo.SetY(0));
@@ -160,37 +160,6 @@ namespace SmartRoadSense.Shared {
 
             var loadingWheelSprite2D = wheelNode.CreateComponent<AnimatedSprite2D>();
             loadingWheelSprite2D.Sprite = loadingWheel;
-            */
-            /*
-            var background2 = new BorderImage {
-                Position = new IntVector2(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0)),
-                Size = new IntVector2(GameInstance.ScreenInfo.SetX(AssetsCoordinates.Backgrounds.LoadingScreen.Background2.ImageRect.Right), GameInstance.ScreenInfo.SetY(1080)),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.LoadingScreen.Background2.Path),
-                ImageRect = AssetsCoordinates.Backgrounds.LoadingScreen.Background2.ImageRect
-            };
-            splashscreen.AddChild(background2);
-
-            var background1 = new BorderImage {
-                Position = new IntVector2(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0)),
-                Size = new IntVector2(GameInstance.ScreenInfo.SetX(AssetsCoordinates.Backgrounds.LoadingScreen.Background1.ImageRect.Right), GameInstance.ScreenInfo.SetY(1080)),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.LoadingScreen.Background1.Path),
-                ImageRect = AssetsCoordinates.Backgrounds.LoadingScreen.Background1.ImageRect
-            };
-            splashscreen.AddChild(background1);
-
-            var backgroundF = new BorderImage {
-                Position = new IntVector2(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0)),
-                Size = new IntVector2(GameInstance.ScreenInfo.SetX(AssetsCoordinates.Backgrounds.LoadingScreen.Foreground.ImageRect.Right), GameInstance.ScreenInfo.SetY(1080)),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top,
-                Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Backgrounds.LoadingScreen.Foreground.Path),
-                ImageRect = AssetsCoordinates.Backgrounds.LoadingScreen.Foreground.ImageRect
-            };
-            splashscreen.AddChild(backgroundF);
             */
 
             return splashscreen.Name;

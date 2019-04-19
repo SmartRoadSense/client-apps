@@ -73,19 +73,18 @@ namespace SmartRoadSense.Shared {
             Button coins = new Button();
             root.AddChild(coins);
             coins.SetStyleAuto(null);
-            coins.SetPosition((int)(dim.XScreenRatio * 165), (int)(dim.YScreenRatio * 60));
-            coins.SetSize((int)(dim.XScreenRatio * 70), (int)(dim.YScreenRatio * 70));
-            coins.Texture = generic_bts;
-            coins.ImageRect = new IntRect(60, 729, 110, 779);
-            coins.Visible = false;
+            coins.SetPosition((int)(dim.XScreenRatio * 180), (int)(dim.YScreenRatio * 60));
+            coins.SetSize((int)(dim.XScreenRatio * 75), (int)(dim.YScreenRatio * 70));
+            coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+
 
             //Wallet text
             Text wallet = new Text();
-            root.AddChild(wallet);
-            wallet.SetPosition((int)(dim.XScreenRatio * 250), (int)(dim.YScreenRatio * 70));
+            coins.AddChild(wallet);
+            wallet.SetPosition((int)(dim.XScreenRatio * 90), (int)(dim.YScreenRatio * 10));
             wallet.SetFont(font, dim.XScreenRatio * 30);
-            wallet.Value = string.Format("{0}", CharacterManager.Instance.User.Wallet);
-            wallet.Visible = false;
+            wallet.Value = "" + CharacterManager.Instance.Wallet;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -102,7 +101,6 @@ namespace SmartRoadSense.Shared {
             buttonTitleText.SetPosition(0, 0);
             buttonTitleText.SetFont(font, dim.XScreenRatio * 30);
             buttonTitleText.Value = "PROFILE";
-            
         }
 
         void CreateProfileBar() {
@@ -217,7 +215,7 @@ namespace SmartRoadSense.Shared {
             NOfRacesValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             NOfRacesValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(200));
             NOfRacesValue.SetFont(font, dim.XScreenRatio * 30);
-            NOfRacesValue.Value = string.Format("{0}", LevelManager.Instance.PlayedLevels);
+            NOfRacesValue.Value = string.Format("{0}", TrackManager.Instance.PlayedLevels);
 
             // COMPLETED RACES NUMBER
             Text RacesCompleted = new Text();
@@ -233,7 +231,7 @@ namespace SmartRoadSense.Shared {
             RacesCompletedValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             RacesCompletedValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(260));
             RacesCompletedValue.SetFont(font, dim.XScreenRatio * 30);
-            RacesCompletedValue.Value = string.Format("{0}", LevelManager.Instance.CompletedLevels);
+            RacesCompletedValue.Value = string.Format("{0}", TrackManager.Instance.CompletedLevels);
 
             // FAILED RACES NUMBER
             Text RacesFailed = new Text();
@@ -249,7 +247,7 @@ namespace SmartRoadSense.Shared {
             RacesFailedValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             RacesFailedValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(320));
             RacesFailedValue.SetFont(font, dim.XScreenRatio * 30);
-            RacesFailedValue.Value = string.Format("{0}", LevelManager.Instance.FailedLevels);
+            RacesFailedValue.Value = string.Format("{0}", TrackManager.Instance.FailedLevels);
 
             // RACE COMPLETION RATIO
             Text RacesCompletitionRatio = new Text();
@@ -265,7 +263,7 @@ namespace SmartRoadSense.Shared {
             RacesCompletitionRatioValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             RacesCompletitionRatioValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(380));
             RacesCompletitionRatioValue.SetFont(font, dim.XScreenRatio * 30);
-            RacesCompletitionRatioValue.Value = string.Format("{0} %", LevelManager.Instance.CompletedPercentage.ToString("n2"));
+            RacesCompletitionRatioValue.Value = string.Format("{0} %", TrackManager.Instance.CompletedPercentage.ToString("n2"));
 
             // MOST SINGLE RACE POINTS
             Text MostPoints = new Text();
@@ -281,7 +279,7 @@ namespace SmartRoadSense.Shared {
             MostPointsValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             MostPointsValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(440));
             MostPointsValue.SetFont(font, dim.XScreenRatio * 30);
-            MostPointsValue.Value = string.Format("{0}", LevelManager.Instance.MostPointsInSingleRace);
+            MostPointsValue.Value = string.Format("{0}", TrackManager.Instance.MostPointsInSingleRace);
 
             // EXPERIENCE
             Text TotalPoints = new Text();
@@ -316,7 +314,6 @@ namespace SmartRoadSense.Shared {
             CoinsCollectedValue.Value = string.Format("{0}", CharacterManager.Instance.User.Wallet);
 
             // VEHICLES OWNED
-            /*
             Text VehiclesOwned = new Text();
             container.AddChild(VehiclesOwned);
             VehiclesOwned.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Top);
@@ -330,8 +327,8 @@ namespace SmartRoadSense.Shared {
             VehiclesOwnedValue.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Top);
             VehiclesOwnedValue.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(620));
             VehiclesOwnedValue.SetFont(font, dim.XScreenRatio * 30);
-            VehiclesOwnedValue.Value = "TODO";
-            */
+            VehiclesOwnedValue.Value = string.Format($"{VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count}");
+
             // UNLOCKED VEHICLES 
             /*
             Text VehiclesUnlocked = new Text();

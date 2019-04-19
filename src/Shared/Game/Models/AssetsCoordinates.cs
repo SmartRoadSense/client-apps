@@ -74,13 +74,29 @@ namespace SmartRoadSense.Shared
                 readonly static public IntRect BoxSuspensionUpgrade = new IntRect(584, 680, 1140, 776);
                 readonly static public IntRect BoxBrakeUpgrade = new IntRect(0, 790, 555, 888);
                 readonly static public IntRect BoxWheelUpgrade = new IntRect(1168, 680, 1722, 776);
+                readonly static public IntRect BoxPerformanceUpgradeNew = new IntRect(1156, 144, 1718, 234);
+                readonly static public IntRect BoxSuspensionUpgradeNew = new IntRect(1156, 250, 1718, 340);
+                readonly static public IntRect BoxBrakeUpgradeNew = new IntRect(1156, 360, 1718, 450);
+                readonly static public IntRect BoxWheelUpgradeNew = new IntRect(1156, 467, 1718, 557);
+
                 readonly static public IntRect BarBoosterDropDown = new IntRect(588, 790, 1430, 888);
                 readonly static public IntRect ButtonContinue = new IntRect(700, 400, 1130, 540);
                 readonly static public IntRect BoxInstructions = new IntRect(0, 150, 620, 220);
                 readonly static public IntRect BoxInfoLocked = new IntRect(296, 570, 985, 673);
                 readonly static public IntRect BarUnkockedItem = new IntRect(1040, 570, 1727, 673);
                 readonly static public IntRect BtnUpgrade = new IntRect(0, 570, 265, 650);
-                
+                readonly static public IntRect ComponentsAlign = new IntRect(2912, 1402, 3938, 1677);
+                readonly static public IntRect ComponentBodyGreen = new IntRect(3762, 1696, 3869, 1802);
+                readonly static public IntRect ComponentBodyRed = new IntRect(3607, 1696, 3713, 1802);
+                readonly static public IntRect ComponentDrivetrainGreen = new IntRect(3451, 1696, 3557, 1802);
+                readonly static public IntRect ComponentDrivetrainRed = new IntRect(3295, 1696, 3401, 1802);
+                readonly static public IntRect ComponentEngineGreen = new IntRect(3136, 1696, 3243, 1802);
+                readonly static public IntRect ComponentEngineRed = new IntRect(2976, 1696, 3083, 1802);
+                readonly static public IntRect ComponentSuspensionGreen = new IntRect(3450, 1854, 3557, 1960);
+                readonly static public IntRect ComponentSuspensionRed = new IntRect(3300, 1854, 3407, 1960);
+                readonly static public IntRect ComponentWheelGreen = new IntRect(3140, 1854, 3248, 1960);
+                readonly static public IntRect ComponentWheelRed = new IntRect(2976, 1854, 3083, 1960);
+
                 //only level
                 readonly static public IntRect MapBox = new IntRect(0, 1194, 1016, 1360);
                 readonly static public IntRect TimeBestBox = new IntRect(0, 1395, 356, 1481);
@@ -150,11 +166,35 @@ namespace SmartRoadSense.Shared
                 //SOCIAL
                 readonly static public IntRect Facebook = new IntRect(1912, 1681, 2062, 1831);
                 readonly static public IntRect Tweeter = new IntRect(2112, 1681, 2262, 1831);
+            }
 
+            public struct Garage {
+                readonly static string AssetPath = BaseTexturesAssetsPath + "Garage/";
 
+                public struct VehicleBackgroundBar {
+                    public readonly static string Path = AssetPath + "vehicle_bar_big.png";
+                    public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
 
+                public struct GarageButtons {
+                    public readonly static string Path = AssetPath + "garage_bts.png";
+                    //public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
 
+                public struct FullVehicles {
+                    public readonly static string ResourcePath = AssetPath + "vehicles2.png";
+                    //public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
 
+                public struct GreenBars {
+                    public readonly static string ResourcePath = AssetPath + "green_bars.png";
+                    //public readonly static IntRect Rectangle = new IntRect(0, 0, 2048, 492);
+                }
+
+                public struct ContBase {
+                    public readonly static string ResourcePath = AssetPath + "cont_base.png";
+                    public readonly static IntRect TrasparentItem = new IntRect(0, 0, 54, 54);
+                }
             }
         }
 
@@ -219,6 +259,11 @@ namespace SmartRoadSense.Shared
             public struct FixedBackground {
                 public readonly static string ResourcePath = AssetPath + "MenuBackground.png";
                 public readonly static IntRect ImageRect = new IntRect(0, 0, 1920, 1080);
+            }
+
+            public struct LoadingGameScreen {
+                public readonly static string ResourcePath = AssetPath + "loading_screen.png";
+                public readonly static IntRect ImageRect = new IntRect(0, 0, 1334, 750);
             }
 
             public struct LoadingScreen {

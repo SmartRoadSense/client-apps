@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace SmartRoadSense.Shared
 {
@@ -16,6 +17,30 @@ namespace SmartRoadSense.Shared
 
         public static VehicleManager Instance { get; } = new VehicleManager();
 
+        public void Init() {
+            List<CollectedComponents> components = new List<CollectedComponents>();
+            if(CollectedComponents != null && CollectedComponents.CollectedComponentsList != null)
+                components = CollectedComponents.CollectedComponentsList;
+
+            foreach(var v in Vehicles.VehicleModel) {
+                if(v.UnlockCost < 0 && !components.Exists(e => e.VehicleId == v.IdVehicle)) {
+                    components.Add(new CollectedComponents { VehicleId = v.IdVehicle, VehicleComponents = new Components() });
+                }
+            }
+
+            if(CollectedComponents == null) {
+                CollectedComponents = new CollectedComponentsContainer {
+                    CollectedComponentsList = components
+                };
+            }
+
+            else {
+                var collected = CollectedComponents;
+                collected.CollectedComponentsList = components;
+                CollectedComponents = collected;
+            }
+        }
+
         public int VehicleCount {
             get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.VehicleCount.Value, 0);
             set {
@@ -24,8 +49,7 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public int CurrentGarageVehicleId
-        {
+        public int CurrentGarageVehicleId {
             get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, -1);
             set {
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, value);
@@ -33,42 +57,62 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public int SelectedVehicleId
-        {
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.IdVehicle.Value, -1);
-            set 
-            {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.IdVehicle.Value, value);
-                OnPropertyChanged();
-            }
-        }
-
-        public VehicleModel SelectedVehicleModel
-        {
-            get
-            {
+        public VehicleModel SelectedVehicleModel {
+            get {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedVehicle.Value, "");
-                return string.IsNullOrEmpty(json)? null : JsonConvert.DeserializeObject<VehicleModel>(json);
+                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<VehicleModel>(json);
             }
-            set 
-            {
+            set {
                 var json = JsonConvert.SerializeObject(value);
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedVehicle.Value, json);
                 OnPropertyChanged();
             }
         }
 
-        public int VehiclesUnlocked 
+        public VehicleModel GetVehicleFromId(int id) {
+            return Vehicles.VehicleModel.Find(v => v.IdVehicle == id);
+        }
+
+        public VehicleContainerModel UnlockedVehicles 
         {
-            get 
-            {
-                var unlocked = 0;
-                var vehicles = JsonReaderVehicles.GetVehicles();
-                foreach(var vehicle in vehicles.VehicleModel) {
-                    if(vehicle.UnlockCost <= CharacterManager.Instance.User.Level)
-                        unlocked += 1;
-                }
-                return unlocked;
+            get {
+                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.UnlockedVehicles.Value, "");
+                var vehicleIdList = string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<VehicleContainerModel>(json);
+                if(vehicleIdList == null || vehicleIdList.VehicleModel.IsEmpty())
+                    return new VehicleContainerModel();
+
+                return vehicleIdList;
+            }
+            set {
+                var json = JsonConvert.SerializeObject(value);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.UnlockedVehicles.Value, json);
+                OnPropertyChanged();
+            }
+        }
+
+        public void UnlockVehicle() {
+            var vehiclesUnlocked = Instance.UnlockedVehicles;
+            if(!vehiclesUnlocked.VehicleModel.Contains(Instance.SelectedVehicleModel)) {
+                vehiclesUnlocked.VehicleModel.Add(Instance.SelectedVehicleModel);
+                Instance.UnlockedVehicles = vehiclesUnlocked;
+            }
+        }
+
+        public VehicleContainerModel Vehicles 
+        {
+            get => JsonReaderVehicles.GetVehicles();
+        }
+
+        public CollectedComponentsContainer CollectedComponents
+        {
+            get {
+                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.CollectedComponents.Value, "");
+                return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<CollectedComponentsContainer>(json);
+            }
+            set {
+                var json = JsonConvert.SerializeObject(value);
+                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.CollectedComponents.Value, json);
+                OnPropertyChanged();
             }
         }
     }

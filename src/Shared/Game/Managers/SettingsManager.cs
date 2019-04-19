@@ -21,7 +21,7 @@ namespace SmartRoadSense.Shared {
         }
 
         public GameplayButtonSize GameplayButtonSize {
-            get => (GameplayButtonSize)Plugin.Settings.CrossSettings.Current.GetValueOrDefault("settings_button_size", 2);
+            get => (GameplayButtonSize)Plugin.Settings.CrossSettings.Current.GetValueOrDefault("settings_button_size", 1);
             set {
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue("settings_button_size", (int)value);
                 OnPropertyChanged();

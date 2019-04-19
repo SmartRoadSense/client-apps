@@ -32,6 +32,11 @@ namespace SmartRoadSense.Android {
 
             var comingSoon = this.FindViewById<TextView>(Resource.Id.coming_soon_text);
             comingSoon.Click += (sender, e) => {
+                // Stop sensing before launching the game
+                SensingService.Do(model => {
+                    model.StopRecordingCommand.Execute(null);
+                });
+
                 Intent i = new Intent(this, typeof(PreGameActivity));
                 StartActivity(i);
             };

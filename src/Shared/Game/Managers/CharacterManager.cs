@@ -18,7 +18,7 @@ namespace SmartRoadSense.Shared
 
         public UserInfo User {
             get {
-                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.UserInfo.Value, "");
+                var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.UserInfo.Value, string.Empty);
                 return string.IsNullOrEmpty(json) ? null : JsonConvert.DeserializeObject<UserInfo>(json);
             }
             set {
@@ -31,13 +31,12 @@ namespace SmartRoadSense.Shared
         public int Wallet {
             get => User != null ? User.Wallet : 0;
             set {
-                var tmp = User;
-                tmp.Wallet = value;
-                var json = JsonConvert.SerializeObject(tmp);
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.UserInfo.Value, json);
-                OnPropertyChanged();
+                var user = User ?? new UserInfo();
+                user.Wallet = value;
+                User = user;
             }
         }
+
         /*
         public CharacterModel SelectedCharacterModel {
             get {

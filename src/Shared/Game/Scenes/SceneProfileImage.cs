@@ -326,10 +326,8 @@ namespace SmartRoadSense.Shared {
             prev_img.Pressed += args => {
                 if(counter <= 0) {
                     counter = 44;
-                    //prev_img.Enabled = false;
                 }
                 else {
-                    prev_img.Enabled = true;
                     counter = counter - 1;
                 }
                 ScrollImage();
@@ -384,6 +382,9 @@ namespace SmartRoadSense.Shared {
             int top = character.ImagePosition.Top;
             int right = character.ImagePosition.Right;
             int bottom = character.ImagePosition.Bottom;
+
+            _nameText = character.Name ?? "Unset";
+
             if (counter == 0) {
                 p_prev_img.ImageRect = new IntRect(750, 1250, 1000, 1500);
                 prev_img.ImageRect = new IntRect(1000, 1250, 1250, 1500);
@@ -392,52 +393,35 @@ namespace SmartRoadSense.Shared {
                 male.ImageRect = new IntRect(260, 0, 520, 110);
                 female.ImageRect = new IntRect(0, 0, 260, 110);
                 other.ImageRect = new IntRect(0, 0, 260, 110);
-                _nameText = "Rudy Reckless";
-                lineEdit.Text = _nameText;
             }
             else if (counter == 1) {
                 p_prev_img.ImageRect = new IntRect(1250, 1250, 1500, 1500);
-                character = JsonReaderCharacter.GetSingleCharacter(0);
-                int left_p = character.ImagePosition.Left;
-                int top_p = character.ImagePosition.Top;
-                int right_p = character.ImagePosition.Right;
-                int bottom_p = character.ImagePosition.Bottom;
                 prev_img.ImageRect = new IntRect(0, 0, 250, 250); 
-                prev_img.Enabled = true;
                 sel_img.ImageRect = new IntRect(250, 0, 500, 250);
                 next_img.ImageRect = new IntRect(500, 0, 750, 250);
                 male.ImageRect = new IntRect(260, 0, 520, 110);
                 female.ImageRect = new IntRect(0, 0, 260, 110);
                 other.ImageRect = new IntRect(0, 0, 260, 110);
-                _nameText = "Rudy Reckless";
-                lineEdit.Text = _nameText;
             }
             else {
                 sel_img.ImageRect = new IntRect(left, top, right, bottom);
                 next_img.Enabled = true;
                 sel_img.Enabled = true;
-                prev_img.Enabled = true;
                 switch(type) {
                     case 0:
                         male.ImageRect = new IntRect(260, 0, 520, 110);
                         female.ImageRect = new IntRect(0, 0, 260, 110);
                         other.ImageRect = new IntRect(0, 0, 260, 110);
-                        _nameText = "Rudy Reckless";
-                        lineEdit.Text = _nameText;
                         break;
                     case 1:
                         male.ImageRect = new IntRect(0, 0, 260, 110);
                         female.ImageRect = new IntRect(260, 0, 520, 110);
                         other.ImageRect = new IntRect(0, 0, 260, 110);
-                        _nameText = "Lauren Leadfoot";
-                        lineEdit.Text = _nameText;
                         break;
                     case 2:
                         male.ImageRect = new IntRect(0, 0, 260, 110);
                         female.ImageRect = new IntRect(0, 0, 260, 110);
                         other.ImageRect = new IntRect(260, 0, 520, 110);
-                        _nameText = "Alex Axxel";
-                        lineEdit.Text = _nameText;
                         break;
                 }
                 int p_prev;
@@ -462,7 +446,7 @@ namespace SmartRoadSense.Shared {
                     next = counter + 1;
                     n_next =counter +2;
                 }
-                
+
                 character = JsonReaderCharacter.GetSingleCharacter(p_prev);
                 int left_pp = character.ImagePosition.Left;
                 int top_pp = character.ImagePosition.Top;
@@ -491,6 +475,8 @@ namespace SmartRoadSense.Shared {
                 int bottom_nn = character.ImagePosition.Bottom;
                 n_next_img.ImageRect = new IntRect(left_nn, top_nn, right_nn, bottom_nn);
             }
+
+            lineEdit.Text = _nameText;
         }
 
         void SelectedImage() {

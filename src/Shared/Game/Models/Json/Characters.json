@@ -3,6 +3,7 @@
     {
       "ID_CHARACTER": "0",
       "TYPE": "0",
+	  "NAME": "Sly Speeder",
       "IMAGE_POSITION": {
         "LEFT": "0",
         "TOP": "0",
@@ -13,6 +14,7 @@
     {
       "ID_CHARACTER": "1",
       "TYPE": "0",
+	  "NAME": "John Lenny",
       "IMAGE_POSITION": {
         "LEFT": "250",
         "TOP": "0",
@@ -23,6 +25,7 @@
     {
       "ID_CHARACTER": "2",
       "TYPE": "0",
+	  "NAME": "Harry Hitch",
       "IMAGE_POSITION": {
         "LEFT": "500",
         "TOP": "0",
@@ -33,6 +36,7 @@
     {
       "ID_CHARACTER": "3",
       "TYPE": "0",
+	  "NAME": "Alex Axxel",
       "IMAGE_POSITION": {
         "LEFT": "750",
         "TOP": "0",
@@ -43,6 +47,7 @@
     {
       "ID_CHARACTER": "4",
       "TYPE": "0",
+	  "NAME": "Raphael",
       "IMAGE_POSITION": {
         "LEFT": "1000",
         "TOP": "0",
@@ -53,6 +58,7 @@
     {
       "ID_CHARACTER": "5",
       "TYPE": "0",
+	  "NAME": "Hiro Protagonist",
       "IMAGE_POSITION": {
         "LEFT": "1250",
         "TOP": "0",
@@ -63,6 +69,7 @@
     {
       "ID_CHARACTER": "6",
       "TYPE": "0",
+	  "NAME": "Genghis",
       "IMAGE_POSITION": {
         "LEFT": "1500",
         "TOP": "0",
@@ -73,6 +80,7 @@
     {
       "ID_CHARACTER": "7",
       "TYPE": "0",
+	  "NAME": "Carlo Rombo",
       "IMAGE_POSITION": {
         "LEFT": "1750",
         "TOP": "0",
@@ -83,6 +91,7 @@
     {
       "ID_CHARACTER": "8",
       "TYPE": "0",
+	  "NAME": "Hahr Grid",
       "IMAGE_POSITION": {
         "LEFT": "0",
         "TOP": "250",
@@ -93,6 +102,7 @@
     {
       "ID_CHARACTER": "9",
       "TYPE": "0",
+	  "NAME": "Mr. Brakes",
       "IMAGE_POSITION": {
         "LEFT": "250",
         "TOP": "250",
@@ -103,6 +113,7 @@
     {
       "ID_CHARACTER": "10",
       "TYPE": "0",
+	  "NAME": "Harald Bluetooth",
       "IMAGE_POSITION": {
         "LEFT": "500",
         "TOP": "250",
@@ -113,6 +124,7 @@
     {
       "ID_CHARACTER": "11",
       "TYPE": "0",
+	  "NAME": "Rudy Reckless",
       "IMAGE_POSITION": {
         "LEFT": "750",
         "TOP": "250",
@@ -123,6 +135,7 @@
     {
       "ID_CHARACTER": "12",
       "TYPE": "1",
+	  "NAME": "Donna Driving",
       "IMAGE_POSITION": {
         "LEFT": "1000",
         "TOP": "250",
@@ -133,6 +146,7 @@
     {
       "ID_CHARACTER": "13",
       "TYPE": "1",
+	  "NAME": "Carla Commute",
       "IMAGE_POSITION": {
         "LEFT": "1250",
         "TOP": "250",
@@ -143,6 +157,7 @@
     {
       "ID_CHARACTER": "14",
       "TYPE": "1",
+	  "NAME": "Ms. Fuel",
       "IMAGE_POSITION": {
         "LEFT": "1500",
         "TOP": "250",
@@ -153,6 +168,7 @@
     {
       "ID_CHARACTER": "15",
       "TYPE": "1",
+	  "NAME": "Tara Tour",
       "IMAGE_POSITION": {
         "LEFT": "1750",
         "TOP": "250",
@@ -163,6 +179,7 @@
     {
       "ID_CHARACTER": "16",
       "TYPE": "1",
+	  "NAME": "Susan Spin",
       "IMAGE_POSITION": {
         "LEFT": "0",
         "TOP": "500",
@@ -173,6 +190,7 @@
     {
       "ID_CHARACTER": "17",
       "TYPE": "1",
+	  "NAME": "Nia Nitro",
       "IMAGE_POSITION": {
         "LEFT": "250",
         "TOP": "500",
@@ -183,6 +201,7 @@
     {
       "ID_CHARACTER": "18",
       "TYPE": "1",
+	  "NAME": "Ms. Touring",
       "IMAGE_POSITION": {
         "LEFT": "500",
         "TOP": "500",
@@ -193,6 +212,7 @@
     {
       "ID_CHARACTER": "19",
       "TYPE": "1",
+	  "NAME": "Morticia Muffler",
       "IMAGE_POSITION": {
         "LEFT": "750",
         "TOP": "500",
@@ -203,6 +223,7 @@
     {
       "ID_CHARACTER": "20",
       "TYPE": "1",
+	  "NAME": "Hyce Kream",
       "IMAGE_POSITION": {
         "LEFT": "1000",
         "TOP": "500",
@@ -213,6 +234,7 @@
     {
       "ID_CHARACTER": "21",
       "TYPE": "1",
+	  "NAME": "Lauren Leadfoot",
       "IMAGE_POSITION": {
         "LEFT": "1250",
         "TOP": "500",
@@ -223,6 +245,7 @@
     {
       "ID_CHARACTER": "22",
       "TYPE": "1",
+	  "NAME": "Kaleah Krank",
       "IMAGE_POSITION": {
         "LEFT": "1500",
         "TOP": "500",
@@ -233,6 +256,7 @@
     {
       "ID_CHARACTER": "23",
       "TYPE": "1",
+	  "NAME": "Susy Spoiler",
       "IMAGE_POSITION": {
         "LEFT": "1750",
         "TOP": "500",
@@ -243,6 +267,7 @@
     {
       "ID_CHARACTER": "24",
       "TYPE": "2",
+	  "NAME": "Bumper",
       "IMAGE_POSITION": {
         "LEFT": "0",
         "TOP": "750",
@@ -253,6 +278,7 @@
     {
       "ID_CHARACTER": "25",
       "TYPE": "2",
+	  "NAME": "H. Harras",
       "IMAGE_POSITION": {
         "LEFT": "250",
         "TOP": "750",
@@ -263,6 +289,7 @@
     {
       "ID_CHARACTER": "26",
       "TYPE": "2",
+	  "NAME": "Astrodriver",
       "IMAGE_POSITION": {
         "LEFT": "500",
         "TOP": "750",
@@ -273,6 +300,7 @@
     {
       "ID_CHARACTER": "27",
       "TYPE": "2",
+	  "NAME": "Imhotep",
       "IMAGE_POSITION": {
         "LEFT": "750",
         "TOP": "750",
@@ -283,6 +311,7 @@
     {
       "ID_CHARACTER": "28",
       "TYPE": "2",
+	  "NAME": "CodyRoby",
       "IMAGE_POSITION": {
         "LEFT": "1000",
         "TOP": "750",
@@ -293,6 +322,7 @@
     {
       "ID_CHARACTER": "29",
       "TYPE": "2",
+	  "NAME": "Dr. Banana",
       "IMAGE_POSITION": {
         "LEFT": "1250",
         "TOP": "750",
@@ -303,6 +333,7 @@
     {
       "ID_CHARACTER": "30",
       "TYPE": "2",
+	  "NAME": "Blub",
       "IMAGE_POSITION": {
         "LEFT": "1500",
         "TOP": "750",
@@ -313,6 +344,7 @@
     {
       "ID_CHARACTER": "31",
       "TYPE": "2",
+	  "NAME": "Ser Sunroof",
       "IMAGE_POSITION": {
         "LEFT": "1750",
         "TOP": "750",
@@ -323,6 +355,7 @@
     {
       "ID_CHARACTER": "32",
       "TYPE": "2",
+	  "NAME": "Pennywise",
       "IMAGE_POSITION": {
         "LEFT": "0",
         "TOP": "1000",
@@ -333,6 +366,7 @@
     {
       "ID_CHARACTER": "33",
       "TYPE": "2",
+	  "NAME": "Squawk",
       "IMAGE_POSITION": {
         "LEFT": "250",
         "TOP": "1000",
@@ -343,6 +377,7 @@
     {
       "ID_CHARACTER": "34",
       "TYPE": "2",
+	  "NAME": "Nyan",
       "IMAGE_POSITION": {
         "LEFT": "500",
         "TOP": "1000",
@@ -353,6 +388,7 @@
     {
       "ID_CHARACTER": "35",
       "TYPE": "2",
+	  "NAME": "Lama",
       "IMAGE_POSITION": {
         "LEFT": "750",
         "TOP": "1000",
@@ -363,6 +399,7 @@
     {
       "ID_CHARACTER": "36",
       "TYPE": "2",
+	  "NAME": "Brendan",
       "IMAGE_POSITION": {
         "LEFT": "1000",
         "TOP": "1000",
@@ -373,6 +410,7 @@
     {
       "ID_CHARACTER": "37",
       "TYPE": "2",
+	  "NAME": "Mark",
       "IMAGE_POSITION": {
         "LEFT": "1250",
         "TOP": "1000",
@@ -383,6 +421,7 @@
     {
       "ID_CHARACTER": "38",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "1500",
         "TOP": "1000",
@@ -393,6 +432,7 @@
     {
       "ID_CHARACTER": "39",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "1750",
         "TOP": "1000",
@@ -403,6 +443,7 @@
     {
       "ID_CHARACTER": "40",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "0",
         "TOP": "1250",
@@ -413,6 +454,7 @@
     {
       "ID_CHARACTER": "41",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "250",
         "TOP": "1250",
@@ -423,6 +465,7 @@
     {
       "ID_CHARACTER": "42",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "500",
         "TOP": "1250",
@@ -433,6 +476,7 @@
     {
       "ID_CHARACTER": "43",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "750",
         "TOP": "1250",
@@ -443,6 +487,7 @@
     {
       "ID_CHARACTER": "44",
       "TYPE": "2",
+	  "NAME": "",
       "IMAGE_POSITION": {
         "LEFT": "1000",
         "TOP": "1250",

@@ -17,6 +17,9 @@ namespace SmartRoadSense.Shared {
         [JsonProperty("TYPE")]
         public int Type { get; set; }
 
+        [JsonProperty("NAME")]
+        public string Name { get; set; }
+
         [JsonProperty("IMAGE_POSITION")]
         public CharacterImagePosition ImagePosition { get; set; }
 

@@ -170,18 +170,18 @@ namespace SmartRoadSense.Shared
             }
             if(Input.GetKeyDown(Key.A)) {
                 vehicle.MainBody.ApplyLinearImpulseToCenter(-Vector2.UnitX * moveSpeed * timeStep, true);
-                if(vehicle.Wheel1.MotorSpeed < 12 * Math.PI) {
-                    vehicle.Wheel1.MotorSpeed += _speedStep;
-                    vehicle.Wheel2.MotorSpeed += _speedStep;
-                }
+                //if(vehicle.Wheel1.MotorSpeed < 12 * Math.PI) {
+                //    vehicle.Wheel1.MotorSpeed += _speedStep;
+                //    vehicle.Wheel2.MotorSpeed += _speedStep;
+                //}
                 return;
             }
             if(Input.GetKeyDown(Key.D)) {
                 vehicle.MainBody.ApplyLinearImpulseToCenter(Vector2.UnitX * moveSpeed * timeStep, true);
-                if(vehicle.Wheel1.MotorSpeed > -12 * Math.PI) {
-                    vehicle.Wheel1.MotorSpeed -= _speedStep;
-                    vehicle.Wheel2.MotorSpeed -= _speedStep;
-                }
+                //if(vehicle.Wheel1.MotorSpeed > -12 * Math.PI) {
+                //    vehicle.Wheel1.MotorSpeed -= _speedStep;
+                //    vehicle.Wheel2.MotorSpeed -= _speedStep;
+                //}
                 return;
             }
             if(Input.GetKeyPress(Key.G)) {

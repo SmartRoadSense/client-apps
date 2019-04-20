@@ -61,7 +61,7 @@ namespace SmartRoadSense.Shared
 
 #if DEBUG
             // TEST DATA FOR BUYING VEHICLES
-            /*
+
             CharacterManager.Instance.Wallet = 100000;
 
             var newComponentsContainer = new CollectedComponentsContainer {
@@ -80,7 +80,7 @@ namespace SmartRoadSense.Shared
                 newComponentsContainer.CollectedComponentsList.Add(newComponents);
             }
             VehicleManager.Instance.CollectedComponents = newComponentsContainer;
-            */
+
             //_debug = Engine.CreateDebugHud();
             //_debug.ToggleAll();
 #endif
@@ -348,10 +348,10 @@ namespace SmartRoadSense.Shared
             debugInfo.Name = "GameDebugWindow";
 
             Text suspension = GameText.CreateText(debugInfo, ScreenInfo, font, 20, 210, 50, HorizontalAlignment.Left, VerticalAlignment.Top);
-            var comp = GameVehicle.Wheel1.OtherBody.GetComponent<CollisionCircle2D>();
-            var comp2 = GameVehicle.Wheel2.OtherBody.GetComponent<CollisionCircle2D>();
+            //var comp = GameVehicle.Wheel1.OtherBody.GetComponent<CollisionCircle2D>();
+            //var comp2 = GameVehicle.Wheel2.OtherBody.GetComponent<CollisionCircle2D>();
 
-            suspension.Value = string.Format("suspensions: {0}, {1}", comp.Restitution, comp2.Restitution);
+            //suspension.Value = string.Format("suspensions: {0}, {1}", comp.Restitution, comp2.Restitution);
 
             // SUSPENTIONS - plus button
             var susButtonPlus = GameButton.CreateButton(debugInfo, ScreenInfo, 100, 0, 100, 100, HorizontalAlignment.Left, VerticalAlignment.Top);

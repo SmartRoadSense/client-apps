@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using Urho;
 using Urho.Physics;
 using Urho.Urho2D;
+using System.Linq;
 
 namespace SmartRoadSense.Shared {
 
     public class VehicleCreator {
         RigidBody2D _mainBody;
-        ConstraintWheel2D _wheel1;
-        ConstraintWheel2D _wheel2;
+        List<ConstraintWheel2D> _wheelsConstraints = new List<ConstraintWheel2D>();
         VehicleModel _vehicleModel;
         ScreenInfoRatio _screenInfo;
         readonly float _vehicleImgPos = 250;
@@ -98,9 +98,7 @@ namespace SmartRoadSense.Shared {
             /*****************/
             /* DEFINE WHEELS */
             /*****************/
-            // Create a ball (will be cloned later)
-            Node ball1WheelNode = scene.CreateChild("Wheel");
-            StaticSprite2D ballSprite = ball1WheelNode.CreateComponent<StaticSprite2D>();
+
 
             var wheelSprites = new List<Sprite2D>();
             foreach(var w in _vehicleModel.WheelsPosition) {
@@ -109,7 +107,9 @@ namespace SmartRoadSense.Shared {
                     Rectangle = new IntRect(w.Left, w.Top, w.Right, w.Bottom)
                 });
             }
-
+            // Create a ball (will be cloned later)
+            Node ball1WheelNode = scene.CreateChild("Wheel");
+            StaticSprite2D ballSprite = ball1WheelNode.CreateComponent<StaticSprite2D>();
             ballSprite.Sprite = wheelSprites[0];
 
             RigidBody2D ballBody = ball1WheelNode.CreateComponent<RigidBody2D>();
@@ -127,11 +127,59 @@ namespace SmartRoadSense.Shared {
             ballShape.Restitution = (float)_vehicleModel.Suspensions / 10.0f; // Set restitution: make it bounce: 0.0 = no bounce
 
             // CLONE AND POSITION WHEELS
-            Node ball2WheelNode = ball1WheelNode.Clone(CreateMode.Replicated);
-            StaticSprite2D ball2Sprite = ball2WheelNode.CreateComponent<StaticSprite2D>();
-            ball2Sprite.Sprite = wheelSprites[0];
+
+            for(var i = 0; i < _vehicleModel.WheelsBodyPosition.Count; i++) {
+                if(i == 0) 
+                {
+                    float x1 = _vehicleModel.WheelsBodyPosition[i].X % _vehicleImgPos;
+                    float y1 = _vehicleModel.WheelsBodyPosition[i].Y % _vehicleImgPos;
+                    x1 = x1 >= _vehicleImgPos / 2 ? (x1 - _vehicleImgPos / 2) * Application.PixelSize : -(_vehicleImgPos / 2 - x1) * Application.PixelSize;
+                    y1 = (_vehicleImgPos / 2 - y1) * Application.PixelSize;
+
+                    // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
+                    ball1WheelNode.Position = new Vector3(x1, y1 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
+
+                    // SET BACK WHEEL CONSTRAINT COMPONENTS
+                    var constraintWheel = car.CreateComponent <ConstraintWheel2D>();
+                    constraintWheel.OtherBody = ball1WheelNode.GetComponent<RigidBody2D>();
+                    constraintWheel.Anchor = ball1WheelNode.Position2D;
+                    constraintWheel.Axis = new Vector2(0.0f, 1.0f);
+                    constraintWheel.MaxMotorTorque = 150.0f;
+                    constraintWheel.FrequencyHz = 15.0f;
+                    constraintWheel.DampingRatio = 10.0f;
+                    constraintWheel.MotorSpeed = 0.0f;
+                    _wheelsConstraints.Add(constraintWheel);
+                } 
+                else 
+                {
+                    Node newWheelNode = ball1WheelNode.Clone(CreateMode.Replicated);
+                    StaticSprite2D newBallSprite = newWheelNode.CreateComponent<StaticSprite2D>();
+                    newBallSprite.Sprite = wheelSprites.Count > i ? wheelSprites[i] : wheelSprites.Last();
+
+                    float x2 = _vehicleModel.WheelsBodyPosition[i].X % _vehicleImgPos;
+                    float y2 = _vehicleModel.WheelsBodyPosition[i].Y % _vehicleImgPos;
+                    x2 = x2 >= _vehicleImgPos / 2 ? (x2 - _vehicleImgPos / 2) * Application.PixelSize : -(_vehicleImgPos / 2 - x2) * Application.PixelSize;
+                    y2 = (_vehicleImgPos / 2 - y2) * Application.PixelSize;
+
+                    // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
+                    newWheelNode.Position = new Vector3(x2, y2 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
+
+                    // SET FRONT WHEEL CONSTRAINT COMPONENTS
+                    var constraintWheel = car.CreateComponent<ConstraintWheel2D>();
+                    constraintWheel.OtherBody = newWheelNode.GetComponent<RigidBody2D>();
+                    constraintWheel.Anchor = newWheelNode.Position2D;
+                    constraintWheel.Axis = new Vector2(0.0f, 1.0f);
+                    constraintWheel.MaxMotorTorque = 150.0f;
+                    constraintWheel.FrequencyHz = 15.0f;
+                    constraintWheel.DampingRatio = 10.0f;
+                    constraintWheel.MotorSpeed = 0.0f;
+                    _wheelsConstraints.Add(constraintWheel);
+                }
+            }
+
 
             // TODO: change for more than 2 wheels
+            /*
             for(var i = 0; i < _vehicleModel.WheelsBodyPosition.Count; i++) {
                 if(i == 0) {
                     float x1 = _vehicleModel.WheelsBodyPosition[i].X % _vehicleImgPos;
@@ -154,47 +202,26 @@ namespace SmartRoadSense.Shared {
                     //ball2WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
                 }
             }
-
-            // SET BACK WHEEL CONSTRAINT COMPONENTS
-            _wheel1 = car.CreateComponent<ConstraintWheel2D>();
-            _wheel1.OtherBody = ball1WheelNode.GetComponent<RigidBody2D>();
-            _wheel1.Anchor = ball1WheelNode.Position2D;
-            _wheel1.Axis = new Vector2(0.0f, 1.0f);
-            _wheel1.MaxMotorTorque = 150.0f;
-            _wheel1.FrequencyHz = 15.0f;
-            _wheel1.DampingRatio = 10.0f;
-            _wheel1.MotorSpeed = 0.0f;
-
-            // SET FRONT WHEEL CONSTRAINT COMPONENTS
-            _wheel2 = car.CreateComponent<ConstraintWheel2D>();
-            _wheel2.OtherBody = ball2WheelNode.GetComponent<RigidBody2D>();
-            _wheel2.Anchor = ball2WheelNode.Position2D;
-            _wheel2.Axis = new Vector2(0.0f, 1.0f);
-            _wheel2.MaxMotorTorque = 150.0f;
-            _wheel2.FrequencyHz = 15.0f;
-            _wheel2.DampingRatio = 10.0f;
-            _wheel2.MotorSpeed = 0.0f;
+            */
         }
 
         public Vehicle InitCarInScene(VehicleLoad vehicleLoad) {
-            return new Vehicle(_mainBody, _wheel1, _wheel2, _vehicleModel, vehicleLoad);
+            return new Vehicle(_mainBody, _wheelsConstraints, _vehicleModel, vehicleLoad);
         }
     }
 
     public class Vehicle
     {
         public RigidBody2D MainBody { get; private set; }
-        public ConstraintWheel2D Wheel1 { get; private set; }
-        public ConstraintWheel2D Wheel2 { get; private set; }
+        public List<ConstraintWheel2D> WheelConstraints { get; private set; }
         public VehicleModel SelectedVehicle { get; private set; }
         public VehicleLoad SelectedVehicleLoad { get; private set; }
         public Node BalanceObject { get; set; }
 
-        public Vehicle(RigidBody2D mainBody, ConstraintWheel2D wheel1, ConstraintWheel2D wheel2, VehicleModel vehicleType, VehicleLoad vehicleLoad)
+        public Vehicle(RigidBody2D mainBody, List<ConstraintWheel2D> wheelConstraints, VehicleModel vehicleType, VehicleLoad vehicleLoad)
         {
             MainBody = mainBody;
-            Wheel1 = wheel1;
-            Wheel2 = wheel2;
+            WheelConstraints = wheelConstraints;
             SelectedVehicle = vehicleType;
             SelectedVehicleLoad = vehicleLoad;
         }

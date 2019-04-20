@@ -4,6 +4,7 @@ using Urho.Gui;
 using Urho.Resources;
 using System.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace SmartRoadSense.Shared {
     public class SceneGarage : BaseScene {
@@ -34,7 +35,6 @@ namespace SmartRoadSense.Shared {
         BorderImage Wheel;
         BorderImage Suspensions;
         BorderImage Engine;
-        int wallet_tot;
         Text wallet;
         VehicleModel _currentVehicleModel;
 
@@ -107,8 +107,7 @@ namespace SmartRoadSense.Shared {
             coins.AddChild(wallet);
             wallet.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 10));
             wallet.SetFont(_font, _dim.XScreenRatio * 30);
-            wallet_tot = CharacterManager.Instance.Wallet;
-            wallet.Value = ""+ wallet_tot;
+            wallet.Value = ""+ CharacterManager.Instance.Wallet;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -185,41 +184,59 @@ namespace SmartRoadSense.Shared {
 
                 if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) 
                 {
-                    // TODO: show popup of unlock
-                    // Unlock vehicle
-                    VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
-                    VehicleManager.Instance.UnlockVehicle();
-
-                    // TODO: update UI
-                    Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
-                    GameInstance.LaunchScene(GameScenesEnumeration.MENU);
-
-                }
-                else if (!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
-                {
-                    // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
-
-                    // DONE: check if user has enough coins to unlock
-                    // DONE: remove vehicle cost from user's wallet
-                    if(wallet_tot > _currentVehicleModel.UnlockCost && _currentVehicleModel.UnlockCost != -1) {
-                        wallet.Value = "" + (wallet_tot - _currentVehicleModel.UnlockCost);
-
+                    if(_currentVehicleModel.UnlockCost == -1) 
+                    {
+                        ConfirmationWindow(string.Format("You can't select this vehicle at this moment."));
+                    }
+                    else 
+                    {
                         // Unlock vehicle
                         VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
                         VehicleManager.Instance.UnlockVehicle();
 
-                        // TODO: update UI
                         Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
-                        GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+                        ConfirmationWindow(string.Format("{0} unlocked!", _selectedVehicle.Name), true);
+                    }
+                }
+                else if (!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
+                {
+                    // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
+                    if(_currentVehicleModel.UnlockCost != -1) {
+                        if(CharacterManager.Instance.Wallet >= _currentVehicleModel.UnlockCost) {
+                            CharacterManager.Instance.Wallet -= _currentVehicleModel.UnlockCost;
+                            wallet.Value = CharacterManager.Instance.Wallet.ToString();
+                            // Unlock vehicle
+                            VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                            VehicleManager.Instance.UnlockVehicle();
 
-                        //QuitConfirm("...");
+                            Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
+                            ConfirmationWindow(string.Format("{0} unlocked!", _selectedVehicle.Name), true);
+                        }
+                        else {
+                            ConfirmationWindow(string.Format("Collect more coins to unlock this vehicle."));
+                        }
                     }
                     else {
-                        //QuitConfirm("You have insufficient funds to purchase this vehicle! Play Levels To earn more money!");
+                        var components = VehicleManager.Instance.CollectedComponentsForVehicle(_currentVehicleModel.IdVehicle).VehicleComponents;
+                        if(components.Brakes && components.Performance && components.Suspensions && components.Wheels) {
+                            // Unlock vehicle
+                            VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                            VehicleManager.Instance.UnlockVehicle();
+
+                            // TODO: update UI
+                            Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
+                            ConfirmationWindow(string.Format(_selectedVehicle.Name + "unlocked!"), true);
+                        }
+                        else 
+                        {
+                            ConfirmationWindow(string.Format("Collect all four components to unlock this vehicle."));
+                        }
                     }
                 }
                 else 
                 {
+                    VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
+                    GameInstance.LaunchScene(GameScenesEnumeration.MENU);
                 }
             };
 
@@ -364,9 +381,6 @@ namespace SmartRoadSense.Shared {
                             }
                         }
                     }
-
-
-
                 }
             }
         }
@@ -429,6 +443,7 @@ namespace SmartRoadSense.Shared {
             _carName.Value = _currentVehicleModel.Name;
 
             switch(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count) {
+                // New game - no vehicles selected
                 case 0:
                     // STARTING VEHICLE LOGIC
                     if(_currentVehicleModel.UnlockCost > -1) {
@@ -443,6 +458,7 @@ namespace SmartRoadSense.Shared {
                         _contComponents.Visible = false;
                     }
                     break;
+                // Returning player - has at least one vehicle
                 default:
                     // GAME VEHICLE SELECT LOGIC
                     if(_idDVehicle == VehicleManager.Instance.CurrentGarageVehicleId && _idDVehicle != -1) 
@@ -454,19 +470,11 @@ namespace SmartRoadSense.Shared {
                     }
                     else 
                     {
-                        if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Contains(_currentVehicleModel)) 
+                        if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
                         {
                             _screenInfo.Value = "Tap to select this vehicle";
-                            if(_currentVehicleModel.UnlockCost == -1) 
-                            {
-                                _contUpgrade.Visible = true;
-                                _contComponents.Visible = true;
-                            }
-                            else 
-                            {
-                                _contUpgrade.Visible = true;
-                                _contComponents.Visible = false;
-                            }
+                            _contUpgrade.Visible = true;
+                            _contComponents.Visible = false;
                         }
                         else if (CharacterManager.Instance.User.Wallet >= _currentVehicleModel.UnlockCost) 
                         {
@@ -564,41 +572,43 @@ namespace SmartRoadSense.Shared {
             GetCarImg();
         }
 
-
         void LockedVehicle() {
-            if(_currentVehicleModel.UnlockCost == -1) {
-                foreach(var v in VehicleManager.Instance.CollectedComponents.CollectedComponentsList) {
-                    if(v.VehicleId == _currentVehicleModel.IdVehicle) {
-                        if(!v.VehicleComponents.Brakes || !v.VehicleComponents.Wheels || !v.VehicleComponents.Suspensions || !v.VehicleComponents.Performance)
-                            _lockedVehicle.Visible = true;
-                        else
-                            _lockedVehicle.Visible = false;
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
+            {
+                _lockedVehicle.Visible = false;
+            }
+            else 
+            {
+                /*if(_currentVehicleModel.UnlockCost == -1) {
+                    foreach(var v in VehicleManager.Instance.CollectedComponents.CollectedComponentsList) {
+                        if(v.VehicleId == _currentVehicleModel.IdVehicle) {
+                            if(!v.VehicleComponents.Brakes || !v.VehicleComponents.Wheels || !v.VehicleComponents.Suspensions || !v.VehicleComponents.Performance)
+                                _lockedVehicle.Visible = true;
+                            else
+                                _lockedVehicle.Visible = false;
+                        }
                     }
                 }
-            }
-            else {
-                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle))
-                    _lockedVehicle.Visible = false;
-                else
+                else {*/
                     _lockedVehicle.Visible = true;
+                //}
             }
-
         }
 
-        void QuitConfirm(string text) {
-            var quitWindow = new Window();
-            GameInstance.UI.Root.AddChild(quitWindow);
-            GameInstance.UI.SetFocusElement(null);
+        void ConfirmationWindow(string text, bool reloadGarage = false) 
+        {
+            var window = new Window();
+            GameInstance.UI.Root.AddChild(window);
 
             // Set Window size and layout settings
-            quitWindow.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
-            quitWindow.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
-            quitWindow.SetColor(Color.FromHex("#22000000"));
-            quitWindow.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            quitWindow.Name = "QuitWindow";
+            window.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
+            window.SetSize(GameInstance.ScreenInfo.SetX(1920), GameInstance.ScreenInfo.SetY(1080));
+            window.SetColor(Color.FromHex("#22000000"));
+            window.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            window.Name = "ConfirmationWindow";
 
             Sprite windowSprite = new Sprite();
-            quitWindow.AddChild(windowSprite);
+            window.AddChild(windowSprite);
             windowSprite.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.TopBar.ResourcePath);
             windowSprite.Opacity = 0.75f;
             windowSprite.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
@@ -607,59 +617,34 @@ namespace SmartRoadSense.Shared {
             windowSprite.SetPosition(0, 0);
 
             Window rectangle = new Window();
-            quitWindow.AddChild(rectangle);
+            window.AddChild(rectangle);
             rectangle.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(0));
             rectangle.SetSize(GameInstance.ScreenInfo.SetX(800), GameInstance.ScreenInfo.SetY(200));
             rectangle.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
             rectangle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             rectangle.ImageRect = AssetsCoordinates.Generic.Boxes.BoxConfirmation;
 
-            Text warningText = GameText.CreateText(rectangle, GameInstance.ScreenInfo, _font, 35, 250, 0, HorizontalAlignment.Left, VerticalAlignment.Center, text);
+            Text warningText = GameText.CreateText(rectangle, GameInstance.ScreenInfo, _font, 30, 250, 0, HorizontalAlignment.Left, VerticalAlignment.Center, text);
             warningText.Wordwrap = true;
             warningText.SetSize(GameInstance.ScreenInfo.SetX(750 - 270), GameInstance.ScreenInfo.SetY(240));
             warningText.SetColor(Color.White);
 
-            var quitButton = new Button();
-            quitButton.SetPosition(GameInstance.ScreenInfo.SetX(-95), GameInstance.ScreenInfo.SetY(180));
-            quitButton.SetSize(GameInstance.ScreenInfo.SetX(285), GameInstance.ScreenInfo.SetY(130));
-            quitButton.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            quitButton.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            quitButton.ImageRect = AssetsCoordinates.Generic.Boxes.SelectionPositive;
-            quitWindow.AddChild(quitButton);
+            var closeButton = new Button();
+            closeButton.SetPosition(GameInstance.ScreenInfo.SetX(245), GameInstance.ScreenInfo.SetY(180));
+            closeButton.SetSize(GameInstance.ScreenInfo.SetX(285), GameInstance.ScreenInfo.SetY(130));
+            closeButton.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            closeButton.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            closeButton.ImageRect = AssetsCoordinates.Generic.Boxes.SelectionPositive;
+            window.AddChild(closeButton);
 
-            Text confirmText = GameText.CreateText(quitButton, GameInstance.ScreenInfo, _font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "Yes");
+            Text confirmText = GameText.CreateText(closeButton, GameInstance.ScreenInfo, _font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "Ok");
             confirmText.SetColor(Color.White);
 
-            quitButton.Pressed += (PressedEventArgs args) => {
-                //CloseGameLevel();
-                GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+            closeButton.Pressed += (PressedEventArgs args) => {
+                window.Remove();
+                if(reloadGarage)
+                    GameInstance.LaunchScene(GameScenesEnumeration.GARAGE);
             };
-
-            var continueButton = new Button();
-            continueButton.SetPosition(GameInstance.ScreenInfo.SetX(245), GameInstance.ScreenInfo.SetY(180));
-            continueButton.SetSize(GameInstance.ScreenInfo.SetX(285), GameInstance.ScreenInfo.SetY(130));
-            continueButton.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
-            continueButton.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            continueButton.ImageRect = AssetsCoordinates.Generic.Boxes.SelectionNegative;
-            quitWindow.AddChild(continueButton);
-
-            Text cancelText = GameText.CreateText(continueButton, GameInstance.ScreenInfo, _font, 50, 145, -5, HorizontalAlignment.Left, VerticalAlignment.Center, "No");
-            cancelText.SetColor(Color.White);
-
-            Action<PressedEventArgs> select = new Action<PressedEventArgs>((PressedEventArgs a) => {
-                VehicleManager.Instance.CurrentGarageVehicleId = _idDVehicle;
-                VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
-                //JsonReaderVehicles.SelectSingleVehicle(_idDVehicle); // Updates selected vehicle model
-                System.Diagnostics.Debug.WriteLine("SAVED ID = " + _idDVehicle);
-
-                VehicleManager.Instance.UnlockVehicle();
-
-                quitWindow.Visible = false;
-                quitWindow.Remove();
-                GameInstance.LaunchScene(GameScenesEnumeration.MENU);
-            });
-
-            quitButton.Pressed += select;          
         }
     }
 }

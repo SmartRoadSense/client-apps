@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Linq;
 
 namespace SmartRoadSense.Shared
 {
@@ -114,6 +115,10 @@ namespace SmartRoadSense.Shared
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.CollectedComponents.Value, json);
                 OnPropertyChanged();
             }
+        }
+
+        public CollectedComponents CollectedComponentsForVehicle(int vehicleId) {
+            return Instance.CollectedComponents.CollectedComponentsList.FirstOrDefault(v => v.VehicleId == vehicleId);
         }
     }
 }

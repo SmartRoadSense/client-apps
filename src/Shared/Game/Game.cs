@@ -60,7 +60,27 @@ namespace SmartRoadSense.Shared
             VehicleManager.Instance.Init();
 
 #if DEBUG
-            //CharacterManager.Instance.Wallet += 10000;
+            // TEST DATA FOR BUYING VEHICLES
+            /*
+            CharacterManager.Instance.Wallet = 100000;
+
+            var newComponentsContainer = new CollectedComponentsContainer {
+                CollectedComponentsList = new List<CollectedComponents>()
+            };
+            var components = VehicleManager.Instance.CollectedComponents;
+            foreach(var c in components.CollectedComponentsList) {
+                var newComponents = new CollectedComponents {
+                    VehicleId = c.VehicleId,
+                    VehicleComponents = new Components()
+                };
+                newComponents.VehicleComponents.Brakes = true;
+                newComponents.VehicleComponents.Performance = true;
+                newComponents.VehicleComponents.Suspensions = true;
+                newComponents.VehicleComponents.Wheels = true;
+                newComponentsContainer.CollectedComponentsList.Add(newComponents);
+            }
+            VehicleManager.Instance.CollectedComponents = newComponentsContainer;
+            */
             //_debug = Engine.CreateDebugHud();
             //_debug.ToggleAll();
 #endif

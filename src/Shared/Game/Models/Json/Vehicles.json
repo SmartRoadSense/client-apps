@@ -33,6 +33,10 @@
           "Y":  "450"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1
+      ],
       "PERFORMANCE": "3",
       "SUSPENSIONS": "4",
       "WHEEL": "5",
@@ -88,6 +92,11 @@
           "Y": "450"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1,
+        1
+      ],
       "PERFORMANCE": "4",
       "SUSPENSIONS": "3",
       "WHEEL": "5",
@@ -126,6 +135,10 @@
           "X": "689",
           "Y": "200"
         }
+      ],
+      "WHEELS_SIZE": [
+        1,
+        1
       ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "3",
@@ -166,6 +179,10 @@
           "Y": "200"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1
+      ],
       "PERFORMANCE": "5",
       "SUSPENSIONS": "3",
       "WHEEL": "3",
@@ -181,7 +198,7 @@
         "RIGHT": "250",
         "BOTTOM": "250"
       },
-	  "BODY_POSITION": {
+	    "BODY_POSITION": {
         "LEFT": "0",
         "TOP": "0",
         "RIGHT": "250",
@@ -205,6 +222,9 @@
           "Y": "200"
         }
       ],
+      "WHEELS_SIZE": [
+        1,1
+      ],
       "PERFORMANCE": "9",
       "SUSPENSIONS": "3",
       "WHEEL": "3",
@@ -220,8 +240,8 @@
         "RIGHT": "1250",
         "BOTTOM": "250"
       },
-	  "BODY_POSITION": {
-		"LEFT": "1000",
+	    "BODY_POSITION": {
+		  "LEFT": "1000",
         "TOP": "0",
         "RIGHT": "1250",
         "BOTTOM": "250"
@@ -233,7 +253,7 @@
           "RIGHT": "250",
           "BOTTOM": "50"
         },
-		{
+		  {
           "LEFT": "200",
           "TOP": "0",
           "RIGHT": "250",
@@ -269,6 +289,12 @@
           "X": "1216",
           "Y": "200"
         }
+      ],
+      "WHEELS_SIZE": [
+        1,
+        1,
+        1,
+        1
       ],
       "PERFORMANCE": "2",
       "SUSPENSIONS": "2",
@@ -325,6 +351,11 @@
           "Y": "450"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1,
+        1
+      ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "3",
       "WHEEL": "2",
@@ -356,9 +387,37 @@
       ],
       "WHEELS_BODY_POSITION": [
         {
-          "X": "880",
+          "X": "660",
+          "Y": "450"
+        },
+        {
+          "X": "700",
+          "Y": "450"
+        },
+        {
+          "X": "740",
+          "Y": "450"
+        },
+        {
+          "X": "780",
+          "Y": "450"
+        },
+        {
+          "X": "820",
+          "Y": "450"
+        },
+        {
+          "X": "860",
           "Y": "450"
         }
+      ],
+      "WHEELS_SIZE": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
       ],
       "PERFORMANCE": "5",
       "SUSPENSIONS": "15",
@@ -405,6 +464,10 @@
           "Y": "450"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1
+      ],
       "PERFORMANCE": "7",
       "SUSPENSIONS": "10",
       "WHEEL": "7",
@@ -443,6 +506,10 @@
           "X": "448",
           "Y": "200"
         }
+      ],
+      "WHEELS_SIZE": [
+        1,
+        1
       ],
       "PERFORMANCE": "7",
       "SUSPENSIONS": "6",
@@ -579,6 +646,19 @@
           "Y": "427"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
       "PERFORMANCE": "5",
       "SUSPENSIONS": "10",
       "WHEEL": "10",
@@ -623,6 +703,10 @@
           "X": "708",
           "Y": "450"
         }
+      ],
+      "WHEELS_SIZE": [
+        1,
+        1
       ],
       "PERFORMANCE": "10",
       "SUSPENSIONS": "7",
@@ -669,6 +753,10 @@
           "Y": "200"
         }
       ],
+      "WHEELS_SIZE": [
+        1,
+        1
+      ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "6",
       "WHEEL": "6",
@@ -714,6 +802,10 @@
           "Y": "450"
         }
       ],
+        "WHEELS_SIZE": [
+          1.5,
+          1.5
+        ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "6",
       "WHEEL": "8",

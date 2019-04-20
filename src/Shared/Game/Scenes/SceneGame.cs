@@ -234,7 +234,7 @@ namespace SmartRoadSense.Shared
         }
 
         void SplashScreen() {
-            var splashScrName = SplashScreenCreator.CreateSplashScreen(GameInstance, this);
+            var splashScrName = SplashScreenCreator.CreateSplashScreen(GameInstance, this, _randomLevel);
             GameInstance.Engine.RunFrame();
 
             _actionCloseSplashScreen = (EndViewRenderEventArgs args) => {
@@ -457,7 +457,7 @@ namespace SmartRoadSense.Shared
 
             // DRAW GROUND TERRAIN
 
-            for(var i = 0; i < _trackLength; i++) {
+            for(var i = 0; i < _trackLength + TerrainGenerator.EndOfLevelSurfaceLength; i++) {
                 if(i > 0) {
                     var vertex1 = collisionChain.GetVertex((uint)i - 1);
                     var vertex2 = collisionChain.GetVertex((uint)i);
@@ -689,6 +689,8 @@ namespace SmartRoadSense.Shared
 
         void GameOver()
         {
+            StopVehicle();
+
             _gameState = GameState.GAME_OVER;
             if(_stopwatch != null)
                 _stopwatch.Pause();
@@ -782,6 +784,7 @@ namespace SmartRoadSense.Shared
 
         void LevelComplete()
         {
+            StopVehicle();
             _gameState = GameState.LEVEL_COMPLETE;
 
             // HIDE HUD
@@ -1718,6 +1721,13 @@ namespace SmartRoadSense.Shared
             knob.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarKnob;
 
             return slider;
+        }
+
+        void StopVehicle() {
+            GameInstance.OSDCommands.Accelerating = false;
+            GameInstance.OSDCommands.Braking = false;
+            GameInstance.OSDCommands.RotatingLeft = false;
+            GameInstance.OSDCommands.RotatingRight = false;
         }
 
         public Urho.Color BackgroundFogColor() {

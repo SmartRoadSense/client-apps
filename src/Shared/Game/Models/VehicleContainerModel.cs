@@ -33,6 +33,9 @@ namespace SmartRoadSense.Shared {
         [JsonProperty("WHEELS_BODY_POSITION")]
         public List<RelativePosition> WheelsBodyPosition { get; set; }
 
+        [JsonProperty("WHEELS_SIZE")]
+        public List<float> WheelsSize { get; set; }
+
         [JsonProperty("PERFORMANCE")]
         public int Performance { get; set; }
 

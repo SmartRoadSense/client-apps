@@ -11,7 +11,7 @@ namespace SmartRoadSense.Shared {
         /// </summary>
         /// <returns>Splash screen.</returns>
         /// <param name="GameInstance">Game instance.</param>
-        public static string CreateSplashScreen(Game GameInstance, Node parent) {
+        public static string CreateSplashScreen(Game GameInstance, Node parent, bool randomLevel = false) {
             // Get data
             var data = TrackManager.Instance.LoadingScreenFacts;
             var rnd = new Random();
@@ -53,7 +53,17 @@ namespace SmartRoadSense.Shared {
                 ImageRect = AssetsCoordinates.Backgrounds.FixedBackground.ImageRect,
                 Priority = 999
             };
+
             GameInstance.UI.Root.AddChild(splashscreen);
+
+            if(randomLevel) {
+                var text = new Text();
+                text.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), 17);
+                text.SetPosition(GameInstance.ScreenInfo.SetX(20), GameInstance.ScreenInfo.SetY(172));
+                text.Value = "*Coins and items collected in the random level are not saved.";
+                text.UseDerivedOpacity = false;
+                splashscreen.AddChild(text);
+            }
 
             var posterImage = new Window {
                 Name = "PosterUI",

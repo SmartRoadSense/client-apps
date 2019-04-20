@@ -111,6 +111,7 @@ namespace SmartRoadSense.Shared {
             Node ball1WheelNode = scene.CreateChild("Wheel");
             StaticSprite2D ballSprite = ball1WheelNode.CreateComponent<StaticSprite2D>();
             ballSprite.Sprite = wheelSprites[0];
+            ball1WheelNode.Scale = new Vector3(_vehicleModel.WheelsSize[0], _vehicleModel.WheelsSize[0], 1.0f);
 
             RigidBody2D ballBody = ball1WheelNode.CreateComponent<RigidBody2D>();
             ballBody.BodyType = BodyType2D.Dynamic;
@@ -121,10 +122,10 @@ namespace SmartRoadSense.Shared {
 
             // WHEEL COLLISION
             CollisionCircle2D ballShape = ball1WheelNode.CreateComponent<CollisionCircle2D>(); // Create circle shape
-            ballShape.Radius = 0.14f; // Set radius
+            ballShape.Radius = 0.14f; // * _vehicleModel.WheelsSize[0]; // Set radius
             ballShape.Density = 2.0f; // Set shape density (kilograms per meter squared)
-            ballShape.Friction = (float)_vehicleModel.Wheel / 10.0f; // Set friction: 1.0 = max friction
-            ballShape.Restitution = (float)_vehicleModel.Suspensions / 10.0f; // Set restitution: make it bounce: 0.0 = no bounce
+            ballShape.Friction = (_vehicleModel.Wheel / 2) / 10.0f; // Set friction: 1.0 = max friction
+            ballShape.Restitution = (20 - _vehicleModel.Suspensions) / 2 / 10.0f; // Set restitution: make it bounce: 0.0 = no bounce
 
             // CLONE AND POSITION WHEELS
 
@@ -161,7 +162,11 @@ namespace SmartRoadSense.Shared {
                     x2 = x2 >= _vehicleImgPos / 2 ? (x2 - _vehicleImgPos / 2) * Application.PixelSize : -(_vehicleImgPos / 2 - x2) * Application.PixelSize;
                     y2 = (_vehicleImgPos / 2 - y2) * Application.PixelSize;
 
+                    // Update collision shape
+                    CollisionCircle2D collisionShape = newWheelNode.GetComponent<CollisionCircle2D>(); // Create circle shape
+                    collisionShape.Radius = 0.14f;// * _vehicleModel.WheelsSize[i];
                     // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
+                    newWheelNode.Scale = new Vector3(_vehicleModel.WheelsSize[i], _vehicleModel.WheelsSize[i], 1.0f);
                     newWheelNode.Position = new Vector3(x2, y2 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
 
                     // SET FRONT WHEEL CONSTRAINT COMPONENTS
@@ -176,33 +181,6 @@ namespace SmartRoadSense.Shared {
                     _wheelsConstraints.Add(constraintWheel);
                 }
             }
-
-
-            // TODO: change for more than 2 wheels
-            /*
-            for(var i = 0; i < _vehicleModel.WheelsBodyPosition.Count; i++) {
-                if(i == 0) {
-                    float x1 = _vehicleModel.WheelsBodyPosition[i].X % _vehicleImgPos;
-                    float y1 = _vehicleModel.WheelsBodyPosition[i].Y % _vehicleImgPos;
-                    x1 = x1 >= _vehicleImgPos / 2 ? (x1 - _vehicleImgPos / 2) * Application.PixelSize : -(_vehicleImgPos / 2 - x1) * Application.PixelSize;
-                    y1 = (_vehicleImgPos / 2 - y1) * Application.PixelSize;
-
-                    // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
-                    ball1WheelNode.Position = new Vector3(x1, y1 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
-                    //ball1WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
-                }
-                if(i == 1) {
-                    float x2 = _vehicleModel.WheelsBodyPosition[i].X % _vehicleImgPos;
-                    float y2 = _vehicleModel.WheelsBodyPosition[i].Y % _vehicleImgPos;
-                    x2 = x2 >= _vehicleImgPos / 2 ? (x2 - _vehicleImgPos / 2) * Application.PixelSize : -(_vehicleImgPos / 2 - x2) * Application.PixelSize;
-                    y2 = (_vehicleImgPos / 2 - y2) * Application.PixelSize;
-
-                    // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
-                    ball2WheelNode.Position = new Vector3(x2, y2 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
-                    //ball2WheelNode.Scale = new Vector3(1.7f * _screenInfo.XScreenRatio, 1.7f * _screenInfo.YScreenRatio, 0.0f);
-                }
-            }
-            */
         }
 
         public Vehicle InitCarInScene(VehicleLoad vehicleLoad) {

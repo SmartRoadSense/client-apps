@@ -49,18 +49,20 @@ namespace SmartRoadSense.Shared {
             /****************************************/
             /* Outer body for collision - null mass */
             /****************************************/
-            float startVX = -1.2f;
-            float startVY = -0.55f;
+            float startVX = -1.2f + _vehicleModel.BalanceBodyOffset[0];
+            float startVY = -0.55f + _vehicleModel.BalanceBodyOffset[1];
+            float driverXOffset = 1.0f + _vehicleModel.BalanceBodyOffset[2];
+
             CollisionChain2D bodyBounds = box.CreateComponent<CollisionChain2D>();
             bodyBounds.VertexCount = 9;
             bodyBounds.SetVertex(0, new Vector2(startVX, startVY)); // BOTTOM LEFT
             bodyBounds.SetVertex(1, new Vector2(startVX, startVY + 0.1f));
-            bodyBounds.SetVertex(2, new Vector2(startVX + 1.0f, startVY + 0.1f));
-            bodyBounds.SetVertex(3, new Vector2(startVX + 1.0f, startVY + 0.2f));
-            bodyBounds.SetVertex(4, new Vector2(startVX + 1.3f, startVY + 0.2f));
-            bodyBounds.SetVertex(5, new Vector2(startVX + 1.3f, startVY + 0.1f));
-            bodyBounds.SetVertex(6, new Vector2(startVX + 1.8f, startVY + 0.1f));
-            bodyBounds.SetVertex(7, new Vector2(startVX + 1.8f, startVY));  // BOTTOM RIGHT
+            bodyBounds.SetVertex(2, new Vector2(startVX + driverXOffset, startVY + 0.1f));
+            bodyBounds.SetVertex(3, new Vector2(startVX + driverXOffset, startVY + 0.2f));
+            bodyBounds.SetVertex(4, new Vector2(startVX + driverXOffset + 0.3f, startVY + 0.2f));
+            bodyBounds.SetVertex(5, new Vector2(startVX + driverXOffset + 0.3f, startVY + 0.1f));
+            bodyBounds.SetVertex(6, new Vector2(startVX + driverXOffset + 0.8f, startVY + 0.1f));
+            bodyBounds.SetVertex(7, new Vector2(startVX + driverXOffset + 0.8f, startVY));  // BOTTOM RIGHT
             bodyBounds.SetVertex(8, new Vector2(startVX, startVY)); // BOTTOM LEFT   
             bodyBounds.Friction = 1.0f;
             bodyBounds.Restitution = 0.0f;
@@ -68,8 +70,8 @@ namespace SmartRoadSense.Shared {
             CollisionChain2D backBounds = box.CreateComponent<CollisionChain2D>();
             backBounds.VertexCount = 4;
             backBounds.SetVertex(0, new Vector2(startVX, startVY + 0.1f));
-            backBounds.SetVertex(1, new Vector2(startVX, startVY + 0.3f));
-            backBounds.SetVertex(2, new Vector2(startVX + 0.05f, startVY + 0.3f));
+            backBounds.SetVertex(1, new Vector2(startVX, startVY + 0.2f));
+            backBounds.SetVertex(2, new Vector2(startVX + 0.05f, startVY + 0.2f));
             backBounds.SetVertex(3, new Vector2(startVX + 0.05f, startVY + 0.1f));
             backBounds.SetVertex(4, new Vector2(startVX, startVY + 0.1f));
 
@@ -138,7 +140,7 @@ namespace SmartRoadSense.Shared {
                     y1 = (_vehicleImgPos / 2 - y1) * Application.PixelSize;
 
                     // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
-                    ball1WheelNode.Position = new Vector3(x1, y1 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
+                    ball1WheelNode.Position = new Vector3(x1, y1 + (_vehicleCenterYOffset - 0.05f) * _screenInfo.YScreenRatio, 1.0f);
 
                     // SET BACK WHEEL CONSTRAINT COMPONENTS
                     var constraintWheel = car.CreateComponent <ConstraintWheel2D>();
@@ -167,7 +169,7 @@ namespace SmartRoadSense.Shared {
                     collisionShape.Radius = 0.14f;// * _vehicleModel.WheelsSize[i];
                     // WHEEL POSITION - NEEDS TO BE SET RELATIVE TO MAIN BODY
                     newWheelNode.Scale = new Vector3(_vehicleModel.WheelsSize[i], _vehicleModel.WheelsSize[i], 1.0f);
-                    newWheelNode.Position = new Vector3(x2, y2 + _vehicleCenterYOffset * _screenInfo.YScreenRatio, 1.0f);
+                    newWheelNode.Position = new Vector3(x2, y2 + (_vehicleCenterYOffset - 0.05f) * _screenInfo.YScreenRatio, 1.0f);
 
                     // SET FRONT WHEEL CONSTRAINT COMPONENTS
                     var constraintWheel = car.CreateComponent<ConstraintWheel2D>();

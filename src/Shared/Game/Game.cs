@@ -234,9 +234,8 @@ namespace SmartRoadSense.Shared
                 return;
 
             // Movement speed as world units per second
-            float moveSpeed = 1.5f * timeStep;
+            float moveSpeed = (6 + 0.3f * VehicleManager.Instance.SelectedVehicleModel.Performance) * timeStep;
             float brakeSpeed = 1.5f * timeStep;
-            moveSpeed *= VehicleManager.Instance.SelectedVehicleModel.Performance;
             brakeSpeed *= VehicleManager.Instance.SelectedVehicleModel.Brake;
 
             Camera camera = CameraNode.GetComponent<Camera>();

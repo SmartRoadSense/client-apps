@@ -34,8 +34,14 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1
+        1.4,
+        1.4
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0.2,
+        0,
+        0
       ],
       "PERFORMANCE": "3",
       "SUSPENSIONS": "4",
@@ -97,6 +103,12 @@
         1,
         1
       ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
+      ],
       "PERFORMANCE": "4",
       "SUSPENSIONS": "3",
       "WHEEL": "5",
@@ -137,8 +149,14 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1
+        1.7,
+        1.7
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0.2,
+        0,
+        0
       ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "3",
@@ -180,8 +198,14 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1
+        1.15,
+        1.15
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
       ],
       "PERFORMANCE": "5",
       "SUSPENSIONS": "3",
@@ -224,6 +248,12 @@
       ],
       "WHEELS_SIZE": [
         1,1
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
       ],
       "PERFORMANCE": "9",
       "SUSPENSIONS": "3",
@@ -296,6 +326,12 @@
         1,
         1
       ],
+      "BALANCE_BODY_OFFSET": [
+        0.2,
+        0,
+        0,
+        0
+      ],
       "PERFORMANCE": "2",
       "SUSPENSIONS": "2",
       "WHEEL": "6",
@@ -352,9 +388,15 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1,
-        1
+        1.7,
+        1.65,
+        1.7
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0.2,
+        0.2,
+        0,
+        0
       ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "3",
@@ -419,6 +461,12 @@
         1,
         1
       ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0.3,
+        0,
+        0
+      ],
       "PERFORMANCE": "5",
       "SUSPENSIONS": "15",
       "WHEEL": "5",
@@ -465,8 +513,14 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1
+        2.5,
+        2.5
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0.5,
+        0,
+        0
       ],
       "PERFORMANCE": "7",
       "SUSPENSIONS": "10",
@@ -510,6 +564,12 @@
       "WHEELS_SIZE": [
         1,
         1
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
       ],
       "PERFORMANCE": "7",
       "SUSPENSIONS": "6",
@@ -607,7 +667,7 @@
         },
 		    {
           "X": "1047",
-          "Y": "450"
+          "Y": "440"
         },
 		    {
           "X": "1064",
@@ -639,7 +699,7 @@
         },
 		    {
           "X": "1188",
-          "Y": "450"
+          "Y": "440"
         },
 		    {
           "X": "1217",
@@ -648,16 +708,22 @@
       ],
       "WHEELS_SIZE": [
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
         1
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0.2,
+        0,
+        0
       ],
       "PERFORMANCE": "5",
       "SUSPENSIONS": "10",
@@ -705,8 +771,14 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1
+        1.35,
+        1.35
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
       ],
       "PERFORMANCE": "10",
       "SUSPENSIONS": "7",
@@ -754,8 +826,14 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,
-        1
+        1.4,
+        0.9
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0.1,
+        0,
+        0
       ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "6",
@@ -805,6 +883,12 @@
         "WHEELS_SIZE": [
           1.5,
           1.5
+        ],
+        "BALANCE_BODY_OFFSET": [
+          0,
+          0.3,
+          0,
+          0
         ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "6",

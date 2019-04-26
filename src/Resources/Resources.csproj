@@ -18,6 +18,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>LogStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="UiStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UiStrings.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +33,13 @@
     <EmbeddedResource Update="LogStrings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LogStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UiStrings.it.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UiStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
  

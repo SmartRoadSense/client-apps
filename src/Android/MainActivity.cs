@@ -18,6 +18,8 @@ using Android.Widget;
 
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Data;
+using SmartRoadSense.Resources;
+
 using Plugin.CurrentActivity;
 
 namespace SmartRoadSense.Android {
@@ -447,13 +449,25 @@ namespace SmartRoadSense.Android {
                 StartActivity(i);
                 _drawerLayout.CloseDrawers();
             };
+
+            _drawerLayout.DrawerStateChanged += (sender, e) => {
+                if(e.NewState == DrawerLayout.StateDragging || e.NewState == DrawerLayout.StateSettling) {
+                    // Drawer movement, stop recording
+                    SensingService.Do(model => {
+                        if(model.IsRecording) {
+                            Toast.MakeText(ApplicationContext, UiStrings.MainNotificationSuspendUserAction, ToastLength.Short).Show();
+                            model.StopRecordingCommand.Execute(null);
+                        }
+                    });
+                }
+            };
         }
 
         private void HandleIntent(Intent intent) {
             if(intent == null)
                 return;
             var action = intent.Action;
-            if(IntentStartRecording.Equals(intent.Action, StringComparison.InvariantCultureIgnoreCase)) {
+            if(IntentStartRecording.Equals(action, StringComparison.InvariantCultureIgnoreCase)) {
                 StartRecording();
             }
             else {

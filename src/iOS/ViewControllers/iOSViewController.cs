@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ObjCRuntime;
 using System.Net.Sockets;
+using SmartRoadSense.Resources;
 
 namespace SmartRoadSense.iOS
 {
@@ -112,9 +113,21 @@ namespace SmartRoadSense.iOS
 				menuImageView.Image,
 				UIBarButtonItemStyle.Plain,
 				(s, e) => {
-					System.Diagnostics.Debug.WriteLine ("menu button tapped");
-					SidebarController.ToggleMenu ();
-				}
+                    System.Diagnostics.Debug.WriteLine("menu button tapped");
+                    if(RVM.IsRecording) {
+                        SidebarController.ToggleMenu();
+                        var okAlertController = UIAlertController.Create("", UiStrings.MainNotificationSuspendUserAction, UIAlertControllerStyle.Alert);
+                        //Add Action
+                        okAlertController.AddAction(UIAlertAction.Create(NSBundle.MainBundle.GetLocalizedString("Vernacular_P0_dialog_ok"), UIAlertActionStyle.Default, alert => {
+                            RVM.StopRecordingCommand.Execute(null);
+                        }));
+
+                        PresentViewController(okAlertController, true, null);
+                    }
+                    else {
+                        SidebarController.ToggleMenu();
+                    }
+                }
 			);
 
 			// Add button to item array

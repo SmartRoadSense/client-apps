@@ -10,33 +10,45 @@ namespace SmartRoadSense.Shared {
     public class SceneGarage : BaseScene {
         readonly ScreenInfoRatio _dim; //variabile rapporto dimensioni schermo
         readonly ResourceCache _cache;
-        Sprite _blackBar;
-        Sprite _contUpgrade;
+        readonly Font _font;
+        readonly UIElement _root;
+
+        // Upgrade bars
         BorderImage _performanceBar;
         Sprite _performanceBarA;
         BorderImage _suspensionsBar;
         Sprite _suspensionsBarA;
         BorderImage _brakeBar;
         Sprite _brakeBarA;
-        Text _screenInfo;
         BorderImage _wheelBar;
         Sprite _wheelBarA;
-        Text _carName;
-        Sprite _backgroundSprite;
-        readonly Font _font;
-        readonly UIElement _root;
-        int _idDVehicle;
-        Button _selectedVehicle;
-        Button _nextVehicle;
-        Button _prevVehicle;
-        Sprite _lockedVehicle;
-        Sprite _contComponents;
+        //
+
+        // Components
         BorderImage Body;
         BorderImage Wheel;
         BorderImage Suspensions;
         BorderImage Engine;
-        Text wallet;
+        //
+
+        Text _screenInfo;
+        Text _carName;
+        Text _unlockCost;
+        Text _wallet;
+
+        Button _selectedVehicle;
+        Button _nextVehicle;
+        Button _prevVehicle;
+
+        Sprite _lockedVehicle;
+        Sprite _contComponents;
+        Sprite _blackBar;
+        Sprite _contUpgrade;
+        Sprite _backgroundSprite;
+        BorderImage _coinIcon;
+
         VehicleModel _currentVehicleModel;
+        int _idDVehicle;
 
         public SceneGarage(Game game) : base(game) {
             _idDVehicle = VehicleManager.Instance.SelectedVehicleModel != null ? VehicleManager.Instance.SelectedVehicleModel.IdVehicle : -1;
@@ -98,16 +110,17 @@ namespace SmartRoadSense.Shared {
             _root.AddChild(coins);
             coins.SetStyleAuto(null);
             coins.SetPosition((int)(_dim.XScreenRatio * 180), (int)(_dim.YScreenRatio * 60));
-            coins.SetSize((int)(_dim.XScreenRatio * 75), (int)(_dim.YScreenRatio * 70));
+            coins.SetSize((int)(_dim.XScreenRatio * 70), (int)(_dim.YScreenRatio * 70));
             coins.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             coins.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+            coins.UseDerivedOpacity = false;
 
             //Wallet text
-            wallet = new Text();
-            coins.AddChild(wallet);
-            wallet.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 10));
-            wallet.SetFont(_font, _dim.XScreenRatio * 30);
-            wallet.Value = ""+ CharacterManager.Instance.Wallet;
+            _wallet = new Text();
+            coins.AddChild(_wallet);
+            _wallet.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 10));
+            _wallet.SetFont(_font, _dim.XScreenRatio * 30);
+            _wallet.Value = ""+ CharacterManager.Instance.Wallet;
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -204,7 +217,7 @@ namespace SmartRoadSense.Shared {
                     if(_currentVehicleModel.UnlockCost != -1) {
                         if(CharacterManager.Instance.Wallet >= _currentVehicleModel.UnlockCost) {
                             CharacterManager.Instance.Wallet -= _currentVehicleModel.UnlockCost;
-                            wallet.Value = CharacterManager.Instance.Wallet.ToString();
+                            _wallet.Value = CharacterManager.Instance.Wallet.ToString();
                             // Unlock vehicle
                             VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
                             VehicleManager.Instance.UnlockVehicle();
@@ -242,9 +255,26 @@ namespace SmartRoadSense.Shared {
 
             _carName = new Text();
             _selectedVehicle.AddChild(_carName);
-            _carName.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * -80));
+            _carName.SetPosition(_dim.SetX(0), _dim.SetY(-80));
             _carName.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
             _carName.SetFont(_font, _dim.SetX(40));
+
+            _unlockCost = new Text();
+            _selectedVehicle.AddChild(_unlockCost);
+            _unlockCost.SetPosition(_dim.SetX(40), _dim.SetY(-30));
+            _unlockCost.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
+            _unlockCost.SetFont(_font, _dim.SetX(30));
+            _unlockCost.Visible = false;
+
+            _coinIcon = new BorderImage();
+            _selectedVehicle.AddChild(_coinIcon);
+            _coinIcon.SetPosition(_dim.SetX(-50), _dim.SetY(-30));
+            _coinIcon.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Bottom);
+            _coinIcon.Visible = false;
+            _coinIcon.SetSize(_dim.SetX(50), _dim.SetY(50));
+            _coinIcon.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _coinIcon.ImageRect = AssetsCoordinates.Generic.Icons.IconCoin;
+            _coinIcon.UseDerivedOpacity = false;
 
             _lockedVehicle = new Sprite();
             _selectedVehicle.AddChild(_lockedVehicle);
@@ -312,15 +342,6 @@ namespace SmartRoadSense.Shared {
             _contComponents.SetPosition(_dim.SetX(0), _dim.SetY(720));
             _contComponents.ImageRect = new IntRect(0, 0, 56, 56);
 
-            /*
-            BorderImage Drivetrain = new BorderImage();
-            contComponents.AddChild(Drivetrain);
-            Drivetrain.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            Drivetrain.ImageRect = AssetsCoordinates.Generic.Boxes.ComponentDrivetrainRed;
-            Drivetrain.SetSize((int)(dim.XScreenRatio * 150), (int)(dim.YScreenRatio * 150));
-            Drivetrain.SetPosition((int)(dim.XScreenRatio * 300), (int)(dim.YScreenRatio * 150));
-            */
-
             Body = new BorderImage();
             _contComponents.AddChild(Body);
             Body.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
@@ -354,12 +375,12 @@ namespace SmartRoadSense.Shared {
             Wheel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
 
             SetUpgrade();
-            SetColectedComponents();
+            SetCollectedComponents();
             GetCarImg();
         }
 
 
-        void SetColectedComponents() {
+        void SetCollectedComponents() {
             if(_currentVehicleModel.UnlockCost == -1) {
                 
                 if (VehicleManager.Instance.CollectedComponents.CollectedComponentsList != null) {
@@ -384,7 +405,6 @@ namespace SmartRoadSense.Shared {
                 }
             }
         }
-        
 
         void SetUpgrade() {
             var green_bars = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.GreenBars.ResourcePath);
@@ -441,6 +461,8 @@ namespace SmartRoadSense.Shared {
             int bottom = _currentVehicleModel.ImagePosition.Bottom;
             _selectedVehicle.ImageRect = new IntRect(left, top, right, bottom);
             _carName.Value = _currentVehicleModel.Name;
+            _unlockCost.Value = string.Format($"{_currentVehicleModel.UnlockCost}");
+            _unlockCost.SetColor(Color.FromHex("#B29600"));
 
             switch(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count) {
                 // New game - no vehicles selected
@@ -450,12 +472,16 @@ namespace SmartRoadSense.Shared {
                         _screenInfo.Value = "Tap to unlock this vehicle";
                         _contUpgrade.Visible = false;
                         _contComponents.Visible = false;
+                        _unlockCost.Visible = false;
+                        _coinIcon.Visible = false;
                     } 
                     else 
                     {
                         _screenInfo.Value = "Vehicle not available";
                         _contUpgrade.Visible = false;
                         _contComponents.Visible = false;
+                        _unlockCost.Visible = false;
+                        _coinIcon.Visible = false;
                     }
                     break;
                 // Returning player - has at least one vehicle
@@ -467,6 +493,8 @@ namespace SmartRoadSense.Shared {
                         _screenInfo.Value = "Selected vehicle";
                         _contUpgrade.Visible = true;
                         _contComponents.Visible = false;
+                        _unlockCost.Visible = false;
+                        _coinIcon.Visible = false;
                     }
                     else 
                     {
@@ -475,6 +503,8 @@ namespace SmartRoadSense.Shared {
                             _screenInfo.Value = "Tap to select this vehicle";
                             _contUpgrade.Visible = true;
                             _contComponents.Visible = false;
+                            _unlockCost.Visible = false;
+                            _coinIcon.Visible = false;
                         }
                         else if (CharacterManager.Instance.User.Wallet >= _currentVehicleModel.UnlockCost) 
                         {
@@ -483,12 +513,16 @@ namespace SmartRoadSense.Shared {
                                 _screenInfo.Value = "Collect all components to unlock this vehicle";
                                 _contUpgrade.Visible = false;
                                 _contComponents.Visible = true;
+                                _unlockCost.Visible = false;
+                                _coinIcon.Visible = false;
                             }
                             else 
                             {
                                 _screenInfo.Value = "Tap to unlock this vehicle";
                                 _contUpgrade.Visible = false;
                                 _contComponents.Visible = false;
+                                _unlockCost.Visible = true;
+                                _coinIcon.Visible = true;
                             }
                         }
                         else 
@@ -496,6 +530,8 @@ namespace SmartRoadSense.Shared {
                             _screenInfo.Value = "Vehicle not available";
                             _contUpgrade.Visible = true;
                             _contComponents.Visible = false;
+                            _unlockCost.Visible = true;
+                            _coinIcon.Visible = true;
                         }
                     }
                     break;
@@ -551,7 +587,6 @@ namespace SmartRoadSense.Shared {
             }
 
             var nextVehicle = VehicleManager.Instance.GetVehicleFromId(next);
-            System.Diagnostics.Debug.WriteLine("NEXT = " + next + "PREV = " + prev + "SELECTED = " + _currentVehicleModel.IdVehicle);
             int leftN = nextVehicle.ImagePosition.Left;
             int topN = nextVehicle.ImagePosition.Top;
             int rightN = nextVehicle.ImagePosition.Right;
@@ -579,19 +614,7 @@ namespace SmartRoadSense.Shared {
             }
             else 
             {
-                /*if(_currentVehicleModel.UnlockCost == -1) {
-                    foreach(var v in VehicleManager.Instance.CollectedComponents.CollectedComponentsList) {
-                        if(v.VehicleId == _currentVehicleModel.IdVehicle) {
-                            if(!v.VehicleComponents.Brakes || !v.VehicleComponents.Wheels || !v.VehicleComponents.Suspensions || !v.VehicleComponents.Performance)
-                                _lockedVehicle.Visible = true;
-                            else
-                                _lockedVehicle.Visible = false;
-                        }
-                    }
-                }
-                else {*/
-                    _lockedVehicle.Visible = true;
-                //}
+                _lockedVehicle.Visible = true;
             }
         }
 

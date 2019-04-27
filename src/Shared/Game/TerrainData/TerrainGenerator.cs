@@ -54,12 +54,31 @@ namespace SmartRoadSense.Shared
             // TODO: modify difficulty based on user level
 
             List<float> data = new List<float>();
-            for(var i = 0; i < trackLength; i++)
-                data.Add(i > 0 ? data[i-1] + NextRandom(-0.05f, 0.05f) : NextRandom(-0.05f, 0.05f));
+            var idx = random.Next(-5, 50);
+            var up = Math.Abs(random.Next(0, 2)) <= 0;
 
-            var endTrace = data[data.Count - 1];
-            for(var i = 1; i < EndOfLevelSurfaceLength; i++)
-                data.Add(endTrace);
+            for(var i = 0; i < trackLength + EndOfLevelSurfaceLength; i++) {
+                if(i <= 0) {
+                    data.Add(NextRandom(-0.05f, 0.05f));
+                    continue;
+                }
+                if(idx > 0) {
+                    if(up)
+                        data.Add(data[i - 1] + NextRandom(0.0f, 0.05f));
+                    else
+                        data.Add(data[i - 1] + NextRandom(-0.05f, 0.0f));
+                    idx--;
+                }
+                else {
+                    idx = random.Next(-5, 50);
+                    up = Math.Abs(random.Next(0, 2)) <= 0;
+                    data.Add(i > 0 ? data[i - 1] + NextRandom(-0.05f, 0.05f) : NextRandom(-0.05f, 0.05f));
+                }
+            }
+
+            //var endTrace = data[data.Count - 1];
+            //for(var i = 1; i < EndOfLevelSurfaceLength; i++)
+            //    data.Add(endTrace);
 
             return data;
         }

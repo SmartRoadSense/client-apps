@@ -226,6 +226,7 @@ namespace SmartRoadSense.Shared
                     Bg3Node[i].Position = new Vector3(Bg3Node[i].Position.X + staticX * 0.8f, CameraNode.Position.Y, Bg3Node[i].Position.Z);
                     Bg2Node[i].Position = new Vector3(Bg2Node[i].Position.X + staticX * 0.55f, CameraNode.Position.Y, Bg2Node[i].Position.Z);
                     Bg1Node[i].Position = new Vector3(Bg1Node[i].Position.X + staticX * 0.3f, CameraNode.Position.Y, Bg1Node[i].Position.Z);
+                    FgNode[i].Position = new Vector3(FgNode[i].Position.X, CameraNode.Position.Y - 3.5f, FgNode[i].Position.Z);
                 }
             }
 

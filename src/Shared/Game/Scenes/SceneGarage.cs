@@ -665,6 +665,10 @@ namespace SmartRoadSense.Shared {
 
             closeButton.Pressed += (PressedEventArgs args) => {
                 window.Remove();
+                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 1) {
+                    GameInstance.LaunchScene(GameScenesEnumeration.MENU);
+                    return;
+                }
                 if(reloadGarage)
                     GameInstance.LaunchScene(GameScenesEnumeration.GARAGE);
             };

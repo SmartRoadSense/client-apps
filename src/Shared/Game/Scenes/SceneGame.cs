@@ -424,8 +424,7 @@ namespace SmartRoadSense.Shared
                 recs = TerrainGenerator.RandomTerrain(_trackLength);
                 //terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, true);
-                //_trackLength = terrainData.Count();
-                //_trackLength = 3600;
+                _trackLength = terrainData.Count() - (int)TerrainGenerator.EndOfLevelSurfaceLength;
             }
             else 
             {
@@ -439,7 +438,7 @@ namespace SmartRoadSense.Shared
                     lst.Add((float)t);
                 recs = Smoothing.SmoothTrack(lst, CharacterManager.Instance.User.Level);
                 terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, true);
-                _trackLength = terrainData.Count();
+                _trackLength = terrainData.Count() - (int)TerrainGenerator.EndOfLevelSurfaceLength;
 
             }
 
@@ -456,7 +455,6 @@ namespace SmartRoadSense.Shared
             groundBody.AddCollisionShape2D(collisionChain);
 
             // DRAW GROUND TERRAIN
-
             for(var i = 0; i < _trackLength + TerrainGenerator.EndOfLevelSurfaceLength; i++) {
                 if(i > 0) {
                     var vertex1 = collisionChain.GetVertex((uint)i - 1);
@@ -818,17 +816,22 @@ namespace SmartRoadSense.Shared
             btnContinue.ImageRect = AssetsCoordinates.Generic.Icons.Continue;
 
             btnContinue.Pressed += args => {
-                // Set post race data
-                var postRaceData = new LastPlayedTrack {
-                    TrackData = _levelData,
-                    Components = _components,
-                    Coins = _coins,
-                    Time = (int)_stopwatch.GetElapsedTime().TotalMilliseconds,
-                    Points = CharacterLevelData.ObtainedPoints((int)_stopwatch.GetElapsedTime().TotalMilliseconds)
-                };
-                TrackManager.Instance.LastPlayedTrackInfo = postRaceData;
-                CloseGameLevel();
-                GameInstance.LaunchScene(GameScenesEnumeration.POST_RACE, _randomLevel);
+                if(_randomLevel) {
+                    GameInstance.LaunchScene(GameScenesEnumeration.LEVEL_SELECT);
+                }
+                else {
+                    // Set post race data
+                    var postRaceData = new LastPlayedTrack {
+                        TrackData = _levelData,
+                        Components = _components,
+                        Coins = _coins,
+                        Time = (int)_stopwatch.GetElapsedTime().TotalMilliseconds,
+                        Points = CharacterLevelData.ObtainedPoints((int)_stopwatch.GetElapsedTime().TotalMilliseconds)
+                    };
+                    TrackManager.Instance.LastPlayedTrackInfo = postRaceData;
+                    CloseGameLevel();
+                    GameInstance.LaunchScene(GameScenesEnumeration.POST_RACE, _randomLevel);
+                }
             };
 
             GameInstance.UI.SetFocusElement(levelCompleteWindow);
@@ -1527,6 +1530,25 @@ namespace SmartRoadSense.Shared
             var offset = 30;
             var trackColor = new Urho.Color(1.0f, 1.0f, 1.0f, 1.0f);
 
+            // Find multiplier for track scaling
+            var smallestMultiplier = 0.0f;
+            var multi = 0.0f;
+            Vector2 map;
+            for(var i = 1; i < _trackLength; i++) {
+                Vector2 point1 = terrainData[i].Vector;
+
+                if(point1.X <= 0)
+                    continue;
+                map = _mapPositionData.TerrainPoint(point1, _trackLength);
+                if(map.Y.Equals(0))
+                    multi = 0.0f;
+                else
+                    multi = Extentions.Multiply(map.Y);
+
+                if(multi.CompareTo(smallestMultiplier) > 0)
+                    smallestMultiplier = multi;
+            }
+
             for(var i = 1; i < _trackLength; i++) {
                 Vector2 point1 = terrainData[i].Vector;
                 if(point1.X <= 0)
@@ -1534,65 +1556,58 @@ namespace SmartRoadSense.Shared
                 
                 Vector2 map1 = _mapPositionData.TerrainPoint(point1, _trackLength);
                 int y = 0;
-                if(map1.Y.Equals(0)) 
+                if(map1.Y.Equals(0))
                     y = mapBox.Height;
                 else
-                    y = (int)(mapBox.Height - Extentions.Multiply(map1.Y));
+                    y = (int)(mapBox.Height - smallestMultiplier * 100 * map1.Y);
+                    //y = (int)(mapBox.Height - Extentions.Multiply(map1.Y));
 
                 if(!trackMap.ContainsKey((int)map1.X)) {
-                    if(trackMap.Count < 1) {
+                    //if(trackMap.Count < 10000) {
                         img.SetPixel((int)map1.X, y - offset, trackColor);
                         img.SetPixel((int)map1.X, y - offset - 1, trackColor);
-
                         trackMap.Add((int)map1.X, y - offset);
-                    }
+                    //}
+                    /*
                     else {
                         var abs = y - offset - trackMap.Last().Value;
-                        if(Math.Abs(abs) > 1) {
-                            y = abs > 0
-                              ? trackMap.Last().Value + 1
-                              : trackMap.Last().Value - 1;
-                            img.SetPixel((int)map1.X, y, trackColor);
-                            img.SetPixel((int)map1.X, y - 1, trackColor);
-
-                            trackMap.Add((int)map1.X, y);
-                        }
-                        else {
+                        if(Math.Abs(abs) <= 2) {
+                            lastOffsetChanged = true;
                             img.SetPixel((int)map1.X, y - offset, trackColor);
                             img.SetPixel((int)map1.X, y - offset - 1, trackColor);
 
                             trackMap.Add((int)map1.X, y - offset);
                         }
-                    }
+                        else {
+                            if(lastOffsetChanged) {
+                                lastOffsetChanged = false;
+                                lastOffset = abs;
+                            }
+                            y += lastOffset - offset;
+                                                      
+                            img.SetPixel((int)map1.X, y, trackColor);
+                            img.SetPixel((int)map1.X, y - 1, trackColor);
+
+                            trackMap.Add((int)map1.X, y);
+                        }
+                    }*/
                 }
             }
             trackMap = null;
 
-            // Order values of list
-            /*
-            var myList = mapPoints.ToList();
-            myList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
-            var smallest = Extentions.Multiply(myList.First().Value);
-            var multiplierFactor = smallest / myList.First().Value;
-            var biggest = Extentions.Multiply(myList.Last().Value);
-            var diff = biggest - smallest;
-            */
-
-
 #if __IOS__
             var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            var filePath = Path.Combine(documents, "track_img.png");//You can set the fileName what you want just take care of extension
+            var filePath = Path.Combine(documents, "track_img.png");
 #else 
             var sdCard = App.Context.GetExternalFilesDir(null).AbsolutePath;
             var filePath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "track_img.png");
             //Java.IO.File dir = new Java.IO.File("/urho");
             //dir.Mkdirs();
-            //var filePath = Path.Combine(dir.Path, "track_img.png"); //You can set the fileName what you want just take care of extension
+            //var filePath = Path.Combine(dir.Path, "track_img.png");
 #endif
             var save = img.SavePNG(filePath);
             Debug.WriteLine("png saved: " + save);
             textureMap = GameInstance.ResourceCache.GetTexture2D(filePath);
-            //mapBox.Texture = textureMap;
             mapTrack.Texture = textureMap;
             mapTrack.ImageRect = new IntRect(0, 0, mapBox.Width, mapBox.Height);
             mapTrack.UseDerivedOpacity = true;

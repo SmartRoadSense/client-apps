@@ -422,8 +422,7 @@ namespace SmartRoadSense.Shared
                 //recs = Smoothing.SmoothTrack(Smoothing.TestPpeTrack(), difficulty);
                 _trackLength = NextRandom(901, 3601);
                 recs = TerrainGenerator.RandomTerrain(_trackLength);
-                //terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
-                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, true);
+                terrainData = TerrainGenerator.ArrayToMatrix(recs.ToList(), GameInstance.ScreenInfo, false);
                 _trackLength = terrainData.Count() - (int)TerrainGenerator.EndOfLevelSurfaceLength;
             }
             else 

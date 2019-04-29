@@ -817,6 +817,7 @@ namespace SmartRoadSense.Shared
 
             btnContinue.Pressed += args => {
                 if(_randomLevel) {
+                    CloseGameLevel();
                     GameInstance.LaunchScene(GameScenesEnumeration.LEVEL_SELECT);
                 }
                 else {

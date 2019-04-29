@@ -107,7 +107,7 @@ namespace SmartRoadSense.Shared
         }
 
         public void InitUiInfo() {
-            Options.AdditionalFlags = " -hd";
+            //Options.AdditionalFlags = " -hd";
 
             Input.Enabled = true;
             Input.KeyDown += HandleKeyDown;
@@ -117,7 +117,7 @@ namespace SmartRoadSense.Shared
             XmlFile uiStyle = ResourceCache.GetXmlFile("UI/DefaultStyle.xml");
             UI.Root.SetDefaultStyle(uiStyle);
 
-            Engine.MaxFps = 30;
+            //Engine.MaxFps = 30;
         }
 
         void InitLoadingScreen() {

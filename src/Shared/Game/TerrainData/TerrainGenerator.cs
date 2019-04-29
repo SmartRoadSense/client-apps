@@ -76,9 +76,9 @@ namespace SmartRoadSense.Shared
                 }
             }
 
-            //var endTrace = data[data.Count - 1];
-            //for(var i = 1; i < EndOfLevelSurfaceLength; i++)
-            //    data.Add(endTrace);
+            var endTrace = data[data.Count - 1];
+            for(var i = 1; i < EndOfLevelSurfaceLength; i++)
+                data.Add(endTrace);
 
             return data;
         }

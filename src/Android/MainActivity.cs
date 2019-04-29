@@ -40,36 +40,6 @@ namespace SmartRoadSense.Android {
         
         public const string IntentStartRecording = "it.uniurb.smartroadsense.ui.start_recording";
 
-        private class SensingReceiver : BroadcastReceiver {
-            public SensingReceiver(MainActivity owner) {
-                _owner = owner;
-            }
-
-            private readonly MainActivity _owner;
-
-            public IntentFilter CreateIntentFilter() {
-                var filter = new IntentFilter();
-                filter.AddAction(SensingService.BroadcastIntentWakeUp);
-                filter.AddAction(SensingService.BroadcastIntentTearDown);
-                return filter;
-            }
-
-            public override void OnReceive(Context context, Intent intent) {
-                if(intent == null || intent.Action == null)
-                    return;
-                switch(intent.Action) {
-                case SensingService.BroadcastIntentWakeUp:
-                    _owner.UnbindFromService();
-                    //this is done to prevent double event registrations
-                    _owner.BindToService();
-                    break;
-                case SensingService.BroadcastIntentTearDown:
-                    _owner.UnbindFromService();
-                    break;
-                }
-            }
-        }
-
         private DrawerLayout _drawerLayout;
 
         private CustomActionBarDrawerToggle _drawerToggle;
@@ -85,8 +55,6 @@ namespace SmartRoadSense.Android {
         private ImageView _buttonSetupVehicle, _buttonSetupAnchorage;
 
         private MessageSnackbarDisplayer _bottomInfoDisplayer;
-
-        private SensingReceiver _receiver;
 
         protected override void OnCreate(Bundle savedInstanceState) {
             base.OnCreate(savedInstanceState);
@@ -131,13 +99,7 @@ namespace SmartRoadSense.Android {
 
             _bottomInfoDisplayer = new MessageSnackbarDisplayer(this, FindViewById<View>(Resource.Id.snackbar_container), _buttonStop);
 
-            //Register broadcast receiver
-            _receiver = new SensingReceiver(this);
-            RegisterReceiver(_receiver, _receiver.CreateIntentFilter());
-
-            //Wake up sensing service
-            Intent i = new Intent(this, typeof(SensingService));
-            StartService(i);
+            BindToService();
 
             HandleIntent(this.Intent);
         }
@@ -244,31 +206,21 @@ namespace SmartRoadSense.Android {
         #region Service binding and view model event handling
 
         private void BindToService() {
-            if(SensingService.ViewModel != null) {
-                SensingService.ViewModel.MeasurementsUpdated += HandleMeasurementsUpdated;
-                SensingService.ViewModel.RecordingStatusUpdated += HandleRecordingStatusUpdated;
-                SensingService.ViewModel.SensorStatusUpdated += HandleSensorStatusUpdated;
-                SensingService.ViewModel.RecordingSuspended += HandleRecordingSuspended;
-                SensingService.ViewModel.InternalEngineErrorReported += HandleInternalEngineError;
-                SensingService.ViewModel.SyncErrorReported += HandleSyncError;
-            }
-            else {
-                Log.Debug("Unable to bind to sensing service model");
-            }
+            SensingService.ViewModel.MeasurementsUpdated += HandleMeasurementsUpdated;
+            SensingService.ViewModel.RecordingStatusUpdated += HandleRecordingStatusUpdated;
+            SensingService.ViewModel.SensorStatusUpdated += HandleSensorStatusUpdated;
+            SensingService.ViewModel.RecordingSuspended += HandleRecordingSuspended;
+            SensingService.ViewModel.InternalEngineErrorReported += HandleInternalEngineError;
+            SensingService.ViewModel.SyncErrorReported += HandleSyncError;
         }
 
         private void UnbindFromService() {
-            if(SensingService.ViewModel != null) {
-                SensingService.ViewModel.MeasurementsUpdated -= HandleMeasurementsUpdated;
-                SensingService.ViewModel.RecordingStatusUpdated -= HandleRecordingStatusUpdated;
-                SensingService.ViewModel.SensorStatusUpdated -= HandleSensorStatusUpdated;
-                SensingService.ViewModel.RecordingSuspended -= HandleRecordingSuspended;
-                SensingService.ViewModel.InternalEngineErrorReported -= HandleInternalEngineError;
-                SensingService.ViewModel.SyncErrorReported -= HandleSyncError;
-            }
-            else {
-                Log.Debug("Unable to unbind from sensing service model (no model)");
-            }
+            SensingService.ViewModel.MeasurementsUpdated -= HandleMeasurementsUpdated;
+            SensingService.ViewModel.RecordingStatusUpdated -= HandleRecordingStatusUpdated;
+            SensingService.ViewModel.SensorStatusUpdated -= HandleSensorStatusUpdated;
+            SensingService.ViewModel.RecordingSuspended -= HandleRecordingSuspended;
+            SensingService.ViewModel.InternalEngineErrorReported -= HandleInternalEngineError;
+            SensingService.ViewModel.SyncErrorReported -= HandleSyncError;
         }
 
         private void HandleSetupClick(object sender, EventArgs e) {

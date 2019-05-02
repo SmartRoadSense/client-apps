@@ -32,6 +32,7 @@ namespace SmartRoadSense.Shared
         }
 
         static void Application_UnhandledException(object sender, Urho.UnhandledExceptionEventArgs e) {
+            Shared.Log.Error(e.Exception, "Unhandled Urho exception");
             e.Handled = true;
         }
 
@@ -42,7 +43,6 @@ namespace SmartRoadSense.Shared
 
         //DebugHud _debug;
         protected override void Start() {
-
             InitResourceCache();
 
             InitUiInfo();

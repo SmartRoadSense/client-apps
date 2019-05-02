@@ -24,47 +24,32 @@ namespace SmartRoadSense.Android {
     )]
     public class SensingService : Service {
 
-        /// <summary>
-        /// Sent when the service wakes up.
-        /// </summary>
-        public const string BroadcastIntentWakeUp = "it.uniurb.smartroadsense.sensing.wakeup";
-
-        /// <summary>
-        /// Sent when the service is torn down.
-        /// </summary>
-        public const string BroadcastIntentTearDown = "it.uniurb.smartroadsense.sensing.teardown";
-
         private const int NotificationRecordingId = 1;
 
-        private static RecordingViewModel _model;
+        private static RecordingViewModel _model = null;
 
         /// <summary>
         /// Gets the recording view model, if any.
         /// </summary>
         public static RecordingViewModel ViewModel {
             get {
+                if(_model == null) {
+                    _model = new RecordingViewModel();
+                    _model.OnCreate();
+                }
+
                 return _model;
             }
         }
 
-        private static ConcurrentQueue<Action<RecordingViewModel>> _actions = new ConcurrentQueue<Action<RecordingViewModel>>();
-
         public static void Do(Action<RecordingViewModel> action) {
-            if (_model != null) {
-                action(_model);
-            }
-            else {
-                _actions.Enqueue(action);
-            }
+            action(ViewModel);
         }
 
         public override void OnCreate() {
             base.OnCreate();
 
-            _model = new RecordingViewModel();
-            _model.OnCreate();
-
-            _model.RecordingStatusUpdated += HandleRecordingStatusUpdated;
+            ViewModel.RecordingStatusUpdated += HandleRecordingStatusUpdated;
         }
 
         private void HandleRecordingStatusUpdated(object sender, EventArgs e) {
@@ -77,7 +62,7 @@ namespace SmartRoadSense.Android {
         }
 
         public const string NotificationChannelId = "it.uniurb.smartroadsense.recording";
-        public const string NotificationChannelDescription = "Lorem ipsum";
+        public const string NotificationChannelDescription = "SmartRoadSense sensing";
 
         private Notification CreateRecordingNotification() {
             string notificationChannel = NotificationChannel.DefaultChannelId;
@@ -107,16 +92,7 @@ namespace SmartRoadSense.Android {
         }
 
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId) {
-            //Notify receivers that the service is up and running
-            SendBroadcast(new Intent(BroadcastIntentWakeUp));
-
-            //Perform queued actions
-            while (_actions.Count > 0) {
-                Action<RecordingViewModel> action;
-                if (_actions.TryDequeue(out action)) {
-                    action(_model);
-                }
-            }
+            ViewModel.OnCreate();
 
             return StartCommandResult.Sticky;
         }
@@ -124,16 +100,10 @@ namespace SmartRoadSense.Android {
         public override void OnDestroy() {
             base.OnDestroy();
 
-            this.SendBroadcast(new Intent(BroadcastIntentTearDown));
-
-            if (_model != null) {
-                if (_model.IsRecording) {
-                    _model.StopRecordingCommand.Execute(null);
-                }
-
-                _model.OnDestroy();
-                _model = null;
+            if(ViewModel.IsRecording) {
+                ViewModel.StopRecordingCommand.Execute(null);
             }
+            ViewModel.RecordingStatusUpdated -= HandleRecordingStatusUpdated;
         }
 
         #region Implemented abstract members of Service

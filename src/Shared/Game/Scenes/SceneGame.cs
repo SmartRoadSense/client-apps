@@ -24,10 +24,11 @@ namespace SmartRoadSense.Shared
 
     public enum GameState
     {
-        PLAYING = 0,
-        PAUSE = 1,
-        GAME_OVER = 2,
-        LEVEL_COMPLETE = 3
+        LOADING,
+        PLAYING,
+        PAUSE,
+        GAME_OVER,
+        LEVEL_COMPLETE
     }
 
     public class SceneGame : BaseScene
@@ -129,6 +130,10 @@ namespace SmartRoadSense.Shared
 
          void InitGameplay() 
         {
+            _gameState = GameState.LOADING;
+            GameInstance.PauseGame();
+            UpdateEnabled = false;
+
             // Start music and splashscreen
             InitSounds();
             SplashScreen();
@@ -155,7 +160,6 @@ namespace SmartRoadSense.Shared
             GameInstance.GameVehicle = _vehicle;
             GameInstance.UI.SetFocusElement(null);
 
-            _gameState = GameState.PLAYING;
             _timer = false;
 
 #if DEBUG
@@ -248,6 +252,9 @@ namespace SmartRoadSense.Shared
                 btn.Pressed += (PressedEventArgs arg) => {
                     splashUI.Visible = false;
                     GameInstance.Renderer.EndViewRender -= _actionCloseSplashScreen;
+                    _gameState = GameState.PLAYING;
+                    GameInstance.ResumeGame();
+                    UpdateEnabled = true;
                 };
             };
         }

@@ -50,14 +50,6 @@ namespace SmartRoadSense.Shared
             }
         }
 
-        public int CurrentGarageVehicleId {
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, -1);
-            set {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, value);
-                OnPropertyChanged();
-            }
-        }
-
         public VehicleModel SelectedVehicleModel {
             get {
                 var json = Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedVehicle.Value, "");

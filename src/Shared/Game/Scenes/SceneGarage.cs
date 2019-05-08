@@ -128,7 +128,7 @@ namespace SmartRoadSense.Shared {
             coins.AddChild(_wallet);
             _wallet.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 10));
             _wallet.SetFont(_font, _dim.XScreenRatio * 30);
-            _wallet.Value = ""+ CharacterManager.Instance.Wallet;
+            _wallet.Value = string.Format($"{CharacterManager.Instance.Wallet}");
 
             // SCREEN TITLE
             Button screen_title = new Button();
@@ -156,13 +156,8 @@ namespace SmartRoadSense.Shared {
             if(VehicleManager.Instance.UnlockedVehicles == null || VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) {
                 _screenInfo.Value = "Please select a free starting vehicle.";
             }
-            else if(_currentVehicleModel.IdVehicle == _idDVehicle) {
-                _screenInfo.Value = "";
-                //screen_info.Value = "Selected vehicle.";
-            }
             else {
                 _screenInfo.Value = "";
-                //screen_info.Value = "Tap to unlock this vehicle";
             }
         }
 
@@ -241,7 +236,6 @@ namespace SmartRoadSense.Shared {
                             VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
                             VehicleManager.Instance.UnlockVehicle();
 
-                            // TODO: update UI
                             Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
                             ConfirmationWindow(string.Format(_selectedVehicle.Name + "unlocked!"), false, true);
                         }
@@ -383,7 +377,6 @@ namespace SmartRoadSense.Shared {
             SetCollectedComponents();
             GetCarImg();
         }
-
 
         void SetCollectedComponents() {
             if(_currentVehicleModel.UnlockCost == -1) {

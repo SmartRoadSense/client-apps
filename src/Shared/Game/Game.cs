@@ -62,7 +62,7 @@ namespace SmartRoadSense.Shared
 #if DEBUG
             // TEST DATA FOR BUYING VEHICLES
 
-            /*CharacterManager.Instance.Wallet = 100000;
+            CharacterManager.Instance.Wallet = 100000;
 
             var newComponentsContainer = new CollectedComponentsContainer {
                 CollectedComponentsList = new List<CollectedComponents>()
@@ -80,7 +80,7 @@ namespace SmartRoadSense.Shared
                 newComponentsContainer.CollectedComponentsList.Add(newComponents);
             }
             VehicleManager.Instance.CollectedComponents = newComponentsContainer;
-            */
+
             //_debug = Engine.CreateDebugHud();
             //_debug.ToggleAll();
 #endif

@@ -34,7 +34,6 @@ namespace SmartRoadSense.Shared
                     CollectedComponentsList = components
                 };
             }
-
             else {
                 var collected = CollectedComponents;
                 collected.CollectedComponentsList = components;

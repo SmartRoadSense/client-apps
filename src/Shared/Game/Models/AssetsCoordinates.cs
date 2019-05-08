@@ -116,6 +116,8 @@ namespace SmartRoadSense.Shared
                 //only post-race
                 readonly static public IntRect LevelBlueBox = new IntRect(1365, 1395, 1442, 1471);  // used in post-race and user profile
                 readonly static public IntRect IconBeach = new IntRect(1773, 780, 2372, 845);
+                readonly static public IntRect IconSnowyForest = new IntRect(1773, 692, 2372, 756);
+                readonly static public IntRect IconMoon = new IntRect(1773, 1084, 2372, 1148);
                 readonly static public IntRect TimeIconBar = new IntRect(1095, 905, 1690, 975);
                 readonly static public IntRect BestIconBar = new IntRect(1095, 995, 1690, 1066); 
                 readonly static public IntRect ComponentsIconBar = new IntRect(1095, 1087, 1690, 1156);

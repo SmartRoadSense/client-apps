@@ -19,6 +19,7 @@ namespace SmartRoadSense.Shared
         public static VehicleManager Instance { get; } = new VehicleManager();
 
         public void Init() {
+            // Update components list
             List<CollectedComponents> components = new List<CollectedComponents>();
             if(CollectedComponents != null && CollectedComponents.CollectedComponentsList != null)
                 components = CollectedComponents.CollectedComponentsList;
@@ -39,6 +40,14 @@ namespace SmartRoadSense.Shared
                 collected.CollectedComponentsList = components;
                 CollectedComponents = collected;
             }
+
+            // TODO: update unlocked vehicles list
+            var vehiclesOrig = UnlockedVehicles;
+            foreach(var v in vehiclesOrig.VehicleModel) {
+                var vehicleData = Vehicles.VehicleModel.First(m => m.IdVehicle == v.IdVehicle);
+                vehiclesOrig.VehicleModel.First(m => m.IdVehicle == v.IdVehicle).UpdateVehicleModel(vehicleData);
+            }
+            UnlockedVehicles = vehiclesOrig;
         }
 
         public int VehicleCount {

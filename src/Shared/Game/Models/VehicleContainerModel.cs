@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace SmartRoadSense.Shared {
-    public class VehicleContainerModel 
-    {
+    public class VehicleContainerModel {
         [JsonProperty("VEHICLES")]
         public List<VehicleModel> VehicleModel { get; set; }
 
@@ -13,8 +12,7 @@ namespace SmartRoadSense.Shared {
         }
     }
 
-    public class VehicleModel
-    {
+    public class VehicleModel {
         [JsonProperty("ID_VEHICLE")]
         public int IdVehicle { get; set; }
 
@@ -53,10 +51,21 @@ namespace SmartRoadSense.Shared {
 
         [JsonProperty("UNLOCK_COST")]
         public int UnlockCost { get; set; }
+
+        #region UpdateModel
+        public void UpdateVehicleModel(VehicleModel vehicle) {
+            Name = vehicle.Name;
+            ImagePosition = vehicle.ImagePosition;
+            BodyPosition = vehicle.BodyPosition;
+            WheelsPosition = vehicle.WheelsPosition;
+            WheelsBodyPosition = vehicle.WheelsBodyPosition;
+            WheelsSize = vehicle.WheelsSize;
+            BalanceBodyOffset = vehicle.BalanceBodyOffset;
+        }
+        #endregion
     }
 
-    public class VehicleImagePosition
-    {
+    public class VehicleImagePosition {
         [JsonProperty("LEFT")]
         public int Left { get; set; }
 

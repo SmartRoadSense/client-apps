@@ -347,7 +347,7 @@ namespace SmartRoadSense.Shared
             }
 
             // ADD VEHICLE
-            var vehicleMain = new VehicleCreator(scene, cache, screenInfoRatio);
+            var vehicleMain = new VehicleCreator(scene, cache, screenInfoRatio, new Vector2(0,0));
             vehicle = vehicleMain.InitCarInScene(VehicleLoad.BOX);
         }
 

@@ -247,7 +247,8 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,1
+        1,
+        1
       ],
       "BALANCE_BODY_OFFSET": [
         0,

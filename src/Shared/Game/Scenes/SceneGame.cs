@@ -140,9 +140,9 @@ namespace SmartRoadSense.Shared
 
             InitCollectables();
 
-            CreateBackgroundScene();
+            var initPosition = CreateBackgroundScene();
             //await CreateBackgroundScene();
-            CreateForegroundScene();
+            CreateForegroundScene(initPosition);
             CreateOSD();
 
             // Init On-Screen Joystick
@@ -331,7 +331,7 @@ namespace SmartRoadSense.Shared
             GameInstance.PostRenderUpdate = PostRenderUpdate;
         }
 
-        void CreateBackgroundScene()
+        Vector2 CreateBackgroundScene()
         {
             CreateComponent<Octree>();
             CreateComponent<DebugRenderer>();
@@ -518,18 +518,18 @@ namespace SmartRoadSense.Shared
             _distanceData = new GameDistanceData(0/* TODO change if vehicle starting position changes */, _finishLineEndX);
             _mapPositionData = new MapPositionData(0, _finishLineEndX);
 
-            //return true;
+            return terrainData.First(p => p.Vector.X < 1 && p.Vector.X > -1).Vector;
         }
 
-        void CreateForegroundScene() {
+        void CreateForegroundScene(Vector2 initPosition) {
             // ADD VEHICLE
-            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache, GameInstance.ScreenInfo);
+            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache, GameInstance.ScreenInfo, initPosition);
 
             // TODO: pass on selected balance object
             _vehicle = vehicleMain.InitCarInScene(VehicleLoad.BOX);
 
             // Create balance object
-            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName, GameInstance.ScreenInfo);
+            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName, GameInstance.ScreenInfo, vehicleMain.VehicleObjectPosition);
             _vehicle.BalanceObject = _balanceObject;
         }
 

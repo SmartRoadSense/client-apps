@@ -15,12 +15,24 @@ namespace SmartRoadSense.Shared {
 
         // Upgrade bars
         BorderImage _performanceBar;
+        BorderImage _performanceCost;
+        Text perCost;
+        Button _performanceUpBtn;
         Sprite _performanceBarA;
         BorderImage _suspensionsBar;
+        BorderImage _suspensionsCost;
+        Button _suspensionsUpBtn;
+        Text susCost;
         Sprite _suspensionsBarA;
         BorderImage _brakeBar;
+        BorderImage _brakeCost;
+        Button _brakeUpBtn;
+        Text braCost;
         Sprite _brakeBarA;
         BorderImage _wheelBar;
+        BorderImage _wheelCost;
+        Button _wheelUpBtn;
+        Text wheCost;
         Sprite _wheelBarA;
         //
 
@@ -44,6 +56,7 @@ namespace SmartRoadSense.Shared {
         Sprite _contComponents;
         Sprite _blackBar;
         Sprite _contUpgrade;
+        Sprite _contUpgradeCost;
         Sprite _backgroundSprite;
         BorderImage _coinIcon;
 
@@ -313,6 +326,8 @@ namespace SmartRoadSense.Shared {
             _performanceBar.SetSize((int)(_dim.XScreenRatio * 550), (int)(_dim.YScreenRatio * 95));
             _performanceBar.SetPosition((int)(_dim.XScreenRatio * 1000), (int)(_dim.YScreenRatio * 100));
 
+           
+
             _suspensionsBar = new BorderImage();
             _contUpgrade.AddChild(_suspensionsBar);
             _suspensionsBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
@@ -373,10 +388,112 @@ namespace SmartRoadSense.Shared {
             Wheel.SetPosition(_dim.SetX(300), _dim.SetY(150));
             Wheel.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
 
+
+            // UPDGRADES
+            _contUpgradeCost = _root.CreateSprite();
+            _contUpgradeCost.Texture = contBase;
+            _contUpgradeCost.SetSize((int)(_dim.XScreenRatio * 1200), (int)(_dim.YScreenRatio * 300));
+            _contUpgradeCost.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 750));
+            _contUpgradeCost.ImageRect = AssetsCoordinates.Generic.Garage.ContBase.TrasparentItem;
+
+            _performanceCost = new BorderImage();
+            _contUpgradeCost.AddChild(_performanceCost);
+            _performanceCost.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _performanceCost.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeCost;
+            _performanceCost.SetSize((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 90));
+            _performanceCost.SetPosition((int)(_dim.XScreenRatio * 1550), (int)(_dim.YScreenRatio * 100));
+
+            _performanceUpBtn = new Button();
+            _performanceCost.AddChild(_performanceUpBtn);
+            _performanceUpBtn.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _performanceUpBtn.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeRight;
+            _performanceUpBtn.SetSize((int)(_dim.XScreenRatio * 85), (int)(_dim.YScreenRatio * 90));
+            _performanceUpBtn.SetPosition((int)(_dim.XScreenRatio * 100), (int)(_dim.YScreenRatio * 0));
+            _performanceUpBtn.Pressed += args => {
+                UpgradeComponent(0);
+            };
+
+            perCost = new Text();
+            _performanceCost.AddChild(perCost);
+            perCost.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 0));
+            perCost.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            perCost.SetFont(_font, _dim.XScreenRatio * 20);
+            perCost.SetColor(Color.Black);
+
+            _wheelCost = new BorderImage();
+            _contUpgradeCost.AddChild(_wheelCost);
+            _wheelCost.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _wheelCost.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeCost;
+            _wheelCost.SetSize((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 90));
+            _wheelCost.SetPosition((int)(_dim.XScreenRatio * 345), (int)(_dim.YScreenRatio * 100));
+
+            _wheelUpBtn = new Button();
+            _wheelCost.AddChild(_wheelUpBtn);
+            _wheelUpBtn.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _wheelUpBtn.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeLeft;
+            _wheelUpBtn.SetSize((int)(_dim.XScreenRatio * 85), (int)(_dim.YScreenRatio * 90));
+            _wheelUpBtn.SetPosition((int)(_dim.XScreenRatio * -100), (int)(_dim.YScreenRatio * 0));
+            _wheelUpBtn.Pressed += args => {
+                UpgradeComponent(1);
+            };
+
+            wheCost = new Text();
+            _wheelCost.AddChild(wheCost);
+            wheCost.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 0));
+            wheCost.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            wheCost.SetFont(_font, _dim.XScreenRatio * 20);
+            wheCost.SetColor(Color.Black);
+
+            _suspensionsCost = new BorderImage();
+            _contUpgradeCost.AddChild(_suspensionsCost);
+            _suspensionsCost.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _suspensionsCost.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeCost;
+            _suspensionsCost.SetSize((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 90));
+            _suspensionsCost.SetPosition((int)(_dim.XScreenRatio * 1550), (int)(_dim.YScreenRatio * 200));
+
+            _suspensionsUpBtn = new Button();
+            _suspensionsCost.AddChild(_suspensionsUpBtn);
+            _suspensionsUpBtn.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _suspensionsUpBtn.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeRight;
+            _suspensionsUpBtn.SetSize((int)(_dim.XScreenRatio * 85), (int)(_dim.YScreenRatio * 90));
+            _suspensionsUpBtn.SetPosition((int)(_dim.XScreenRatio * 100), (int)(_dim.YScreenRatio * 0));
+            _suspensionsUpBtn.Pressed += args => {
+                UpgradeComponent(2);
+            };
+
+            susCost = new Text();
+            _suspensionsCost.AddChild(susCost);
+            susCost.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 0));
+            susCost.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            susCost.SetFont(_font, _dim.XScreenRatio * 20);
+            susCost.SetColor(Color.Black);
+
+            _brakeCost = new BorderImage();
+            _contUpgradeCost.AddChild(_brakeCost);
+            _brakeCost.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _brakeCost.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeCost;
+            _brakeCost.SetSize((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 90));
+            _brakeCost.SetPosition((int)(_dim.XScreenRatio * 345), (int)(_dim.YScreenRatio * 200));
+
+            _brakeUpBtn = new Button();
+            _brakeCost.AddChild(_brakeUpBtn);
+            _brakeUpBtn.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            _brakeUpBtn.ImageRect = AssetsCoordinates.Generic.Icons.UpgradeLeft;
+            _brakeUpBtn.SetSize((int)(_dim.XScreenRatio * 85), (int)(_dim.YScreenRatio * 90));
+            _brakeUpBtn.SetPosition((int)(_dim.XScreenRatio * -100), (int)(_dim.YScreenRatio * 0));
+            _brakeUpBtn.Pressed += args => {
+                UpgradeComponent(3);
+            };
+
             SetUpgrade();
             SetCollectedComponents();
             GetCarImg();
         }
+
+
+
+
+
 
         void SetCollectedComponents() {
             if(_currentVehicleModel.UnlockCost == -1) {
@@ -416,6 +533,16 @@ namespace SmartRoadSense.Shared {
             int susp = selectedVehicle.Suspensions;
             int brk = selectedVehicle.Brake;
 
+            int _pUPCost = perf + 1;
+            perCost.Value = _pUPCost + "K";
+            int _wUPCost = whe + 1;
+            wheCost.Value = _wUPCost + "K";
+            int _sUPCost = susp + 1;
+            susCost.Value = _wUPCost + "K";
+
+
+
+
             // perf, whe, sup or brk *20 equals the X Size of the performance bar.
             int performance = perf * 20;
             int wheels = whe * 20;
@@ -449,6 +576,17 @@ namespace SmartRoadSense.Shared {
             _brakeBarA.SetSize((int)(_dim.XScreenRatio * brake), (int)(_dim.YScreenRatio * 80));
             _brakeBarA.SetPosition((int)(_dim.XScreenRatio * 90), (int)(_dim.YScreenRatio * 16));
             _brakeBarA.ImageRect = new IntRect(0, 75, brake, 140);
+
+
+            braCost = new Text();
+            _brakeCost.AddChild(braCost);
+            braCost.SetPosition((int)(_dim.XScreenRatio * 0), (int)(_dim.YScreenRatio * 0));
+            braCost.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Center);
+            braCost.SetFont(_font, _dim.XScreenRatio * 20);
+            braCost.SetColor(Color.Black);
+            
+
+
         }
 
         void GetCarImg() {
@@ -469,6 +607,7 @@ namespace SmartRoadSense.Shared {
                     if(_currentVehicleModel.UnlockCost > -1) {
                         _screenInfo.Value = "Tap to unlock this vehicle";
                         _contUpgrade.Visible = false;
+                        _contUpgradeCost.Visible = false;
                         _contComponents.Visible = false;
                         _unlockCost.Visible = false;
                         _coinIcon.Visible = false;
@@ -476,7 +615,9 @@ namespace SmartRoadSense.Shared {
                     else 
                     {
                         _screenInfo.Value = "Vehicle not available";
+                        //_selectedVehicle.SetColor(Color.Black);
                         _contUpgrade.Visible = false;
+                        _contUpgradeCost.Visible = false;
                         _contComponents.Visible = false;
                         _unlockCost.Visible = false;
                         _coinIcon.Visible = false;
@@ -490,6 +631,7 @@ namespace SmartRoadSense.Shared {
                         Debug.WriteLine(_currentVehicleModel.IdVehicle);
                         _screenInfo.Value = "Selected vehicle";
                         _contUpgrade.Visible = true;
+                        _contUpgradeCost.Visible = true;
                         _contComponents.Visible = false;
                         _unlockCost.Visible = false;
                         _coinIcon.Visible = false;
@@ -500,6 +642,7 @@ namespace SmartRoadSense.Shared {
                         {
                             _screenInfo.Value = "Tap to select this vehicle";
                             _contUpgrade.Visible = true;
+                            _contUpgradeCost.Visible = true;
                             _contComponents.Visible = false;
                             _unlockCost.Visible = false;
                             _coinIcon.Visible = false;
@@ -510,6 +653,7 @@ namespace SmartRoadSense.Shared {
                             {
                                 _screenInfo.Value = "Collect all components to unlock this vehicle";
                                 _contUpgrade.Visible = false;
+                                _contUpgradeCost.Visible = false;
                                 _contComponents.Visible = true;
                                 _unlockCost.Visible = false;
                                 _coinIcon.Visible = false;
@@ -518,6 +662,7 @@ namespace SmartRoadSense.Shared {
                             {
                                 _screenInfo.Value = "Tap to unlock this vehicle";
                                 _contUpgrade.Visible = false;
+                                _contUpgradeCost.Visible = false;
                                 _contComponents.Visible = false;
                                 _unlockCost.Visible = true;
                                 _coinIcon.Visible = true;
@@ -527,6 +672,7 @@ namespace SmartRoadSense.Shared {
                         {
                             _screenInfo.Value = "Vehicle not available";
                             _contUpgrade.Visible = true;
+                            _contUpgradeCost.Visible = true;
                             _contComponents.Visible = false;
                             _unlockCost.Visible = true;
                             _coinIcon.Visible = true;
@@ -558,6 +704,14 @@ namespace SmartRoadSense.Shared {
             _wheelBarA.ImageRect = new IntRect(0, 75, wheels, 140);
             _brakeBarA.SetSize((int)(_dim.XScreenRatio * brake), (int)(_dim.YScreenRatio * 72));
             _brakeBarA.ImageRect = new IntRect(0, 75, brake, 140);
+            int _pUPCost = perf + 1;
+            perCost.Value = _pUPCost + "K";
+            int _wUPCost = whe + 1;
+            wheCost.Value = _wUPCost + "K";
+            int _sUPCost = susp + 1;
+            susCost.Value = _wUPCost + "K";
+            int  _bUPCost = brk + 1;
+            braCost.Value = _bUPCost + "K";
 
             /* PREV VEHICLE */
             int prev;
@@ -574,6 +728,9 @@ namespace SmartRoadSense.Shared {
             int rightP = _prevVehicleModel.ImagePosition.Right;
             int bottomP = _prevVehicleModel.ImagePosition.Bottom;
             _prevVehicle.ImageRect = new IntRect(leftP, topP, rightP, bottomP);
+            /*if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _prevVehicleModel.IdVehicle)) {
+                _prevVehicle.SetColor(Color.Black);
+            }*/
 
             /* NEXT VEHICLE */
             int next;
@@ -591,7 +748,48 @@ namespace SmartRoadSense.Shared {
             int bottomN = nextVehicle.ImagePosition.Bottom;
             _nextVehicle.ImageRect = new IntRect(leftN, topN, rightN, bottomN);
 
+            /*if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == nextVehicle.IdVehicle)) {
+                _nextVehicle.SetColor(Color.Black);
+            }*/
             LockedVehicle();
+        }
+
+        void UpgradeComponent(int i) {
+            var selectedVehicle = _currentVehicleModel;
+            int cost = 0;
+
+            switch(i) {
+                case 0: // performance
+                    int perf = selectedVehicle.Performance;
+                    cost = (perf + 1) * 1000;                    
+                    break;
+                case 1: // wheels
+                    int whe = selectedVehicle.Wheel;
+                    cost = (whe + 1) * 1000;
+                    break;
+                case 2: // suspensions
+                    int susp = selectedVehicle.Suspensions;
+                    cost = (susp + 1) * 1000;
+                    break;
+                case 3: // brake
+                    int brk = selectedVehicle.Brake;
+                    cost = (brk + 1) * 1000;
+                    break;
+            }
+
+            if(CharacterManager.Instance.Wallet >= cost) {
+                CharacterManager.Instance.Wallet -= cost;
+                _wallet.Value = CharacterManager.Instance.Wallet.ToString();
+                // TODO: save the upgraded performance
+
+                Debug.WriteLine("Performance upgraded. " + i);
+                ConfirmationWindow(string.Format("{0} Performance upgraded!", _selectedVehicle.Name), false, true);
+            }
+            else {
+                ConfirmationWindow(string.Format("Collect more coins to upgrade this vehicle."), true);
+            }
+
+
         }
 
         void Next_vehicle(int x) {
@@ -613,6 +811,9 @@ namespace SmartRoadSense.Shared {
             else 
             {
                 _lockedVehicle.Visible = true;
+                /*if (VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count >= 0) {
+                    _selectedVehicle.SetColor(Color.Black);
+                }*/
             }
         }
 

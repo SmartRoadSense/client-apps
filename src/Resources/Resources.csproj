@@ -23,6 +23,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>UiStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="AppStrings.Designer.cs">
+      <DependentUpon>AppStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="LogStrings.Designer.cs">
+      <DependentUpon>LogStrings.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

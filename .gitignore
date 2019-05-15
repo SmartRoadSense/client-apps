@@ -14,3 +14,6 @@ src/iOS/Config\.json
 src/Toolkit/Config\.json
 *.exe.config
 src/Android/Resources/Resource.designer.cs
+src/Resources/AppStrings.Designer.cs
+src/Resources/LogStrings.Designer.cs
+src/Resources/UiStrings.Designer.cs

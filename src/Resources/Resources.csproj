@@ -25,9 +25,13 @@
     </Compile>
     <Compile Update="AppStrings.Designer.cs">
       <DependentUpon>AppStrings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="LogStrings.Designer.cs">
       <DependentUpon>LogStrings.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
 

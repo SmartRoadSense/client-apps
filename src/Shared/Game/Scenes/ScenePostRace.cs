@@ -300,17 +300,35 @@ namespace SmartRoadSense.Shared
             ranknumber.SetFont(font, dim.XScreenRatio * 50);
             ranknumber.Value = CharacterManager.Instance.User.Level.ToString();
 
+
+            var buttons = cache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            double totPoints = CharacterLevelData.PointsToNextLevel();
+            double currPoints = CharacterLevelData.CurrentLevelPoints();
+            double currX = currPoints / totPoints * 100;
+            double totX = dim.SetX(400);
+
+            int x = 2017; // punto d'inizio "left" dell'immagine del bottone
+            int y = (int)Math.Round(x + currX / 100 * totX);
+            int size = y - x;
+
             // LEVEL BASE BOX
             Sprite RankIncrease = new Sprite();
-            //container.AddChild(RankIncrease);
+            container.AddChild(RankIncrease);
             RankIncrease.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             RankIncrease.ImageRect = AssetsCoordinates.Generic.Boxes.RankIncreaseBar;
             RankIncrease.SetSize((int)(dim.XScreenRatio * 1000), (int)(dim.YScreenRatio * 140));
             RankIncrease.SetPosition((int)(dim.XScreenRatio * 410), (int)(dim.YScreenRatio * 920));
 
+            Sprite LevelCompleted = new Sprite();
+            container.AddChild(RankIncrease);
+            LevelCompleted.Texture = buttons;
+            LevelCompleted.ImageRect = new IntRect(x, 979, y, 1050);
+            LevelCompleted.SetSize(dim.SetX(size), dim.SetY(140));
+            LevelCompleted.SetPosition(dim.SetX(0), dim.SetY(0));
+
             // LEVEL CURRENT POINTS BOX
             Sprite RankRadBox2 = new Sprite();
-            //container.AddChild(RankRadBox2);
+            container.AddChild(RankRadBox2);
             RankRadBox2.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             RankRadBox2.ImageRect = AssetsCoordinates.Generic.Boxes.RankRedBox;
             RankRadBox2.SetSize((int)(dim.XScreenRatio * 140), (int)(dim.YScreenRatio * 140));
@@ -318,7 +336,7 @@ namespace SmartRoadSense.Shared
 
             // CHARACTER NEXT LEVEL
             Text rank2 = new Text();
-            //RankRadBox2.AddChild(rank2);
+            RankRadBox2.AddChild(rank2);
             rank2.SetAlignment(HorizontalAlignment.Center, VerticalAlignment.Top);
             rank2.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(10));
             rank2.SetFont(font, dim.XScreenRatio * 20);

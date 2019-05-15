@@ -58,6 +58,7 @@ namespace SmartRoadSense.Shared {
         Sprite _contUpgrade;
         Sprite _contUpgradeCost;
         Sprite _backgroundSprite;
+        Sprite _vehicleBar;
         BorderImage _coinIcon;
 
         VehicleModel _currentVehicleModel;
@@ -174,22 +175,14 @@ namespace SmartRoadSense.Shared {
             }
         }
 
-        void CreateVehicleBar() {
-            var vehicleBackground = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Path);
-            var vehicle = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
-
-            Sprite VehicleBar = _root.CreateSprite();
-            VehicleBar.Texture = vehicleBackground;
-            VehicleBar.SetSize(_dim.SetX(1920), _dim.SetY(480));
-            VehicleBar.SetPosition(_dim.SetX(0), _dim.SetY(330));
-            VehicleBar.ImageRect = AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Rectangle;
-            VehicleBar.UseDerivedOpacity = false;
-            VehicleBar.Opacity = 0.75f;
-            VehicleBar.VerticalAlignment = VerticalAlignment.Top;
+        void DefinePrevVehicle() 
+        {
+            if(_prevVehicle != null)
+                _prevVehicle.Remove();
 
             _prevVehicle = new Button();
-            VehicleBar.AddChild(_prevVehicle);
-            _prevVehicle.Texture = vehicle;
+            _vehicleBar.AddChild(_prevVehicle);
+            _prevVehicle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
             _prevVehicle.Opacity = 0.7f;
             _prevVehicle.UseDerivedOpacity = false;
             _prevVehicle.SetSize((int)(_dim.XScreenRatio * 450), (int)(_dim.YScreenRatio * 450));
@@ -197,25 +190,27 @@ namespace SmartRoadSense.Shared {
             _prevVehicle.Pressed += args => {
                 Next_vehicle(0);
             };
+        }
 
-            // Selected Vehicle image - root element
+        void DefineCurrVehicle() 
+        {
+            if(_selectedVehicle != null)
+                _selectedVehicle.Remove();
+
             _selectedVehicle = new Button();
-            VehicleBar.AddChild(_selectedVehicle);
+            _vehicleBar.AddChild(_selectedVehicle);
             _selectedVehicle.UseDerivedOpacity = false;
-            _selectedVehicle.Texture = vehicle;
+            _selectedVehicle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
             _currentVehicleModel = VehicleManager.Instance.GetVehicleFromId(_idDVehicle);
             _selectedVehicle.SetSize((int)(_dim.XScreenRatio * 600), (int)(_dim.YScreenRatio * 600));
             _selectedVehicle.SetPosition((int)(_dim.XScreenRatio * 650), (int)(_dim.YScreenRatio * -100));
 
             _selectedVehicle.Pressed += args => {
-                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) 
-                {
-                    if(_currentVehicleModel.UnlockCost == -1) 
-                    {
+                if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) {
+                    if(_currentVehicleModel.UnlockCost == -1) {
                         ConfirmationWindow(string.Format("You can't select this vehicle at this moment."), true);
                     }
-                    else 
-                    {
+                    else {
                         // Unlock vehicle
                         VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
                         VehicleManager.Instance.UnlockVehicle();
@@ -224,8 +219,7 @@ namespace SmartRoadSense.Shared {
                         ConfirmationWindow(string.Format("{0} unlocked!", _selectedVehicle.Name), false, true);
                     }
                 }
-                else if (!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) 
-                {
+                else if(!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle)) {
                     // If selected and vehicle needs to be unlocked, unlock vehicle without changing scene
                     if(_currentVehicleModel.UnlockCost != -1) {
                         if(CharacterManager.Instance.Wallet >= _currentVehicleModel.UnlockCost) {
@@ -252,14 +246,12 @@ namespace SmartRoadSense.Shared {
                             Debug.WriteLine("Unlocked vehicle " + _currentVehicleModel.IdVehicle);
                             ConfirmationWindow(string.Format(_selectedVehicle.Name + "unlocked!"), false, true);
                         }
-                        else 
-                        {
+                        else {
                             ConfirmationWindow(string.Format("Collect all four components to unlock this vehicle."), true);
                         }
                     }
                 }
-                else 
-                {
+                else {
                     VehicleManager.Instance.SelectedVehicleModel = VehicleManager.Instance.Vehicles.VehicleModel.First(v => v.IdVehicle == _idDVehicle);
                     GameInstance.LaunchScene(GameScenesEnumeration.MENU);
                 }
@@ -294,17 +286,43 @@ namespace SmartRoadSense.Shared {
             _lockedVehicle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             _lockedVehicle.ImageRect = AssetsCoordinates.Generic.Icons.IconLocked;
             _lockedVehicle.SetSize(_dim.SetX(100), _dim.SetY(100));
+        }
+
+        void DefineNextVehicle() 
+        {
+            if(_nextVehicle != null)
+                _nextVehicle.Remove();
 
             _nextVehicle = new Button();
-            VehicleBar.AddChild(_nextVehicle);
+            _vehicleBar.AddChild(_nextVehicle);
             _nextVehicle.UseDerivedOpacity = false;
-            _nextVehicle.Texture = vehicle;
+            _nextVehicle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
             _nextVehicle.Opacity = 0.7f;
             _nextVehicle.SetSize((int)(_dim.XScreenRatio * 450), (int)(_dim.YScreenRatio * 450));
             _nextVehicle.SetPosition((int)(_dim.XScreenRatio * 1400), (int)(_dim.YScreenRatio * 0));
             _nextVehicle.Pressed += args => {
                 Next_vehicle(1);
             };
+        }
+
+        void CreateVehicleBar() {
+            var vehicleBackground = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Path);
+            var vehicle = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Garage.FullVehicles.ResourcePath);
+
+            _vehicleBar = _root.CreateSprite();
+            _vehicleBar.Texture = vehicleBackground;
+            _vehicleBar.SetSize(_dim.SetX(1920), _dim.SetY(480));
+            _vehicleBar.SetPosition(_dim.SetX(0), _dim.SetY(330));
+            _vehicleBar.ImageRect = AssetsCoordinates.Generic.Garage.VehicleBackgroundBar.Rectangle;
+            _vehicleBar.UseDerivedOpacity = false;
+            _vehicleBar.Opacity = 0.75f;
+            _vehicleBar.VerticalAlignment = VerticalAlignment.Top;
+
+            DefinePrevVehicle();
+
+            DefineCurrVehicle();
+
+            DefineNextVehicle();
 
             CreateUpgradeBars();
         }
@@ -595,7 +613,11 @@ namespace SmartRoadSense.Shared {
             int top = _currentVehicleModel.ImagePosition.Top;
             int right = _currentVehicleModel.ImagePosition.Right;
             int bottom = _currentVehicleModel.ImagePosition.Bottom;
+
             _selectedVehicle.ImageRect = new IntRect(left, top, right, bottom);
+            if(!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _currentVehicleModel.IdVehicle))
+                _selectedVehicle.SetColor(Color.Black);
+
             _carName.Value = _currentVehicleModel.Name;
             _unlockCost.Value = string.Format($"{_currentVehicleModel.UnlockCost}");
             _unlockCost.SetColor(Color.FromHex("#B29600"));
@@ -727,11 +749,13 @@ namespace SmartRoadSense.Shared {
             int topP = _prevVehicleModel.ImagePosition.Top;
             int rightP = _prevVehicleModel.ImagePosition.Right;
             int bottomP = _prevVehicleModel.ImagePosition.Bottom;
-            _prevVehicle.ImageRect = new IntRect(leftP, topP, rightP, bottomP);
-            /*if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _prevVehicleModel.IdVehicle)) {
-                _prevVehicle.SetColor(Color.Black);
-            }*/
 
+            DefinePrevVehicle();
+            _prevVehicle.ImageRect = new IntRect(leftP, topP, rightP, bottomP);
+            if(!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == _prevVehicleModel.IdVehicle)) {
+                _prevVehicle.SetColor(Color.Black);
+            }
+           
             /* NEXT VEHICLE */
             int next;
             if (_currentVehicleModel.IdVehicle == VehicleManager.Instance.VehicleCount-1) {
@@ -746,11 +770,13 @@ namespace SmartRoadSense.Shared {
             int topN = nextVehicle.ImagePosition.Top;
             int rightN = nextVehicle.ImagePosition.Right;
             int bottomN = nextVehicle.ImagePosition.Bottom;
+
+            DefineNextVehicle();
             _nextVehicle.ImageRect = new IntRect(leftN, topN, rightN, bottomN);
 
-            /*if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == nextVehicle.IdVehicle)) {
+            if(!VehicleManager.Instance.UnlockedVehicles.VehicleModel.Exists(v => v.IdVehicle == nextVehicle.IdVehicle)) {
                 _nextVehicle.SetColor(Color.Black);
-            }*/
+            }
             LockedVehicle();
         }
 

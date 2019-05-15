@@ -31,6 +31,9 @@ namespace SmartRoadSense.Shared
                 readonly static public IntRect TrafficLightGreen = new IntRect(800, 0, 960, 160);
                 readonly static public IntRect BtnLeft = new IntRect(1000, 0, 1160, 160);
                 readonly static public IntRect BtnRight = new IntRect(1200, 0, 1360, 160);
+                readonly static public IntRect UpgradeCost = new IntRect(1000, 400, 1160, 560);
+                readonly static public IntRect UpgradeLeft = new IntRect(1209, 400, 1349, 560);
+                readonly static public IntRect UpgradeRight = new IntRect(1409, 400, 1549, 560);
 
                 //only level
                 readonly static public IntRect BtnPlay = new IntRect(1600, 0, 1760, 160);
@@ -50,10 +53,8 @@ namespace SmartRoadSense.Shared
                 readonly static public IntRect BtnSettings = new IntRect(400, 400, 560, 560);
                 readonly static public IntRect Continue = new IntRect(600, 400, 760, 560);
                 readonly static public IntRect Restart = new IntRect(800, 400, 960, 560);
-
-                readonly static public IntRect UpgradeCost = new IntRect(1000, 400, 1160, 560);
-                readonly static public IntRect UpgradeLeft = new IntRect(1209, 400, 1349, 560);
-                readonly static public IntRect UpgradeRight = new IntRect(1409, 400, 1549, 560);
+             
+                readonly static public IntRect LoadingWheel = new IntRect(1600, 400, 1760, 560);
             }
 
             public struct Boxes {
@@ -145,8 +146,6 @@ namespace SmartRoadSense.Shared
 
                 // Loading screen
                 readonly static public IntRect LoadingContinueButton = new IntRect(700, 150, 1100, 230);
-                readonly static public IntRect LoadingWheel = new IntRect(2150, 1500, 2310, 1660);
-
 
                 //only settings
                 readonly static public IntRect MiniGameScreen = new IntRect(728, 1681, 1329, 2021);

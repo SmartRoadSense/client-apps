@@ -18,11 +18,12 @@ namespace SmartRoadSense.Shared.Data
 		public SensorPackIOS (Engine engine)
 			: base (engine)
 		{
-			_locationManager = new CLLocationManager ();
-			_locationManager.DesiredAccuracy = DesiredAccuracy;
-			_locationManager.PausesLocationUpdatesAutomatically = false; 
+            _locationManager = new CLLocationManager {
+                DesiredAccuracy = DesiredAccuracy,
+                PausesLocationUpdatesAutomatically = false
+            };
 
-			_locationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) => {
+            _locationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) => {
 
 				if(_locationManager.Location.Coordinate.IsValid ()){
 					ReportNewLocation (
@@ -45,13 +46,19 @@ namespace SmartRoadSense.Shared.Data
 			};
 
 			_locationManager.AuthorizationChanged += (object sender, CLAuthorizationChangedEventArgs e) => {
-				if (e.Status == CLAuthorizationStatus.Denied)
-					LocationSensorStatus = LocationSensorStatus.Disabled;
-				else if (e.Status == CLAuthorizationStatus.NotDetermined)
-					LocationSensorStatus = LocationSensorStatus.Disabled;
-				else if (e.Status == CLAuthorizationStatus.Restricted)
-					LocationSensorStatus = LocationSensorStatus.Disabled;
-			};
+                switch (e.Status)
+                {
+                    case CLAuthorizationStatus.Denied:
+                        LocationSensorStatus = LocationSensorStatus.Disabled;
+                        break;
+                    case CLAuthorizationStatus.NotDetermined:
+                        LocationSensorStatus = LocationSensorStatus.Disabled;
+                        break;
+                    case CLAuthorizationStatus.Restricted:
+                        LocationSensorStatus = LocationSensorStatus.Disabled;
+                        break;
+                }
+            };
 				
 			_sensorManager = new CMMotionManager ();
 		}

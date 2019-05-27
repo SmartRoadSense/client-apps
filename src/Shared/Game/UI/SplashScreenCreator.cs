@@ -3,6 +3,7 @@ using Urho.Gui;
 using Urho.Urho2D;
 using System;
 using Urho.Resources;
+using System.Diagnostics;
 
 namespace SmartRoadSense.Shared {
     public static class SplashScreenCreator {
@@ -86,6 +87,7 @@ namespace SmartRoadSense.Shared {
             buttonTitleText.UseDerivedOpacity = false;
 
             BorderImage wheel = new BorderImage();
+
             screenTitle.AddChild(wheel);
             wheel.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
             wheel.SetPosition(GameInstance.ScreenInfo.SetX(-15), GameInstance.ScreenInfo.SetY(0));
@@ -93,22 +95,28 @@ namespace SmartRoadSense.Shared {
             wheel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
             wheel.ImageRect = AssetsCoordinates.Generic.Icons.LoadingWheel;
             wheel.UseDerivedOpacity = false;
-            /*
-            ObjectAnimation wheelAnimation = new ObjectAnimation();
-            ValueAnimation positionAnimation = new ValueAnimation();
-            positionAnimation.InterpolationMethod = InterpMethod.Spline;
-            positionAnimation.SetKeyFrame(0.0f, new Vector2(1.0f,1.0f));
-            positionAnimation.SetKeyFrame(1.0f, new Vector2(0.0f, 0.0f));
-            positionAnimation.SetKeyFrame(2.0f, new Vector2(-1.0f, -1.0f));
-            positionAnimation.SetKeyFrame(3.0f, new Vector2(0.0f, 1.0f));
-            positionAnimation.SetKeyFrame(4.0f, new Vector2(1.0f, 1.0f));
 
+            ValueAnimation textAnimation = new ValueAnimation();
+            textAnimation.SetKeyFrame(0.0f, Color.Blue);
+            textAnimation.SetKeyFrame(1.0f, Color.Red);
+            textAnimation.SetKeyFrame(2.0f, Color.Green);
 
-            wheelAnimation.AddAttributeAnimation("Position", positionAnimation);
-            wheel.ObjectAnimation = wheelAnimation;
+            Debug.WriteLine($"Name: {nameof(UIElement.Position)}");
+            buttonTitleText.SetAttributeAnimation(nameof(Color), textAnimation, WrapMode.Loop);
+
+            ValueAnimation positionAnimation = new ValueAnimation {
+                InterpolationMethod = InterpMethod.Spline
+            };
+            positionAnimation.SetKeyFrame(0.0f, new IntVector2(-25,0));
+            positionAnimation.SetKeyFrame(1.0f, new IntVector2(-35, 0));
+            positionAnimation.SetKeyFrame(2.0f, new IntVector2(-45, 0));
+            positionAnimation.SetKeyFrame(3.0f, new IntVector2(-55, 0));
+            positionAnimation.SetKeyFrame(4.0f, new IntVector2(-65, 0));
+
+            wheel.SetAttributeAnimation(nameof(UIElement.Position), positionAnimation);
             wheel.AnimationEnabled = true;
             wheel.ApplyAttributes();
-            */
+
             // BODY
             if(randomLevel) {
                 var text = new Text();

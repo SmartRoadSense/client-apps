@@ -139,7 +139,8 @@ namespace SmartRoadSense.Shared
 
             Sprite LevelIcon = new Sprite();
             container.AddChild(LevelIcon);
-            //LevelIcon.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            LevelIcon.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+
             LevelIcon.ImageRect = AssetsCoordinates.Generic.Boxes.IconBeach;
             LevelIcon.SetSize((int)(dim.XScreenRatio * 1200), (int)(dim.YScreenRatio * 140));
             LevelIcon.SetPosition((int)(dim.XScreenRatio * 410), (int)(dim.YScreenRatio * 220));
@@ -278,7 +279,7 @@ namespace SmartRoadSense.Shared
 
             // CHARACTER LEVEL
             Sprite RankRadBox1 = new Sprite();
-            //container.AddChild(RankRadBox1);
+            container.AddChild(RankRadBox1);
             RankRadBox1.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             RankRadBox1.ImageRect = AssetsCoordinates.Generic.Boxes.RankRedBox;
             RankRadBox1.SetSize((int)(dim.XScreenRatio * 140), (int)(dim.YScreenRatio * 140));
@@ -307,10 +308,10 @@ namespace SmartRoadSense.Shared
             double currX = currPoints / totPoints * 100;
             double totX = dim.SetX(400);
 
-            int x = 2017; // punto d'inizio "left" dell'immagine del bottone
+            int x = 1773; // punto d'inizio "left" dell'immagine del bottone
             int y = (int)Math.Round(x + currX / 100 * totX);
             int size = y - x;
-
+            System.Diagnostics.Debug.WriteLine("Size value = " + size + " Tot points = " + totPoints + " currPoints = " + currPoints + " X = " + x + " Y = " + y);
             // LEVEL BASE BOX
             Sprite RankIncrease = new Sprite();
             container.AddChild(RankIncrease);
@@ -320,11 +321,13 @@ namespace SmartRoadSense.Shared
             RankIncrease.SetPosition((int)(dim.XScreenRatio * 410), (int)(dim.YScreenRatio * 920));
 
             Sprite LevelCompleted = new Sprite();
-            container.AddChild(RankIncrease);
-            LevelCompleted.Texture = buttons;
-            LevelCompleted.ImageRect = new IntRect(x, 979, y, 1050);
+            RankIncrease.AddChild(LevelCompleted);
+            LevelCompleted.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            LevelCompleted.ImageRect = AssetsCoordinates.Generic.Boxes.RaceCompleted;
+            //            readonly static public IntRect RaceCompleted = new IntRect(1773, 977, 2370, 1049);
+            LevelCompleted.ImageRect = new IntRect(x, 977, y, 1049);
             LevelCompleted.SetSize(dim.SetX(size), dim.SetY(140));
-            LevelCompleted.SetPosition(dim.SetX(0), dim.SetY(0));
+            LevelCompleted.SetPosition(0, 0);
 
             // LEVEL CURRENT POINTS BOX
             Sprite RankRadBox2 = new Sprite();

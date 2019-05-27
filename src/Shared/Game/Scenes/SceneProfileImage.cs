@@ -24,6 +24,7 @@ namespace SmartRoadSense.Shared {
         Text screen_info;
         UI ui;
         Font font;
+        Slider imageSlider;
 
         int counter;
         string _nameText;
@@ -381,7 +382,7 @@ namespace SmartRoadSense.Shared {
 
 
             //slider
-            Slider imageSlider = new Slider();
+            imageSlider = new Slider();
             cont_profile.AddChild(imageSlider);
             imageSlider.SetStyleAuto(null);
             imageSlider.SetPosition(GameInstance.ScreenInfo.SetX(400), GameInstance.ScreenInfo.SetY(160));
@@ -389,19 +390,21 @@ namespace SmartRoadSense.Shared {
             imageSlider.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             imageSlider.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite;
             imageSlider.Opacity = 0.2f;
-            imageSlider.Range = 1.0f;
+            imageSlider.Range = 44;
 
             var knobM = imageSlider.Knob;
             knobM.SetFixedSize(GameInstance.ScreenInfo.SetX(100), GameInstance.ScreenInfo.SetY(55));
             knobM.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             knobM.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite;
             knobM.UseDerivedOpacity = false;
-            //imageSlider.Value = audio.GetMasterGain(SoundType.Music.ToString());
+            imageSlider.Value = counter;
 
             imageSlider.SliderChanged += (SliderChangedEventArgs args) => {
-                //audio.SetMasterGain(SoundType.Music.ToString(), args.Value);
-                //SoundManager.Instance.MusicGain = args.Value;
+                counter = (int)args.Value;
+                ScrollImage();
+                System.Diagnostics.Debug.WriteLine("VALORE = " + (int)args.Value);
             };
+            
         }
 
         void ScrollImage() {
@@ -410,6 +413,7 @@ namespace SmartRoadSense.Shared {
             }
             var character = JsonReaderCharacter.GetSingleCharacter(counter);
 
+            imageSlider.Value = counter;
             int type = character.Type;
             int left = character.ImagePosition.Left;
             int top = character.ImagePosition.Top;

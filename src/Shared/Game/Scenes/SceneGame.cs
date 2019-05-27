@@ -9,6 +9,7 @@ using System.Linq;
 using Urho.Audio;
 using SmartRoadSense.Shared.Data;
 using System.IO;
+using System.Threading;
 #if __ANDROID__
 using Android.Runtime;
 #else
@@ -139,19 +140,29 @@ namespace SmartRoadSense.Shared
             SplashScreen();
 
             InitCollectables();
+            GameInstance.Engine.RunFrame();
+
 
             var initPosition = CreateBackgroundScene();
+            GameInstance.Engine.RunFrame();
+
             //await CreateBackgroundScene();
             CreateForegroundScene(initPosition);
+            GameInstance.Engine.RunFrame();
+
             CreateOSD();
+            GameInstance.Engine.RunFrame();
 
             // Init On-Screen Joystick
             InitOSD();
+            GameInstance.Engine.RunFrame();
 
             // Init viewport
             SetupViewport();
+            GameInstance.Engine.RunFrame();
 
             SubscribeToEvents();
+            GameInstance.Engine.RunFrame();
 
             // Notify main loop of game
             GameInstance.IsRunningGame = true;
@@ -238,6 +249,7 @@ namespace SmartRoadSense.Shared
         }
 
         void SplashScreen() {
+
             var splashScrName = SplashScreenCreator.CreateSplashScreen(GameInstance, this, _randomLevel);
             GameInstance.Engine.RunFrame();
 

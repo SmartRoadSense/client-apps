@@ -42,6 +42,7 @@ namespace SmartRoadSense.Shared {
         BorderImage Suspensions;
         BorderImage Engine;
         //
+        Button btnBack;
 
         Text _screenInfo;
         Text _carName;
@@ -110,7 +111,7 @@ namespace SmartRoadSense.Shared {
             _blackBar.SetSize((int)(_dim.XScreenRatio * 2000), (int)(_dim.YScreenRatio * 140));
             _blackBar.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
 
-            Button btnBack = new Button();
+            btnBack = new Button();
             _blackBar.AddChild(btnBack);
             btnBack.UseDerivedOpacity = false;
             btnBack.SetStyleAuto(null);
@@ -123,6 +124,15 @@ namespace SmartRoadSense.Shared {
             btnBack.Pressed += args => {
                 GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
+
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) {
+
+#if __ANDROID__
+                btnBack.Visible = false;
+#else
+            btnBack.Visible = true;
+#endif
+            }
 
             //COINS
             Button coins = new Button();
@@ -814,8 +824,6 @@ namespace SmartRoadSense.Shared {
             else {
                 ConfirmationWindow(string.Format("Collect more coins to upgrade this vehicle."), true);
             }
-
-
         }
 
         void Next_vehicle(int x) {

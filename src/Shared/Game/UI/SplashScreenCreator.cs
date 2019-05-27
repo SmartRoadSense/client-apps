@@ -4,6 +4,8 @@ using Urho.Urho2D;
 using System;
 using Urho.Resources;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace SmartRoadSense.Shared {
     public static class SplashScreenCreator {
@@ -96,6 +98,7 @@ namespace SmartRoadSense.Shared {
             wheel.ImageRect = AssetsCoordinates.Generic.Icons.LoadingWheel;
             wheel.UseDerivedOpacity = false;
 
+            /*
             ValueAnimation textAnimation = new ValueAnimation();
             textAnimation.SetKeyFrame(0.0f, Color.Blue);
             textAnimation.SetKeyFrame(1.0f, Color.Red);
@@ -116,6 +119,7 @@ namespace SmartRoadSense.Shared {
             wheel.SetAttributeAnimation(nameof(UIElement.Position), positionAnimation);
             wheel.AnimationEnabled = true;
             wheel.ApplyAttributes();
+            */
 
             // BODY
             if(randomLevel) {

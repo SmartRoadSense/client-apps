@@ -1,9 +1,11 @@
-using SmartRoadSense.Resources;
+﻿using SmartRoadSense.Resources;
+using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Database;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace SmartRoadSense.Shared.Data {
 
@@ -31,7 +33,7 @@ namespace SmartRoadSense.Shared.Data {
         /// This should, primitively, account for the longer distances of curved roads
         /// that would be lost by computing only the distance of segments.
         /// </remarks>
-        private const double DistanceFactor = 1.1;
+        private const double DistanceFactor = 1.005;
 
         public StatisticsCollector() {
             Reset();
@@ -62,6 +64,11 @@ namespace SmartRoadSense.Shared.Data {
                     _distance += traveledDistance;
 
                     Log.Debug("Traveled {0:F3}km, count {1} {2:t}-{3:t}", traveledDistance, _ppeCount, _tsStart, _tsEnd);
+
+                    // Flush every few minutes
+                    if(_ppeCount > 0 && (_ppeCount % 120 == 0)) {
+                        Flush();
+                    }
                 }
                 else {
                     Log.Warning(new ArgumentException(nameof(piece.TrackId)), "Different track ID seen while collecting statistics");
@@ -71,13 +78,20 @@ namespace SmartRoadSense.Shared.Data {
             }
 
             // Dump data
-            // Generates approximately 42 bytes per measurement (~147 KB/hour)
+            // Generates approximately 43 bytes per measurement (~151 KB/hour)
             if(_dumpWriter == null) {
                 var dumpStream = FileOperations.AppendFile(FileNaming.GetDataTrackFilepath(piece.TrackId));
                 _dumpWriter = new StreamWriter(dumpStream);
             }
             _dumpWriter.WriteLine(
-                string.Format(CultureInfo.InvariantCulture, "{0},{1:F5},{2:F5},{3:F2}", piece.StartTimestamp.Ticks, piece.Latitude, piece.Longitude, piece.Ppe)
+                string.Format(
+                    CultureInfo.InvariantCulture,
+                    "{0:s},{1:F5},{2:F5},{3:F2}",
+                    piece.StartTimestamp,
+                    piece.Latitude,
+                    piece.Longitude,
+                    piece.Ppe
+                )
             );
 
             _previous = piece;
@@ -103,13 +117,47 @@ namespace SmartRoadSense.Shared.Data {
         }
 
         /// <summary>
-        /// Complete session and flush out data to database.
+        /// Flush out data, keep recording session.
         /// </summary>
-        public void CompleteSession() {
+        public void Flush() {
             if(_dumpWriter != null) {
                 _dumpWriter.Flush();
             }
 
+            Task.Run(() => {
+                try {
+                    using(var db = DatabaseUtility.OpenConnection()) {
+                        var mapping = db.GetMapping<StatisticRecord>();
+                        var record = db.FindWithQuery<StatisticRecord>(string.Format(
+                            "SELECT * FROM `{0}` WHERE `{1}` = ?",
+                            mapping.TableName,
+                            mapping.FindColumnWithPropertyName(nameof(StatisticRecord.TrackId)).Name
+                        ), _previous.TrackId) ?? new StatisticRecord {
+                            TrackId = _previous.TrackId
+                        };
+
+                        record.Start = _tsStart;
+                        record.End = _tsEnd;
+                        record.MaxPpe = _ppeMax;
+                        record.AvgPpe = (_ppeAccumulator / _ppeCount);
+                        record.Bins = _ppeBins;
+                        record.DistanceTraveled = _distance;
+                        record.DataPieceCount = _ppeCount;
+                        record.ElapsedTime = _elapsed;
+
+                        db.InsertOrReplace(record);
+                    }
+                }
+                catch(Exception ex) {
+                    Log.Error(ex, "Failed to store statistics");
+                }
+            });
+        }
+
+        /// <summary>
+        /// Complete session and flush out data to database.
+        /// </summary>
+        public void CompleteSession() {
             if(_ppeCount == 0) {
                 Log.Debug("Completing session of 0 data pieces, ignoring");
                 return;
@@ -117,33 +165,11 @@ namespace SmartRoadSense.Shared.Data {
 
             Log.Debug("Completing statistic collection session");
 
-            try {
-                // TODO: perform in background
-                // TODO: accumulate on DB record if record already stored (updates instead of insert)
-                using(var db = DatabaseUtility.OpenConnection()) {
-                    var record = new StatisticRecord {
-                        TrackId = _previous.TrackId,
-                        Start = _tsStart,
-                        End = _tsEnd,
-                        MaxPpe = _ppeMax,
-                        AvgPpe = (_ppeAccumulator / _ppeCount),
-                        Bins = _ppeBins,
-                        DistanceTraveled = _distance,
-                        DataPieceCount = _ppeCount,
-                        ElapsedTime = _elapsed
-                    };
-
-                    db.Insert(record);
-                }
-            }
-            catch(Exception ex) {
-                Log.Error(ex, "Failed to store statistics");
-            }
+            Flush();
 
             Log.Event("Recording.newStats", new Dictionary<string, string>() {
-                { "distance", _distance.ToString(CultureInfo.InvariantCulture) },
-                { "dataPieces", _ppeCount.ToString(CultureInfo.InvariantCulture) },
-                { "elapsedMinutes", _elapsed.TotalMinutes.ToString(CultureInfo.InvariantCulture) }
+                { "distance", _distance.ToUnits() },
+                { "dataPieces", _ppeCount.ToUnits() }
             });
 
             UserLog.Add(LogStrings.StatsRecorded, _distance, _ppeCount);

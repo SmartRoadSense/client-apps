@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,18 +12,20 @@ using Windows.Storage;
 
 namespace SmartRoadSense.Shared {
 
+    // TODO: simplify this code with path generation
+    // Tracks can be stored in private AND in public folders (!)
+    // Add settings to toggle
+
     /// <summary>
     /// Collects information about file naming and path generation.
     /// </summary>
     public static class FileNaming {
 
         private static string[] GetInitializedFolderPaths() {
-            DataQueuePath = Path.Combine(BaseDocumentsFolder, DataQueueFolder);
-            DataTracksPath = Path.Combine(BaseDocumentsFolder, TracksFolder);
-
             return new string[] {
                 DataQueuePath,
-                DataTracksPath
+                DataTracksPath,
+                DataTracksPrivatePath
             };
         }
 
@@ -58,30 +60,6 @@ namespace SmartRoadSense.Shared {
                 }
             });
         }
-#elif WINDOWS_PHONE_APP
-        public static async Task InitializeFileStructure() {
-            var paths = GetInitializedFolderPaths();
-
-            foreach (var path in paths) {
-                await CreateDirectoryIfNeeded(path);
-            }
-        }
-
-        private static async Task CreateDirectoryIfNeeded(string path) {
-            //This is the stupidest code ever, thank you WinRT
-            var folderName = Path.GetFileNameWithoutExtension(path);
-
-            var parentPath = Path.GetDirectoryName(path);
-            var parentFolder = await StorageFolder.GetFolderFromPathAsync(parentPath);
-
-            var folder = (from child in await parentFolder.GetItemsAsync()
-                          where child.Name.Equals(folderName, StringComparison.OrdinalIgnoreCase)
-                          select child).FirstOrDefault();
-
-            if (folder == null) {
-                await parentFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
-            }
-        }
 #else
 #error Unrecognized platform
 #endif
@@ -115,8 +93,9 @@ namespace SmartRoadSense.Shared {
             get {
                 if(_basePublicFolder == null) {
 #if __ANDROID__
-                    _basePublicFolder = App.Context.GetExternalFilesDir(null).AbsolutePath; ;
+                    _basePublicFolder = App.Context.GetExternalFilesDir(null).AbsolutePath;
 #else
+#error Unrecognized platform
                     // TODO: CHECK IF FOLDER IS CORRECT
                     _basePublicFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 #endif
@@ -137,7 +116,11 @@ namespace SmartRoadSense.Shared {
         /// <summary>
         /// Gets the absolute path to the data queue folder.
         /// </summary>
-        public static string DataQueuePath { get; private set; }
+        public static string DataQueuePath {
+            get {
+                return Path.Combine(BaseDocumentsFolder, DataQueueFolder);
+            }
+        }
 
         public const string DataQueueFileExtension = "srs";
 
@@ -154,7 +137,17 @@ namespace SmartRoadSense.Shared {
 
         private const string TracksFolder = "tracks";
 
-        public static string DataTracksPath { get; private set; }
+        public static string DataTracksPath {
+            get {
+                return Path.Combine(BasePublicFolder, TracksFolder);
+            }
+        }
+
+        public static string DataTracksPrivatePath {
+            get {
+                return Path.Combine(BaseDocumentsFolder, TracksFolder);
+            }
+        }
 
         public const string DataTracksFileExtension = "csv";
 
@@ -163,7 +156,7 @@ namespace SmartRoadSense.Shared {
         /// </summary>
         public static string GetDataTrackFilepath(Guid session) {
             string filename = string.Concat(session.ToString("N"), ".", DataTracksFileExtension);
-            return Path.Combine(FileNaming.DataTracksPath, filename);
+            return Path.Combine(Settings.StorePublicTracks ? DataTracksPath : DataTracksPrivatePath, filename);
         }
 
         private const string LogStoreFilename = "log.json";

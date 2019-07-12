@@ -180,6 +180,26 @@ namespace SmartRoadSense.Shared {
             }
         }
 
+        private const string PublicTracksKey = "Preference.store_public_tracks";
+
+        /// <summary>
+        /// Gets or sets whether track dumps are stored in a public storage area.
+        /// </summary>
+        public static bool StorePublicTracks {
+            get {
+#if __ANDROID__
+                return InternalSettings.GetValueOrDefault(PublicTracksKey, true);
+#else
+                return false;
+#endif
+            }
+            set {
+#if __ANDROID__
+                InternalSettings.AddOrUpdateValue(PublicTracksKey, value);
+#endif
+            }
+        }
+
         private const string DidShowTutorialKey = "Mnemonic.did_show_tutorial";
 
         /// <summary>
@@ -208,7 +228,7 @@ namespace SmartRoadSense.Shared {
             }
         }
 
-        #region Calibration
+#region Calibration
 
         private const string CalibrationDoneKey = "Calibration.done";
 
@@ -266,7 +286,7 @@ namespace SmartRoadSense.Shared {
             }
         }
 
-        #endregion Calibration
+#endregion Calibration
 
     }
 

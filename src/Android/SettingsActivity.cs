@@ -133,7 +133,8 @@ namespace SmartRoadSense.Android {
         private CheckBox _checkStartAtBoot,
                          _checkPreferUnmetered,
                          _checkDisableSuspension,
-                         _checkOfflineMode;
+                         _checkOfflineMode,
+                         _checkPublicTracks;
         private Spinner _spinnerVehicle, _spinnerAnchorage;
 
         protected override void OnCreate(Bundle bundle) {
@@ -169,6 +170,11 @@ namespace SmartRoadSense.Android {
             _checkOfflineMode = FindViewById<CheckBox>(Resource.Id.checkbox_offline_mode);
             _checkOfflineMode.CheckedChange += (sender, e) => {
                 Settings.OfflineMode = e.IsChecked;
+            };
+
+            _checkPublicTracks = FindViewById<CheckBox>(Resource.Id.checkbox_public_tracks);
+            _checkPublicTracks.CheckedChange += (sender, e) => {
+                Settings.StorePublicTracks = e.IsChecked;
             };
 
             _spinnerVehicle = FindViewById<Spinner>(Resource.Id.spinner_vehicle);
@@ -211,6 +217,7 @@ namespace SmartRoadSense.Android {
             _checkPreferUnmetered.Checked = Settings.PreferUnmeteredConnection;
             _checkDisableSuspension.Checked = Settings.SuspensionDisabled;
             _checkOfflineMode.Checked = Settings.OfflineMode;
+            _checkPublicTracks.Checked = Settings.StorePublicTracks;
             _spinnerVehicle.SetSelection(VehicleTypeAdapter.GetPosition(Settings.LastVehicleType));
             _spinnerAnchorage.SetSelection(AnchorageTypeAdapter.GetPosition(Settings.LastAnchorageType));
 

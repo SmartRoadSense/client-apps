@@ -14,7 +14,7 @@ namespace SmartRoadSense
             InitializeComponent();
 
             Master = master;
-            _viewBinder = new MainMenuViewBinder(this);
+            _viewBinder = new MainMenuViewBinder(this, master);
 
             BindingContext = _viewBinder;
             ListView = MenuItemsListView;

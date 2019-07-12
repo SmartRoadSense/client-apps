@@ -35,6 +35,7 @@ namespace SmartRoadSense
         {
             if (!(e.SelectedItem is MainMenuItem item))
                 return;
+            IsPresented = false;
 
             if (item.TargetType != null)
             {
@@ -42,8 +43,6 @@ namespace SmartRoadSense
                 page.Title = item.Title;
                 await Detail.Navigation.PushAsync(page);
             }
-
-            IsPresented = false;
             _mainPageMenu.ListView.SelectedItem = null;
         }
     }

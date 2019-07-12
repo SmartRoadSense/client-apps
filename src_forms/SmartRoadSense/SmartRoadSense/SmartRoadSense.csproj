@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -27,5 +27,10 @@
     <Folder Include="ViewControllers\SettingsPage\" />
     <Folder Include="Helpers\" />
     <Folder Include="Themes\" />
+    <Folder Include="ViewControllers\MainPage\View\" />
+    <Folder Include="ViewControllers\MainPage\Presenter\" />
+    <Folder Include="ViewControllers\MainPage\Interactor\" />
+    <Folder Include="ViewControllers\MainPage\Router\" />
+    <Folder Include="ViewControllers\MainPage\Error\" />
   </ItemGroup>
 </Project>

@@ -9,10 +9,9 @@ namespace SmartRoadSense
             _presenter = presenter;
         }
 
-        public void LaunchService()
+        public async void LaunchService()
         {
-            var outcome = new Outcome<string, MainPageException>("hello");
-            //var service = new Outcome<string, MainPageException>(new MainPageException("error message"));
+            var outcome = await RemoteDataManager.Instance.TrackDataService.SendTracks("tracks");
 
             switch(outcome.Event)
             {

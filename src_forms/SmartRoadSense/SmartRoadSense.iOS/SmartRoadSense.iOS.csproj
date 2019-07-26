@@ -98,48 +98,118 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
-      <Visible>false</Visible>
-    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\appicon%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon-1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\store-1024.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%402x.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_negative_crop.imageset\BBC_horizontal_negative_crop%403x.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_negative_crop.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%402x.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_positive.imageset\BBC_horizontal_positive%403x.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_horizontal_positive.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%402x.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_vertical_positive.imageset\BBC_vertical_positive%403x.png" />
+    <ImageAsset Include="Assets.xcassets\BBC_vertical_positive.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\blablacar_logo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\blablacar_logo.imageset\blablacar_logo.png" />
+    <ImageAsset Include="Assets.xcassets\blablacar_logo.imageset\blablacar_logo%402x.png" />
+    <ImageAsset Include="Assets.xcassets\blablacar_logo.imageset\blablacar_logo%403x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_on.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\button_car_on.imageset\button_car_on.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_on.imageset\button_car_on%402x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_on.imageset\button_car_on%403x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_pressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\button_car_pressed.imageset\button_car_pressed.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_pressed.imageset\button_car_pressed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_pressed.imageset\button_car_pressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_unknown.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\button_car_unknown.imageset\button_car_unknown.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_unknown.imageset\button_car_unknown%402x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car_unknown.imageset\button_car_unknown%403x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\button_car.imageset\button_car.png" />
+    <ImageAsset Include="Assets.xcassets\button_car.imageset\button_car%402x.png" />
+    <ImageAsset Include="Assets.xcassets\button_car.imageset\button_car%403x.png" />
+    <ImageAsset Include="Assets.xcassets\c4rs_logo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\c4rs_logo.imageset\c4rs_logo.png" />
+    <ImageAsset Include="Assets.xcassets\c4rs_logo.imageset\c4rs_logo%402x.png" />
+    <ImageAsset Include="Assets.xcassets\c4rs_logo.imageset\c4rs_logo%403x.png" />
+    <ImageAsset Include="Assets.xcassets\CarButton.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\CarButton.imageset\button_car.png" />
+    <ImageAsset Include="Assets.xcassets\CarButton.imageset\button_car%402x.png" />
+    <ImageAsset Include="Assets.xcassets\CarButton.imageset\button_car%403x.png" />
+    <ImageAsset Include="Assets.xcassets\CarButtonRunning.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\CarButtonRunning.imageset\button_car_running.png" />
+    <ImageAsset Include="Assets.xcassets\CarButtonRunning.imageset\button_car_running%402x.png" />
+    <ImageAsset Include="Assets.xcassets\CarButtonRunning.imageset\button_car_running%403x.png" />
+    <ImageAsset Include="Assets.xcassets\game_logo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\game_logo.imageset\game_splash.png" />
+    <ImageAsset Include="Assets.xcassets\game_logo.imageset\game_splash%402x.png" />
+    <ImageAsset Include="Assets.xcassets\game_logo.imageset\game_splash%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_error_red.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_error_red.imageset\ic_error_red.png" />
+    <ImageAsset Include="Assets.xcassets\ic_error_red.imageset\ic_error_red%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_error_red.imageset\ic_error_red%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher_disabled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher_disabled.imageset\ic_launcher_disabled.png" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher_disabled.imageset\ic_launcher_disabled%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher_disabled.imageset\ic_launcher_disabled%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher.imageset\ic_launcher.png" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher.imageset\ic_launcher%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_launcher.imageset\ic_launcher%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_location_off_white.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_location_off_white.imageset\ic_location_off_white.png" />
+    <ImageAsset Include="Assets.xcassets\ic_location_off_white.imageset\ic_location_off_white%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_location_off_white.imageset\ic_location_off_white%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_location_on_white.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_location_on_white.imageset\ic_location_on_white.png" />
+    <ImageAsset Include="Assets.xcassets\ic_location_on_white.imageset\ic_location_on_white%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_location_on_white.imageset\ic_location_on_white%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_status.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_status.imageset\ic_status.png" />
+    <ImageAsset Include="Assets.xcassets\ic_status.imageset\ic_status%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_status.imageset\ic_status%403x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_sync_problem_red.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_sync_problem_red.imageset\ic_sync_problem_red.png" />
+    <ImageAsset Include="Assets.xcassets\ic_sync_problem_red.imageset\ic_sync_problem_red%402x.png" />
+    <ImageAsset Include="Assets.xcassets\ic_sync_problem_red.imageset\ic_sync_problem_red%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_bracket.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_bracket.imageset\icon_bracket.png" />
+    <ImageAsset Include="Assets.xcassets\icon_bracket.imageset\icon_bracket%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_bracket.imageset\icon_bracket%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_bus.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_bus.imageset\icon_bus.png" />
+    <ImageAsset Include="Assets.xcassets\icon_bus.imageset\icon_bus%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_bus.imageset\icon_bus%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_car.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_car.imageset\icon_car.png" />
+    <ImageAsset Include="Assets.xcassets\icon_car.imageset\icon_car%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_car.imageset\icon_car%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_mat.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_mat.imageset\icon_mat.png" />
+    <ImageAsset Include="Assets.xcassets\icon_mat.imageset\icon_mat%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_mat.imageset\icon_mat%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_motorcycle.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_motorcycle.imageset\icon_motorcycle.png" />
+    <ImageAsset Include="Assets.xcassets\icon_motorcycle.imageset\icon_motorcycle%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_motorcycle.imageset\icon_motorcycle%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_pocket.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_pocket.imageset\icon_pocket.png" />
+    <ImageAsset Include="Assets.xcassets\icon_pocket.imageset\icon_pocket%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_pocket.imageset\icon_pocket%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_ride_sharing.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icon_ride_sharing.imageset\ride_sharing_representation.png" />
+    <ImageAsset Include="Assets.xcassets\icon_ride_sharing.imageset\ride_sharing_representation%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icon_ride_sharing.imageset\ride_sharing_representation%403x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\srs-launch640x1136.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\srs-launch640x960.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

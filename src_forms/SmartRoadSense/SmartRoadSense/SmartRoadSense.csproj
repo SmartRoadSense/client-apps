@@ -20,7 +20,6 @@
     <Folder Include="Database\" />
     <Folder Include="DataModel\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="ViewControllers\" />
     <Folder Include="ViewControllers\MainPage\" />
     <Folder Include="ViewControllers\HomePage\" />
@@ -32,5 +31,23 @@
     <Folder Include="ViewControllers\MainPage\Interactor\" />
     <Folder Include="ViewControllers\MainPage\Router\" />
     <Folder Include="ViewControllers\MainPage\Error\" />
+    <Folder Include="ViewControllers\GamePage\" />
+    <Folder Include="ViewControllers\GamePage\View\" />
+    <Folder Include="ViewControllers\GamePage\Interactor\" />
+    <Folder Include="ViewControllers\GamePage\Presenter\" />
+    <Folder Include="ViewControllers\GamePage\Router\" />
+    <Folder Include="ViewControllers\GamePage\Error\" />
+    <Folder Include="ViewControllers\DataPage\" />
+    <Folder Include="ViewControllers\StatsPage\" />
+    <Folder Include="ViewControllers\InfoPage\" />
+    <Folder Include="ViewControllers\RegistryPage\" />
+    <Folder Include="ViewControllers\ZTemplateFolder\" />
+    <Folder Include="ViewControllers\InfoPage\Error\" />
+    <Folder Include="ExternalCommunication\" />
+    <Folder Include="ExternalCommunication\Client\" />
+    <Folder Include="ExternalCommunication\Remote\" />
+    <Folder Include="ExternalCommunication\Service\" />
+    <Folder Include="ExternalCommunication\Error\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
 </Project>

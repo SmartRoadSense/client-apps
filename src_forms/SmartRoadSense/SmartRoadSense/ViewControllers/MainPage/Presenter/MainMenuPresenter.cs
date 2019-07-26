@@ -35,7 +35,7 @@ namespace SmartRoadSense
             // TODO
         }
 
-        public void LaunchServiceActionError(MainPageException exception)
+        public void LaunchServiceActionError(TrackDataException exception)
         {
             // TODO
         }

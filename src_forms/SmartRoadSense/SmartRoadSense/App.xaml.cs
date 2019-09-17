@@ -34,6 +34,24 @@ namespace SmartRoadSense
         {
             var ColorInfo = new ColorUtility();
             Resources["ThemePrimaryColor"] = ColorInfo.ThemePrimaryColor;
+            Resources["ThemeSecondaryColor"] = ColorInfo.ThemeSecondaryColor;
+            Resources["ThemeTerziaryColor"] = ColorInfo.ThemeTerziaryColor;
+            Resources["ThemePrimaryDarkColor"] = ColorInfo.ThemePrimaryDarkColor;
+            Resources["ThemePrimaryDarkLightenedColor"] = ColorInfo.ThemePrimaryDarkLightenedColor;
+            Resources["ThemePrimaryPressedColor"] = ColorInfo.ThemePrimaryPressedColor;
+            Resources["DrawerBackgroundColor"] = ColorInfo.DrawerBackgroundColor;
+            Resources["DefaultBackgroundColor"] = ColorInfo.DefaultBackgroundColor;
+            Resources["TextOnDarkColor"] = ColorInfo.TextOnDarkColor;
+            Resources["SubtleTextOnDarkColor"] = ColorInfo.SubtleTextOnDarkColor;
+            Resources["SubduedTextOnDarkColor"] = ColorInfo.SubduedTextOnDarkColor;
+            Resources["TextOnBrightColor"] = ColorInfo.TextOnBrightColor;
+            Resources["SubtleTextOnBrightColor"] = ColorInfo.SubtleTextOnBrightColor;
+            Resources["LightGrayColor"] = ColorInfo.LightGrayColor;
+            Resources["LightGrayPressedColor"] = ColorInfo.LightGrayPressedColor;
+            Resources["TextOnLightGrayColor"] = ColorInfo.TextOnLightGrayColor;
+            Resources["QualityGoodColor"] = ColorInfo.QualityGoodColor;
+            Resources["QualityBadColor"] = ColorInfo.QualityBadColor;
+            Resources["ErrorColor"] = ColorInfo.ErrorColor;
         }
     }
 }

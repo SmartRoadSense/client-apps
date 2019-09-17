@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SmartRoadSense.HomePage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="{DynamicResource ThemePrimaryColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid BackgroundColor="{DynamicResource ThemePrimaryDarkColor}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                <StackLayout Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="squareOne" />
+                <StackLayout Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                <ImageButton Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                             HeightRequest="{Binding Width, Source={x:Reference squareOne}}" Source="CarButton" />
+                <StackLayout Grid.Row="1" Grid.Column="2" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+                <StackLayout Grid.Row="2" Grid.Column="0" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                <StackLayout Grid.Row="2" Grid.Column="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                <StackLayout Grid.Row="2" Grid.Column="2" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

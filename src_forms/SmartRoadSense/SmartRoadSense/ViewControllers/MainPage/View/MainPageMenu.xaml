@@ -4,11 +4,21 @@
              x:Class="SmartRoadSense.MainPageMenu">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <ListView x:Name="MenuItemsListView" BackgroundColor="Black"
-                VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
-                SeparatorVisibility="None"
-                HasUnevenRows="true"
-                ItemsSource="{Binding MenuItems}" >
+            <ListView x:Name="MenuItemsListView"
+                      BackgroundColor="Black"
+                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="true"
+                      ItemsSource="{Binding MenuItems}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell Height="40">
+                        <Label Margin="15,0,0,0" 
+                        FontSize="20" TextColor="{DynamicResource TextOnDarkColor}" Text="{Binding Title}" 
+                        LineBreakMode="TailTruncation"></Label>
+                    </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

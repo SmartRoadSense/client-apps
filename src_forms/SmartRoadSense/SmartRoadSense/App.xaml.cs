@@ -18,6 +18,7 @@ namespace SmartRoadSense
         protected override void OnStart()
         {
             // Handle when your app starts
+            InitializeLocalization();
         }
 
         protected override void OnSleep()
@@ -28,6 +29,7 @@ namespace SmartRoadSense
         protected override void OnResume()
         {
             // Handle when your app resumes
+            InitializeLocalization();
         }
 
         void InitializeTheme()
@@ -52,6 +54,16 @@ namespace SmartRoadSense
             Resources["QualityGoodColor"] = ColorInfo.QualityGoodColor;
             Resources["QualityBadColor"] = ColorInfo.QualityBadColor;
             Resources["ErrorColor"] = ColorInfo.ErrorColor;
+        }
+
+        void InitializeLocalization()
+        {
+            if (Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
+            {
+                var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+                AppResources.Culture = ci; // set the RESX for resource localization
+                DependencyService.Get<ILocalize>().SetLocale(ci); // set the Thread for locale-aware methods
+            }
         }
     }
 }

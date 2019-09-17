@@ -36,5 +36,11 @@
 	<string>5.0.0</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Assets.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string></string>
+		<string>it</string>
+		<string>en</string>
+	</array>
 </dict>
 </plist>

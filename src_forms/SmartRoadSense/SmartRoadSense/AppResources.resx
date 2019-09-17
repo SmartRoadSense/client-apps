@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <data name="SmartRoadSenseLabel" xml:space="preserve">
+        <value>SmartRoadSense</value>
+        <comment>label for SRS text</comment>
+    </data>
+    
+    <data name="InformationLabel" xml:space="preserve">
+        <value>Information</value>
+        <comment>label for information label in menu</comment>
+    </data>
+    
+    <data name="SettingsLabel" xml:space="preserve">
+        <value>Settings</value>
+        <comment>label for settings label in menu</comment>
+    </data>
+    
+    <data name="StatsLabel" xml:space="preserve">
+        <value>Statistics</value>
+        <comment>label for statistics label in menu</comment>
+    </data>
+    
+    <data name="DataLabel" xml:space="preserve">
+        <value>Data</value>
+        <comment>label for data label in menu</comment>
+    </data>
+    
+    <data name="RegistryLabel" xml:space="preserve">
+        <value>Registry</value>
+        <comment>label for registry label in menu</comment>
+    </data>
+    
+    <data name="GameLabel" xml:space="preserve">
+        <value>Game</value>
+        <comment>label for game label in menu</comment>
+    </data>
+</root>

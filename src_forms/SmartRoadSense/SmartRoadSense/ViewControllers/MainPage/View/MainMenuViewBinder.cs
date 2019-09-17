@@ -18,12 +18,12 @@ namespace SmartRoadSense
             // Populate menu
             MenuItems = new ObservableCollection<MainMenuItem>(new[]
             {
-                new MainMenuItem(typeof(HomePage)){ Id = 0, Title = "Game", PageArgs = new object[]{master} },
-                new MainMenuItem(typeof(HomePage)){ Id = 1, Title = "Register", PageArgs = new object[]{master} },
-                new MainMenuItem(typeof(HomePage)){ Id = 2, Title = "Data", PageArgs = new object[]{master} },
-                new MainMenuItem(typeof(HomePage)){ Id = 3, Title = "Stats", PageArgs = new object[]{master} },
-                new MainMenuItem(typeof(HomePage)){ Id = 4, Title = "Settings", PageArgs = new object[]{master} },
-                new MainMenuItem(typeof(InfoPage)){ Id = 5, Title = "Info", PageArgs = new object[]{master} }
+                new MainMenuItem(typeof(HomePage)){ Id = 0, Title = AppResources.GameLabel, PageArgs = new object[]{master} },
+                new MainMenuItem(typeof(HomePage)){ Id = 1, Title = AppResources.RegistryLabel, PageArgs = new object[]{master} },
+                new MainMenuItem(typeof(HomePage)){ Id = 2, Title = AppResources.DataLabel, PageArgs = new object[]{master} },
+                new MainMenuItem(typeof(HomePage)){ Id = 3, Title = AppResources.StatsLabel, PageArgs = new object[]{master} },
+                new MainMenuItem(typeof(HomePage)){ Id = 4, Title = AppResources.SettingsLabel, PageArgs = new object[]{master} },
+                new MainMenuItem(typeof(InfoPage)){ Id = 5, Title = AppResources.InformationLabel, PageArgs = new object[]{master} }
             });
         }
 

@@ -21,7 +21,8 @@
                       Grid.Row="3"
                       BackgroundColor="Transparent"
                       x:Name="MenuItemsListView"
-                      VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
                       SeparatorVisibility="None"
                       HasUnevenRows="true"
                       ItemsSource="{Binding MenuItems}" >
@@ -30,7 +31,7 @@
                     <ViewCell Height="40">
                         <Label Margin="15,0,0,0" 
                         FontSize="20" TextColor="{DynamicResource TextOnDarkColor}" Text="{Binding Title}" 
-                        LineBreakMode="TailTruncation"></Label>
+                        LineBreakMode="TailTruncation" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"></Label>
                     </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -15,36 +15,877 @@
     
     <data name="SmartRoadSenseLabel" xml:space="preserve">
         <value>SmartRoadSense</value>
-        <comment>label for SRS text</comment>
+        <comment>SRS text</comment>
     </data>
     
     <data name="InformationLabel" xml:space="preserve">
         <value>Information</value>
-        <comment>label for information label in menu</comment>
+        <comment>information label in menu</comment>
     </data>
     
     <data name="SettingsLabel" xml:space="preserve">
         <value>Settings</value>
-        <comment>label for settings label in menu</comment>
+        <comment>settings label in menu</comment>
     </data>
     
     <data name="StatsLabel" xml:space="preserve">
         <value>Statistics</value>
-        <comment>label for statistics label in menu</comment>
+        <comment>statistics label in menu</comment>
     </data>
     
     <data name="DataLabel" xml:space="preserve">
         <value>Data</value>
-        <comment>label for data label in menu</comment>
+        <comment>data label in menu</comment>
     </data>
     
     <data name="RegistryLabel" xml:space="preserve">
         <value>Registry</value>
-        <comment>label for registry label in menu</comment>
+        <comment>registry label in menu</comment>
     </data>
     
     <data name="GameLabel" xml:space="preserve">
         <value>Game</value>
-        <comment>label for game label in menu</comment>
+        <comment>game label in menu</comment>
+    </data>
+    
+    <data name="AuthorTitleLabel" xml:space="preserve">
+        <value>Università di Urbino “Carlo Bo” and NeuNet</value>
+        <comment>author title label in info page</comment>
+    </data>
+    
+    <data name="AuthorsLabel" xml:space="preserve">
+        <value>Alessandro Aldini<br />Giacomo Alessandroni<br />Alessandro Bogliolo<br />Alberto Carini<br />Saverio Delpriori<br />Valerio Freschi<br />Lorenz Cuno Klopfenstein<br />Emanuele Lattanzi<br />Gioele Luchetti<br />Brendan D. Paolini<br />Andrea Seraghiti</value>
+        <comment>authors label in info page</comment>
+    </data>
+    
+    <data name="AboutCarsLabel" xml:space="preserve">
+        <value>Part of “Crowd4Roads: CROWD sensing and ride sharing FOR ROAD Sustainability”. This project has received funding from the European Research Council (ERC) under the EU’s Horizon 2020 research and innovation programme (grant agreement n° 687959).</value>
+        <comment>c4rs label in info page</comment>
+    </data>
+
+    <data name="ContributorsTitleLabel" xml:space="preserve">
+        <value>Contributors</value>
+        <comment>contributors title label in info page</comment>
+    </data>
+    
+    <data name="DevelopedTitleLabel" xml:space="preserve">
+        <value>Developed by</value>
+        <comment>developers title label in info page</comment>
+    </data>
+    
+    <data name="FeedbackTitleLabel" xml:space="preserve">
+        <value>Feedback</value>
+        <comment>feedback title label in info page</comment>
+    </data>
+
+    <data name="FeedbackLabel" xml:space="preserve">
+        <value>Send feedback via e-mail</value>
+        <comment>feedback label in info page</comment>
+    </data>
+    
+    <data name="AppDesignTitleLabel" xml:space="preserve">
+        <value>App design</value>
+        <comment>app design title label in info page</comment>
+    </data>
+    
+    <data name="AppDesignLabel" xml:space="preserve">
+        <value>Original logo and design by Lorenz Cuno Klopfenstein.<br />Car icon by Volodin Anton, pocket icon by Christopher T. Howlett, smartphone icon by James Fenton, accelerometer icon by Anuar Zhumaev, all released under CC BY 3.0 license on Noun Project.</value>
+        <comment>app design label in info page</comment>
+    </data>
+    
+    <data name="BetaLabel" xml:space="preserve">
+        <value>Beta</value>
+        <comment>beta version label</comment>
+    </data>
+    
+    <data name="DebugLabel" xml:space="preserve">
+        <value>Debug</value>
+        <comment>Debug version label</comment>
+    </data>
+
+    <data name="ClearLogAction" xml:space="preserve">
+        <value>Clear log</value>
+        <comment>Clear log action</comment>
+    </data>
+    
+    <data name="ClearAction" xml:space="preserve">
+        <value>Clear upload queue</value>
+        <comment>Clear upload queue action</comment>
+    </data>
+    
+    <data name="CloseDrawerAction" xml:space="preserve">
+        <value>Close navigation drawer</value>
+        <comment>Close navigation drawer action</comment>
+    </data>
+    
+    <data name="OpenDrawerAction" xml:space="preserve">
+        <value>Open navigation drawer</value>
+        <comment>Open navigation drawer action</comment>
+    </data>
+    
+    <data name="ForceUploadAction" xml:space="preserve">
+        <value>Force upload</value>
+        <comment>Force upload action</comment>
+    </data>
+    
+    <data name="StartRecordingAction" xml:space="preserve">
+        <value>Starts recording</value>
+        <comment>Starts recording action</comment>
+    </data>
+
+    <data name="RefreshAction" xml:space="preserve">
+        <value>Refresh</value>
+        <comment>Refresh Action</comment>
+    </data>
+
+    <data name="ShareAction" xml:space="preserve">
+        <value>Share</value>
+        <comment>Share Action</comment>
+    </data>
+
+    "Vernacular_P0_action_show_log" = "Show log";
+    <data name="ShowLogAction" xml:space="preserve">
+        <value>Show log</value>
+        <comment>Show log action</comment>
+    </data>
+
+    <data name="StopRecordingAction" xml:space="preserve">
+        <value>Stops recording</value>
+        <comment>Stops recording action</comment>
+    </data>
+    
+    <data name="AnchorageBracketLabel" xml:space="preserve">
+        <value>Mount or bracket</value>
+        <comment>Mount or bracket anchorage selection label</comment>
+    </data>
+    
+    <data name="AnchorageMatLabel" xml:space="preserve">
+        <value>Non-slip phone mat</value>
+        <comment>Mat anchorage selection label</comment>
+    </data>
+    
+    <data name="AnchoragePocketLabel" xml:space="preserve">
+        <value>In a pocket / Other</value>
+        <comment>Pocket/other anchorage selection label</comment>
+    </data>
+
+    <data name="CalibrationDetailsLabel" xml:space="preserve">
+        <value>Mean acceleration magnitude: {0:F3}m/s² (± {1:F3}m/s²).</value>
+        <comment>Calibration details label</comment>
+    </data>
+
+    <data name="CalibrationDoneInfoLabel" xml:space="preserve">
+        <value>Accelerometer correctly calibrated.</value>
+        <comment>Calibration done info label</comment>
+    </data>
+    
+    <data name="RecalibrateLabel" xml:space="preserve">
+        <value>Recalibrate</value>
+        <comment>Recalibrate label</comment>
+    </data>
+
+    <data name="CalibrationNotDoneLabel" xml:space="preserve">
+        <value>Device not calibrated: you must run the calibration process before recording data.</value>
+        <comment>Calibration not done info label</comment>
+    </data>
+
+    <data name="CalibrationScaleLabel" xml:space="preserve">
+        <value>Scale factor: {0:P2}.</value>
+        <comment>Calibration scale info</comment>
+    </data>
+    
+    <data name="DefaultPpeValueLabel" xml:space="preserve">
+        <value>0.0</value>
+        <comment>Default Ppe Value Label</comment>
+    </data>
+    
+    <data name="AcceptLabel" xml:space="preserve">
+        <value>Accept</value>
+        <comment>Accept text</comment>
+    </data>
+    
+    <data name="BlablacarAcceptLabel" xml:space="preserve">
+        <value>Install BlaBlaCar on your phone</value>
+        <comment>Bla bla car accept label</comment>
+    </data>
+    
+    <data name="BlablacarActionHintLabel" xml:space="preserve">
+        <value>Do you want to know more?</value>
+        <comment>blablacar hint action</comment>
+    </data>
+    
+    <data name="BlablacarDescriptionLabel" xml:space="preserve">
+        <value><b>Carpooling</b> (also known as car-sharing, ride-sharing, lift-sharing, or <i>covoiturage</i>) is the sharing of car journeys so that more than one person travels in one vehicle.<br />
+<br />
+    
+By having more people using the same vehicle, carpooling helps reducing costs (fuel and tolls) and provides a more environmentally-friendly and sustainable way to travel.
+        </value>
+        <comment>blablacar description</comment>
+    </data>
+    
+    <data name="BlablacarDoNotAskLabel" xml:space="preserve">
+        <value>Do not ask again</value>
+        <comment>blablacar do not ask again label</comment>
+    </data>
+    
+    <data name="BlablacarIgnoreLabel" xml:space="preserve">
+        <value>No, start tracking</value>
+        <comment>Blablacar Ignore Label</comment>
+    </data>
+    
+    <data name="BlablacarTitleLabel" xml:space="preserve">
+        <value>What is Carpooling?</value>
+        <comment>Blablacar Title Label</comment>
+    </data>
+    
+    <data name="CalibrationDescriptionLabel" xml:space="preserve">
+        <value>Keep still and hold your breath!</value>
+        <comment>Calibration Description Label</comment>
+    </data>
+    
+    <data name="CalibratingTitleLabel" xml:space="preserve">
+        <value>Calibrating…</value>
+        <comment>Calibration title label</comment>
+    </data>
+    
+    <data name="CancelLabel" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>Cancel label</comment>
+    </data>
+    
+    <data name="OkLabel" xml:space="preserve">
+        <value>Ok</value>
+        <comment>Ok label</comment>
+    </data>
+    
+    <data name="DeleteAllLabel" xml:space="preserve">
+        <value>Delete all files</value>
+        <comment>Delete all files from queue label</comment>
+    </data>
+    
+    <data name="ClearQueueDescriptionLabel" xml:space="preserve">
+        <value>This will delete all recorded data and cannot be undone.</value>
+        <comment>Delete all files from queue description label</comment>
+    </data>
+    
+    <data name="ClearTitleLabel" xml:space="preserve">
+        <value>Clear all files?</value>
+        <comment>Clear all files title label</comment>
+    </data>
+    
+    <data name="CancelQueueLabel" xml:space="preserve">
+        <value>Cancel</value>
+        <comment>cancel queue label </comment>
+    </data>
+    
+    <data name="DeleteLabel" xml:space="preserve">
+        <value>Delete</value>
+        <comment>delete queue label </comment>
+    </data>
+    
+    <data name="ShareQueueFileLabel" xml:space="preserve">
+        <value>Share</value>
+        <comment>share file label</comment>
+    </data>
+    
+    <data name="DeleteTitleLabel" xml:space="preserve">
+        <value>Delete file?</value>
+        <comment>delete file title label</comment>
+    </data>
+    
+    <data name="RideSharingDescriptionLabel" xml:space="preserve">
+        <value>Please select how many people are on this trip, including yourself.</value>
+        <comment>ride sharing description label</comment>
+    </data>
+    
+    <data name="RideSharingTitleLabel" xml:space="preserve">
+        <value>How many people?</value>
+        <comment>ride sharing title label</comment>
+    </data>
+    
+    <data name="CalibrationHighDeviationLabel" xml:space="preserve">
+        <value>Calibration failed because your device appears to be moving. Please try again keeping it steadier.</value>
+        <comment>calibration high deviation label</comment>
+    </data>
+    
+    <data name="CalibrationSeveralAttemptsLabel" xml:space="preserve">
+        <value>If calibration keeps failing, your device might be unsuited to correctly track road quality.</value>
+        <comment>calibration several failures label</comment>
+    </data>
+    
+    <data name="ErrorGenericLabel" xml:space="preserve">
+        <value>Error</value>
+        <comment>Generic error label</comment>
+    </data>
+    
+    <data name="ErrorGenericReflectiveLabel" xml:space="preserve">
+        <value>Hmmmm…</value>
+        <comment>Generic error reflective label</comment>
+    </data>
+    
+    <data name="LocationSettingsErrorLabel" xml:space="preserve">
+        <value>Failed to open system location settings.</value>
+        <comment>Location Settings Error Label</comment>
+    </data>
+    
+    <data name="ErrorOpenWebsiteLabel" xml:space="preserve">
+        <value>Failed to open website.</value>
+        <comment>Error Open Website Label</comment>
+    </data>
+    
+    <data name="LocationDeniedErrorLabel" xml:space="preserve">
+        <value>SmartRoadSense requires access to your location in order to work properly. Please try again.</value>
+        <comment>location denied permission error label </comment>
+    </data>
+    
+    <data name="ErrorDataReportingLabel" xml:space="preserve">
+        <value>The bug report will be sent via e-mail and will not contain any personal information.</value>
+        <comment>error reporting bug</comment>
+    </data>
+    
+    <data name="DropErrorReportLabel" xml:space="preserve">
+        <value>No, thank you</value>
+        <comment>Drop error reporting label</comment>
+    </data>
+    
+    <data name="ErrorReportingIntroLabel" xml:space="preserve">
+        <value>It appears something went <i>very</i> wrong in our road quality detection software.<br />Every bit of information helps, therefore we’d kindly ask you to report this bug back to us and help us fixing the problem as soon as possible.</value>
+        <comment>Error reporting intro label</comment>
+    </data>
+    
+    <data name="ErrorReportingMailSubjectLabel" xml:space="preserve">
+        <value>SmartRoadSense engine bug report</value>
+        <comment>error reporting mail subject label</comment>
+    </data>
+    
+    <data name="ErrorReportNoDumpLabel" xml:space="preserve">
+        <value>No error dump ready to report.</value>
+        <comment>error reporting no data dump label</comment>
+    </data>
+    
+    <data name="ErrorReportSendLabel" xml:space="preserve">
+        <value>Yep, send it</value>
+        <comment>error report send label</comment>
+    </data>
+    
+    <data name="ErrorReportChooserLabel" xml:space="preserve">
+        <value>Send bug report via e-mail</value>
+        <comment>error report send by email label</comment>
+    </data>
+    
+    <data name="ErrorReportErrorMailLabel" xml:space="preserve">
+        <value>Failed to send email.</value>
+        <comment>fail to send error report email label</comment>
+    </data>
+    
+    <data name="ErrorReportEmailNotConfiguredLabel" xml:space="preserve">
+        <value>Email is not configured correctly and cannot be sent.</value>
+        <comment>cannot send email error report label</comment>
+    </data>
+    
+    <data name="GameComingSoonLabel" xml:space="preserve">
+        <value>Coming soon.</value>
+        <comment>coming soongame label</comment>
+    </data>
+    
+    <data name="GameTaglineLabel" xml:space="preserve">
+        <value>SmartRoadSense
+The Game</value>
+        <comment>game tagline label</comment>
+    </data>
+    
+    <data name="EngineErrorDescriptionLabel" xml:space="preserve">
+        <value>Something went wrong with our road quality detection magic! =‘(<br />Tap here to report the error and help us fixing the problem.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsOffdescriptionLabel" xml:space="preserve">
+        <value>Please enable location services through your device’s settings.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsSuspendedSpeedDescriptionLabel" xml:space="preserve">
+        <value>Your device has been moving too slowly to collect useful data. Recording was suspended.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsSuspendedStationaryLabel" xml:space="preserve">
+        <value>Your device hasn’t been moving in some time. Recording was suspended in order not to deplete your battery.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsUnfixedDescriptionLabel" xml:space="preserve">
+        <value>Ensure that you are outdoors and the sky is visible. The app will get back online as soon as a signal is detected.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="OutOfCountryDescriptionLabel" xml:space="preserve">
+        <value>SmartRoadSense is not yet available in the country you’re in. Additional countries will be activated in the future.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SyncingDescriptionLabel" xml:space="preserve">
+        <value>Your recorded tracks are being uploaded to our servers. Thank you for your contribution! =)</value>
+        <comment></comment>
+    </data>
+    
+    <data name="UploadFailureDescriptionLabel" xml:space="preserve">
+        <value>Please ensure that your device has a working Internet connection if this persists.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="EngineErrorTitleLabel" xml:space="preserve">
+        <value>Whoopsie!</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsOffTitleLabel" xml:space="preserve">
+        <value>GPS disabled</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsSuspendedSpeedTitleLabel" xml:space="preserve">
+        <value>Snail pace</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsSuspendedStationaryTitleLabel" xml:space="preserve">
+        <value>Have you stopped?</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GpsUnfixedTitleLabel" xml:space="preserve">
+        <value>Waiting for GPS signal</value>
+        <comment></comment>
+    </data>
+    
+    <data name="OutOfCountryTitleLabel" xml:space="preserve">
+        <value>Unmapped country</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SyncingTitleLabel" xml:space="preserve">
+        <value>Synchronizing…</value>
+        <comment></comment>
+    </data>
+    
+    <data name="UploadFailureTitleLabel" xml:space="preserve">
+        <value>Failed to synchronize</value>
+        <comment></comment>
+    </data>
+    
+    <data name="AnchorageLabel" xml:space="preserve">
+        <value>Anchorage</value>
+        <comment></comment>
+    </data>
+    
+    <data name="FileCreationLabel" xml:space="preserve">
+        <value>Recorded on:</value>
+        <comment></comment>
+    </data>
+    
+    <data name="FileSizeLabel" xml:space="preserve">
+        <value>Size:</value>
+        <comment></comment>
+    </data>
+    
+    <data name="FileSizeValueLabel" xml:space="preserve">
+        <value>{0} KiBytes</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SetupLabel" xml:space="preserve">
+        <value>Current setup</value>
+        <comment></comment>
+    </data>
+    
+    <data name="VehicleLabel" xml:space="preserve">
+        <value>Vehicle</value>
+        <comment></comment>
+    </data>
+    
+    <data name="LogEntriesCountLabel" xml:space="preserve">
+        <value>{0} log entries</value>
+        <comment></comment>
+    </data>
+    
+    <data name="MailAddressLabel" xml:space="preserve">
+        <value>info@smartroadsense.it</value>
+        <comment></comment>
+    </data>
+    
+    <data name="AboutMenuLabel" xml:space="preserve">
+        <value>About</value>
+        <comment></comment>
+    </data>
+    
+    <data name="ErrorReportingMenuLabel" xml:space="preserve">
+        <value>Error reporting</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GameMenuLabel" xml:space="preserve">
+        <value>Game</value>
+        <comment></comment>
+    </data>
+    
+    <data name="LogMenuLabel" xml:space="preserve">
+        <value>Log</value>
+        <comment></comment>
+    </data>
+    
+    <data name="QueueMenuLabel" xml:space="preserve">
+        <value>Queue</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SettingsMenuLabel" xml:space="preserve">
+        <value>Settings</value>
+        <comment></comment>
+    </data>
+    
+    <data name="StatsMenuLabel" xml:space="preserve">
+        <value>Statistics</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SensingServiceNotificationMessageLabel" xml:space="preserve">
+        <value>Recording</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SensingServiceNotificationTitleLabel" xml:space="preserve">
+        <value>SmartRoadSense</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SensingServiceLabel" xml:space="preserve">
+        <value>Sensing service</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SyncServiceLabel" xml:space="preserve">
+        <value>Synchronization service</value>
+        <comment></comment>
+    </data>
+    
+    <data name="AnchorageSettingsLabel" xml:space="preserve">
+        <value>Determines the way the smartphone running SmartRoadSense is anchored to the vehicle.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="DisableSuspensionSettingsLabel" xml:space="preserve">
+        <value>Disable automatic suspension of recording when you appear to be not moving or moving too slowly for some time.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="OfflineModeSettingsLabel" xml:space="preserve">
+        <value>When enabled, GPS and network is ignored. Roughness values are generated and displayed on the screen.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="UnmeteredSettingsLabel" xml:space="preserve">
+        <value>When enabled, the app will synchronize with the remote SmartRoadSense server only when connected to a Wi-Fi network.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="StartAtBootSettingsLabel" xml:space="preserve">
+        <value>When enabled, the app will start recording automatically when the system boots.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="VehicleSettingsLabel" xml:space="preserve">
+        <value>Determines the kind of vehicle you are driving in.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="CalibrationSectionSettingsLabel" xml:space="preserve">
+        <value>Calibration</value>
+        <comment></comment>
+    </data>
+
+    <data name="IntroSectionSettingsLabel" xml:space="preserve">
+        <value>Introduction</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SectionPreferencesSettingsLabel" xml:space="preserve">
+        <value>Preferences</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SectionSetupSettingsLabel" xml:space="preserve">
+        <value>Recording setup</value>
+        <comment></comment>
+    </data>
+    
+    <data name="AnchorageTitleSettingsLabel" xml:space="preserve">
+        <value>Anchorage to vehicle</value>
+        <comment></comment>
+    </data>
+    
+    <data name="DisableSupsensionTitleSettingsLabel" xml:space="preserve">
+        <value>Disable suspension</value>
+        <comment></comment>
+    </data>
+    
+    <data name="OfflineModeTitleSettingsLabel" xml:space="preserve">
+        <value>Offline mode</value>
+        <comment></comment>
+    </data>
+    
+    <data name="PreferUnmeteredTitleSettingsLabel" xml:space="preserve">
+        <value>Prefer Wi-Fi connection</value>
+        <comment></comment>
+    </data>
+    
+    <data name="StartBootTitleSettingsLabel" xml:space="preserve">
+        <value>Start at boot</value>
+        <comment></comment>
+    </data>
+    
+    <data name="VehicleTitleSettingsLabel" xml:space="preserve">
+        <value>Type of vehicle</value>
+        <comment></comment>
+    </data>
+    
+    <data name="BadgeClipboardShareLabel" xml:space="preserve">
+        <value>You may paste your stats as simple text from the clipboard.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="BadgeShareFailureLabel" xml:space="preserve">
+        <value>Failed sharing your stats, sorry.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="ShareBadgeStatsLabel" xml:space="preserve">
+        <value>I helped monitoring the quality of {0:0.0} kilometers of roads! #smartroadsense</value>
+        <comment></comment>
+    </data>
+    
+    <data name="KmsValueDefaultStatsLabel" xml:space="preserve">
+        <value>0.0 kms</value>
+        <comment></comment>
+    </data>
+    
+    <data name="KmsValueFormatStatsLabel" xml:space="preserve">
+        <value>{0:0.0 kms}</value>
+        <comment></comment>
+    </data>
+    
+    <data name="LastRecStatsLabel" xml:space="preserve">
+        <value>Last recording</value>
+        <comment></comment>
+    </data>
+    
+    <data name="LastTrackStatsLabel" xml:space="preserve">
+        <value>Last track:</value>
+        <comment></comment>
+    </data>
+    
+    <data name="OverallStatsLabel" xml:space="preserve">
+        <value>Overall:</value>
+        <comment></comment>
+    </data>
+    
+    <data name="WeekStatsLabel" xml:space="preserve">
+        <value>Last week:</value>
+        <comment></comment>
+    </data>
+    
+    <data name="NoQueueStatusLabel" xml:space="preserve">
+        <value>When SmartRoadSense records any tracks, they will show up here before they are sent to the online service.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="AboutTitleLabel" xml:space="preserve">
+        <value>About</value>
+        <comment></comment>
+    </data>
+    
+    <data name="ErrorReportingTitleLabel" xml:space="preserve">
+        <value>Error reporting</value>
+        <comment></comment>
+    </data>
+    
+    <data name="GameTitleLabel" xml:space="preserve">
+        <value>Game</value>
+        <comment></comment>
+    </data>
+    
+    <data name="LogTitleLabel" xml:space="preserve">
+        <value>Log</value>
+        <comment></comment>
+    </data>
+    
+    <data name="MainTitleLabel" xml:space="preserve">
+        <value>SmartRoadSense</value>
+        <comment></comment>
+    </data>
+    
+    <data name="MainBetaTitleLabel" xml:space="preserve">
+        <value>SmartRoadSense Beta</value>
+        <comment></comment>
+    </data>
+    
+    <data name="MainDebugTitleLabel" xml:space="preserve">
+        <value>SmartRoadSense Debug</value>
+        <comment></comment>
+    </data>
+    
+    <data name="QueueTitleLabel" xml:space="preserve">
+        <value>Upload queue</value>
+        <comment></comment>
+    </data>
+    
+    <data name="SettingsTitleLabel" xml:space="preserve">
+        <value>Settings</value>
+        <comment></comment>
+    </data>
+    
+    <data name="StatsTitleLabel" xml:space="preserve">
+        <value>Statistics</value>
+        <comment></comment>
+    </data>
+    
+    <data name="TutorialTitleLabel" xml:space="preserve">
+        <value>Introduction</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial1Text1Label" xml:space="preserve">
+        <value>SmartRoadSense is a collaborative sensing system that collects information about road quality using only your smartphone.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial1TitleLabel" xml:space="preserve">
+        <value>Welcome to SmartRoadSense!</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial2Text1Label" xml:space="preserve">
+        <value>Your smartphone will use its sensors to determine the quality of the road you’re traveling on.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial2Text2Label" xml:space="preserve">
+        <value>All data will be collected anonymously, processed, aggregated, and then published on www.smartroadsense.it.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial1TitleLabel" xml:space="preserve">
+        <value>How does it work?</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial3QuestionLabel" xml:space="preserve">
+        <value>What kind of vehicle will you be driving?</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial3TitleLabel" xml:space="preserve">
+        <value>Before you start</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial4QuestionLabel" xml:space="preserve">
+        <value>Where will your smartphone be located inside the vehicle?</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial4TitleLabel" xml:space="preserve">
+        <value>Before you start</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial5CalibrateLabel" xml:space="preserve">
+        <value>Calibrate now</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial5ConfirmationLabel" xml:space="preserve">
+        <value>All done, sensors calibrated correctly!</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial5ExplanationLabel" xml:space="preserve">
+        <value>Every device is a bit different from the others: in order to collect meaningful data we must first calibrate your device’s sensors before we start recording.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial5InstructionsLabel" xml:space="preserve">
+        <value>Tap on the button below and try to keep the smartphone motionless (don’t do this while walking or in a moving vehicle). It should take only a couple of seconds.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial5titleLabel" xml:space="preserve">
+        <value>Before you start</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial6TextLabel" xml:space="preserve">
+        <value>Every time you start recording a new track you will be asked how many people are sharing the ride with you.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial6TitleLabel" xml:space="preserve">
+        <value>Ride sharing</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial7MissingCalibrationLabel" xml:space="preserve">
+        <value>Please perform calibration.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial7Text1Label" xml:space="preserve">
+        <value>You’re ready to use the app and start collecting data.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial7Text2Label" xml:space="preserve">
+        <value>Tap the car icon in the center of the screen as soon as you start driving!</value>
+        <comment></comment>
+    </data>
+    
+    <data name="Tutorial7TitleLabel" xml:space="preserve">
+        <value>All set!</value>
+        <comment></comment>
+    </data>
+    
+    <data name="TutorialBottomQuestionLabel" xml:space="preserve">
+        <value>You can change this anytime through the app’s settings.</value>
+        <comment></comment>
+    </data>
+    
+    <data name="TutorialDoneLabel" xml:space="preserve">
+        <value>Let’s go!</value>
+        <comment></comment>
+    </data>
+    
+    <data name="TutorialRedoLabel" xml:space="preserve">
+        <value>See the introduction again</value>
+        <comment></comment>
+    </data>
+    
+    <data name="UnknownPpeValueLabel" xml:space="preserve">
+        <value>-.-</value>
+        <comment></comment>
+    </data>
+    
+    <data name="CarLabel" xml:space="preserve">
+        <value>Car</value>
+        <comment></comment>
+    </data>
+    
+    <data name="MotorcycleLabel" xml:space="preserve">
+        <value>Motorcycle</value>
+        <comment></comment>
+    </data>
+    
+    <data name="TruckLabel" xml:space="preserve">
+        <value>Bus / Truck</value>
+        <comment></comment>
     </data>
 </root>

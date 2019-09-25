@@ -12,6 +12,8 @@ namespace SmartRoadSense
 
             _viewBinder = new InfoViewBinder(this, master);
             BindingContext = _viewBinder;
+
+
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using LabelHtml.Forms.Plugin.iOS;
 using UIKit;
 
 namespace SmartRoadSense.iOS
@@ -22,6 +23,8 @@ namespace SmartRoadSense.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            HtmlLabelRenderer.Initialize();
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 

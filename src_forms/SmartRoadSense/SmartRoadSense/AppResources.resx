@@ -48,13 +48,13 @@
         <comment>game label in menu</comment>
     </data>
     
-    <data name="AuthorTitleLabel" xml:space="preserve">
-        <value>Università di Urbino “Carlo Bo” and NeuNet</value>
+    <data name="AboutAuthorTitleLabel" xml:space="preserve">
+        <value>DIGIT srl and Università di Urbino “Carlo Bo”</value>
         <comment>author title label in info page</comment>
     </data>
     
-    <data name="AuthorsLabel" xml:space="preserve">
-        <value>Alessandro Aldini<br />Giacomo Alessandroni<br />Alessandro Bogliolo<br />Alberto Carini<br />Saverio Delpriori<br />Valerio Freschi<br />Lorenz Cuno Klopfenstein<br />Emanuele Lattanzi<br />Gioele Luchetti<br />Brendan D. Paolini<br />Andrea Seraghiti</value>
+    <data name="AboutAuthorsLabel" xml:space="preserve">
+        <value><![CDATA[Alessandro Aldini<br />Giacomo Alessandroni<br />Alessandro Bogliolo<br />Alberto Carini<br />Saverio Delpriori<br />Valerio Freschi<br />Lorenz Cuno Klopfenstein<br />Emanuele Lattanzi<br />Gioele Luchetti<br />Brendan D. Paolini<br />Andrea Seraghiti]]></value>
         <comment>authors label in info page</comment>
     </data>
     
@@ -63,33 +63,33 @@
         <comment>c4rs label in info page</comment>
     </data>
 
-    <data name="ContributorsTitleLabel" xml:space="preserve">
+    <data name="AboutContributorsTitleLabel" xml:space="preserve">
         <value>Contributors</value>
         <comment>contributors title label in info page</comment>
     </data>
     
-    <data name="DevelopedTitleLabel" xml:space="preserve">
+    <data name="AboutDevelopedTitleLabel" xml:space="preserve">
         <value>Developed by</value>
         <comment>developers title label in info page</comment>
     </data>
     
-    <data name="FeedbackTitleLabel" xml:space="preserve">
+    <data name="AboutFeedbackTitleLabel" xml:space="preserve">
         <value>Feedback</value>
         <comment>feedback title label in info page</comment>
     </data>
 
-    <data name="FeedbackLabel" xml:space="preserve">
+    <data name="AboutFeedbackLabel" xml:space="preserve">
         <value>Send feedback via e-mail</value>
         <comment>feedback label in info page</comment>
     </data>
     
-    <data name="AppDesignTitleLabel" xml:space="preserve">
+    <data name="AboutAppDesignTitleLabel" xml:space="preserve">
         <value>App design</value>
         <comment>app design title label in info page</comment>
     </data>
     
-    <data name="AppDesignLabel" xml:space="preserve">
-        <value>Original logo and design by Lorenz Cuno Klopfenstein.<br />Car icon by Volodin Anton, pocket icon by Christopher T. Howlett, smartphone icon by James Fenton, accelerometer icon by Anuar Zhumaev, all released under CC BY 3.0 license on Noun Project.</value>
+    <data name="AboutAppDesignLabel" xml:space="preserve">
+        <value><![CDATA[Original logo and design by Lorenz Cuno Klopfenstein.<br />Car icon by Volodin Anton, pocket icon by Christopher T. Howlett, smartphone icon by James Fenton, accelerometer icon by Anuar Zhumaev, all released under CC BY 3.0 license on Noun Project.]]></value>
         <comment>app design label in info page</comment>
     </data>
     
@@ -215,11 +215,11 @@
     </data>
     
     <data name="BlablacarDescriptionLabel" xml:space="preserve">
-        <value><b>Carpooling</b> (also known as car-sharing, ride-sharing, lift-sharing, or <i>covoiturage</i>) is the sharing of car journeys so that more than one person travels in one vehicle.<br />
+        <value><![CDATA[<b>Carpooling</b> (also known as car-sharing, ride-sharing, lift-sharing, or <i>covoiturage</i>) is the sharing of car journeys so that more than one person travels in one vehicle.<br />
 <br />
     
 By having more people using the same vehicle, carpooling helps reducing costs (fuel and tolls) and provides a more environmentally-friendly and sustainable way to travel.
-        </value>
+        ]]></value>
         <comment>blablacar description</comment>
     </data>
     
@@ -349,7 +349,7 @@ By having more people using the same vehicle, carpooling helps reducing costs (f
     </data>
     
     <data name="ErrorReportingIntroLabel" xml:space="preserve">
-        <value>It appears something went <i>very</i> wrong in our road quality detection software.<br />Every bit of information helps, therefore we’d kindly ask you to report this bug back to us and help us fixing the problem as soon as possible.</value>
+        <value><![CDATA[It appears something went <i>very</i> wrong in our road quality detection software.<br />Every bit of information helps, therefore we’d kindly ask you to report this bug back to us and help us fixing the problem as soon as possible.]]></value>
         <comment>Error reporting intro label</comment>
     </data>
     
@@ -509,7 +509,7 @@ The Game</value>
         <comment></comment>
     </data>
     
-    <data name="MailAddressLabel" xml:space="preserve">
+    <data name="AboutMailAddressLabel" xml:space="preserve">
         <value>info@smartroadsense.it</value>
         <comment></comment>
     </data>
@@ -886,6 +886,16 @@ The Game</value>
     
     <data name="TruckLabel" xml:space="preserve">
         <value>Bus / Truck</value>
+        <comment></comment>
+    </data>
+
+    <data name="AboutVersionBetaLabel" xml:space="preserve">
+        <value>Beta</value>
+        <comment></comment>
+    </data>
+    
+    <data name="AboutVersionDebugLabel" xml:space="preserve">
+        <value>Debug</value>
         <comment></comment>
     </data>
 </root>

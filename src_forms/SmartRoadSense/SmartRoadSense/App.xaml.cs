@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,10 +10,12 @@ namespace SmartRoadSense
     {
         public App()
         {
-            InitializeComponent();
-            InitializeTheme();
+            VersionTracking.Track();
 
             MainPage = new MainMasterDetailPage();
+
+            InitializeComponent();
+            InitializeTheme();
         }
 
         protected override void OnStart()

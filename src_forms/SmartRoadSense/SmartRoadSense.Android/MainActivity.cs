@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using LabelHtml.Forms.Plugin.Droid;
 
 namespace SmartRoadSense.Droid
 {
@@ -16,6 +17,8 @@ namespace SmartRoadSense.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            HtmlLabelRenderer.Initialize();
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

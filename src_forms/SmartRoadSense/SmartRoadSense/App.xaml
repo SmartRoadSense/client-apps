@@ -1,5 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SmartRoadSense.App">
     <Application.Resources>
+        <!-- Default background color -->
+        <Style TargetType="ContentPage"
+               ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor"
+                    Value="{DynamicResource ThemePrimaryDarkLightenedColor}" />
+        </Style>
+
+        <!-- Navigation bar style -->
+        <Style TargetType="NavigationPage" ApplyToDerivedTypes="true">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource ThemePrimaryColor}" />
+            <Setter Property="BarTextColor" Value="{DynamicResource TextOnDarkColor}" />
+        </Style>
+
+        <!-- LABEL STYLES -->
+        <Style x:Key="BlueTitleLabelStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource ThemePrimaryColor}" />
+        </Style>
+
+        <Style x:Key="LightTextLabelStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TextOnDarkColor}" />
+        </Style>
+
+        <Style x:Key="DarkTextLabelStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource SubtleTextOnDarkColor}" />
+        </Style>
     </Application.Resources>
 </Application>

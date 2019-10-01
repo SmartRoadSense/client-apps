@@ -21,29 +21,31 @@ namespace SmartRoadSense
             return true;
         }
 
-        public async void GoToRegisterPage()
+        public async Task<bool>  GoToRegisterPage()
         {
-            // TODO
+            return true;
         }
 
-        public async void GoToDataPage()
+        public async Task<bool> GoToDataPage()
         {
-            // TODO
+            return true;
         }
 
-        public async void GoToStatsPage()
+        public async Task<bool> GoToStatsPage()
         {
-            // TODO
+            return true;
         }
 
-        public async void GoToSettingsPage()
+        public async Task<bool> GoToSettingsPage()
         {
-            // TODO
+            await _view.CurrentPage.Navigation.PushAsync(new SettingsPage(_master), true);
+            return true;
         }
 
-        public async void GoToInfoPage()
+        public async Task<bool> GoToInfoPage()
         {
-            // TODO
+            await _view.CurrentPage.Navigation.PushAsync(new InfoPage(_master), true);
+            return true;
         }
     }
 }

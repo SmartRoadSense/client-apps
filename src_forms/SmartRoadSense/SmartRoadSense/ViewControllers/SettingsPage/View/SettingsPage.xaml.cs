@@ -7,9 +7,15 @@ namespace SmartRoadSense
 {
     public partial class SettingsPage : ContentPage
     {
-        public SettingsPage()
+        SettingsViewBinder _viewBinder;
+
+        public SettingsPage(MainMasterDetailPage master)
         {
             InitializeComponent();
+
+            _viewBinder = new SettingsViewBinder(this, master);
+            BindingContext = _viewBinder;
+
         }
     }
 }

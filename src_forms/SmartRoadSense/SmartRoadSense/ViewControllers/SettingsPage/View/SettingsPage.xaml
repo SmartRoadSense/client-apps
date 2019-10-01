@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:SmartRoadSense"
+    xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
+    x:Class="SmartRoadSense.SettingsPage">
+    <ContentPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Label Text="{i18n:TranslateExtension SectionPreferencesSettingsLabel}" TextColor="{DynamicResource ThemePrimaryColor}" Margin="10,15,10,0"/>
+
+                <Grid RowSpacing="10" ColumnSpacing="5" Margin="10,10,10,10" > 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="0.5*" />
+                        <ColumnDefinition Width="1.5*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Wi-Fi -->
+                    <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="{i18n:TranslateExtension PreferUnmeteredTitleSettingsLabel}" Margin="0,0,0,0" FontAttributes="Bold" TextColor="{DynamicResource TextOnDarkColor}" />
+                        <Label Text="{i18n:TranslateExtension UnmeteredSettingsLabel}" LineBreakMode="WordWrap" TextColor="{DynamicResource TextOnDarkColor}" FontSize="Small" />
+                    </StackLayout>
+                    <BoxView Grid.Column="1" Grid.Row="0" WidthRequest="2" HorizontalOptions="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource TextOnDarkColor}" />        
+                    <Switch Grid.Column="2" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                    <!-- Suspend -->
+                    <StackLayout Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="{i18n:TranslateExtension DisableSupsensionTitleSettingsLabel}" Margin="0,0,0,0" FontAttributes="Bold" TextColor="{DynamicResource TextOnDarkColor}" />
+                        <Label Text="{i18n:TranslateExtension DisableSuspensionSettingsLabel}" LineBreakMode="WordWrap" TextColor="{DynamicResource TextOnDarkColor}" FontSize="Small" />
+                    </StackLayout>
+                    <BoxView Grid.Column="1" Grid.Row="1" WidthRequest="2" HorizontalOptions="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource TextOnDarkColor}" />        
+                    <Switch Grid.Column="2" Grid.Row="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                    <!-- Offline -->
+                    <StackLayout Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="{i18n:TranslateExtension OfflineModeTitleSettingsLabel}" Margin="0,0,0,0" FontAttributes="Bold" TextColor="{DynamicResource TextOnDarkColor}" />
+                        <Label Text="{i18n:TranslateExtension OfflineModeSettingsLabel}" LineBreakMode="WordWrap" TextColor="{DynamicResource TextOnDarkColor}" FontSize="Small" />
+                    </StackLayout>
+                    <BoxView Grid.Column="1" Grid.Row="2" WidthRequest="2" HorizontalOptions="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource TextOnDarkColor}" />        
+                    <Switch Grid.Column="2" Grid.Row="2" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                    <!-- Boot -->
+                    <StackLayout Grid.Column="0" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label Text="{i18n:TranslateExtension StartBootTitleSettingsLabel}" Margin="0,0,0,0" FontAttributes="Bold" TextColor="{DynamicResource TextOnDarkColor}" />
+                        <Label Text="{i18n:TranslateExtension StartAtBootSettingsLabel}" LineBreakMode="WordWrap" TextColor="{DynamicResource TextOnDarkColor}" FontSize="Small" />
+                    </StackLayout>
+                    <BoxView Grid.Column="1" Grid.Row="3" WidthRequest="2" HorizontalOptions="Center" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource TextOnDarkColor}" />        
+                    <Switch Grid.Column="2" Grid.Row="3" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+
+                </Grid>
+            <!--<htmlLabel:HtmlLabel Text="{i18n:TranslateExtension AboutAuthorsLabel}" Style="{StaticResource LightTextLabelStyle}" /> -->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

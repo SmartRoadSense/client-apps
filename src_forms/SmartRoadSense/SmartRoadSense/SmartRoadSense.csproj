@@ -25,7 +25,6 @@
     <Folder Include="ViewControllers\" />
     <Folder Include="ViewControllers\MainPage\" />
     <Folder Include="ViewControllers\HomePage\" />
-    <Folder Include="ViewControllers\SettingsPage\" />
     <Folder Include="Helpers\" />
     <Folder Include="Themes\" />
     <Folder Include="ViewControllers\MainPage\View\" />
@@ -43,7 +42,7 @@
     <Folder Include="ViewControllers\StatsPage\" />
     <Folder Include="ViewControllers\InfoPage\" />
     <Folder Include="ViewControllers\RegistryPage\" />
-    <Folder Include="ViewControllers\ZTemplateFolder\" />
+    <Folder Include="ViewControllers\SettingsPage\" />
     <Folder Include="ViewControllers\InfoPage\Error\" />
     <Folder Include="ExternalCommunication\" />
     <Folder Include="ExternalCommunication\Client\" />
@@ -52,6 +51,7 @@
     <Folder Include="ExternalCommunication\Error\" />
     <Folder Include="Managers\" />
     <Folder Include="Localization\" />
+    <Folder Include="ViewControllers\ZTemplateFolder\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

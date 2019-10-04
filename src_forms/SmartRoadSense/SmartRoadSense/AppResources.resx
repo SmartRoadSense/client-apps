@@ -179,7 +179,7 @@
         <comment>Calibration done info label</comment>
     </data>
     
-    <data name="RecalibrateLabel" xml:space="preserve">
+    <data name="CalibrationRecalibrateLabel" xml:space="preserve">
         <value>Recalibrate</value>
         <comment>Recalibrate label</comment>
     </data>

@@ -32,5 +32,14 @@
             <Setter Property="TextColor"
                     Value="{DynamicResource SubtleTextOnDarkColor}" />
         </Style>
+
+        <!-- BUTTON STYLES -->
+        <Style x:Key="BlueButtonLightText"
+               TargetType="Button">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource TextOnDarkColor}" />
+            <Setter Property="BackgroundColor"
+                    Value="{DynamicResource ThemePrimaryColor}" />
+        </Style>
     </Application.Resources>
 </Application>

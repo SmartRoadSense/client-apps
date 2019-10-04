@@ -52,6 +52,8 @@
     <Folder Include="Managers\" />
     <Folder Include="Localization\" />
     <Folder Include="ViewControllers\ZTemplateFolder\" />
+    <Folder Include="ViewControllers\DataPage\Presenter\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

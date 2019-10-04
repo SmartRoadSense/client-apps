@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:SmartRoadSense"
+    xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
+    xmlns:ValueConverters="clr-namespace:SmartRoadSense;assembly=SmartRoadSense"
+    x:Class="SmartRoadSense.DataPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ValueConverters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems> 
+        <ToolbarItem Icon="ic_sync_problem_red.png" Text="S" />
+        <ToolbarItem Icon="ic_status.png" Text="D" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <ListView Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" IsVisible="{Binding UploadDataIsPresent}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                    <ViewCell Height="60">
+                        
+                    </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!-- No data notice -->
+            <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding UploadDataIsPresent, Converter={StaticResource InverseBoolConverter}}">
+                <Label Text="{i18n:TranslateExtension NoQueueStatusLabel}" Style="{StaticResource LightTextLabelStyle}" LineBreakMode="WordWrap" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="20,0,20,20" />
+            </StackLayout>
+
+            <!--
+            <Label Text="{i18n:TranslateExtension AboutFeedbackTitleLabel}" Style="{StaticResource BlueTitleLabelStyle}" Margin="0,15,0,0" />
+            <htmlLabel:HtmlLabel Text="{i18n:TranslateExtension AboutMailAddressLabel}" Style="{StaticResource LightTextLabelStyle}" />
+            -->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

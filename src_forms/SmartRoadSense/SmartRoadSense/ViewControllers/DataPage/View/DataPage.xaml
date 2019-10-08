@@ -12,8 +12,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems> 
-        <ToolbarItem Icon="ic_sync_problem_red.png" Text="S" />
-        <ToolbarItem Icon="ic_status.png" Text="D" />
+        <ToolbarItem Icon="ic_sync_problem_red.png" Text="Upload data" Clicked="Handler_UploadClicked"/>
+        <ToolbarItem Icon="ic_status.png" Text="Delete data" Clicked="Handler_DeleteClicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >

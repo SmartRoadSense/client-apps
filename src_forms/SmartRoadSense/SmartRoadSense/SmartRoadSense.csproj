@@ -54,6 +54,8 @@
     <Folder Include="ViewControllers\ZTemplateFolder\" />
     <Folder Include="ViewControllers\DataPage\Presenter\" />
     <Folder Include="Converters\" />
+    <Folder Include="ViewControllers\RegistryPage\Router\" />
+    <Folder Include="ViewControllers\RegistryPage\View\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

@@ -5,15 +5,15 @@ using Xamarin.Forms;
 
 namespace SmartRoadSense
 {
-    public partial class DataPage : ContentPage
+    public partial class RegistryPage : ContentPage
     {
-        DataViewBinder _viewBinder;
+        RegistryViewBinder _viewBinder;
 
-        public DataPage(MainMasterDetailPage master)
+        public RegistryPage(MainMasterDetailPage master)
         {
             InitializeComponent();
 
-            _viewBinder = new DataViewBinder(this, master);
+            _viewBinder = new RegistryViewBinder(this, master);
             BindingContext = _viewBinder;
         }
 
@@ -27,8 +27,4 @@ namespace SmartRoadSense
             // TODO
         }
     }
-
-    
-
-    
 }

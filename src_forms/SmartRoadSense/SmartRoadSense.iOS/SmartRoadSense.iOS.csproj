@@ -211,6 +211,12 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\srs-launch640x1136.png" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\srs-launch640x960.png" />
+    <ImageAsset Include="Assets.xcassets\ic_sync.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_sync.imageset\sync-alt.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_trash.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_trash.imageset\trash.pdf" />
+    <ImageAsset Include="Assets.xcassets\ic_reload.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ic_reload.imageset\redo-alt.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -233,5 +239,10 @@
       <Project>{CDE50702-300B-4389-8B51-6FC6F7CE21AF}</Project>
       <Name>SmartRoadSense</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\ic_sync.imageset\" />
+    <Folder Include="Assets.xcassets\ic_trash.imageset\" />
+    <Folder Include="Assets.xcassets\ic_reload.imageset\" />
   </ItemGroup>
 </Project>

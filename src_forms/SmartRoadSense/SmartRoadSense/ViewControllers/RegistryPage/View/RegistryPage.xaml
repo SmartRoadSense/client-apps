@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:SmartRoadSense"
+             xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
+             xmlns:ValueConverters="clr-namespace:SmartRoadSense;assembly=SmartRoadSense"
+             x:Class="SmartRoadSense.RegistryPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ValueConverters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems> 
+        <ToolbarItem Icon="ic_sync_problem_red.png" Text="Upload data" Clicked="Handler_UploadClicked"/>
+        <ToolbarItem Icon="ic_status.png" Text="Delete data" Clicked="Handler_DeleteClicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Transparent" ItemsSource="{Binding RegistryListItems}"
+                      FlowDirection="RightToLeft" Rotation="180" HasUnevenRows="True" Margin="10,0,10,10" > 
+                <ListView.ItemTemplate >
+                    <DataTemplate> 
+                    <ViewCell Height="60" >
+                        <StackLayout FlowDirection="LeftToRight" Rotation="180" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{Binding .}" Style="{StaticResource BlueTitleLabelStyle}" />
+                            <Label Text="{Binding .}" Style="{StaticResource LightTextLabelStyle}" />
+                        </StackLayout>  
+                    </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

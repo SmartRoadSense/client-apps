@@ -21,7 +21,7 @@ namespace SmartRoadSense
                 new MainMenuItem(typeof(HomePage)){ Id = 0, Title = AppResources.GameTitleLabel, PageArgs = new object[]{master} },
                 new MainMenuItem(typeof(RegistryPage)){ Id = 1, Title = AppResources.LogTitleLabel, PageArgs = new object[]{master} },
                 new MainMenuItem(typeof(DataPage)){ Id = 2, Title = AppResources.QueueTitleLabel, PageArgs = new object[]{master} },
-                new MainMenuItem(typeof(HomePage)){ Id = 3, Title = AppResources.StatsTitleLabel, PageArgs = new object[]{master} },
+                new MainMenuItem(typeof(StatsPage)){ Id = 3, Title = AppResources.StatsTitleLabel, PageArgs = new object[]{master} },
                 new MainMenuItem(typeof(SettingsPage)){ Id = 4, Title = AppResources.SettingsTitleLabel, PageArgs = new object[]{master} },
                 new MainMenuItem(typeof(InfoPage)){ Id = 5, Title = AppResources.AboutTitleLabel, PageArgs = new object[]{master} }
             });

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:SmartRoadSense"
+             xmlns:htmlLabel="clr-namespace:LabelHtml.Forms.Plugin.Abstractions;assembly=HtmlLabel.Forms.Plugin"
+             xmlns:ValueConverters="clr-namespace:SmartRoadSense;assembly=SmartRoadSense"
+             x:Class="SmartRoadSense.StatsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ValueConverters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.RowSpan="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2.5*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Text="{i18n:TranslateExtension LastTrackStatsLabel}" Style="{StaticResource LightTextLabelStyle}" />
+                <Label Grid.Column="1" Grid.Row="0" Text="{Binding LastTrackText}" Style="{StaticResource BlueLabelStyle}" />
+
+                <Label Grid.Column="0" Grid.Row="1" Text="{i18n:TranslateExtension WeekStatsLabel}" Style="{StaticResource LightTextLabelStyle}" />
+                <Label Grid.Column="1" Grid.Row="1" Text="{Binding LastWeekTracksText}" Style="{StaticResource BlueLabelStyle}" />
+
+                <Label Grid.Column="0" Grid.Row="2" Text="{i18n:TranslateExtension OverallStatsLabel}" Style="{StaticResource LightTextLabelStyle}" />
+                <Label Grid.Column="1" Grid.Row="2" Text="{Binding OverallTracksText}" Style="{StaticResource BlueLabelStyle}" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

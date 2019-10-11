@@ -21,6 +21,12 @@
                     Value="{DynamicResource ThemePrimaryColor}" />
         </Style>
 
+        <Style x:Key="BlueLabelStyle"
+               TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{DynamicResource ThemePrimaryColor}" />
+        </Style>
+
         <Style x:Key="LightTextLabelStyle"
                TargetType="Label">
             <Setter Property="TextColor"

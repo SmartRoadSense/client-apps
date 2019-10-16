@@ -14,6 +14,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xam.Plugin.HtmlLabel" Version="3.0.2.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
@@ -56,6 +58,11 @@
     <Folder Include="Converters\" />
     <Folder Include="ViewControllers\RegistryPage\Router\" />
     <Folder Include="ViewControllers\RegistryPage\View\" />
+    <Folder Include="PopupViews\" />
+    <Folder Include="ViewControllers\HomePage\Interactor\" />
+    <Folder Include="ViewControllers\HomePage\View\" />
+    <Folder Include="ViewControllers\HomePage\Presenter\" />
+    <Folder Include="ViewControllers\HomePage\Router\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">

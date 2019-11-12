@@ -1,0 +1,8 @@
+﻿/* Must be copied to platform-specific project as Config.json */
+/* Build as "Embedded resource" */
+{
+  /* API secret used by Microsoft App Center */
+  "AppCenterApiSecret": "",
+  /* Special client "mark" that is transmitted in client metadata during upload */
+  "ClientMark": ""
+}

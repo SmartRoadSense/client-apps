@@ -16,14 +16,14 @@ namespace SmartRoadSense
 
             // TODO: get data from settings
             // Init current vehicle type
-            currentVehicleType = VehicleSource.CAR;
-            currentAnchorageType = AnchorageSource.MOUNT;
+            currentVehicleType = VehicleType.CAR;
+            currentAnchorageType = AnchorageType.MOUNT;
         }
 
         public SettingsPage CurrentPage { get; }
 
-        public VehicleSource currentVehicleType;
-        public AnchorageSource currentAnchorageType;
+        public VehicleType currentVehicleType;
+        public AnchorageType currentAnchorageType;
 
         public string VehicleTextSource
         {

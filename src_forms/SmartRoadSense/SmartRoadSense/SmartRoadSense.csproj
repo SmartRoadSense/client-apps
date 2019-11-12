@@ -7,8 +7,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>pdbonly</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.2.0.815419" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
@@ -16,6 +20,12 @@
     <PackageReference Include="Xam.Plugin.HtmlLabel" Version="3.0.2.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="GeoJSON.Net" Version="1.1.73" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="2.5.0" />
+    <PackageReference Include="Microsoft.AppCenter" Version="2.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.5.0" />
+    <PackageReference Include="Microsoft.AppCenter.Push" Version="2.5.0" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Api\" />
@@ -63,6 +73,14 @@
     <Folder Include="ViewControllers\HomePage\View\" />
     <Folder Include="ViewControllers\HomePage\Presenter\" />
     <Folder Include="ViewControllers\HomePage\Router\" />
+    <Folder Include="IMPORTED\" />
+    <Folder Include="IMPORTED\Api\" />
+    <Folder Include="IMPORTED\DataModel\" />
+    <Folder Include="IMPORTED\Exceptions\" />
+    <Folder Include="IMPORTED\Calibration\" />
+    <Folder Include="IMPORTED\Data\" />
+    <Folder Include="IMPORTED\Database\" />
+    <Folder Include="IMPORTED\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">
@@ -74,5 +92,10 @@
     <Compile Update="AppResources.Designer.cs">
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SmartRoadSenseCore">
+      <HintPath>..\..\SmartRoadSenseCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

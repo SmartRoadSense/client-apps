@@ -42,5 +42,11 @@
 		<string>it</string>
 		<string>en</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SRS needs to access your location, but it will remain anonimous</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>SRS needs to access your location, but it will remain anonimous</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>SRS needs to access your location, but it will remain anonimous</string>
 </dict>
 </plist>

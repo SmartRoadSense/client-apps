@@ -100,7 +100,7 @@ namespace SmartRoadSense {
         /// </summary>
         public LocationSensorStatus LocationSensorStatus {
             get {
-                if (Settings.OfflineMode) {
+                if (SettingsManager.Instance.OfflineMode) {
                     //In offline mode the location sensor is always dandy
                     return LocationSensorStatus.Working;
                 }
@@ -281,7 +281,7 @@ namespace SmartRoadSense {
             accZ *= _accelerometerScaleFactor;
 
             //In offline mode we ignore GPS status and simply feed fake data to the engine
-            if (Settings.OfflineMode) {
+            if (SettingsManager.Instance.OfflineMode) {
                 FeedEngine(new DataEntry(
                     DateTime.UtcNow,
                     accX, accY, accZ,
@@ -321,7 +321,7 @@ namespace SmartRoadSense {
             }
 
             //Check whether GPS has exceeded the stationarity timeout
-            if (!Settings.SuspensionDisabled && (timestamp - _lastTimeMoved > GpsDistanceErrorTimeout)) {
+            if (!SettingsManager.Instance.SuspensionDisabled && (timestamp - _lastTimeMoved > GpsDistanceErrorTimeout)) {
                 Debug("GPS stationary for {0}", timestamp - _lastTimeMoved);
                 OnLocationSensorError(LocationErrorType.RemainedStationary);
                 return;
@@ -391,7 +391,7 @@ namespace SmartRoadSense {
             _lastTimeFastEnough = DateTime.MinValue;
             _lastTimeMoved = DateTime.MinValue;
 
-            _accelerometerScaleFactor = Settings.CalibrationScaleFactor;
+            _accelerometerScaleFactor = SettingsManager.Instance.CalibrationScaleFactor;
             Debug("Sensor pack using scale factor of {0:P2}", _accelerometerScaleFactor);
 
             try {

@@ -43,11 +43,11 @@ namespace SmartRoadSense
         public App()
         {
             VersionTracking.Track();
-
-            MainPage = new MainMasterDetailPage();
-
             InitializeComponent();
             InitializeTheme();
+            InitializeSrsEngine();
+
+            MainPage = new MainMasterDetailPage();
         }
 
         protected override void OnStart()
@@ -67,9 +67,9 @@ namespace SmartRoadSense
             InitializeLocalization();
         }
 
-        public static async Task Initialize()
+        async void InitializeSrsEngine()
         {
-            Log.Debug("Initializing");
+            Log.Debug("Initializing synchronous tasks");
 
             RegisterAnalytics();
 
@@ -77,6 +77,13 @@ namespace SmartRoadSense
             Sensors = SensorPack.Create(Engine);
             Recorder = new Recorder(Engine);
             Sync = new SyncManager();
+
+            await InitializeEngine();
+        }
+
+        async Task InitializeEngine()
+        {
+            Log.Debug("Initializing asynchronous tasks");
 
             await UserLog.Initialize().ConfigureAwait(false);
             UserLog.Add(string.Format(AppResources.Started, Version));

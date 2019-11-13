@@ -58,7 +58,7 @@ namespace SmartRoadSense {
                     NumberOfPeople = Session.NumberOfPeople
                 };
 
-                if (!Settings.OfflineMode) {
+                if (!SettingsManager.Instance.OfflineMode) {
                     Collector.Collect(dataPiece);
                     StatsCollector.Collect(dataPiece);
                 }
@@ -98,14 +98,14 @@ namespace SmartRoadSense {
             }
 
             //Prevent recording before completing calibration
-            if(!Settings.CalibrationDone) {
+            if(!SettingsManager.Instance.CalibrationDone) {
                 throw new InvalidOperationException("Cannot start recording before completing accelerometer calibration");
             }
 
-            Session = new SessionInfo(Settings.LastVehicleType, Settings.LastAnchorageType, Settings.LastNumberOfPeople);
+            Session = new SessionInfo(SettingsManager.Instance.LastVehicleType, SettingsManager.Instance.LastAnchorageType, SettingsManager.Instance.LastNumberOfPeople);
             _isRecording = true;
 
-            if (Settings.OfflineMode) {
+            if (SettingsManager.Instance.OfflineMode) {
                 UserLog.Add(AppResources.RecordingOffline);
                 Log.Debug("Started offline recording");
             }

@@ -12,6 +12,8 @@ namespace SmartRoadSense {
         private readonly Recorder _recorder;
 
         public RecordingViewModel() {
+            Log.Debug("Initializing RecordingViewModel");
+
             _sensors = App.Sensors;
             _recorder = App.Recorder;
 
@@ -175,7 +177,7 @@ namespace SmartRoadSense {
                 return;
             }
 
-			if(!Settings.CalibrationDone) {
+			if(!SettingsManager.Instance.CalibrationDone) {
 				Log.Debug("Ignoring start recording command since device is not calibrated");
 				return;
 			}

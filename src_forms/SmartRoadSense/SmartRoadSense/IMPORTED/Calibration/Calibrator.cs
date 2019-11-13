@@ -95,10 +95,10 @@ namespace SmartRoadSense {
 
                     Log.Debug("Calibration succeeded: scale factor {0:F3}", scaleFactor);
 
-                    Settings.CalibrationDone = true;
-                    Settings.CalibrationScaleFactor = scaleFactor;
-                    Settings.CalibrationOriginalMagnitudeMean = stats.Average;
-                    Settings.CalibrationOriginalMagnitudeStdDev = stats.StandardDeviation;
+                    SettingsManager.Instance.CalibrationDone = true;
+                    SettingsManager.Instance.CalibrationScaleFactor = scaleFactor;
+                    SettingsManager.Instance.CalibrationOriginalMagnitudeMean = stats.Average;
+                    SettingsManager.Instance.CalibrationOriginalMagnitudeStdDev = stats.StandardDeviation;
 
                     TerminateCalibrationTask(CalibrationResult.Completed);
                 }

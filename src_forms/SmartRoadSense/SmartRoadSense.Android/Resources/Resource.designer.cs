@@ -26,6 +26,7 @@ namespace SmartRoadSense.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.alpha = global::SmartRoadSense.Droid.Resource.Attribute.alpha;
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.font = global::SmartRoadSense.Droid.Resource.Attribute.font;
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontProviderAuthority = global::SmartRoadSense.Droid.Resource.Attribute.fontProviderAuthority;
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontProviderCerts = global::SmartRoadSense.Droid.Resource.Attribute.fontProviderCerts;
@@ -34,8 +35,9 @@ namespace SmartRoadSense.Droid
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontProviderPackage = global::SmartRoadSense.Droid.Resource.Attribute.fontProviderPackage;
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontProviderQuery = global::SmartRoadSense.Droid.Resource.Attribute.fontProviderQuery;
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontStyle = global::SmartRoadSense.Droid.Resource.Attribute.fontStyle;
+			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontVariationSettings = global::SmartRoadSense.Droid.Resource.Attribute.fontVariationSettings;
 			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.fontWeight = global::SmartRoadSense.Droid.Resource.Attribute.fontWeight;
-			global::Microsoft.AppCenter.Push.Android.Resource.Boolean.abc_action_bar_embed_tabs = global::SmartRoadSense.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Microsoft.AppCenter.Push.Android.Resource.Attribute.ttcIndex = global::SmartRoadSense.Droid.Resource.Attribute.ttcIndex;
 			global::Microsoft.AppCenter.Push.Android.Resource.Color.notification_action_color_filter = global::SmartRoadSense.Droid.Resource.Color.notification_action_color_filter;
 			global::Microsoft.AppCenter.Push.Android.Resource.Color.notification_icon_bg_color = global::SmartRoadSense.Droid.Resource.Color.notification_icon_bg_color;
 			global::Microsoft.AppCenter.Push.Android.Resource.Color.notification_material_background_media_default_color = global::SmartRoadSense.Droid.Resource.Color.notification_material_background_media_default_color;
@@ -48,6 +50,8 @@ namespace SmartRoadSense.Droid
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.compat_button_padding_horizontal_material = global::SmartRoadSense.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.compat_button_padding_vertical_material = global::SmartRoadSense.Droid.Resource.Dimension.compat_button_padding_vertical_material;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.compat_control_corner_material = global::SmartRoadSense.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.compat_notification_large_icon_max_height = global::SmartRoadSense.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.compat_notification_large_icon_max_width = global::SmartRoadSense.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.notification_action_icon_size = global::SmartRoadSense.Droid.Resource.Dimension.notification_action_icon_size;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.notification_action_text_size = global::SmartRoadSense.Droid.Resource.Dimension.notification_action_text_size;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.notification_big_circle_margin = global::SmartRoadSense.Droid.Resource.Dimension.notification_big_circle_margin;
@@ -63,6 +67,10 @@ namespace SmartRoadSense.Droid
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.notification_subtext_size = global::SmartRoadSense.Droid.Resource.Dimension.notification_subtext_size;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.notification_top_pad = global::SmartRoadSense.Droid.Resource.Dimension.notification_top_pad;
 			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.notification_top_pad_large_text = global::SmartRoadSense.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.subtitle_corner_radius = global::SmartRoadSense.Droid.Resource.Dimension.subtitle_corner_radius;
+			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.subtitle_outline_width = global::SmartRoadSense.Droid.Resource.Dimension.subtitle_outline_width;
+			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.subtitle_shadow_offset = global::SmartRoadSense.Droid.Resource.Dimension.subtitle_shadow_offset;
+			global::Microsoft.AppCenter.Push.Android.Resource.Dimension.subtitle_shadow_radius = global::SmartRoadSense.Droid.Resource.Dimension.subtitle_shadow_radius;
 			global::Microsoft.AppCenter.Push.Android.Resource.Drawable.ic_stat_notify_dot = global::SmartRoadSense.Droid.Resource.Drawable.ic_stat_notify_dot;
 			global::Microsoft.AppCenter.Push.Android.Resource.Drawable.notification_action_background = global::SmartRoadSense.Droid.Resource.Drawable.notification_action_background;
 			global::Microsoft.AppCenter.Push.Android.Resource.Drawable.notification_bg = global::SmartRoadSense.Droid.Resource.Drawable.notification_bg;
@@ -102,6 +110,9 @@ namespace SmartRoadSense.Droid
 			global::Microsoft.AppCenter.Push.Android.Resource.Id.right_icon = global::SmartRoadSense.Droid.Resource.Id.right_icon;
 			global::Microsoft.AppCenter.Push.Android.Resource.Id.right_side = global::SmartRoadSense.Droid.Resource.Id.right_side;
 			global::Microsoft.AppCenter.Push.Android.Resource.Id.status_bar_latest_event_content = global::SmartRoadSense.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Microsoft.AppCenter.Push.Android.Resource.Id.tag_transition_group = global::SmartRoadSense.Droid.Resource.Id.tag_transition_group;
+			global::Microsoft.AppCenter.Push.Android.Resource.Id.tag_unhandled_key_event_manager = global::SmartRoadSense.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::Microsoft.AppCenter.Push.Android.Resource.Id.tag_unhandled_key_listeners = global::SmartRoadSense.Droid.Resource.Id.tag_unhandled_key_listeners;
 			global::Microsoft.AppCenter.Push.Android.Resource.Id.text = global::SmartRoadSense.Droid.Resource.Id.text;
 			global::Microsoft.AppCenter.Push.Android.Resource.Id.text2 = global::SmartRoadSense.Droid.Resource.Id.text2;
 			global::Microsoft.AppCenter.Push.Android.Resource.Id.time = global::SmartRoadSense.Droid.Resource.Id.time;
@@ -140,6 +151,10 @@ namespace SmartRoadSense.Droid
 			global::Microsoft.AppCenter.Push.Android.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::SmartRoadSense.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
 			global::Microsoft.AppCenter.Push.Android.Resource.Style.Widget_Compat_NotificationActionContainer = global::SmartRoadSense.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
 			global::Microsoft.AppCenter.Push.Android.Resource.Style.Widget_Compat_NotificationActionText = global::SmartRoadSense.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.ColorStateListItem = global::SmartRoadSense.Droid.Resource.Styleable.ColorStateListItem;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.ColorStateListItem_alpha = global::SmartRoadSense.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.ColorStateListItem_android_alpha = global::SmartRoadSense.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.ColorStateListItem_android_color = global::SmartRoadSense.Droid.Resource.Styleable.ColorStateListItem_android_color;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamily = global::SmartRoadSense.Droid.Resource.Styleable.FontFamily;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamily_fontProviderAuthority = global::SmartRoadSense.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamily_fontProviderCerts = global::SmartRoadSense.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
@@ -148,9 +163,32 @@ namespace SmartRoadSense.Droid
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamily_fontProviderPackage = global::SmartRoadSense.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamily_fontProviderQuery = global::SmartRoadSense.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_android_font = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_android_fontStyle = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_android_fontWeight = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_font = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_font;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_fontStyle = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
 			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_fontWeight = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.FontFamilyFont_ttcIndex = global::SmartRoadSense.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_centerColor = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_centerX = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_centerY = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_endColor = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_endX = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_endY = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_gradientRadius = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_startColor = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_startX = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_startY = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_tileMode = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColor_android_type = global::SmartRoadSense.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColorItem = global::SmartRoadSense.Droid.Resource.Styleable.GradientColorItem;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColorItem_android_color = global::SmartRoadSense.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Microsoft.AppCenter.Push.Android.Resource.Styleable.GradientColorItem_android_offset = global::SmartRoadSense.Droid.Resource.Styleable.GradientColorItem_android_offset;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::SmartRoadSense.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::SmartRoadSense.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::SmartRoadSense.Droid.Resource.Attribute.font;

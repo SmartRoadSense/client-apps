@@ -30,7 +30,7 @@ namespace SmartRoadSense
             #endif
             */
 
-            var currentVersion = Settings.DataVersion;
+            var currentVersion = SettingsManager.Instance.DataVersion;
             if (currentVersion < 0) {
                 Log.Debug("No data version found, database installation required");
                 await FullInstallation();
@@ -43,7 +43,7 @@ namespace SmartRoadSense
                 Migrate(currentVersion);
             }
 
-            Settings.DataVersion = TargetDataVersion;
+            SettingsManager.Instance.DataVersion = TargetDataVersion;
 
             Log.Debug("Database initialized");
         }

@@ -15,7 +15,7 @@ namespace SmartRoadSense
 
         static readonly Lazy<SessionManager> _instance = new Lazy<SessionManager> (() => new SessionManager());
 
-        public SessionManager Instance => _instance.Value;
+        public static SessionManager Instance => _instance.Value;
 
 	}
 }

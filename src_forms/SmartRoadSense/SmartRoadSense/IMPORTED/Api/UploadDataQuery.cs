@@ -252,7 +252,7 @@ namespace SmartRoadSense {
                         Sdk = deviceInfo.SdkVersion,
                         DeviceManufacturer = deviceInfo.Manufacturer,
                         DeviceModel = deviceInfo.Model,
-                        AccelerometerScaleFactor = Settings.CalibrationScaleFactor,
+                        AccelerometerScaleFactor = SettingsManager.Instance.CalibrationScaleFactor,
                         ClientMark = App.GetConfigKey("ClientMark")
                     };
                 }

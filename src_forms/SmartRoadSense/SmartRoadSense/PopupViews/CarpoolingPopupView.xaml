@@ -24,10 +24,14 @@
         BackgroundColor="{DynamicResource ThemePrimaryDarkLightenedColor}"
         VerticalOptions="FillAndExpand" 
         HorizontalOptions="FillAndExpand"
-        Margin="50"
+        Margin="30,50,30,50"
         Padding="10">
 
         <Label Text="{i18n:TranslateExtension RideSharingTitleLabel}" Style="{StaticResource LightTextLabelStyle}" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Start" />
+        <Image Source="icon_ride_sharing" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Aspect="AspectFit" Margin="20,5,20,5" />
+        <Picker ItemsSource="{Binding PeopleNumber_PickerSource}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="0,20,0,20" />
         <Label Text="{i18n:TranslateExtension RideSharingDescriptionLabel}" Style="{StaticResource DarkTextLabelStyle}" HorizontalTextAlignment="Start" HorizontalOptions="Center" VerticalOptions="Start" />
+        <Button Text="{i18n:TranslateExtension AcceptLabel}" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Clicked="AcceptButton_Clicked" />
+
     </StackLayout>
 </pages:PopupPage>

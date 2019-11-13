@@ -40,7 +40,7 @@ namespace SmartRoadSense {
         /// </summary>
         public static DateTime NextUploadOpportunity {
             get {
-                return Settings.LastUploadAttempt.Add(MinSynchronizationInterval);
+                return SettingsManager.Instance.LastUploadAttempt.Add(MinSynchronizationInterval);
             }
         }
 
@@ -49,7 +49,7 @@ namespace SmartRoadSense {
         /// </summary>
         public static DateTime NextUploadDeadline {
             get {
-                return Settings.LastUploadAttempt.Add(MaxSynchronizationInterval);
+                return SettingsManager.Instance.LastUploadAttempt.Add(MaxSynchronizationInterval);
             }
         }
 
@@ -78,7 +78,7 @@ namespace SmartRoadSense {
             }
 #endif
 
-            if(Settings.OfflineMode) {
+            if(SettingsManager.Instance.OfflineMode) {
                 Log.Debug("Can't sync: synchronization disabled in offline mode");
                 return false;
             }
@@ -102,7 +102,7 @@ namespace SmartRoadSense {
                 return new SyncResult(error: new InvalidOperationException("Sync attempt too early"));
             }
 
-            Settings.LastUploadAttempt = DateTime.UtcNow;
+            SettingsManager.Instance.LastUploadAttempt = DateTime.UtcNow;
 
             if (!CheckSyncConditions(policy)) {
                 return new SyncResult(error: new InvalidOperationException("Sync conditions not met"));

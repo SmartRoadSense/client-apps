@@ -8,6 +8,12 @@ namespace SmartRoadSense
         public CarpoolingPopupView()
         {
             InitializeComponent();
+            BindingContext = this;
+        }
+
+        void AcceptButton_Clicked (object s, ClickedEventArgs e)
+        {
+            // TODO
         }
 
         protected override void OnAppearing()

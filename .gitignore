@@ -16,3 +16,4 @@ src/Toolkit/Config\.json
 
 src_forms/SmartRoadSenseCore.dll
 src_forms/SmartRoadSenseCore.pdb
+Config.json

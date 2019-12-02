@@ -19,6 +19,7 @@ namespace SmartRoadSense.Shared
         public static VehicleManager Instance { get; } = new VehicleManager();
 
         public void Init() {
+            // Update components list
             List<CollectedComponents> components = new List<CollectedComponents>();
             if(CollectedComponents != null && CollectedComponents.CollectedComponentsList != null)
                 components = CollectedComponents.CollectedComponentsList;
@@ -34,26 +35,25 @@ namespace SmartRoadSense.Shared
                     CollectedComponentsList = components
                 };
             }
-
             else {
                 var collected = CollectedComponents;
                 collected.CollectedComponentsList = components;
                 CollectedComponents = collected;
             }
+
+            // TODO: update unlocked vehicles list
+            var vehiclesOrig = UnlockedVehicles;
+            foreach(var v in vehiclesOrig.VehicleModel) {
+                var vehicleData = Vehicles.VehicleModel.First(m => m.IdVehicle == v.IdVehicle);
+                vehiclesOrig.VehicleModel.First(m => m.IdVehicle == v.IdVehicle).UpdateVehicleModel(vehicleData);
+            }
+            UnlockedVehicles = vehiclesOrig;
         }
 
         public int VehicleCount {
             get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.VehicleCount.Value, 0);
             set {
                 Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.VehicleCount.Value, value);
-                OnPropertyChanged();
-            }
-        }
-
-        public int CurrentGarageVehicleId {
-            get => Plugin.Settings.CrossSettings.Current.GetValueOrDefault(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, -1);
-            set {
-                Plugin.Settings.CrossSettings.Current.AddOrUpdateValue(CrossSettingsIdentifiers.SelectedGarageVehicle.Value, value);
                 OnPropertyChanged();
             }
         }

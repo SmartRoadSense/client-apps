@@ -5,11 +5,11 @@ using Urho.Urho2D;
 namespace SmartRoadSense.Shared {
     public static class BalanceObjectCreator {
 
-        public static Node CreateBalanceObject(Game GameInstance, BaseScene scene, string objectName, ScreenInfoRatio _screenInfo)
+        public static Node CreateBalanceObject(Game GameInstance, BaseScene scene, string objectName, ScreenInfoRatio _screenInfo, Vector3 verticalOffset)
         {
 
             Node node = scene.CreateChild(objectName);
-            node.Position = (new Vector3(-0.7f * _screenInfo.XScreenRatio, 0.5f * _screenInfo.YScreenRatio, 3.0f));
+            node.Position = verticalOffset;
             node.Scale = new Vector3(0.8f, 0.8f, 0.8f);
 
             // Create rigid body

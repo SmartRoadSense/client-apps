@@ -222,8 +222,12 @@ namespace SmartRoadSense.Shared.Data {
             var intervalTime = timestamp - _gpsLastUpdate;
             _gpsLastUpdate = timestamp;
 
-            Log.Debug("Location ({0:F3};{1:F3}) at {2:F2} m/s, accuracy {4:F0} m, elapsed {5:F1} ms",
-                latitude, longitude, speed, bearing, accuracy, intervalTime.TotalMilliseconds);
+            Log.Debug("Location ({0:F3};{1:F3}) at {2:F2} m/s, accuracy {3:F0} m, elapsed {4:F1} ms",
+                      latitude,
+                      longitude,
+                      speed,
+                      accuracy,
+                      intervalTime.TotalMilliseconds);
 
             if(accuracy > MinimumAccuracy) {
                 Log.Debug("Location too inaccurate, discarding");

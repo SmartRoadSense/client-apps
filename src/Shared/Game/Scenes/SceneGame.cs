@@ -9,6 +9,7 @@ using System.Linq;
 using Urho.Audio;
 using SmartRoadSense.Shared.Data;
 using System.IO;
+using System.Threading;
 #if __ANDROID__
 using Android.Runtime;
 #else
@@ -24,10 +25,11 @@ namespace SmartRoadSense.Shared
 
     public enum GameState
     {
-        PLAYING = 0,
-        PAUSE = 1,
-        GAME_OVER = 2,
-        LEVEL_COMPLETE = 3
+        LOADING,
+        PLAYING,
+        PAUSE,
+        GAME_OVER,
+        LEVEL_COMPLETE
     }
 
     public class SceneGame : BaseScene
@@ -129,24 +131,38 @@ namespace SmartRoadSense.Shared
 
          void InitGameplay() 
         {
+            _gameState = GameState.LOADING;
+            GameInstance.PauseGame();
+            UpdateEnabled = false;
+
             // Start music and splashscreen
             InitSounds();
             SplashScreen();
 
             InitCollectables();
+            GameInstance.Engine.RunFrame();
 
-            CreateBackgroundScene();
+
+            var initPosition = CreateBackgroundScene();
+            GameInstance.Engine.RunFrame();
+
             //await CreateBackgroundScene();
-            CreateForegroundScene();
+            CreateForegroundScene(initPosition);
+            GameInstance.Engine.RunFrame();
+
             CreateOSD();
+            GameInstance.Engine.RunFrame();
 
             // Init On-Screen Joystick
             InitOSD();
+            GameInstance.Engine.RunFrame();
 
             // Init viewport
             SetupViewport();
+            GameInstance.Engine.RunFrame();
 
             SubscribeToEvents();
+            GameInstance.Engine.RunFrame();
 
             // Notify main loop of game
             GameInstance.IsRunningGame = true;
@@ -155,7 +171,6 @@ namespace SmartRoadSense.Shared
             GameInstance.GameVehicle = _vehicle;
             GameInstance.UI.SetFocusElement(null);
 
-            _gameState = GameState.PLAYING;
             _timer = false;
 
 #if DEBUG
@@ -234,6 +249,7 @@ namespace SmartRoadSense.Shared
         }
 
         void SplashScreen() {
+
             var splashScrName = SplashScreenCreator.CreateSplashScreen(GameInstance, this, _randomLevel);
             GameInstance.Engine.RunFrame();
 
@@ -248,6 +264,9 @@ namespace SmartRoadSense.Shared
                 btn.Pressed += (PressedEventArgs arg) => {
                     splashUI.Visible = false;
                     GameInstance.Renderer.EndViewRender -= _actionCloseSplashScreen;
+                    _gameState = GameState.PLAYING;
+                    GameInstance.ResumeGame();
+                    UpdateEnabled = true;
                 };
             };
         }
@@ -324,7 +343,7 @@ namespace SmartRoadSense.Shared
             GameInstance.PostRenderUpdate = PostRenderUpdate;
         }
 
-        void CreateBackgroundScene()
+        Vector2 CreateBackgroundScene()
         {
             CreateComponent<Octree>();
             CreateComponent<DebugRenderer>();
@@ -511,18 +530,18 @@ namespace SmartRoadSense.Shared
             _distanceData = new GameDistanceData(0/* TODO change if vehicle starting position changes */, _finishLineEndX);
             _mapPositionData = new MapPositionData(0, _finishLineEndX);
 
-            //return true;
+            return terrainData.First(p => p.Vector.X < 1 && p.Vector.X > -1).Vector;
         }
 
-        void CreateForegroundScene() {
+        void CreateForegroundScene(Vector2 initPosition) {
             // ADD VEHICLE
-            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache, GameInstance.ScreenInfo);
+            var vehicleMain = new VehicleCreator(this, GameInstance.ResourceCache, GameInstance.ScreenInfo, initPosition);
 
             // TODO: pass on selected balance object
             _vehicle = vehicleMain.InitCarInScene(VehicleLoad.BOX);
 
             // Create balance object
-            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName, GameInstance.ScreenInfo);
+            _balanceObject = BalanceObjectCreator.CreateBalanceObject(GameInstance, this, _balanceBodyName, GameInstance.ScreenInfo, vehicleMain.VehicleObjectPosition);
             _vehicle.BalanceObject = _balanceObject;
         }
 

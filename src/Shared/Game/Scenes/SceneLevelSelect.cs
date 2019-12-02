@@ -173,7 +173,7 @@ namespace SmartRoadSense.Shared {
             LevelToComplete.SetPosition(GameInstance.ScreenInfo.SetX(350), GameInstance.ScreenInfo.SetY(240));
 
             //per comodità utilizzo direttamente IntRect e non AssetsCoordinate
-            // in questo punto dovrebbe essere cerato l'IntRect utilizzando la percentuale di completamento del livello
+            // in questo punto dovrebbe essere creato l'IntRect utilizzando la percentuale di completamento del livello
             var buttons = cache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
             double totPoints = CharacterLevelData.PointsToNextLevel();
             double currPoints = CharacterLevelData.CurrentLevelPoints();

@@ -24,6 +24,7 @@ namespace SmartRoadSense.Shared {
         Text screen_info;
         UI ui;
         Font font;
+        Slider imageSlider;
 
         int counter;
         string _nameText;
@@ -89,6 +90,15 @@ namespace SmartRoadSense.Shared {
                     GameInstance.LaunchScene(GameScenesEnumeration.MENU);
             };
 
+            if(VehicleManager.Instance.UnlockedVehicles.VehicleModel.Count == 0) {
+
+#if __ANDROID__
+                btn_back.Visible = false;
+#else
+            btn_back.Visible = true;
+#endif
+            }
+
 
             //COINS
             Button coins = new Button();
@@ -152,7 +162,7 @@ namespace SmartRoadSense.Shared {
             var continueBtn = new Button();
             root.AddChild(continueBtn);
             continueBtn.SetStyleAuto(null);
-            continueBtn.SetPosition(dim.SetX(0), dim.SetY(-40));
+            continueBtn.SetPosition(dim.SetX(0), dim.SetY(-30));
             continueBtn.HorizontalAlignment = HorizontalAlignment.Center;
             continueBtn.VerticalAlignment = VerticalAlignment.Bottom;
             continueBtn.SetSize(dim.SetX(300), dim.SetY(100));
@@ -336,7 +346,7 @@ namespace SmartRoadSense.Shared {
             sel_img = new Button();
             cont_profile.AddChild(sel_img);
             sel_img.SetStyleAuto(null);
-            sel_img.SetPosition((int)(dim.XScreenRatio * 650), (int)(dim.YScreenRatio * 200));
+            sel_img.SetPosition((int)(dim.XScreenRatio * 650), (int)(dim.YScreenRatio * 220));
             sel_img.SetSize((int)(dim.XScreenRatio * 550), (int)(dim.YScreenRatio * 550));
             sel_img.Texture = profiles;
             sel_img.ImageRect = new IntRect(250, 0, 500, 250);
@@ -369,6 +379,32 @@ namespace SmartRoadSense.Shared {
             n_next_img.SetSize((int)(dim.XScreenRatio * 450), (int)(dim.YScreenRatio * 450));
             n_next_img.Texture = profiles;
             n_next_img.ImageRect = new IntRect(0, 0, 250, 250);
+
+
+            //slider
+            imageSlider = new Slider();
+            cont_profile.AddChild(imageSlider);
+            imageSlider.SetStyleAuto(null);
+            imageSlider.SetPosition(GameInstance.ScreenInfo.SetX(400), GameInstance.ScreenInfo.SetY(160));
+            imageSlider.SetSize(GameInstance.ScreenInfo.SetX(1100), GameInstance.ScreenInfo.SetY(55));
+            imageSlider.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            imageSlider.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite;
+            imageSlider.Opacity = 0.2f;
+            imageSlider.Range = 44;
+
+            var knobM = imageSlider.Knob;
+            knobM.SetFixedSize(GameInstance.ScreenInfo.SetX(100), GameInstance.ScreenInfo.SetY(55));
+            knobM.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            knobM.ImageRect = AssetsCoordinates.Generic.Boxes.VolumeBarWhite;
+            knobM.UseDerivedOpacity = false;
+            imageSlider.Value = counter;
+
+            imageSlider.SliderChanged += (SliderChangedEventArgs args) => {
+                counter = (int)args.Value;
+                ScrollImage();
+                System.Diagnostics.Debug.WriteLine("VALORE = " + (int)args.Value);
+            };
+            
         }
 
         void ScrollImage() {
@@ -377,6 +413,7 @@ namespace SmartRoadSense.Shared {
             }
             var character = JsonReaderCharacter.GetSingleCharacter(counter);
 
+            imageSlider.Value = counter;
             int type = character.Type;
             int left = character.ImagePosition.Left;
             int top = character.ImagePosition.Top;

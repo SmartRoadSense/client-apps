@@ -2,6 +2,10 @@ using Urho;
 using Urho.Gui;
 using Urho.Urho2D;
 using System;
+using Urho.Resources;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace SmartRoadSense.Shared {
     public static class SplashScreenCreator {
@@ -53,9 +57,71 @@ namespace SmartRoadSense.Shared {
                 ImageRect = AssetsCoordinates.Backgrounds.FixedBackground.ImageRect,
                 Priority = 999
             };
-
             GameInstance.UI.Root.AddChild(splashscreen);
 
+            // TOP BAR
+            var topBar = new Sprite();
+            splashscreen.AddChild(topBar);
+            topBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.TopBar.ResourcePath);
+            topBar.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
+            topBar.Opacity = 0.5f;
+            topBar.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(30));
+            topBar.SetSize(GameInstance.ScreenInfo.SetX(2000), GameInstance.ScreenInfo.SetY(120));
+
+            Button screenTitle = new Button();
+            //screenTitle.SetStyleAuto(null);
+            screenTitle.HorizontalAlignment = HorizontalAlignment.Right;
+            screenTitle.VerticalAlignment = VerticalAlignment.Center;
+            screenTitle.SetPosition(GameInstance.ScreenInfo.SetX(-150), GameInstance.ScreenInfo.SetY(0));
+            screenTitle.SetSize(GameInstance.ScreenInfo.SetX(400), GameInstance.ScreenInfo.SetY(95));
+            screenTitle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
+            screenTitle.ImageRect = AssetsCoordinates.Generic.Boxes.BoxTitle;
+            screenTitle.Enabled = false;
+            screenTitle.UseDerivedOpacity = false;
+            topBar.AddChild(screenTitle);
+
+            Text buttonTitleText = new Text();
+            screenTitle.AddChild(buttonTitleText);
+            buttonTitleText.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Center);
+            buttonTitleText.SetPosition(GameInstance.ScreenInfo.SetX(20), GameInstance.ScreenInfo.SetY(0));
+            buttonTitleText.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), GameInstance.ScreenInfo.SetX(35));
+            buttonTitleText.Value = "LOADING";
+            buttonTitleText.UseDerivedOpacity = false;
+
+            BorderImage wheel = new BorderImage();
+
+            screenTitle.AddChild(wheel);
+            wheel.SetAlignment(HorizontalAlignment.Right, VerticalAlignment.Center);
+            wheel.SetPosition(GameInstance.ScreenInfo.SetX(-15), GameInstance.ScreenInfo.SetY(0));
+            wheel.SetSize(100, 100);
+            wheel.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Icons.ResourcePath);
+            wheel.ImageRect = AssetsCoordinates.Generic.Icons.LoadingWheel;
+            wheel.UseDerivedOpacity = false;
+
+            /*
+            ValueAnimation textAnimation = new ValueAnimation();
+            textAnimation.SetKeyFrame(0.0f, Color.Blue);
+            textAnimation.SetKeyFrame(1.0f, Color.Red);
+            textAnimation.SetKeyFrame(2.0f, Color.Green);
+
+            Debug.WriteLine($"Name: {nameof(UIElement.Position)}");
+            buttonTitleText.SetAttributeAnimation(nameof(Color), textAnimation, WrapMode.Loop);
+
+            ValueAnimation positionAnimation = new ValueAnimation {
+                InterpolationMethod = InterpMethod.Spline
+            };
+            positionAnimation.SetKeyFrame(0.0f, new IntVector2(-25,0));
+            positionAnimation.SetKeyFrame(1.0f, new IntVector2(-35, 0));
+            positionAnimation.SetKeyFrame(2.0f, new IntVector2(-45, 0));
+            positionAnimation.SetKeyFrame(3.0f, new IntVector2(-55, 0));
+            positionAnimation.SetKeyFrame(4.0f, new IntVector2(-65, 0));
+
+            wheel.SetAttributeAnimation(nameof(UIElement.Position), positionAnimation);
+            wheel.AnimationEnabled = true;
+            wheel.ApplyAttributes();
+            */
+
+            // BODY
             if(randomLevel) {
                 var text = new Text();
                 text.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), 17);
@@ -130,47 +196,6 @@ namespace SmartRoadSense.Shared {
             btnContinueText.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), GameInstance.ScreenInfo.SetX(35));
             btnContinueText.Value = "CONTINUE";
             btnContinue.AddChild(btnContinueText);
-
-            // TOP BAR
-            var topBar = new Sprite();
-            splashscreen.AddChild(topBar);
-            topBar.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.TopBar.ResourcePath);
-            topBar.ImageRect = AssetsCoordinates.Generic.TopBar.Rectangle;
-            topBar.Opacity = 0.5f;
-            topBar.SetPosition(GameInstance.ScreenInfo.SetX(0), GameInstance.ScreenInfo.SetY(30));
-            topBar.SetSize(GameInstance.ScreenInfo.SetX(2000), GameInstance.ScreenInfo.SetY(120));
-
-            Button screenTitle = new Button();
-            //screenTitle.SetStyleAuto(null);
-            screenTitle.HorizontalAlignment = HorizontalAlignment.Right;
-            screenTitle.VerticalAlignment = VerticalAlignment.Center;
-            screenTitle.SetPosition(GameInstance.ScreenInfo.SetX(-150), GameInstance.ScreenInfo.SetY(0));
-            screenTitle.SetSize(GameInstance.ScreenInfo.SetX(400), GameInstance.ScreenInfo.SetY(95));
-            screenTitle.Texture = GameInstance.ResourceCache.GetTexture2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            screenTitle.ImageRect = AssetsCoordinates.Generic.Boxes.BoxTitle;
-            screenTitle.Enabled = false;
-            screenTitle.UseDerivedOpacity = false;
-            topBar.AddChild(screenTitle);
-
-            Text buttonTitleText = new Text();
-            screenTitle.AddChild(buttonTitleText);
-            buttonTitleText.SetAlignment(HorizontalAlignment.Left, VerticalAlignment.Center);
-            buttonTitleText.SetPosition(GameInstance.ScreenInfo.SetX(20), GameInstance.ScreenInfo.SetY(0));
-            buttonTitleText.SetFont(GameInstance.ResourceCache.GetFont(GameInstance.defaultFont), GameInstance.ScreenInfo.SetX(35));
-            buttonTitleText.Value = "LOADING";
-            buttonTitleText.UseDerivedOpacity = false;
-
-            // Animated Wheel
-            /*
-            Node wheelNode = parent.CreateChild("LoadingScreenWheelNode");
-            wheelNode.Position = new Vector3(0.0f, 0.0f, 0.0f);
-
-            var loadingWheel = GameInstance.ResourceCache.GetSprite2D(AssetsCoordinates.Generic.Boxes.ResourcePath);
-            loadingWheel.Rectangle = AssetsCoordinates.Generic.Boxes.LoadingWheel;
-
-            var loadingWheelSprite2D = wheelNode.CreateComponent<AnimatedSprite2D>();
-            loadingWheelSprite2D.Sprite = loadingWheel;
-            */
 
             return splashscreen.Name;
         }

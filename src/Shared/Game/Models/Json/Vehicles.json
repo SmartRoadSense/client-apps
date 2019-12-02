@@ -247,7 +247,8 @@
         }
       ],
       "WHEELS_SIZE": [
-        1,1
+        1,
+        1
       ],
       "BALANCE_BODY_OFFSET": [
         0,
@@ -890,6 +891,323 @@
           0,
           0
         ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    /*************/
+    /*************/
+    /*************/
+    {
+      "ID_VEHICLE": "14",
+      "VEHICLE_NAME": "50s PICKUP",
+      "IMAGE_POSITION": {
+        "LEFT": "0",
+        "TOP": "500",
+        "RIGHT": "250",
+        "BOTTOM": "750"
+      },
+      "BODY_POSITION": {
+        "LEFT": "0",
+        "TOP": "500",
+        "RIGHT": "250",
+        "BOTTOM": "750"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "0",
+          "TOP": "50",
+          "RIGHT": "50",
+          "BOTTOM": "100"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "59",
+          "Y": "700"
+        },
+        {
+          "X": "209",
+          "Y": "700"
+        }
+      ],
+      "WHEELS_SIZE": [ 
+        1.2, 
+        1.2 
+      ],
+      "BALANCE_BODY_OFFSET": [ 
+        0, 
+        0, 
+        0, 
+        0
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "15",
+      "VEHICLE_NAME": "CLASSIC",
+      "IMAGE_POSITION": {
+        "LEFT": "250",
+        "TOP": "500",
+        "RIGHT": "500",
+        "BOTTOM": "750"
+      },
+      "BODY_POSITION": {
+        "LEFT": "250",
+        "TOP": "500",
+        "RIGHT": "500",
+        "BOTTOM": "750"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "50",
+          "TOP": "50",
+          "RIGHT": "100",
+          "BOTTOM": "100"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "288",
+          "Y": "698"
+        },
+        {
+          "X": "456",
+          "Y": "698"
+        }
+      ],
+      "WHEELS_SIZE": [
+        1.5,
+        1.5
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "16",
+      "VEHICLE_NAME": "DUMPER TRUCK",
+      "IMAGE_POSITION": {
+        "LEFT": "500",
+        "TOP": "500",
+        "RIGHT": "750",
+        "BOTTOM": "750"
+      },
+      "BODY_POSITION": {
+        "LEFT": "500",
+        "TOP": "500",
+        "RIGHT": "750",
+        "BOTTOM": "750"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "100",
+          "TOP": "50",
+          "RIGHT": "150",
+          "BOTTOM": "100"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "538",
+          "Y": "700"
+        },
+        {
+          "X": "578",
+          "Y": "700"
+        },
+        {
+          "X": "688",
+          "Y": "700"
+        }
+      ],
+      "WHEELS_SIZE": [
+        1.1,
+        1.1,
+        1.1
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "17",
+      "VEHICLE_NAME": "MILITARY TRUCK",
+      "IMAGE_POSITION": {
+        "LEFT": "750",
+        "TOP": "500",
+        "RIGHT": "1000",
+        "BOTTOM": "750"
+      },
+      "BODY_POSITION": {
+        "LEFT": "750",
+        "TOP": "500",
+        "RIGHT": "1000",
+        "BOTTOM": "750"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "150",
+          "TOP": "50",
+          "RIGHT": "200",
+          "BOTTOM": "100"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "805",
+          "Y": "700"
+        },
+        {
+          "X": "849",
+          "Y": "700"
+        },
+        {
+          "X": "931",
+          "Y": "700"
+        }
+      ],
+      "WHEELS_SIZE": [
+        1.15,
+        1.15,
+        1.15
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "18",
+      "VEHICLE_NAME": "SPACE BUG",
+      "IMAGE_POSITION": {
+        "LEFT": "1000",
+        "TOP": "500",
+        "RIGHT": "1250",
+        "BOTTOM": "750"
+      },
+      "BODY_POSITION": {
+        "LEFT": "1000",
+        "TOP": "500",
+        "RIGHT": "1250",
+        "BOTTOM": "750"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "200",
+          "TOP": "50",
+          "RIGHT": "250",
+          "BOTTOM": "100"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1041",
+          "Y": "701"
+        },
+        {
+          "X": "1090",
+          "Y": "701"
+        },
+        {
+          "X": "1139",
+          "Y": "701"
+        },
+        {
+          "X": "1188",
+          "Y": "701"
+        }
+      ],
+      "WHEELS_SIZE": [
+        1.4,
+        1.4,
+        1.4,
+        1.4
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "PERFORMANCE": "6",
+      "SUSPENSIONS": "6",
+      "WHEEL": "8",
+      "BRAKE": "5",
+      "UNLOCK_COST": "-1"
+    },
+    {
+      "ID_VEHICLE": "19",
+      "VEHICLE_NAME": "UMVEE",
+      "IMAGE_POSITION": {
+        "LEFT": "1250",
+        "TOP": "500",
+        "RIGHT": "1500",
+        "BOTTOM": "750"
+      },
+      "BODY_POSITION": {
+        "LEFT": "1250",
+        "TOP": "500",
+        "RIGHT": "1500",
+        "BOTTOM": "750"
+      },
+      "WHEELS_POSITION": [
+        {
+          "LEFT": "250",
+          "TOP": "50",
+          "RIGHT": "300",
+          "BOTTOM": "100"
+        }
+      ],
+      "WHEELS_BODY_POSITION": [
+        {
+          "X": "1306",
+          "Y": "699"
+        },
+        {
+          "X": "1456",
+          "Y": "699"
+        }
+      ],
+      "WHEELS_SIZE": [
+        1.3,
+        1.3
+      ],
+      "BALANCE_BODY_OFFSET": [
+        0,
+        0,
+        0,
+        0
+      ],
       "PERFORMANCE": "6",
       "SUSPENSIONS": "6",
       "WHEEL": "8",

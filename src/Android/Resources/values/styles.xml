@@ -97,7 +97,17 @@
     </style>
 
     <!-- Raised material design button -->
-    <style name="button_raised" parent="@style/Base.Widget.AppCompat.Button.Colored">
+    <!--
+    <style name="button_raised" parent="@style/AndroidX.AppCompat.Widget.Button.Colored">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textColor">@color/text_on_dark</item>
+        <item name="android:theme">@style/PrimaryButtonTheme</item>
+    </style>
+    -->
+    <style name="button_raised" parent="@style/button_raised">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minWidth">64dp</item>

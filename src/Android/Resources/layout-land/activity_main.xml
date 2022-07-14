@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -33,7 +33,7 @@
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="1dp"
                 android:layout_weight="1.0">
                 <ImageView
                     android:id="@+id/button_record"
@@ -81,6 +81,7 @@
                         android:layout_height="@dimen/floating_button_size"
                         android:orientation="horizontal">
                         <ImageView
+                            android:contentDescription="@string/Vernacular_P0_label_vehicle"
                             android:id="@+id/button_setup_vehicle"
                             android:layout_width="@dimen/floating_button_size"
                             android:layout_height="@dimen/floating_button_size"
@@ -90,6 +91,7 @@
                             android:gravity="center"
                             android:tint="@color/theme_primary" />
                         <ImageView
+                            android:contentDescription="@string/Vernacular_P0_label_anchorage"
                             android:id="@+id/button_setup_anchorage"
                             android:layout_width="@dimen/floating_button_size"
                             android:layout_height="@dimen/floating_button_size"
@@ -119,4 +121,4 @@
 <!-- The navigation drawer -->
     <include
         layout="@layout/component_navigation_drawer" />
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

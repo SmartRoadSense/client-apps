@@ -69,6 +69,7 @@
     <OptimizePNGs>false</OptimizePNGs>
     <LangVersion>Latest</LangVersion>
     <IOSDebuggerPort>10001</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -86,6 +87,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <OptimizePNGs>false</OptimizePNGs>
     <LangVersion>Latest</LangVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -104,6 +106,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <OptimizePNGs>false</OptimizePNGs>
     <LangVersion>Latest</LangVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -121,6 +124,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <OptimizePNGs>false</OptimizePNGs>
     <LangVersion>Latest</LangVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|iPhoneSimulator' ">
     <Optimize>true</Optimize>
@@ -152,6 +156,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <OptimizePNGs>false</OptimizePNGs>
     <LangVersion>Latest</LangVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

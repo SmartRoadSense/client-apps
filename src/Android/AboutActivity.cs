@@ -7,13 +7,14 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V4.App;
-using Android.Support.V7.App;
+using AndroidX.Fragment.App;
+using AndroidX.AppCompat.App;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
 
 using SmartRoadSense.Shared;
+using AndroidX.Core.App;
 
 namespace SmartRoadSense.Android {
 
@@ -29,7 +30,7 @@ namespace SmartRoadSense.Android {
             SetContentView(Resource.Layout.activity_about);
 
             //Toolbar support
-            var toolbar = this.FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = this.FindViewById<global::AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             if(toolbar != null) {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);

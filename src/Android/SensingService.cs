@@ -8,7 +8,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V4.App;
+using AndroidX.Fragment.App;
 using Android.Views;
 using Android.Widget;
 
@@ -16,6 +16,7 @@ using SmartRoadSense.Core;
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Data;
 using SmartRoadSense.Shared.ViewModel;
+using AndroidX.Core.App;
 
 namespace SmartRoadSense.Android {
 

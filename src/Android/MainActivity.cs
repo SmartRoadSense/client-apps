@@ -10,17 +10,17 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V4.Content;
-using Android.Support.V4.Widget;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using Android.Views;
 using Android.Widget;
 
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Data;
-using SmartRoadSense.Resources;
 
 using Plugin.CurrentActivity;
+using AndroidX.DrawerLayout.Widget;
+using AndroidX.Core.Content;
+using SmartRoadSense.Resources;
 
 namespace SmartRoadSense.Android {
 
@@ -69,7 +69,7 @@ namespace SmartRoadSense.Android {
             SetContentView(Resource.Layout.activity_main);
 
             //Toolbar support
-            var toolbar = FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<global::AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             if(toolbar != null) {
                 SetSupportActionBar(toolbar);
             }
@@ -367,7 +367,7 @@ namespace SmartRoadSense.Android {
         /// <summary>
         /// Initializes the navigation drawer menu.
         /// </summary>
-        private void InitNavigationDrawer(global::Android.Support.V7.Widget.Toolbar toolbar) {
+        private void InitNavigationDrawer(global::AndroidX.AppCompat.Widget.Toolbar toolbar) {
             _drawerLayout = this.FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             _drawerToggle = new CustomActionBarDrawerToggle(this, _drawerLayout, toolbar, Resource.String.Vernacular_P0_action_drawer_open, Resource.String.Vernacular_P0_action_drawer_close);
             _drawerLayout.AddDrawerListener(_drawerToggle);

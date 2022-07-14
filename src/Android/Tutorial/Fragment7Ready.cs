@@ -15,7 +15,7 @@ using SmartRoadSense.Shared;
 
 namespace SmartRoadSense.Android.Tutorial {
 
-    public class Fragment7Ready : global::Android.Support.V4.App.Fragment, IDisplayAwareFragment {
+    public class Fragment7Ready : global::AndroidX.Fragment.App.Fragment, IDisplayAwareFragment {
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             var view = inflater.Inflate(Resource.Layout.fragment_tutorial_7_ready, container, false);

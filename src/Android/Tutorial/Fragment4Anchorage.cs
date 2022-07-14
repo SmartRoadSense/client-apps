@@ -14,7 +14,7 @@ using SmartRoadSense.Shared;
 
 namespace SmartRoadSense.Android.Tutorial {
 
-    public class Fragment4Anchorage : global::Android.Support.V4.App.Fragment, IDisplayAwareFragment {
+    public class Fragment4Anchorage : global::AndroidX.Fragment.App.Fragment, IDisplayAwareFragment {
 
         ImageView _imageMat, _imageBracket, _imagePocket;
         TextView _textSelected;

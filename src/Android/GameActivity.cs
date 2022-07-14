@@ -2,7 +2,7 @@ using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using Android.Views;
 using Android.Widget;
 
@@ -21,7 +21,7 @@ namespace SmartRoadSense.Android {
             SetContentView(SmartRoadSense.Android.Resource.Layout.activity_game);
 
             //Toolbar support
-            var toolbar = FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<global::AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             if(toolbar != null) {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);

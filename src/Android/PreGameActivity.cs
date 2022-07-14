@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using Android.Views;
 using Android.Widget;
 using SmartRoadSense.Shared;

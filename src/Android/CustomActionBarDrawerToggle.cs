@@ -1,10 +1,10 @@
 using System;
 using Android.App;
-using Android.Support.V4.Widget;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using Android.Views;
 using SmartRoadSense.Shared;
-using Android.Support.V7.Widget;
+using AndroidX.DrawerLayout.Widget;
+using AndroidX.AppCompat.Widget;
 
 namespace SmartRoadSense.Android {
 

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace SmartRoadSense.Shared {
     public static class Smoothing {
@@ -101,9 +103,12 @@ namespace SmartRoadSense.Shared {
 
                 using(var s = assembly.GetManifestResourceStream(fullname)) {
                     using(var reader = new StreamReader(s)) {
-                        var csv = new CsvReader(reader);
-                        csv.Configuration.CultureInfo = System.Globalization.CultureInfo.InvariantCulture;
-                        csv.Configuration.HasHeaderRecord = true;
+
+                        var config = new CsvConfiguration(CultureInfo.InvariantCulture) {
+                            HasHeaderRecord = false
+                        };
+                        var csv = new CsvReader(reader, config);
+
                         var records = csv.GetRecords<float>();
                         recs = records.ToList();
 

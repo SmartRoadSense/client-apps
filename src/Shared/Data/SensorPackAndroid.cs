@@ -7,8 +7,7 @@ using Android.Content;
 using Android.Hardware;
 using Android.Locations;
 using Android.OS;
-using Android.Support.V4.Content;
-
+using AndroidX.Core.Content;
 using SmartRoadSense.Core;
 
 namespace SmartRoadSense.Shared.Data {

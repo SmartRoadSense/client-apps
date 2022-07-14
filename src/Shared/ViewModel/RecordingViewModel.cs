@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq.Expressions;
 using System.Windows.Input;
-
-using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Data;
 using SmartRoadSense.Resources;
 

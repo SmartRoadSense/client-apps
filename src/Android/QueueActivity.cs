@@ -1,14 +1,15 @@
 using System;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using SmartRoadSense.Shared.ViewModel;
 using Android.OS;
-using Android.Support.V7.Widget;
+using AndroidX.AppCompat.Widget;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V4.App;
+using AndroidX.Fragment.App;
 using Android.Content;
 using System.Collections.Generic;
 using Android.App;
+using AndroidX.Core.App;
 
 namespace SmartRoadSense.Android {
 
@@ -31,7 +32,7 @@ namespace SmartRoadSense.Android {
             SetContentView(Resource.Layout.activity_queue);
 
             //Toolbar support
-            var toolbar = this.FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = this.FindViewById<global::AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             if(toolbar != null) {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -133,7 +134,7 @@ namespace SmartRoadSense.Android {
         }
 
         private void HandleClearQueueClick() {
-            new global::Android.Support.V7.App.AlertDialog.Builder(this)
+            new global::AndroidX.AppCompat.App.AlertDialog.Builder(this)
                 .SetTitle(Resource.String.Vernacular_P0_dialog_queue_clear_title)
                 .SetMessage(Resource.String.Vernacular_P0_dialog_queue_clear_description)
                 .SetPositiveButton(Resource.String.Vernacular_P0_dialog_queue_clear_delete_all, (s, args) => {
@@ -149,7 +150,7 @@ namespace SmartRoadSense.Android {
             
             var item = ((QueueItemAdapter)_listFiles.Adapter)[e.Position];
 
-            new global::Android.Support.V7.App.AlertDialog.Builder(this)
+            new global::AndroidX.AppCompat.App.AlertDialog.Builder(this)
                 .SetTitle(Resource.String.Vernacular_P0_dialog_queue_file_title)
                 .SetPositiveButton(Resource.String.Vernacular_P0_dialog_queue_file_delete, (s, args) => {
                     ViewModel.DeleteUploadQueueItemCommand.Execute(item);

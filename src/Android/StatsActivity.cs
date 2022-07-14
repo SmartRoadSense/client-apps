@@ -4,14 +4,15 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Support.V7.App;
+using AndroidX.Fragment.App;
+using AndroidX.AppCompat.App;
 using Android.Text;
 using Android.Text.Style;
 using Android.Views;
 using Android.Widget;
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Database;
+using AndroidX.Core.App;
 
 namespace SmartRoadSense.Android {
 
@@ -27,7 +28,7 @@ namespace SmartRoadSense.Android {
             SetContentView(Resource.Layout.activity_stats);
 
             //Toolbar support
-            var toolbar = this.FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = this.FindViewById<global::AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             if (toolbar != null) {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -134,7 +135,7 @@ namespace SmartRoadSense.Android {
                 Log.Debug("Written output image to {0}", outputPath);
 
                 // Get sharing URI
-                var shareUri = global::Android.Support.V4.Content.FileProvider.GetUriForFile(
+                var shareUri = global::AndroidX.Core.Content.FileProvider.GetUriForFile(
                     this, "it.uniurb.smartroadsense.fileprovider", new Java.IO.File(outputPath));
 
                 // Share

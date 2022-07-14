@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>SmartRoadSense.Resources</RootNamespace>
     <AssemblyName>SmartRoadSense.Resources</AssemblyName>
   </PropertyGroup>
@@ -33,23 +33,43 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="UiStrings.it.Designer.cs">
+      <DependentUpon>UiStrings.it.resx</DependentUpon>
+    </Compile>
+    <Compile Update="UiStrings.Designer.cs">
+      <DependentUpon>UiStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="LogStrings.Designer.cs">
+      <DependentUpon>LogStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="AppStrings.Designer.cs">
+      <DependentUpon>AppStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="LogStrings.it.Designer.cs">
+      <DependentUpon>LogStrings.it.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="AppStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="LogStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="UiStrings.it.resx">
-      <Generator></Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UiStrings.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="UiStrings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Condition=" '$(EnableDefaultEmbeddedResourceItems)' == 'true' " Update="LogStrings.it.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogStrings.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
  

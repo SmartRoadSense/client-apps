@@ -14,7 +14,7 @@ using SmartRoadSense.Shared;
 
 namespace SmartRoadSense.Android.Tutorial {
 
-    public class Fragment3Vehicle : global::Android.Support.V4.App.Fragment, IDisplayAwareFragment {
+    public class Fragment3Vehicle : global::AndroidX.Fragment.App.Fragment, IDisplayAwareFragment {
 
 		public Fragment3Vehicle() {
 			Log.Debug("CREATION {0}", System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(this));

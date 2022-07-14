@@ -7,8 +7,7 @@ using Android.App.Job;
 using Android.Content;
 using Android.Net;
 using Android.OS;
-using Android.Support.V4.Content;
-
+using AndroidX.Legacy.Content;
 using SmartRoadSense.Shared;
 using SmartRoadSense.Shared.Data;
 

@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace SmartRoadSense.Android.Tutorial {
 
-    public class Fragment2What: global::Android.Support.V4.App.Fragment {
+    public class Fragment2What: global::AndroidX.Fragment.App.Fragment {
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.Inflate(Resource.Layout.fragment_tutorial_2_what, container, false);

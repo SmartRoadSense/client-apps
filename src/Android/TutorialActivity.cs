@@ -1,20 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Support.V4.App;
-using Android.Support.V4.View;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using Android.Views;
 using Android.Widget;
 
 using SmartRoadSense.Android.Tutorial;
 using SmartRoadSense.Shared;
+using AndroidX.Fragment.App;
+using AndroidX.ViewPager.Widget;
 
 namespace SmartRoadSense.Android {
     
@@ -25,7 +20,7 @@ namespace SmartRoadSense.Android {
 
         private class TutorialFragmentPagerAdapter : FragmentPagerAdapter {
 
-            public TutorialFragmentPagerAdapter(global::Android.Support.V4.App.FragmentManager manager)
+            public TutorialFragmentPagerAdapter(global::AndroidX.Fragment.App.FragmentManager manager)
                 : base(manager) {
 
             }
@@ -42,7 +37,7 @@ namespace SmartRoadSense.Android {
 
             #region Implemented abstract members of FragmentPagerAdapter
 
-            public override global::Android.Support.V4.App.Fragment GetItem(int position) {
+            public override global::AndroidX.Fragment.App.Fragment GetItem(int position) {
                 switch(position) {
                     case 0:
                         return new Fragment1Introduction();
@@ -107,10 +102,9 @@ namespace SmartRoadSense.Android {
         /// <summary>
         /// Gets the fragment at position.
         /// </summary>
-        /// <remarks>
         /// http://stackoverflow.com/a/11976663/3118
         /// </remarks>
-        private global::Android.Support.V4.App.Fragment GetFragmentAt(int position) {
+        private AndroidX.Fragment.App.Fragment GetFragmentAt(int position) {
             var tag = string.Format("android:switcher:{0}:{1}", _pager.Id, position);
             return SupportFragmentManager.FindFragmentByTag(tag);
         }

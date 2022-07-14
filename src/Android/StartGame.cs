@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Support.V7.App;
+using AndroidX.AppCompat.App;
 using SmartRoadSense.Shared;
 using System.Threading.Tasks;
 using Urho.Droid;
@@ -33,7 +33,7 @@ namespace SmartRoadSense.Android {
             SetContentView(Resource.Layout.activity_game);
 
             //Toolbar support
-            var toolbar = this.FindViewById<global::Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = this.FindViewById<global::AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             if(toolbar != null) {
                 SetSupportActionBar(toolbar);
                 SupportActionBar.SetDisplayHomeAsUpEnabled(true);

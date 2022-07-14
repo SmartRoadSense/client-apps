@@ -8,7 +8,7 @@ using SmartRoadSense.Shared.Calibration;
 
 namespace SmartRoadSense.Android.Tutorial {
 
-    public class Fragment5Calibration : global::Android.Support.V4.App.Fragment {
+    public class Fragment5Calibration : global::AndroidX.Fragment.App.Fragment {
 
         private readonly Calibrator _calibrator;
 

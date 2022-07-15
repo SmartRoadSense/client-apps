@@ -2,7 +2,7 @@
 <resources>
   <style name="AppTheme" parent="@style/AppTheme.Base"/>
 
-  <style name="AppTheme.Base" parent="android:Theme.Holo.NoActionBar">
+  <style name="AppTheme.Base" parent="Theme.AppCompat.NoActionBar">
     <item name="android:colorPrimary">@color/theme_primary</item>
     <item name="android:colorPrimaryDark">@color/theme_primary</item>
     <item name="android:colorAccent">@color/theme_secondary</item>

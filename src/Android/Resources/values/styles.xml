@@ -98,7 +98,7 @@
 
     <!-- Raised material design button -->
     <!--
-    <style name="button_raised" parent="@style/AndroidX.AppCompat.Widget.Button.Colored">
+    <style name="button_raised" parent="@style/androidX.appcompat.widget.Button.Colored">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minWidth">64dp</item>

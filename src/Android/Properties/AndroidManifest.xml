@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="it.uniurb.smartroadsense" android:versionName="4.0.2" android:versionCode="42" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="it.uniurb.smartroadsense" android:versionName="4.1.0" android:versionCode="43" android:installLocation="preferExternal">
 	<uses-sdk android:targetSdkVersion="31" android:minSdkVersion="22" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

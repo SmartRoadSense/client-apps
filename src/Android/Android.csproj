@@ -95,14 +95,14 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <NoStdLib>false</NoStdLib>
+<AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release</OutputPath>
     <DefineConstants>ANDROID</DefineConstants>
     <Optimize>true</Optimize>
     <DebugSymbols>false</DebugSymbols>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <DebugType></DebugType>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -142,6 +142,7 @@
     <WarningsNotAsErrors></WarningsNotAsErrors>
     <Nullable></Nullable>
     <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
+<AssemblyName>SmartRoadSense</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|AnyCPU' ">
     <OutputPath>bin\Beta Release</OutputPath>

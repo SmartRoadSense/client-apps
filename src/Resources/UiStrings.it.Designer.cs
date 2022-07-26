@@ -9,6 +9,7 @@
 
 namespace SmartRoadSense.Resources {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -36,7 +37,7 @@ namespace SmartRoadSense.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SmartRoadSense.Resources.UiStrings.it", typeof(UiStrings_it).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SmartRoadSense.Resources.UiStrings.it", typeof(UiStrings_it).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -2,36 +2,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard1.2</TargetFramework>
     <RootNamespace>SmartRoadSense.Resources</RootNamespace>
     <AssemblyName>SmartRoadSense.Resources</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Update="AppStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
       <DependentUpon>AppStrings.resx</DependentUpon>
     </Compile>
     <Compile Update="LogStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
       <DependentUpon>LogStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="UiStrings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UiStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="AppStrings.Designer.cs">
-      <DependentUpon>AppStrings.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="LogStrings.Designer.cs">
-      <DependentUpon>LogStrings.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="UiStrings.it.Designer.cs">
       <DependentUpon>UiStrings.it.resx</DependentUpon>
@@ -39,32 +20,23 @@
     <Compile Update="UiStrings.Designer.cs">
       <DependentUpon>UiStrings.resx</DependentUpon>
     </Compile>
-    <Compile Update="LogStrings.Designer.cs">
-      <DependentUpon>LogStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="AppStrings.Designer.cs">
-      <DependentUpon>AppStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Update="LogStrings.it.Designer.cs">
-      <DependentUpon>LogStrings.it.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="AppStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="LogStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LogStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="UiStrings.it.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UiStrings.it.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="UiStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UiStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Condition=" '$(EnableDefaultEmbeddedResourceItems)' == 'true' " Update="LogStrings.it.resx">

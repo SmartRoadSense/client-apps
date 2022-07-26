@@ -15,17 +15,11 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <XamarinInsightsApiKey>295a6c1fda64f91504d41e8c6b1734ea6fc61054</XamarinInsightsApiKey>
-    <AndroidLinkSkip></AndroidLinkSkip>
-    <AndroidStoreUncompressedFileExtensions></AndroidStoreUncompressedFileExtensions>
-    <JavaOptions></JavaOptions>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <Deterministic>True</Deterministic>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,7 +36,6 @@
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <MandroidI18n></MandroidI18n>
 <AndroidTlsProvider>btls</AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -110,38 +103,15 @@
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <DocumentationFile></DocumentationFile>
     <LangVersion>Latest</LangVersion>
-    <IntermediateOutputPath></IntermediateOutputPath>
     <ConsolePause>false</ConsolePause>
     <ExternalConsole>false</ExternalConsole>
-    <Commandlineparameters></Commandlineparameters>
     <RunWithWarnings>true</RunWithWarnings>
     <AndroidManagedSymbols>false</AndroidManagedSymbols>
-    <MandroidExtraArgs></MandroidExtraArgs>
-    <AndroidLinkMode></AndroidLinkMode>
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <BundleAssemblies></BundleAssemblies>
-    <MandroidI18n></MandroidI18n>
-    <JavaMaximumHeapSize></JavaMaximumHeapSize>
-    <AndroidKeyStore></AndroidKeyStore>
-    <AndroidSigningKeyStore></AndroidSigningKeyStore>
-    <AndroidSigningStorePass></AndroidSigningStorePass>
-    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass></AndroidSigningKeyPass>
-    <AndroidPackageFormat></AndroidPackageFormat>
-    <AotAssemblies></AotAssemblies>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <EnableLLVM>false</EnableLLVM>
-    <AndroidEnableMultiDex></AndroidEnableMultiDex>
-    <AndroidFastDeploymentType></AndroidFastDeploymentType>
-    <AndroidManifest></AndroidManifest>
-    <AndroidDexTool></AndroidDexTool>
-    <NoWarn></NoWarn>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <NoStdLib>false</NoStdLib>
-    <WarningsNotAsErrors></WarningsNotAsErrors>
-    <Nullable></Nullable>
-    <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
 <AssemblyName>SmartRoadSense</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Beta Release|AnyCPU' ">
@@ -156,40 +126,17 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <DocumentationFile></DocumentationFile>
     <LangVersion>Latest</LangVersion>
-    <IntermediateOutputPath></IntermediateOutputPath>
     <ConsolePause>false</ConsolePause>
     <ExternalConsole>false</ExternalConsole>
-    <Commandlineparameters></Commandlineparameters>
     <RunWithWarnings>true</RunWithWarnings>
     <AndroidManagedSymbols>false</AndroidManagedSymbols>
-    <MandroidExtraArgs></MandroidExtraArgs>
-    <AndroidLinkMode></AndroidLinkMode>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
-    <BundleAssemblies></BundleAssemblies>
-    <MandroidI18n></MandroidI18n>
-    <JavaMaximumHeapSize></JavaMaximumHeapSize>
-    <AndroidKeyStore></AndroidKeyStore>
-    <AndroidSigningKeyStore></AndroidSigningKeyStore>
-    <AndroidSigningStorePass></AndroidSigningStorePass>
-    <AndroidSigningKeyAlias></AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass></AndroidSigningKeyPass>
-    <AndroidPackageFormat></AndroidPackageFormat>
-    <AotAssemblies></AotAssemblies>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <EnableLLVM>false</EnableLLVM>
-    <AndroidEnableMultiDex></AndroidEnableMultiDex>
-    <AndroidFastDeploymentType></AndroidFastDeploymentType>
-    <AndroidManifest></AndroidManifest>
-    <AndroidDexTool></AndroidDexTool>
-    <NoWarn></NoWarn>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <NoStdLib>false</NoStdLib>
-    <WarningsNotAsErrors></WarningsNotAsErrors>
-    <Nullable></Nullable>
-    <EmbedAssembliesIntoApk></EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
